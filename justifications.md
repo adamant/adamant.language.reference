@@ -37,6 +37,10 @@ New Operator
 : Any value with mutable state should be created with the `new` operator. Rust doesn't have a new operator.  However, it was decided that for Adamant the explicitness of having a new operator for allocating memory was good.  It then might seem to make sense to not use new for structs.  Using new for structs in C# has always felt a little weird.  However, the optimizer of Adamant is expected to frequently convert reference types into stack allocations so they might end up equivalent.  Also, it make structs consistent.  And it would seem weird to declare struct constructors using new but then call them without new.  One can't just have static functions build structs because of safety around definite assignment.
 
 
+No Python Style Loop Else
+: Python's loop else condition runs after the loop as long as break was not used.  A feature like this was considered, though it would have needed a better keyword.  However, that construct is more useful when selecting an item out of a collection, and in Adamant this will be done with the `for` loop that.  Since `for` loops operate on iterators, using a filter on the iterator is a better and easier way to do this.  Also, it wasn't clear how to combine such a feature with the existing loop else feature.
+
+
 Numeric Types
 : Both Rust and Go use integer values to indicate the bit length of types.  However, C# did not and it was already planning for 64 bit architectures.
 The numeric sizes were selected based on the following criteria
