@@ -1,0 +1,7 @@
+# Params and List Initializers
+
+Both `params` and list initializers need to populate lists.  They do so through the same means.  For the type in question, they will first look for a constructor taking `size, Unsafe_Array<T>` or `size, mut Unsafe_Array<T>`.  If one of those exists, it will construct an unsafe array of the values and pass the number of values and the unsafe array to that constructor.  Even if that constructor is `unsafe` which it should be, no safety error will be generated.  If no such constructor is present, it will look for a constructor named `Capacity` taking a single argument of `size`.  If it exists, it will construct the collection using that constructor passing the number of values, then call `Add()` repeatedly, passing each value.  If no such constructor is present, it will look for a default construct, use it and add the values.  If none of these exists, an error will be generated
+
+# Params
+
+The `params` keyword may be applied to the last argument of a function.  It causes any of the arguments from that position forward to be gathered into a single collection and passed as the collection.  The type of this argument is not limited to `Array<T>`.  It can be any type which can take a collection initializer.  Essentially, params causes the caller to be re-written as a temporary collection initialized with the parameters.  A `params` argument may be passed borrow, borrow mut or own.

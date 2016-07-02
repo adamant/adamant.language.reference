@@ -1,0 +1,39 @@
+# The Adamant Language: An Informal Specification and Introduction
+
+  * [Pre-Adamant](pre-adamant.md)
+  * Ownership
+    * [Copy and Move](copy-and-move.md)
+    * [Lifetimes](lifetimes.md)
+    * [Ownership and Borrowing](ownership-and-borrowing.md)
+	* [References](references.md)
+  * [Access Modifiers](access-modifiers.md)
+  * [Predefined Types](predefined-types.md)
+    * [Tuples](tuples.md)
+  * Classes
+    * [Associated Functions](associated-functions.md)
+    * [Constructors](constructors.md)
+	* [Destructors](destructors.md)
+	* [Generics](generics.md)
+	* [Operator Overloading](operator-overloading.md)
+	* [Object Literals](object-literals.md)
+	* [Extensions](extensions.md)
+  * [Traits](traits.md)
+  * [Enums](enums.md)
+  * [Exceptions](exceptions.md)
+  * [Params and List Initializers](params-and-list-initializers.md)
+  * [Bitwise Operations](bitwise-operations.md)
+  * [Casting with `as`](casting.md)
+  * Standard Librart
+    * [Strings](strings.md)
+    * [Paths](paths.md)
+    * [Arrays](arrays.md)
+	* [Ranges](ranges.md)
+  * Syntax
+    * [Escaped Identifiers](escaped-identifiers.md)
+	* [Package Qualifier](package-qualifier.md)
+	* [Naming Conventions](naming-conventions.md)
+  * Advanced
+    * [Unsafe](unsafe.md)
+    * [External](external.md)
+    * [Memory Layout](memory-layout.md)
+  * [Justifications](justifications.md)
