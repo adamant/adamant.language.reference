@@ -1,6 +1,6 @@
 # Loops
 
-**Idea: switch to Rust style where there are no parens and curly braces are required, except allow another control flow statement instead of a block.  So for example one could nest multiple loops with only the inner one needing braces**
+**Idea: switch to Rust style where there are no parens and curly braces are required, except allow another control flow statement instead of a block.  So for example one could nest multiple loops with only the inner one needing braces.**
 
 Adamant has three loop constructs.  They are `loop`, `while` and `for`.
 

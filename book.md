@@ -33,6 +33,7 @@
     * [Casting with `as`](casting.md)
 	* [Escaped Identifiers](escaped-identifiers.md)
 	* [Package Qualifier](package-qualifier.md)
+	* [Reserved Words](reserved-words.md)
 	* Advanced
       * [Unsafe](unsafe.md)
       * [External](external.md)

@@ -1,0 +1,3 @@
+# Reserved Words
+
+  * `then` could be used for python style loop else.  Even allows while(condition) statement1 then statement2 else statement3. That is loop, do else if the loop never executes, do statement2 if the loop executes and ends without breaking.  Note though that a then without an else would execute even if the loop never did.  Another proposal is to have an `unless` loop and then reuse the keyword here as `unless break`;
