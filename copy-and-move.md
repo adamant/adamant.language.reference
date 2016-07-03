@@ -1,6 +1,6 @@
 # Copy and Move
 
-Some times make sense to have copy and move semantics.  One idea for that would be to create structs that are defined to always be on the stack and then give them move semantics with a way to opt into copy semantics.  However, I don't want people thinking that they can "optimize" by making things structs that shouldn't be.  Logically, there is no reason a reference type should fill the copy and move semantics space.  In fact, I think current references do fill the move semantics space.  That is, when someone takes ownership of them, they are moved.
+Some times it make sense to have copy and move semantics.  One idea for that would be to create structs that are defined to always be on the stack and then give them move semantics with a way to opt into copy semantics.  However, I don't want people thinking that they can "optimize" by making things structs that shouldn't be.  Logically, there is no reason a reference type should fill the copy and move semantics space.  In fact, I think current references do fill the move semantics space.  That is, when someone takes ownership of them, they are moved.
 
 But I still sometimes feel that a reference type vs value type distinction would be useful.  However, given that references are not garbage collected I don't know if that makes sense.
 

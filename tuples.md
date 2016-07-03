@@ -6,20 +6,22 @@ Then there is the question of how to access the elements.  It could be like arra
 
 ## Syntax
 
-Since there are no primitive arrays only `Unsafe_Array`, then `[]` could be used for tuples. That might confuse people, but would really work out well.
+Since there are no primitive arrays only `Unsafe_Array<T>`, then `[]` could be used for tuples. That might confuse people, but would really work out well.
 
 ## As Type Lists
 
 For visitors and other cases I had the idea of using type lists which should probably just be tuples.  That means I need ways of talking potentially destructuring tuples.
 
-	public class Something_Visitor<TArgs:Tuple, TReturn, TThrows:Tuple>
+	public class Something_Visitor<TArgs: Tuple, TReturn, TThrows: Tuple>
 	{
 		public Visit(host: Something, args: TArgs...) -> TReturn
 			throws TThrows...
 		{
 		}
 	}
-	
+
+There is a problem with this syntax.  That should mean `TArgs` is a tuple value, not a tuple type.
+
 If ... means to break apart the tuple into listed things, it seems like you should be able to call a function as `Func(tuple...)` and have it break apart the tuple.  Note here, the generic types are passed like `new Something_Visitor<[int,int],int,[void]>()`.  If one wants a type that allows arguments to be passed inline then do:
 
 	public class My_Tuple<T...> // See C++ variadic templates

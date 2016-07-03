@@ -6,9 +6,17 @@ There are two kinds of predefined types.  The predefined keyword types are keywo
 
 ## Predefined Keyword Types
 
-The predefined keyword types are keywords, but also act as types.  When the keyword is used in code as a type, it acts as a fully qualified reference to the predefined type.  To declare an identifier with the same name as one of these, use an escaped name.  That is, prefix the name with a backtick.  For example, ```string`.  References of an escaped identifier matching a predefined keyword type will apply standard name resolution rules.  The predefined types are not declared in any namespace, including the global namespace, so an escaped identifier reference will never match to one of the predefined types.
+The predefined keyword types are keywords, but also act as types.  When the keyword is used in code as a type, it acts as a fully qualified reference to the predefined type.  To declare an identifier with the same name as one of these, use an escaped name.  That is, prefix the name with a backtick, for example ```string``.  References of an escaped identifier matching a predefined keyword type will apply standard name resolution rules.  The predefined types are not declared in any namespace, including the global namespace, so an escaped identifier reference will never match to one of the predefined types.
 
-### String
+### `bool`
+
+Has values `true` and `false`.
+
+### `code_point`
+
+A 32 bit type used for a Unicode code point.  Code point literals are created with single quotes as `'c'` or `'♠'`.
+
+### `string`
 
 ### Numeric Types
 
@@ -63,9 +71,8 @@ real.N // arbitrary precision with N digits to the right of decimal? better mone
 
 #### Platform Sized Types
 
-size, (need type for difference of pointers, perhaps 'offset' or c style 'ptrDiff')
-
-Working with Rust has shown that size and usize will end up used for things that aren't sizes.  So perhaps `int` should be the native machine size and iXX should be used for the others.  Likewise f32 and f64 could be used for floats and `float` would be the oin
+  * `size`
+  * `offset`
 
 #### Issues
 
@@ -79,6 +86,6 @@ What about a [Logarithmic number system](https://en.wikipedia.org/wiki/Logarithm
 
 The predefined package types are predefined types that are not keywords and are instead defined in a pseudo-package.  That is they appear to be defined in the package `Adamant.Predefined` even though they are actually predefined types.  Within that package they are all declared in the namespace `Adamant.Predefined`.  To reference them, one must use a fully qualified name or a using statement.
 
-### UnsafeArray
+### `Unsafe_Array<T>`
 
-### Maybe<T>?
+### `Maybe<T>`?  `Option<T>`?

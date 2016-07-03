@@ -7,7 +7,7 @@
 	* Functions
     * [Predefined Types](predefined-types.md)
       * [Tuples](tuples.md)
-    * Comments
+    * [Comments](comments.md)
 	* `if`
 	* [Loops](loops.md)
 	* Ownership
@@ -25,6 +25,7 @@
       * [Operator Overloading](operator-overloading.md)
       * [Object Literals](object-literals.md)
       * [Extensions](extensions.md)
+	* Structs
     * [Traits](traits.md)
     * [Enums](enums.md)
     * [Exceptions](exceptions.md)
