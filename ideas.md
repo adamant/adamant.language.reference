@@ -41,3 +41,24 @@ That would not be a problem if curly braces were always required.  Alternatively
 ## Allow `!` at the End of Function Names
 
 Scheme uses `!` at the end of functions to indicate they are mutating.  That might not make sense for Adamant where mutation is probably more common and less frowned on.  Rust uses `!` to indicate macros.  It is nice to have a clear distinction for macros, but the syntax really strike one as clearly indicating a macro.  Since `!` denotes divergent functions and is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might be obvious that execution will terminate at one.
+
+## Extra Name Escapes
+
+Currently escaped identifiers really just allow the use of keywords as identifiers.  However, they could be expanded to allow any Unicode sequence not containing whitespace (or control characters?).  Names containing spaces could be enclosed in double backtick
+
+	let `2legit = 2;
+	let ``a really long name with spaces in it`` = 5;
+
+Allowing identifiers beginning with numbers could cause issues if we want to use backtick to mark of special literals like dates and times
+
+## Date and Time Literals
+
+Add support for date and time literals.  Could be done using either the backtick or single quotes.
+
+	// With backtick
+	let x = `2016-06-06;
+
+	// With quotes
+	let y = '2016-06-06';
+
+The first would not mix with expanding the backtick to allow anything as an identifier.
