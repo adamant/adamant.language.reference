@@ -75,33 +75,3 @@ When breaking or continuing it may be necessary to indicate which loop you are c
 			console.WriteLine("x = {x}, y = {y}");
 		}
 	}
-
-## Loop Else
-
-**This feature is under review and may be removed.**
-
-Sometimes it is useful to execute some code if a loop is never run.  This can be done with the else clause of the while and for loop.
-
-	while(condition)
-		// do work
-	else
-		// condition was false to start with
-
-	for(let x in expression)
-		// do work
-	else
-		// no items in collection
-
-This can be useful for definite assignment.  If the loop assigns a variable, it may be the case that the loop never runs and the variable may be unassigned.  However, you can assign the variable in the else clause to a reasonable default so that the variable will definitely be assigned after the loop.
-
-Note: this is different from the python style loop else construct which runs as long as the loop completed successfully.
-
-Note: this could be confusing to people who are not familiar with it since else binds to the nearest construct.  Something like:
-
-	if(condition)
-		while(keepLooping)
-			// loop body
-	else
-		// meant to be else of the if, but will actually be the else of the while
-
-That would not be a problem if curly braces were always required.  Alternatively, a different keyword or group of keywords could be used for loop else.  Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.

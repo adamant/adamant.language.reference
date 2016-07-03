@@ -40,6 +40,7 @@
       * [External](external.md)
       * [Memory Layout](memory-layout.md)
   * [Naming Conventions](naming-conventions.md)
+  * [Other Feature Ideas](ideas.md)
   * Standard Library
     * [Strings](strings.md)
     * [Paths](paths.md)
