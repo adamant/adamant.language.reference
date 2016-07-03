@@ -4,17 +4,18 @@
   * [Pre-Adamant](pre-adamant.md)
   * The Language
     * [Variable Bindings](variable-bindings.md)
-	* Functions
+	* [Functions](functions.md)
     * [Predefined Types](predefined-types.md)
       * [Tuples](tuples.md)
     * [Comments](comments.md)
-	* `if`
-	* [Loops](loops.md)
-	* Ownership
+    * `if`
+    * [Loops](loops.md)
+    * Ownership
       * [Copy and Move](copy-and-move.md)
       * [Lifetimes](lifetimes.md)
       * [Ownership and Borrowing](ownership-and-borrowing.md)
-	  * [References](references.md)
+      * [References](references.md)
+    * Namespaces
     * [Access Modifiers](access-modifiers.md)
     * Classes
       * `open` Methods

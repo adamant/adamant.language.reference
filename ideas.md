@@ -37,3 +37,7 @@ Note: this could be confusing to people who are not familiar with it since else 
 		// meant to be else of the if, but will actually be the else of the while
 
 That would not be a problem if curly braces were always required.  Alternatively, a different keyword or group of keywords could be used for loop else.  Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.
+
+## Allow `!` at the End of Function Names
+
+Scheme uses `!` at the end of functions to indicate they are mutating.  That might not make sense for Adamant where mutation is probably more common and less frowned on.  Rust uses `!` to indicate macros.  It is nice to have a clear distinction for macros, but the syntax really strike one as clearly indicating a macro.  Since `!` denotes divergent functions and is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might be obvious that execution will terminate at one.
