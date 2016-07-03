@@ -38,7 +38,7 @@ New Operator
 
 
 No Python Style Loop Else
-: Python's loop else condition runs after the loop as long as break was not used.  A feature like this was considered, though it would have needed a better keyword.  However, that construct is more useful when selecting an item out of a collection, and in Adamant this will be done with the `for` loop that.  Since `for` loops operate on iterators, using a filter on the iterator is a better and easier way to do this.  Also, it wasn't clear how to combine such a feature with the existing loop else feature.
+: Python's loop else condition runs after the loop as long as break was not used.  A feature like this was considered, though it would have needed a better keyword.  However, that construct is more useful when selecting an item out of a collection, and in Adamant this will be done with the `for` loop that.  Since `for` loops operate on iterators, using a filter on the iterator is a better and easier way to do this.  Also, it wasn't clear how to combine such a feature with the existing loop else feature.  If it were added, a keyword sequence like `if not break` might be good.
 
 
 Numeric Types

@@ -3,7 +3,7 @@
   * Introduction
   * [Pre-Adamant](pre-adamant.md)
   * The Language
-    * Variable Bindings
+    * [Variable Bindings](variable-bindings.md)
 	* Functions
     * [Predefined Types](predefined-types.md)
       * [Tuples](tuples.md)

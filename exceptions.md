@@ -2,6 +2,8 @@
 
 # Try/Catch Statements
 
+Idea: given that try expressions will clearly mark where exceptions can be thrown.  We don't necessarily need to precede try blocks with the `try` keyword.  We could simply allow a catch on any block containing a try expression.
+
 # Try expressions
 
 Swift has prefix expressions with `try` to allow them to throw.  `try?` turns their result into a nullable rather than throwing.  `try!` makes them panic if an exception is thrown.  Midori had `try <exp> else catch` that returned Result<T>.  You could also do `try <exp> else <value>` that would use value if an exception was thrown.  My concern about those is that they don't specify the exception.  So if a new exception is added, they could swallow it too.
