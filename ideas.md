@@ -49,6 +49,8 @@ Currently escaped identifiers really just allow the use of keywords as identifie
 	let `2legit = 2;
 	let ``a really long name with spaces in it`` = 5;
 
+Identifiers with spaces would be really useful when naming tests.
+
 Allowing identifiers beginning with numbers could cause issues if we want to use backtick to mark of special literals like dates and times
 
 ## Date and Time Literals

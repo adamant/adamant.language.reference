@@ -12,4 +12,4 @@
 	{
 	}
 
-**Need a way to have package level comments.  Rust uses //! to mean comment the containing element, but that seems useless except for crates and strange otherwise.**
+**Need a way to have package level comments.  Rust uses `//!` to mean comment the containing element, but that seems useless except for crates and strange otherwise.**
