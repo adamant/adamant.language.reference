@@ -1,42 +1,28 @@
 # Tuples
 
-Part of me doesn't like tuples because their individual values are unnamed and that feels hacky and lazy.  However, if I have generic type lists `class Something<T...>` then tuples are basically easily hand implemented in the language by `Tuple<T...>` so you know it will be added.  Also, lists of types basically are tuples.  We will probably need tuples in order to refer to values of type lists.  In many other languages tuples have a syntax like `(x,y)` but that seems easily confused with grouping.  Also, there is no good syntax for a tuple of one value.  Some languages use `(x,)` which just seems ridiculous.  Following the same logic as arrays, if everything is supposed to be a reference, then so should tuples and they should be constructed with new.  Hence the syntax could be something like `new (x,y)`, but that could be confused with the object literal syntax.  I think tuple fields should be mutable like array elements.
+A tuple is an ordered list of values that can be of different types.
 
-Then there is the question of how to access the elements.  It could be like arrays `tuple[1]` but that could be confusing and might encourage people to define constants for the various parts of tuples.  Other languages use `tuple.1` which isn't horrible, but feels strange.  However, I think they avoid that with destructuring assignment.
+	let t = new [1, "something"];
 
-## Syntax
+Adamant has no primitive arrays.  Generally collections are of `List<T>` or sometimes `Array<T>`.  Instead, square brackets are used for tuples.  Though square brackets are still used for indexing into a collection.  Here is the same declaration with the types annotated.
 
-Since there are no primitive arrays only `Unsafe_Array<T>`, then `[]` could be used for tuples. That might confuse people, but would really work out well.
+	let t: [int, string] = new [1, "something"];
 
-## As Type Lists
+The types of tuples look like the tuple with types instead of values.  Tuples are reference types like most objects in Adamant.
 
-For visitors and other cases I had the idea of using type lists which should probably just be tuples.  That means I need ways of talking potentially destructuring tuples.
+## Destructing With `let`
 
-	public class Something_Visitor<TArgs: Tuple, TReturn, TThrows: Tuple>
-	{
-		public Visit(host: Something, args: TArgs...) -> TReturn
-			throws TThrows...
-		{
-		}
-	}
+You can access the individual fields of a tuple using a destructuring let.
 
-There is a problem with this syntax.  That should mean `TArgs` is a tuple value, not a tuple type.
+	let [x, y, z] = new [1, 2, 3];
+	cosole.WriteLine("x = {x}");
 
-If ... means to break apart the tuple into listed things, it seems like you should be able to call a function as `Func(tuple...)` and have it break apart the tuple.  Note here, the generic types are passed like `new Something_Visitor<[int,int],int,[void]>()`.  If one wants a type that allows arguments to be passed inline then do:
+## Indexing Tuples
 
-	public class My_Tuple<T...> // See C++ variadic templates
-	{
-	}
+You can also access the fields of a tuple by index.
 
-Here we compute with type parameters
+	let t = new [1, 2, 3];
 
-	public Factorial<N:uint>() -> uint
-	{
-		return N*Factorial<N-1>() -> uint
-	}
-
-	public Factorial<N:0>() -> uint // or would Factorial<=0> be a better syntax?  Can't be Factorial<N=0> because that looks like a default type 
-	{
-		return 1;
-	}
-
+	let x = t.0;
+	let y = t.1;
+	let z = t.2;

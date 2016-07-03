@@ -64,3 +64,7 @@ Add support for date and time literals.  Could be done using either the backtick
 	let y = '2016-06-06';
 
 The first would not mix with expanding the backtick to allow anything as an identifier.
+
+## Tuple Base Class
+
+It probably makes sense to have all tuple types inherit from and abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`.  C# has them implement several interfaces about structural equality.

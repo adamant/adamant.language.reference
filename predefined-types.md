@@ -62,7 +62,7 @@ Bits | Type       | Standard
 
 (all decimalX... are reserved words)
 
-I> The `System.Numerics` package defines the `dec64` type following the standard http:// dec64.org  It also defines `rational`. An arbitrary precision rational either [integer/integer](https://en.wikipedia.org/wiki/Rational_data_type#Representation) or [A New Representation of the Rational Numbers
+I> The `System.Numerics` package defines the `dec64` type following the standard http://dec64.org  It also defines `rational`. An arbitrary precision rational either [integer/integer](https://en.wikipedia.org/wiki/Rational_data_type#Representation) or [A New Representation of the Rational Numbers
 for Fast Easy Arithmetic](http://www.cs.toronto.edu/~hehner/ratno.pdf) by Eric C. R. Hehner and R. N. S. Horspool.
 
 The `System.Numerics` package should also define:

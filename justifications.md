@@ -30,8 +30,10 @@ Support Program Evolution
 All Methods Must Have a Unique Implementation
 : Given a method `M` in interface `A` and interfaces `B` and `C` that implement `A` and override `M`, a class `D` that implements `B` and `C` must override `M` to provide a unique implementation of `M` to be called.  This applies even if `B` and `C` rename `M`.  At first glance this seems a strange restriction to place.  However, since Adamant is trying to not lock in an implementation, this restriction ensures certain implementations are possible, and can be safely removed in the future if desired.  Specifically, it enables a vtable implementation where every method across all classes is assigned a unique slot and there is only one vtable pointer in an object.  If this restriction were not in place, it would then be ambiguous which method pointer to put in the `M` vtable slot for class `D`.
 
+
 `internal` Access Modifier
 : Several other keywords were considered instead of `internal` for that access modifier.  The internal keyword doesn't clearly indicate internal to what.  For a while `package` was used instead.  However, package reads as if one is actually declaring a package.  The synonyms of internal `limited` and `restricted` were also considered.  They have the same problem of not clearly indicating what unit they are relative to.  Given that, it seemed best to stay with `internal` for familiarity to C#.
+
 
 New Operator
 : Any value with mutable state should be created with the `new` operator. Rust doesn't have a new operator.  However, it was decided that for Adamant the explicitness of having a new operator for allocating memory was good.  It then might seem to make sense to not use new for structs.  Using new for structs in C# has always felt a little weird.  However, the optimizer of Adamant is expected to frequently convert reference types into stack allocations so they might end up equivalent.  Also, it make structs consistent.  And it would seem weird to declare struct constructors using new but then call them without new.  One can't just have static functions build structs because of safety around definite assignment.
@@ -51,6 +53,14 @@ The numeric sizes were selected based on the following criteria
 	5. Platform dependent sizes cause issues
 
 The default sizes (i.e. those that leave off the bit length) were chosen as a compromise between small enough memory use and enough digits of precision to be useful.  Hence 32 bit integers with there more than 9 digits were chosen as the default integer size while 64 bits were chosen for floats and decimals because their 32 bit versions had only 7 digits of precision.
+
+
+Tuples
+: Generally, I'm not a fan of tuple types.  I feel like their unnamed fields are an anti-pattern leading to confusing code.  However, they are frequently used in languages that have them.  Probably too frequently used. It wouldn't be hard to create your own in Adamant by declaring a `Tuple` type overloaded on the number of type parameters or with a `Tuple<Values...>` type. That would certainly be done if they weren't included in the language.  Additionally, list of types are essentially tuple types so it will make working with generics easier.  Given that it makes sense to include them in Adamant.
+
+In many other languages tuples have a syntax like `(x,y)` but that seems easily confused with grouping.  Also, there is no good syntax for a tuple of one value.  Some languages use `(x,)` which just seems ridiculous.  Given that the new operator is being used for all values including structs, tuples could be declared as `new (x,y);` and not be ambiguous (that syntax could be an issue for placement new).  However, I still think it would be good to have tuples have a more distinct syntax (for example a new single tuple would be `new (x)` and new empty tuple would be `new ()`). Since Adamant does not have primitive arrays, the square bracket symbols are freed up for use with tuples. This isn't unheard of.  The language [E](https://en.wikipedia.org/wiki/E_(programming_language)) uses them for tuples.  
+
+Tuple element access using square brackets could be confusing.  For example, `new [x, y][0]`.  Also it makes it seem tuples could be accessed with non-constant indexes and would encourage people to declare constants for tuple indexes.  It makes more sense to go with the admittedly ugly Rust style of using integer field names like `t.0` and `t.1`. 
 
 
 Value Types

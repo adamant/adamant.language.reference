@@ -38,6 +38,7 @@
 	* [Reserved Words](reserved-words.md)
 	* Advanced
       * [Unsafe](unsafe.md)
+      * [Raw Pointers](raw-pointers.md)
       * [External](external.md)
       * [Memory Layout](memory-layout.md)
   * [Naming Conventions](naming-conventions.md)
