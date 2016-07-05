@@ -11,10 +11,12 @@
     * `if`
     * [Loops](loops.md)
     * [Ownership](ownership.md)
+      * [Reference Types and Borrowing](reference-types.md)
+      * Value Types and Copy
       * [Copy and Move](copy-and-move.md)
       * [Lifetimes](lifetimes.md)
-      * [Ownership and Borrowing](ownership-and-borrowing.md)
       * [References](references.md)
+      * Summary of Ownership
     * Namespaces
     * [Access Modifiers](access-modifiers.md)
     * Classes

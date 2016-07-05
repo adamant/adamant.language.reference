@@ -32,18 +32,18 @@ By default all values and bindings are *immutable*.  Meaning they can't be chang
 
 It will give an error on the second line saying that it is immutable and can't be assigned to.  If we want to be able to mutate it, we must declare the value as mutable.
 
-	let p: mut = new Point(4, 5);
+	let p = mut new Point(4, 5); // p: mut Point
 	p.X = 6;
 
 Now the point `p` is mutable and can be changed.  But the variable `p` is still immutably bound to that particular point and can't be assigned a different point.
 
-	let p: mut = new Point(4, 5);
+	let p = mut new Point(4, 5); // p: mut Point
 	p.X = 6;
 	p = new Point(10, 10); // compile error: can't assign to immutable binding
 
 If we want to be able to assign `p` a different point to reference we need the variable binding to be mutable.  We declare a mutable binding using the `var` keyword.
 
-	var p: mut = new Point(4, 5)
+	var p = mut new Point(4, 5)
 	p.X = 6;
 	p = new Point(10, 10);
 
