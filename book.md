@@ -10,7 +10,7 @@
     * [Comments](comments.md)
     * `if`
     * [Loops](loops.md)
-    * Ownership
+    * [Ownership](ownership.md)
       * [Copy and Move](copy-and-move.md)
       * [Lifetimes](lifetimes.md)
       * [Ownership and Borrowing](ownership-and-borrowing.md)

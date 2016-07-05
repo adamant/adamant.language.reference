@@ -18,6 +18,22 @@ A 32 bit type used for a Unicode code point.  Code point literals are created wi
 
 ### `string`
 
+A Unicode string.  Encoded in UTF-8.  String literals are created with double quotes `"Hello World!"`.  Expressions can be embedded in strings using curly braces, for example `"x = {x_variable}"`.  TODO need to determine how conversion to string works and how formatting works.  The escape codes are.
+
+Code | Character
+---- | ---------
+\"   | Double Quote
+\'   | Single Quote
+\\   | Backslash
+\{   | Left Curly Brace
+\n   | Newline
+\r   | Carriage Return
+\0   | Null
+\b   | Backspace
+\f   | Form Feed
+\t   | Horizontal Tab
+\v   | Vertical Tab
+
 ### Numeric Types
 
 Numeric types follow the pattern of a type name followed by an integer number of bits.  The exception being that certain default sizes omit the bit length.  The language requires that certain sizes be supported, but all sizes are reserved words for future use or compiler specific extensions.

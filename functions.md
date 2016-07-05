@@ -24,7 +24,7 @@ Function parameters are declared like `let` bindings.  In fact, they are complet
 		console.WriteLine("x - 1 = {x}");
 	}
 
-# Returning a Value from a Function
+## Returning a Value from a Function
 
 To return a value simply declare the correct return type and use a return statement.
 
