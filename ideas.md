@@ -68,3 +68,11 @@ The first would not mix with expanding the backtick to allow anything as an iden
 ## Tuple Base Class
 
 It probably makes sense to have all tuple types inherit from and abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`.  C# has them implement several interfaces about structural equality.
+
+## `out`
+
+I have `ref`, does it make sense to add a `out` keyword like C#?  Or does the ability to return tuples make `out` not useful enough?  They could be really useful with external functions (though, not sure how the memory would get cleaned up).
+
+## `var` is `mut` for Value Types
+
+Currently, `var` and `mut` have distinct meaning for value types.  It is assumed this will be needed to implement certain pseudo references.  However, that may not be the case.  If it is not, it would simplify things to type the mutability of value types to the `var` keyword and not use `mut` when referring to them.  Logically it seems if you can assign a new value you should be able to mutate the value and vice versa.  This may also mean that `var` should be used instead of `mut` in `mut struct`

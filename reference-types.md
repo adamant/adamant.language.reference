@@ -42,7 +42,7 @@ When a reference is passed to another variable or function, it is *borrowed*.  A
 	let a = new Point(4, 3);
 	console.WriteLine("a = ({a.X}, {a.Y})");
 	let distance = DistianceFromOrigin(a);
-	console.WriteLine("distance from origin{distance}");
+	console.WriteLine("distance from origin {distance}");
 
 Here the `DistianceFromOrigin` borrows a reference to point referenced by `a`.  By default, borrowed references are immutable.  They can't be used to mutate the object being referenced. If we tried to add `p.X *= 2` as the first line of `DistianceFromOrigin` we would get a compile error saying that `p` can't be mutated.
 
