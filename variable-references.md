@@ -1,4 +1,6 @@
-# References
+# Variable References
+
+So far, we have seen reference types and value types
 
 ** Refs may be more complicated than they are worth. Notice, C# only has ref and out params and that only because of difficulties with multiple returns **
 

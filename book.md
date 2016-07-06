@@ -14,7 +14,7 @@
       * [Reference Types and Borrowing](reference-types.md)
       * [Value Types and Copy](value-types.md)
       * [Copy and Move](copy-and-move.md)
-      * [References](references.md)
+      * [Variable References](variable-references.md)
       * [Lifetimes](lifetimes.md)
       * Pseudo References
       * [Summary of Ownership](ownership-summary.md)
