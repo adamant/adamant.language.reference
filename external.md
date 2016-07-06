@@ -1,8 +1,14 @@
 # External
 
-The `external` keyword declares blocks  of functions and global variables that are implemented externally.  Use compiler attributes and compiler settings to control this.
+The `external` keyword declares blocks  of functions, structs and global variables that are implemented externally.  Use compiler attributes and compiler settings to control this.
+
+## External Structs
+
+Structs declared external follow the layout rules of the target language.
 
 ## External Function Example
+
+All parameters and returns from C external functions must be external structs or pointers or references them.
 
 	@link("libc") // Less generic attribute name
 	external // by default, changes to 'C' ABI

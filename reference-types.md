@@ -6,7 +6,7 @@ In languages like C#, all reference types are stored on the heap with pointers t
 
 Any type declared as a class in Adamant is a reference type.  Let's consider a simple reference type for points.
 
-	public class Point
+	public mut class Point
 	{
 		public var X: int;
 		public var Y: int;

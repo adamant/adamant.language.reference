@@ -1,46 +1,5 @@
 # Copy and Move
 
-Some times it make sense to have copy and move semantics.  One idea for that would be to create structs that are defined to always be on the stack and then give them move semantics with a way to opt into copy semantics.  However, I don't want people thinking that they can "optimize" by making things structs that shouldn't be.  Logically, there is no reason a reference type should fill the copy and move semantics space.  In fact, I think current references do fill the move semantics space.  That is, when someone takes ownership of them, they are moved.
-
-But I still sometimes feel that a reference type vs value type distinction would be useful.  However, given that references are not garbage collected I don't know if that makes sense.
-
-## Passing
-
-Kind                       | Move   | Copy*  | Borrow
--------------------------- | -----: | -----: | -----:
-Move Value (`struct`)      |      x | copy x |  ref x
-Copy Value (`copy struct`) | move x |      x |  ref x
-Reference (`class`)        | move x | copy x |      x
-
-* for Move Value and Reference types, a copy method must be implemented to do this
-
-## Types
-
-Kind                       | Move  | Copy  | Borrow
--------------------------- | ----: | ----: | -----:
-Move Value (`struct`)      |     T |     T |  ref T
-Copy Value (`copy struct`) |     T |     T |  ref T
-Reference (`class`)        | own T | own T |      T
-
-
-Or should a move value be `move struct`?
-
-Of course all of these could just be classes, i.e. `class`, `move class`, `copy class`.  Does that lead to weird things since a copy type could implement the interface of a different type?  For C interop, I could say that a class declared in an external block must have no base class and can't be inherited from.
-
-Note that the distinction between a borrow of a mutable type `ref mut T` versus a reference to a mutable variable could be done with keyword order i.e. `mut ref T` is a reference to var.  Not sure how `mut ref mut T` would work and whether you can have a `ref ref T`.
-
-
-Dimensions:
-Pass By: Value or Reference
-Mutability : Mutable or Immutable
-???: Move or Copy or Borrow
-
-C# wants to know the exact sizes of structs so they can pass them by value, but one could actually copy heap objects to pass by value so that wasn't needed.
-
-Move Pass By Value == Move Pass By Reference
-
--------------------------------------------
-
 Working from the `class`, `move class`, `copy class` framework.  It is basically like we are just saying what the default is.  Let Rx be ref classes, Mx be move classes and Cx be copy classes.
 
 Examples

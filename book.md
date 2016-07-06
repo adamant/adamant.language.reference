@@ -16,7 +16,8 @@
       * [Copy and Move](copy-and-move.md)
       * [References](references.md)
       * [Lifetimes](lifetimes.md)
-      * Summary of Ownership
+      * Pseudo References
+      * [Summary of Ownership](ownership-summary.md)
     * Namespaces
     * [Access Modifiers](access-modifiers.md)
     * Closures and Lambdas
