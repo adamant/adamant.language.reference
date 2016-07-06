@@ -12,15 +12,16 @@
     * [Loops](loops.md)
     * [Ownership](ownership.md)
       * [Reference Types and Borrowing](reference-types.md)
-      * Value Types and Copy
+      * [Value Types and Copy](value-types.md)
       * [Copy and Move](copy-and-move.md)
-      * [Lifetimes](lifetimes.md)
       * [References](references.md)
+      * [Lifetimes](lifetimes.md)
       * Summary of Ownership
     * Namespaces
     * [Access Modifiers](access-modifiers.md)
+    * Closures and Lambdas
     * Classes
-      * `open` Methods
+      * Methods (including `open`)
       * [Associated Functions](associated-functions.md)
       * [Constructors](constructors.md)
       * [Destructors](destructors.md)
@@ -28,10 +29,14 @@
       * [Operator Overloading](operator-overloading.md)
       * [Object Literals](object-literals.md)
       * [Extensions](extensions.md)
-	* Structs
+    * Structs
+    * Type Aliases
     * [Traits](traits.md)
     * [Enums](enums.md)
+    * Async and Await
     * [Exceptions](exceptions.md)
+    * Const and Static
+    * Attributes
     * [Params and List Initializers](params-and-list-initializers.md)
     * [Bitwise Operations](bitwise-operations.md)
     * [Casting with `as`](casting.md)
@@ -44,10 +49,13 @@
       * [External](external.md)
       * [Memory Layout](memory-layout.md)
   * [Naming Conventions](naming-conventions.md)
+  * Testing
   * [Other Feature Ideas](ideas.md)
   * Standard Library
     * [Strings](strings.md)
     * [Paths](paths.md)
     * [Arrays](arrays.md)
-	* [Ranges](ranges.md)
+    * [Ranges](ranges.md)
+    * Collections
+    * Reflection
   * [Justifications](justifications.md)

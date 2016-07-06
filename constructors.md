@@ -1,5 +1,7 @@
 # Constructors
 
+// TODO copy constructors
+
 Constructors are declared as class members with the new keyword:
 
 	public class Example
