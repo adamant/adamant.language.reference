@@ -21,6 +21,7 @@
     * [Access Modifiers](access-modifiers.md)
     * Closures and Lambdas
     * Classes
+      * Fields
       * Methods (including `open`)
       * [Associated Functions](associated-functions.md)
       * [Constructors](constructors.md)
@@ -44,10 +45,13 @@
 	* [Package Qualifier](package-qualifier.md)
 	* [Reserved Words](reserved-words.md)
 	* Advanced
+      * [Preprocessor](preprocessor.md)
       * [Unsafe](unsafe.md)
       * [Raw Pointers](raw-pointers.md)
       * [External](external.md)
       * [Memory Layout](memory-layout.md)
+      * [Unchecked](unchecked.md)
+      * Boxing
   * [Naming Conventions](naming-conventions.md)
   * Testing
   * [Other Feature Ideas](ideas.md)
