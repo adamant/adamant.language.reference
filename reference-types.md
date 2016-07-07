@@ -163,4 +163,14 @@ TODO write section
 
 ### Use After Free
 
-TODO write section
+References must not last longer than the resource they refer to.  Adamant will check the uses of references to ensure that this is true.  If this rule were not enforced, we could use an invalid reference.  In manual memory management this is known as 'use after free'. 
+
+	let x: ref int;
+	{
+		let y = 85;
+		x = ref y;
+	}
+
+	console.WriteLine("{x}");
+
+When we try to compile this, we get an error because `y` does not live long enough for `x` to reference it.

@@ -1,87 +1,172 @@
 # Lifetimes
 
-Each variable binding has a lifetime determined by the scope it is declared in.  The lifetimes of variables end in the opposite order they were declared in.  All values have a lifetime.  However, the lifetime of a value may not be limited to the lifetime of one variable since ownership of the value could be moved to another variable, field or even returned.  When the lifetime of a variable that has ownership of a value ends, that value will be deleted and any destructor will be called.
+In discussing the ownership system so far we have glossed over one very important aspect.  That is lifetimes.  In order to ensure the safety of references the compiler must enforce that no references live longer than the value they reference.  The way that is done is by considering the lifetime of all references and values.
 
-	let y;
-	{
-		let z = 6;
-		let x = 5;
-		console.WriteLine(x + z);
-		y = z;
-		// lifetime of x ends, since x has ownership of value 5, its lifetime ends
-		// lifetime of z ends, since the value has moved to y, it no longer has ownership, the lifetime of the value 6 continues
-	}
-	console.WriteLine(y);
-	// lifetime of y ends, since y has ownership of value 6, its lifetime ends
+## Scopes
 
-Each borrow has a lifetime.  The lifetime of all borrows must end before the lifetime of the value ends.  The lifetime a reference must end before the lifetime of the variable it references.
+Before we get to lifetimes, it is necessary to review scopes as they are the scaffolding that lifetimes fit into.  Every variable has a lexically defined scope in which it can be used.
 
-Ownership for local variables is implicit.  Indeed, a variable could go from owning a value to borrowing another. In that situation the lifetime of the value ends and it is destructed.
+	public Main(console: mut Console) -> void     // -+ `console` comes into scope
+	{                                             //  |
+		console.WriteLine("Beginning Execution"); //  |
+		let x = 42;                               // -+ `x` comes into scope
+		console.WriteLine("The answer is {x}");   //  |
+		console.WriteLine("Ending Execution");    //  |
+	}                                             // -+ `x` then `console` go out of scope
 
-	let x = 5; // x owns 5
-	x = |collection|; // x borrows cardinality of collection.  lifetime of value 5 ends
+A variable comes into scope when it is declared and goes out of scope at the end of the block it is declared in.  In most languages, variables are defined to go out of scope in the opposite order they came into scope.  That matters to the order of destructor execution.  A variable's scope is the span of code it is valid to reference the variable in and in most languages the span of time the value the variable holds is alive.
 
-The situation is somewhat different for parameters and fields.
+## Lifetimes
 
-## Parameters
+In Adamant, values and references have lifetimes.  Lifetimes are grounded in the scopes of the variables that hold them, but are more flexible.
 
-A parameter must explicitly either borrow or take ownership of its parameter.  After which, it becomes a regular local variable and the ownership could change.  By default parameters borrow their argument.  For a parameter to take ownership of its argument, it is marked with `move`.
-
-	// Here `console` and `visitor` are borrowed, ownership is taken for `customer`
-	public SomeFunction(console: mut Console, customer: move Customer, visitor: Customer) -> void
-	{
-		console.WriteLine(customer.Name);
-		customer = visitor; // lifetime of original Customer object ends, customer now borrows visitor
-		console.WriteLine(customer.Name);
+	public Main(console: mut Console) -> void     // -+ `console` reference lifetime begins
+	{                                             //  |
+		console.WriteLine("Beginning Execution"); //  |
+		let x = 42;                               // -+ `x` value lifetime begins
+		console.WriteLine("The answer is {x}");   // -+ `x` value lifetime ends
+		console.WriteLine("Ending Execution");    // -+ `console` reference lifetime ends
 	}
 
-## Fields
+The lifetime of something is that span of code in which it might actually be used.  We say might because in situations of conditionals and loops, a value has the potential to be used but may not be used depending on the values at runtime.  A value or reference's lifetime begins at the moment it comes into existence and ends at the last possible moment it might be used.
 
-Options:
+Destructor execution in Adamant occurs sometime between the end of the lifetime of the value and the end of the scope of the variable holding the value.  Typically, destructors are run when the lifetime ends, but the compiler is free to optimize this by reordering destruction relative to unrelated operations.  Of course, there are some situations when lifetimes are interdependent, in which case the destructors must be executed in an order the respects the lifetime dependency.
 
-	1. Ownership is explicitly stated with 'owns' and 'borrows'
-	2. Ownership is implied by attaching a lifetime
-	3. Ownership is tracked with a flag
+	let x = 45;
+	let y = ref x;
+	console.WriteLine("x + y = {x+y}");
+
+Here, `y` is a reference to `x` so the lifetime of the reference must end before the lifetime of the value it references.  Consequently, the reference is destroyed before the value it references.
+
+## Lifetimes in Functions
+
+Most of the time, lifetimes are implicit and the Adamant compiler automatically figures out the correct lifetimes.  However, we can also explicitly declare the lifetime relationships of the parameters (and return) of a function.
+
+	// implicit
+	public Foo(a: Point) -> void
+	{
+	}
+
+	// explicit
+	public Foo<~x>(a: ~x Point) -> void
+	{
+	}
+
+Lifetimes are marked with a tilde '~'.  The `~x` is read as 'the lifetime x'.  Every reference and value has a a lifetime, but the compiler lets you omit them in many cases.  To specify lifetimes one can use lifetime parameters or refer to the lifetime of another variable.
+
+	public Bar<~x>(a: ~x Point, b: ~x Point) -> void
+	{
+	}
 	
-The problem with option three is that upon entering a method, we don't know if any given field is owned or not.  So we don't know whether when we read out of it we need to move the value out or not.
+	// equivalently
+	public Bar(a: Point, b: ~a Point) -> void
+	{
+	}
 
-Note in standard Rust, you must own a value in order to move out of its fields.  And it checks that all fields hold a value before the method exits.  Not sure how that safely manages cross thread issues.
+In the first declaration, we create an explicit lifetime variable `~x`.  In the second, we simply refer back to the lifetime of the first parameter to describe the lifetime of the second by using `~a`, the lifetime of `a`.
 
-For certain types, like Buffer, Array and List we want at least the option of choosing whether they own or borrow via generics.
+When declaring the lifetimes of mutable references, the lifetime goes before the `mut`.
 
-Examples:
+	public Baz<~x>(a: ~x mut Point) -> void
+	{
+	}
 
-	1. List<T> - want List<T> to default to owned mutable?
-	2. Maybe<T> - want Maybe<int> to default to owned immutable
-	3. Iterator<T>/Enumerator<T>
-	4. Comparable<T>
-	5. Visitors - want to be able to specify borrow/move of parameters, but that doesn't apply to throws?
-	6. Numeric functions - may want T to not include lifetime information
+## Reference Lifetimes
 
-Idea:
+Most of the lifetimes we need to specify in Adamant are for references.  Either the references of reference types or the references to variables.  Each reference has some lifetime that is less than the lifetime of the value it references.
 
-Lifetime parameters are prefixed with tilde `~`.  Other generic parameters can always have lifetimes specified?  You can prefix variable names with the tilde to refer to the lifetime of that variable.
+	public OneOf(x: ref int, y: ref~x int) -> ref~x int
+	{
+		// randomly returns x or y
+	}
 
-# Static Lifetime
+Here we declare that the lifetime of the reference in `y` is the lifetime of the reference in `x` and the return type is a reference with the same lifetime.  
 
-The special lifetime `~static` indicates that a reference lives the length of the entire program and will never be deleted.  I think that a static reference should be allowed to be converted to an `own` reference if the class is immutable.  This will require something like a drop flag (or tagged pointer) to track whether the owned reference should be deleted.  This is needed to allow a function like:
+## `own` Lifetime
 
-	public DisplayValue(x: int) -> own string
+There a special lifetime `~own` that indicates a reference controls the lifetime of the value it references, and is not bound by any other lifetime.  Unless the reference is moved to a different variable, the lifetime of the reference will end before the scope of the variable it is in.  In essence, an `~own` reference owns the value it references and is owned by the variable it is in.  If something has a lifetime of `~own` we typically say it is owned and conflate the reference and value.
+
+Objects of reference types are owned by their original reference.  The reference returned by `new`.  That reference is owned by the variable it is assigned into.  By that means, the actual lifetime of the value will be determined.  Effectively, when the root of the chain of ownership goes out of scope, a value with be destructed.  We can extend the lifetime of a value by moving the ownership of the reference that owns it.
+
+	public MakePointOnXEqualsY(v: int) -> ~own Point
+	{
+		return new Point(v, v);
+	}
+
+Here we extend the lifetime of the point created in the function by returning ownership of the reference to it.  As we saw in the section on move semantics.  If a variable takes ownership then we must move the ownership from its source.  Consider again the consume function.
+
+	public Consume(console: mut Console, p: ~own Point) -> void
+	{
+		console.WriteLine("consumed ({p.X}, {p.Y})");
+	}
+
+	// In Main
+	let a = new Point(4, 5);
+	Consume(mut console, move a);
+
+When calling consume we must move the reference into the function, because it declares that it takes ownership of the reference.  Since the reference has ownership of the value, the point object will be destructed before the end of the function.
+
+## Lifetime of Borrow References
+
+When borrowing, the borrow reference has a lifetime that is shorter than the reference we are borrowing from.  That reference may be the reference that owns the value or may itself be a borrow that is shorter than the owning lifetime.
+
+## Lifetime of Value Types
+
+Value types are typically owned by the variable that holds them.  A type with move semantics carries ownership along with it as it moves from variable to variable.  A type with copy semantics produces new copies of the value each of which are owned by the variable that holds them.
+
+When reference are taken to variable of value types, their lifetimes operate exactly as borrows.  The reference lifetime is constrained to be less than the lifetime of the value being borrowed from.
+
+There are unusual cases in which the lifetime of a value type may be something different than `~own`.  This can occur when a value type is actually acting as a reference to a value.  For example, the `string` method `Trim()` which removes whitespace from the beginning and end of a string is declared to return a string with a limited lifetime.
+
+	public Trim(self) -> ~self string
+	{
+		// ...
+	}
+
+So the resulting string has a lifetime bound by the string we are trimming from.  That is because the result is really a reference to the portion of the first string excluding the whitespace.
+
+## Lifetimes of Variables Can Change
+
+The ownership on a local variable is implicit, and can actually change when a new value is assigned to it.
+
+	let p = new Point(4, 6); // `p` owns Point(4, 6)
+	var q = new Point(8, 9); // `q` owns Point(8, 9)
+	q = p; // Point(8, 9)'s lifetime ends, `q` borrows Point(4, 6) with some lifetime < ~p
+
+## Lifetime Parameters to Classes and Structs
+
+Classes and structs holding references typically own them so that contained values will be destructed when the object it.  However, they can also take lifetime parameters so that they can hold borrowed references.
+
+	public struct IntRef<~v>
+	{
+		public let Value: ref~v int;
+
+		public new(value: ref~v int)
+		{
+			Value = value;
+		}
+	}
+
+Additionally, structs can use the special lifetime `~self` to refer to the lifetime they are held with.  The `string` struct uses a lifetime of `~self` to reference the bytes of the string so that some strings can own their data while others borrow it.
+
+When types have generic parameters we can capture an associated lifetime for those parameters if needed.
+
+	public class List<~t T>
+	{
+		// TODO not sure how to make use of this.
+	}
+
+## The `~static` Lifetime
+
+There is another special lifetime, `~static` which indicates that a reference may live the length of the entire program and the value it references will never be deleted.  All constants and global variables have lifetimes of `~static`.
+
+A static lifetime may be passed where ownership is expected if the value referenced is inherently immutable.  If the value is not inherently immutable this is not allowed because it would allow the recovery of mutability of constant and static values which would violate the safety of the language.  This is needed to allow a function like:
+
+	public DisplayValue(x: int) -> ~own string
 	{
 		return int.TryParse(x) ?? "(null)";
 	}
 
-Here, the lifetime of the string constant is `~static` and the reference returned by `TryParse` is owned.
+Here, the lifetime of the string constant is `~static` and the reference returned by `TryParse()` is owned, but both are compatible with the return type of `~own string`.
 
-**Problem: if own allows you to recover mutability then you could gain mutability on static data that shouldn't be mutable**
-
-# Owned borrows
-
-There may be situations where a class wants to borrow something, but we want to actually give it ownership.  For example, `string` is easiest expressed as borrowing the UnsafeArray it contains.  That allows substring to work correctly.  However, there will need to be strings that own their UnsafeArray.
-
-# Owned as Lifetime
-
-It is almost as if owned could be a special lifetime that is shorter than static but longer than any fixed lifetime since it can be passed around by the thing that owns it.
-
-# Child Lifetime
-
+Note: This will require something like a drop flag (or tagged pointer) to track whether the owned reference should be deleted.  A better alternative may be a check when deleting to see if the reference is into the static data area.  This check could be skipped for types that are not inherently immutable.

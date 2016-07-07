@@ -76,3 +76,7 @@ I have `ref`, does it make sense to add a `out` keyword like C#?  Or does the ab
 ## `var` is `mut` for Value Types
 
 Currently, `var` and `mut` have distinct meaning for value types.  It is assumed this will be needed to implement certain pseudo references.  However, that may not be the case.  If it is not, it would simplify things to type the mutability of value types to the `var` keyword and not use `mut` when referring to them.  Logically it seems if you can assign a new value you should be able to mutate the value and vice versa.  This may also mean that `var` should be used instead of `mut` in `mut struct`
+
+## Owned borrows
+
+There may be situations where a class wants to borrow something, but we want to actually give it ownership.  One way to implement string would be for `string` is to borrow the UnsafeArray it contains.  That allows substring to work correctly.  However, there will need to be strings that own their UnsafeArray.  If we could pass an owned reference where are borrow was expected, then that would be handled.  Of course, this may require pervasive drop flags adding complexity and hurting performance.

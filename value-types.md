@@ -6,21 +6,21 @@ We have covered value types which are the majority of types you will deal with i
 
 Simple structs have *move semantics*.  That means rather than being borrowed like reference types, the value always moves.  The equivalent for reference types would be if we used `move` whenever passing it.
 
-	public struct foo
+	public mut struct ChannelReceiver
 	{
-		public let Value: int;
+		public let BufferSize: int;
 
-		public new(value: int)
+		public new(bufferSize: int)
 		{
-			Value = value;
+			BufferSize = bufferSize;
 		}
 	}
 
 	// In Main
-	let a = new foo(83);
+	let a = new ChannelReceiver(83);
 	let b = a; // implicit move
-	console.WriteLine("b = {b.Value}");
-	console.WriteLine("a = {a.Value}"); // complier error
+	console.WriteLine("b.BufferSize = {b.BufferSize}");
+	console.WriteLine("a.BufferSize = {a.BufferSize}"); // complier error
 
 The last line give a compiler error stating that the value has been moved out of `a`.  We see that when we assigned `b = a` the value was moved just as if we had used the `move` keyword.  The same thing happens when passing a struct to a function.
 

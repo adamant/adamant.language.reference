@@ -15,7 +15,7 @@
       * [Value Types and Copy](value-types.md)
       * [Variable References](variable-references.md)
       * [Lifetimes](lifetimes.md)
-      * Pseudo References
+      * [Pseudo References](pseudo-references.md)
       * [Summary of Ownership](ownership-summary.md)
     * Namespaces
     * [Access Modifiers](access-modifiers.md)
