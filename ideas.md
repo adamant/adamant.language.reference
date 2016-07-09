@@ -80,3 +80,7 @@ Currently, `var` and `mut` have distinct meaning for value types.  It is assumed
 ## Owned borrows
 
 There may be situations where a class wants to borrow something, but we want to actually give it ownership.  One way to implement string would be for `string` is to borrow the UnsafeArray it contains.  That allows substring to work correctly.  However, there will need to be strings that own their UnsafeArray.  If we could pass an owned reference where are borrow was expected, then that would be handled.  Of course, this may require pervasive drop flags adding complexity and hurting performance.
+
+## Returns That Can't be Ignored
+
+Part of the Midori project's safety came from not being able to ignore the return value of a function except by explicit statement.  This had the effect of ensuring that return codes and error results couldn't be ignored.  If my error model includes Result<void> then it is possible people could ignore that.  Perhaps there should be some special handling to say that certain types shouldn't be ignored when returned.

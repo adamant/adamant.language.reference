@@ -34,7 +34,8 @@
     * Type Aliases
     * [Traits](traits.md)
     * [Enums](enums.md)
-    * Async and Await
+    * [Generators](generators.md)
+    * [Async and Await](async.md)
     * [Exceptions](exceptions.md)
     * Const and Static
     * Attributes
