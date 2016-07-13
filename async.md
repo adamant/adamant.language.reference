@@ -49,7 +49,7 @@ No blocking is allowed to block a system thread.  All "blocking" should release 
 
 There is a threadpool that runs tasks.  The threadpool has two zones a pool of regular task threads and a pool of blocking task threads.  If a thread is stuck on a single task too long it is removed from the regular pool and places in the blocked pool.  This is to ensure there are always a number of threads available for short tasks nearly equal to the number of CPUs.
 
-If you want something to run concurrently you can do `async Async.Task(()->{...})`.  If it is expected to be computationally long or is calling a blocking external method (blocking external APIs should be avoided at all costs).  Use `Async.BlockingTask()` instead to use a thread from the block task thread pool.
+If you want something to run concurrently you can do `async Async.Task(()->{...})`.  If it is expected to be computationally long or is calling a blocking external method (blocking external APIs should be avoided at all costs).  Use `Async.BlockingTask()` instead to use a thread from the block task thread pool.  The result will of course be a promise you should eventually await.  However, if there are no exceptions thrown by the task, you can call a method (name?) to disconnect from the result because the task can't fail.  Maybe there should be another function that will cause the process to panic if an exception is thrown from the task.  This makes it clear that promises will have types indicating the exceptions they can throw.
 
 ## Alternative Syntax
 
