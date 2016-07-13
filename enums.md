@@ -1,10 +1,10 @@
 # Enums
 
-An enum in Adamant is a type that can have one of a number of possible variants.  Each variant can optionally have data associated with it.  Both classes and structs can be enums.  This is indicated by placing the keyword `enum` before the `class` or `struct` keyword.
+An enum in Adamant is a type that can have one of a number of possible variants.  Each variant can optionally have data associated with it.  Both classes and structs can be enums.  This is indicated by placing the keyword `enum` before the `class` or `struct` keyword.  Enums are sometimes referred to as discriminated unions because they union together different types safely with a discriminator value.
 
 	public enum class Result<T>
 	{
-		Ok,
+		Ok(T),
 		Error
 	}
 
@@ -25,7 +25,55 @@ All enums are distinguished by a discriminator field created by the compiler.  E
 
 When a discriminator value is specified for a variant, each variant after without a discriminator value is inferred to have the discriminator one greater than the previous variant. 
 
+## Enum Forms
+
+There are a number of forms that an enum variant can take.
+
+	public enum struct Example
+	{
+		InferredDiscriminator, // discriminator value unknown
+		ExplicitDiscriminator = 1, // discriminator value is 10
+		ImplicitDiscriminator, // follows explicit discriminator 1 so discriminator is 2
+		Constructed = new(45), // call constructor, don't need to name the class, can call named constructor
+		SubclassA
+		{
+			// new members
+		},
+		SubclassB:: Interface // subclass implementing interface, again base class implied
+		{
+			// new members
+		},
+		SubclassC: OtherBase : Example // inherits another class, implements the interface of Example, not allowed for structs
+		{
+			// new members
+		},
+		PatternType(type1, type2) // Allow names? auto create stuff?  Combine with class members?
+
+		public let Value: int?;
+
+		public new()
+		{
+			value = null;
+		}
+
+		public new(value: int)
+		{
+			Value = value;
+		}
+	}
+
+## Custom Matching
+
+Any type can be pattern matched.  To control matching implement the `is` operator (TODO something better? scala uses unapply).  This is modelled on C#.
+
+	public operator is(self, x: ref int, y: ref int)
+	{
+		x = self.X;
+		y = self.Y;
+	}
+
 ---------
+## Old Notes
 
 From http://tratt.net/laurie/blog/entries/another_non_argument_in_type_systems
 
