@@ -154,6 +154,17 @@ When types have generic parameters we can capture an associated lifetime for tho
 	public class List<~t T>
 	{
 		// TODO not sure how to make use of this.
+		// use of `~t`
+	}
+
+TODO:
+
+A better approach is probably to allow referencing the lifetime of a type parameter.
+
+	public class List<T>
+	{
+		// TODO not sure how to make use of this.
+		// use of `~T`, the lifetime associated with type T
 	}
 
 ## The `~static` Lifetime
@@ -170,3 +181,11 @@ A static lifetime may be passed where ownership is expected if the value referen
 Here, the lifetime of the string constant is `~static` and the reference returned by `TryParse()` is owned, but both are compatible with the return type of `~own string`.
 
 Note: This will require something like a drop flag (or tagged pointer) to track whether the owned reference should be deleted.  A better alternative may be a check when deleting to see if the reference is into the static data area.  This check could be skipped for types that are not inherently immutable.
+
+## Lifetime Elision
+
+Every reference and value has a lifetime, and it is required for the types of function to be explicit.  Yet, many functions do not have the lifetimes of their parameters or return value explicitly stated.  However, for convenience, certain inference rules apply for lifetimes in functions.  These are simply unambiguous rules that for the *lifetime elision* rules.  They apply whenever a lifetime is elided, i.e. omitted from a function signature.  The lifetime elision rules are defined in terns of *input lifetimes* and *output lifetimes*.  An input lifetime is any lifetime associated with a parameter of the function.  An output lifetime is any lifetime associated with the return type of a function.
+
+  * Each elided lifetime in a function’s arguments becomes a distinct lifetime parameter.
+  * If there is exactly one input lifetime, elided or not, that lifetime is assigned to all elided lifetimes in the return values of that function.
+  * If there are multiple input lifetimes, but one of them is `self`, `mut self`, `ref self` or `ref mut self` the lifetime of self is assigned to all elided output lifetimes.
