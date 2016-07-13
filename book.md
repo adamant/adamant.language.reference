@@ -30,8 +30,9 @@
       * [Operator Overloading](operator-overloading.md)
       * [Object Literals](object-literals.md)
       * [Extensions](extensions.md)
+      * [Partial Classes](partial-classes.md)
     * Structs
-    * Type Aliases
+    * [Type Aliases](alias.md)
     * [Traits](traits.md)
     * [Enums](enums.md)
     * [Generators](generators.md)

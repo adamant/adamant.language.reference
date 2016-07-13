@@ -62,3 +62,7 @@ There may be an issue with `await` and `async` being prefix.  This means they do
 	let x = await (await (await Foo()).Bar()).Baz();
 
 This could be addressed by switching to some postfix syntax.  For example, `Foo()^.Bar()^.Baz()^`.  Alternatively, a `.` could automatically await its parameter in an async method.
+
+## Async loops
+
+TODO: async `for`
