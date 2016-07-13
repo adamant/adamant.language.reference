@@ -32,6 +32,7 @@
       * [Extensions](extensions.md)
       * [Partial Classes](partial-classes.md)
     * Structs
+      * [Constructors](struct-constructors.md)
     * [Type Aliases](alias.md)
     * [Traits](traits.md)
     * [Enums](enums.md)

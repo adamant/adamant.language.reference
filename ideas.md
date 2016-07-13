@@ -75,7 +75,7 @@ I have `ref`, does it make sense to add a `out` keyword like C#?  Or does the ab
 
 ## `var` is `mut` for Value Types
 
-Currently, `var` and `mut` have distinct meaning for value types.  It is assumed this will be needed to implement certain pseudo references.  However, that may not be the case.  If it is not, it would simplify things to type the mutability of value types to the `var` keyword and not use `mut` when referring to them.  Logically it seems if you can assign a new value you should be able to mutate the value and vice versa.  This may also mean that `var` should be used instead of `mut` in `mut struct`
+Currently, `var` and `mut` have distinct meaning for value types.  It is assumed this will be needed to implement certain pseudo references.  Also, on struct constructors it makes sense to have a `ref mut self` parameter.  However, perhaps using `var` should always imply `mut` for mutable structs. Logically it seems if you can assign a new value you should be able to mutate the value.
 
 ## Owned borrows
 
