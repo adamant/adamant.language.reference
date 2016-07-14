@@ -1,7 +1,5 @@
 # Constructors
 
-// TODO copy constructors
-
 Constructors are declared as class members with the new keyword:
 
 	public class Example
@@ -71,7 +69,7 @@ After the call to the self or base constructor, all fields of the instance have 
 
 This construction sequence is similar to Swift and ensures that all fields are initialized before any use of self.  This means we do not need to zero init memory and there is no chance of using uninitialised memory.
 
-# Exceptions
+## Exceptions
 
 Exceptions in constructors can be complex and easily lead to issues.  For this reason constructors are implicitly `throws void` instead of the default inferred throws.  However, constructors can throw exceptions if they are declared to throw them.  
 
@@ -81,10 +79,27 @@ Note that the current classes destructor is never called so it is imperative tha
 
 If you catch an exception from a self or base constructor call.  You must re-throw it, because the current instance is not in a valid state.
 
-# Partially Initialized References?
+## Partially Initialized References?
 
 The definite assignment rules lead to some real problems.  For example, imagine a tree node class with left and right child node fields and a parent node reference.  We must make the parent reference optional and mutable, and initialize it after the child.  Otherwise, we have a problem initializing the tree even from in the parent constructor.  The parent node needs to construct its two child nodes so that it can initialize its fields.  However, to construct them it must provide a reference to itself.  Yet, it is not completely initialized yet, so this is not safe.  It might be possible for the borrow checker to provide a way out of this.  There could be a special kind of reference which does not allow for any methods or fields to be accessed but can only be stored with the promise that it would be valid in the future.  However, the borrow checker rules for this would probably be very complicated.
 
-# Constructor Inheritance
+## Constructor Inheritance
 
 Swift uses convenience constructors to allow constructor inheritance.  I might be able to do something similar by making designated constructors take self as an argument while convenience constructors don't, but must make a new object.  Of course, I need to figure out how to make it explicit that you must return the result of calling new on your own type.
+
+## Copy Constructors
+
+Copy constructors are special constructors used to make a copy of the class.  They have the unique property of being virtual on the type of object being copied, even though that it passed as a parameter.  They are declared with the special `copy` constructor name and take an argument of type `Self` or `mut Self`.
+
+	public new copy(mut self, value: Self)
+	{
+		// copy fields
+	}
+
+Construction proceeds through the inheritance hierarchy just as with normal constructors, starting with the most concrete type of the object being copied.  Any field that has an implicit copy constructor and isn't explicitly assigned in the constructor is automatically copied as part of the compiler generated copy.
+
+Copy constructors are called with the special syntax
+
+	let x = new copy(y);
+
+Note that we do not have to specify the type being copied.  It is the dynamic type of the parameter.
