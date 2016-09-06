@@ -60,7 +60,7 @@ It is also possible to borrow a reference to a mutable object. To do this use th
 This will print "a = (4, 6)" because the point object is mutated through the `b` reference to it.  Mutable borrowing is different from immutable borrowing. As an example, consider:
 
 	let a = mut new Point(4, 3);
-	let b = mut v; // b: mut Point
+	let b = mut a; // b: mut Point
 	console.WriteLine("a = ({a.X}, {a.Y})");
 	b.Y = 6; // mutate the point
 
