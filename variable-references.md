@@ -119,7 +119,7 @@ It is more useful to have a reference to a mutable variable holding a reference 
 		x = new Cat();
 	}
 
-	var pet = new Dog();
+	var pet = new Dog(); // pet: animal because it is passed to Replace()
 	console.WriteLine(pet.Speak()); // prints "Woof!"
 	Replace(ref var pet);
 	console.WriteLine(pet.Speak()); // prints "Meow!"
