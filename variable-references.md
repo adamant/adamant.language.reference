@@ -116,20 +116,20 @@ It is more useful to have a reference to a mutable variable holding a reference 
 
 	public Replace(x: ref var ~own animal)
 	{
-		x = new Cat();
+		x = new cat();
 	}
 
-	var pet = new Dog(); // pet: animal because it is passed to Replace()
+	var pet = new dog(); // pet: animal because it is passed to Replace()
 	console.WriteLine(pet.Speak()); // prints "Woof!"
 	Replace(ref var pet);
 	console.WriteLine(pet.Speak()); // prints "Meow!"
 
-By taking a `ref var Animal` the `Replace` function was able to change which object the `pet` variable referenced.  The `~own` is a [lifetime](lifetimes.md) declaration needed in this situation. 
+By taking a `ref var animal` the `Replace` function was able to change which object the `pet` variable referenced.  The `~own` is a [lifetime](lifetimes.md) declaration needed in this situation. 
 
 And of course, we can even make mutable variables holding references to mutable variables referencing mutable objects.
 
 	var a = mut new Point(9, 4); // a: mut Point
-	var p = ref var a; // b: ref var mut Point
+	var p = ref var a; // p: ref var mut Point
 	p.X = 6;
 	console.WriteLine("a = ({a.X}, {a.Y})"); // prints 'a = (6, 4)'
 	p = new Point(0, 0);
