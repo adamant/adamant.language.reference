@@ -2,14 +2,6 @@
 
 This section describes a number of random ideas for the language that may or may not make it in, but are interesting enough to warrant description.
 
-## `if not` and `while not`
-
-Languages like Ruby have inverted control flow with `until(condition)` for `while(not condition)` and `unless(condition)` for `if(not condition)`.  In languages without that there is often a need for an extra set of parens which can be ugly and confusing (i.e. `if(not(a and b)) statement;`.  What if the language allowed a not outside the required parens?  So that could become `if not(a and b) statement;`.  Of course, if we switch to control flow not requiring parens this becomes a non-issue (i.e. `if not(a and b) { statement; }`).  Though there is some extra clarity when parens are required, because you know the not must apply to the whole condition, not just the first part of it.
-
-## Control Flow Requires Blocks not Parenthesis
-
-Currently, control flow is C style where the expression portion must be surrounded with parens, but the statement can be any statement.  Instead, we could go Rust style where the expression does not require parens, but the statement must be a block.  That solves the dangling else issue and also makes loop else unambiguous (i.e. people won't think the loop else is for an if).
-
 ## Loop Else
 
 Sometimes it is useful to execute some code if a loop is never run.  This can be done with the else clause of the while and for loop.
@@ -84,3 +76,11 @@ There may be situations where a class wants to borrow something, but we want to 
 ## Returns That Can't be Ignored
 
 Part of the Midori project's safety came from not being able to ignore the return value of a function except by explicit statement.  This had the effect of ensuring that return codes and error results couldn't be ignored.  If my error model includes Result<void> then it is possible people could ignore that.  Perhaps there should be some special handling to say that certain types shouldn't be ignored when returned.
+
+# Obsolete Feature Ideas
+
+## `if not` and `while not`
+
+*Obsolete Reason:* adoption of control flow requiring blocks but not parenthesis (Rust style) means that this feature doesn't really makes sense as it is already essentially supported because control flow statements don't have parenthesis.
+
+Languages like Ruby have inverted control flow with `until(condition)` for `while(not condition)` and `unless(condition)` for `if(not condition)`.  In languages without that there is often a need for an extra set of parens which can be ugly and confusing (i.e. `if(not(a and b)) statement;`.  What if the language allowed a not outside the required parens?  So that could become `if not(a and b) statement;`.  Of course, if we switch to control flow not requiring parens this becomes a non-issue (i.e. `if not(a and b) { statement; }`).  Though there is some extra clarity when parens are required, because you know the not must apply to the whole condition, not just the first part of it.

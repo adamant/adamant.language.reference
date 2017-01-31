@@ -55,7 +55,7 @@
       * [Memory Layout](memory-layout.md)
       * [Unchecked](unchecked.md)
       * Boxing
-  * [Naming Conventions](naming-conventions.md)
+  * [Conventions](conventions.md)
   * Testing
   * [Other Feature Ideas](ideas.md)
   * Standard Library

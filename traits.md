@@ -1,8 +1,8 @@
 There are no explicit interfaces.  Instead you can implement the interface of a class by placing it after the second inheritance colon.
 
-public class Example: : SomeClass
-{
-}
+	public class Example: : SomeClass
+	{
+	}
 
 This has a number of consequences:
 	* private members are private to the instance not shared between instances of the class
