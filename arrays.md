@@ -2,9 +2,9 @@
 
 Array types are `baseType[N]` where N is a constant size or `baseType[]` which is really kind of a short hand for an existential type since we know it has a length, we just don't know what it is.  Given everything is a reference, there shouldn't be array literals, however there should be array constructors using new.  Possible syntax for constructing an array.
 
-new int[45](); // bugbug what about initializing this?
-new [1,2,3,4,5];
-new int[45]; // An array of one int element?
+	new int[45](); // bugbug what about initializing this?
+	new [1,2,3,4,5];
+	new int[45]; // An array of one int element?
 
 Array elements should be mutable.  However the question becomes whether you can have much more complex array types.  Can you say "an array of immutable references to mutable objects?"  Can you have an array of references to other variables (i.e ref).  It may simplify things if those are disallowed.  Those aspects are then not part of the type, but properties of the variable binding.  If arrays are allowed to do those complex things, then so should lists be allowed.
 
