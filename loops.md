@@ -48,16 +48,16 @@ Standard library provides `Enumerate()` method for counting
 
 	for let [i, x] in (5..10).Enumerate()
 	{
-		console.WriteLine("i = {i}, j = {j}");
+		console.WriteLine("i = {i}, x = {x}");
 	}
 
 Outputs:
 
-	i = 0, j = 5
-	i = 1, j = 6
-	i = 2, j = 7
-	i = 3, j = 8
-	i = 4, j = 9
+	i = 0, x = 5
+	i = 1, x = 6
+	i = 2, x = 7
+	i = 3, x = 8
+	i = 4, x = 9
 
 ## Controlling Loop Iteration
 

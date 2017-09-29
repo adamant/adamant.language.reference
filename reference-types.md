@@ -1,8 +1,8 @@
 # Reference Types
 
-There are two kinds of types in Adamant, reference types and value types.  Reference types are so named because they are passed by reference.  Value types are as one would expect passed by value.  In this section, we'll explain reference types because most of the types you create in Adamant will be reference types.  Later we'll explain value types.
+There are two kinds of types in Adamant, reference types and value types.  Reference types are so named because they are passed by reference.  Value types are, as one would expect, passed by value.  In this section, we'll explain reference types because most of the types you create in Adamant will be reference types.  Later we'll explain value types.
 
-In languages like C#, all reference types are stored on the heap with pointers to them on the stack or in other object. All value types, on the other had, are stored direct on the stack or in the object declaring them.  That is not the case in Adamant.  The ownership system gives the Adamant compiler a lot more information about how memory is used in your program.  As a result, it is able to optimize many uses of reference types to store them directly on the stack or in the referencing object.  Just because a reference type has to be placed on the heap in one usage, doesn't mean it is on the heap everywhere it is used either.  This is an important feature of Adamant as it allows you to worry about what your app does rather than where objects are stored while being confident the best storage choice is being made.  It also means that a minor change necessitating a change in storage is a minor change rather than a big project of changing all uses of the value.
+In languages like C#, all reference types are stored on the heap with pointers to them on the stack or in other objects. All value types, on the other had, are stored direct on the stack or in the object declaring them.  That is not the case in Adamant.  The ownership system gives the Adamant compiler a lot more information about how memory is used in your program.  As a result, it is able to optimize many uses of reference types to store them directly on the stack or in the referencing object.  Just because a reference type has to be placed on the heap in one usage, doesn't mean it is on the heap everywhere it is used either.  This is an important feature of Adamant as it allows you to worry about what your app does rather than where objects are stored while being confident the best storage choice is being made.  It also means that a minor change necessitating a change in storage is a minor change rather than a big project of changing all uses of the value.
 
 Any type declared as a class in Adamant is a reference type.  Let's consider a simple reference type for points.
 
@@ -18,7 +18,7 @@ Any type declared as a class in Adamant is a reference type.  Let's consider a s
 		}
 	}
 
-If you've read the section on [variable bindings](variable-bindings.md) and are familiar with other object oriented languages, this should be pretty clear to you.  The declaration that looks like a function except with the `new` keyword instead of a name is how a constructor is declared in Adamant.  It let's us create a point given values for `X` and `X`.  You can see the `X` and `Y` values are mutable.  The `int` type is a value type, but don't worry about that for now.  They behave like you would expect.
+If you've read the section on [variable bindings](variable-bindings.md) and are familiar with other object oriented languages, this should be pretty clear to you.  The declaration that looks like a function except with the `new` keyword instead of a name is how a constructor is declared in Adamant.  It lets us create a point given values for `X` and `Y`.  You can see the `X` and `Y` values are mutable.  The `int` type is a value type, but don't worry about that for now.  They behave like you would expect.
 
 ## Reference Ownership
 
