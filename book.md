@@ -21,7 +21,7 @@
     * [Access Modifiers](access-modifiers.md)
     * Closures and Lambdas
     * Classes
-      * Fields
+      * [Fields](fields.md)
       * Methods (including `open`)
       * [Associated Functions](associated-functions.md)
       * [Constructors](constructors.md)
