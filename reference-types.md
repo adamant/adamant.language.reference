@@ -136,7 +136,7 @@ These rules are enforced by the compiler.  The portion of the compiler responsib
 Let's consider again an example from earlier.
 
 	let a = mut new Point(4, 3);
-	let b = mut v; // b: mut Point
+	let b = mut a; // b: mut Point
 	console.WriteLine("a = ({a.X}, {a.Y})"); // compile error
 	b.Y = 6; // mutate the point
 

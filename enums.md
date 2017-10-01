@@ -15,7 +15,7 @@ All enums are distinguished by a discriminator field created by the compiler.  E
 	public enum:int struct DayOfWeek
 	{
 		Sunday = 0, // The value for Sunday is 0
-		Monday = 1, // The value for Monday is 0
+		Monday = 1, // The value for Monday is 1
 		Tuesday,
 		Wednesday,
 		Thursday,
