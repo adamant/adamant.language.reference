@@ -38,7 +38,14 @@
     * [Enums](enums.md)
     * [Generators](generators.md)
     * [Async and Await](async.md)
-    * [Exceptions](exceptions.md)
+	* [Contracts, Errors and Effects](contracts-errors-effects.md)
+	  * [Contracts](contracts.md)
+	  * Results
+      * [Exceptions](exceptions.md)
+	  * [Effects](effects.md)
+	  * [Assertions](assertions.md)
+	  * [Out of Memory](out-pf-memory.md)
+	  * Error Model Summary
     * Const and Static
     * Attributes
     * [Params and List Initializers](params-and-list-initializers.md)

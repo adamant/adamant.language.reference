@@ -69,7 +69,7 @@ Exactly how this feature will work is still being determined.
 
 Adamant will have C# and JavaScript style async/await support.  However, in those languages, async becomes contagious and must be passed up the call chain throughout your code.  Because of pervasive support for async execution, that is not the case in Adamant.  Instead, it is safe to await a task in synchronous code and it will block the current thread of execution without holding a thread.
 
-In C#, asynchronous code can easily lead to race conditions as two threads share data across and asynchronous boundary.  In Adamant, the borrow checker protects the developer from any such possible race conditions so that asynchronous code is fully safe.
+In C#, asynchronous code can easily lead to race conditions as two threads share data across an asynchronous boundary.  In Adamant, the borrow checker protects the developer from any such possible race conditions so that asynchronous code is fully safe.
 
 ### Generics with Partial Specialization
 

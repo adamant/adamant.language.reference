@@ -4,10 +4,10 @@ Principle: Async Everywhere - use async in lots of places
 
 Operations that should be async, Disk, Network, Screen (writing to Console can be slower thatn writing to file), inter thread and process communication, and sleeping.
 
-Principle: No Blocking Operations - it should be impossible to block a thread
-Principle: Don't divide the world into red and green methods
+  * Principle: No Blocking Operations - it should be impossible to block a thread
+  * Principle: Don't divide the world into red and green methods
 
-Idea: the equivalent of C# async void methods would be safe for throws void methods
+Idea: the equivalent of C# async void methods would be safe for throws void methods (not sure anymore what this was supposed to mean)
 
 It still seems to make sense to indicate that some actions are expected to be async and that should be dealt with.  Kind of reminds me of the distinction of different 
 
@@ -27,7 +27,7 @@ Coroutine like behavior
 
 iterator and observable are dual, it would be good if they could be unified
 
-Note: Promises will have to carry information about what exceptions they can throw so we can no what exceptions our function can throw
+Note: Promises will have to carry information about what exceptions they can throw so we can know what exceptions our function can throw
 
 CPU bound vs IO bound.  In C#, use Task.Run for CPU bound, but it sounds like it really depends on who the caller is for whether you want that, so perhaps the rule should be that you push onto the caller to Task.Run you if needed?
 
@@ -66,3 +66,10 @@ This could be addressed by switching to some postfix syntax.  For example, `Foo(
 ## Async loops
 
 TODO: async `for`
+
+
+-----
+
+## Another Approach
+
+Have methods that return `Promise<T>` their implementation can then be declared async to have them work like C# async methods.  You can await a task in any method.  You can also call a sync method with the async keyword so that if it blocks on an async method, you will get a task.

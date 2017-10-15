@@ -1,10 +1,10 @@
 # Exceptions
 
-# Try/Catch Statements
+## Try/Catch Statements
 
 Idea: given that try expressions will clearly mark where exceptions can be thrown.  We don't necessarily need to precede try blocks with the `try` keyword.  We could simply allow a catch on any block containing a try expression.
 
-# Try expressions
+## Try expressions
 
 Swift has prefix expressions with `try` to allow them to throw.  `try?` turns their result into a nullable rather than throwing.  `try!` makes them panic if an exception is thrown.  Midori had `try <exp> else catch` that returned Result<T>.  You could also do `try <exp> else <value>` that would use value if an exception was thrown.  My concern about those is that they don't specify the exception.  So if a new exception is added, they could swallow it too.
 
@@ -13,3 +13,22 @@ Swift doesn't have finally.  Instead it has `defer`.  I think that is because of
 Adamant
 
 `try` will throw an exception if the expression throws or if the expression returns an error Result<T>.  `try?` returns a `Result<T>` of error if the expression throws.  `try!` will panic if the expression throws or returns an error `Result<T>`.
+
+## May Throw and No Throw
+
+Functions are annotated with a list of exceptions they could throw as:
+
+	public Func() may throw IOException, ParseException
+	{
+		// ...
+	}
+
+There are no unchecked exceptions.  Exception annotations are part of the type of the function.  Functions that don't throw any exceptions are marked with `no throw`.  Any function that doesn't have a throw clause will have its throws inferred.  Only at the public API boundary are you required to explicitly declare all thrown exceptions.
+
+## Catch
+
+You can only catch declared exceptions, not specific subtypes of declare exceptions because then you are depending on knowledge about the implementation of the method and are hiding a runtime type check.  Not allowing this means exceptions don't have to carry runtime type info. (This idea comes from Midori)
+
+## Defer
+
+Not sure yet wether Adamant needs Swift style defer given the RAII pattern support.
