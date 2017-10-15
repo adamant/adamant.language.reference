@@ -1,7 +1,7 @@
 # The Adamant Language: An Informal Specification and Introduction
 
   * Introduction
-  * [Pre-Adamant](pre-adamant.md)
+  * [Implementation Road Map](road-map.md)
   * The Language
     * [Variable Bindings](variable-bindings.md)
 	* [Functions](functions.md)
