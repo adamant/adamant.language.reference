@@ -17,7 +17,7 @@ The v0.5.0 version will represent a major milestone in the implementation of the
   * `unsafe`
 
 ## Features Probably *Not* be in v0.5.0
-  * Types: `float128`, `fixed`\*`.`\*, `decimal`*
+  * Types: `float128`, `fixed*.*`, `decimal*`
   * Overload Functions on Argument Types
   * Type Inference
   * Ownership Inference
