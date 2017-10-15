@@ -27,7 +27,7 @@ Or what about `1.,5` for inclusive? Or what about `1.to(5)` but that might be a 
 
 Or `0..<length` and `1<=..<=5` for inclusive and `1<..<5` exclusive of both.
 
-Really like `..` with `||` for size.  So `for(let x in 0..|array|)` `for(let x in 1 to 5)`
+Really like `..` with `||` for size.  So `for let x in 0..|array|` `for let x in 1 to 5`
 
 	[1--5) // Looks good but could mean
 
@@ -44,4 +44,4 @@ Really like `..` with `||` for size.  So `for(let x in 0..|array|)` `for(let x i
  
  But it would be good if range syntax was useful for intervals too.
  
- Since .. is supposed to be the accept operator, what if we made ranges a little more like in math with intervals.  Of course something would need to distinguish them from other things.  Perhaps #[0,5) would be the range from 0 to 5 (not inclusive of 5).
+ Since `..` is supposed to be the accept operator, what if we made ranges a little more like in math with intervals.  Of course something would need to distinguish them from other things.  Perhaps `#[0,5)` would be the range from 0 to 5 (not inclusive of 5).  Note that `` `[0,5)`` has be proposed as an interval syntax as well.

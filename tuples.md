@@ -15,7 +15,7 @@ The types of tuples look like the tuple with types instead of values.  Tuples ar
 You can access the individual fields of a tuple using a destructuring let.
 
 	let [x, y, z] = new [1, 2, 3];
-	cosole.WriteLine("x = {x}");
+	console.WriteLine("x = {x}");
 
 ## Indexing Tuples
 
@@ -26,3 +26,5 @@ You can also access the fields of a tuple by index.
 	let x = t.0;
 	let y = t.1;
 	let z = t.2;
+
+TODO: it looks weird to access the zeroth item as `t.0`, perhaps tuple indexes should start at 1, but then that would be inconsistent with arrays.
