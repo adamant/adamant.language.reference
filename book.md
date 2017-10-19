@@ -8,7 +8,7 @@
     * [Predefined Types](predefined-types.md)
       * [Tuples](tuples.md)
     * [Comments](comments.md)
-    * `if`
+    * [Choice](choice.md)
     * [Loops](loops.md)
     * [Ownership](ownership.md)
       * [Reference Types and Borrowing](reference-types.md)

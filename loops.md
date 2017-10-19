@@ -23,12 +23,12 @@ While loops look like:
 
 You might be tempted to write an infinite loop as `while true` however `loop` is better for this because the compiler treats them different for definite assignment.  Namely, a variable can be definitely assigned in a `loop` but will not be considered definitely assigned by a `while true` loop.
 
-If you need something like a `do ... while` loop available in many other languages, the proper way to do that is:
+If you need something like a `do {} while` loop available in many other languages, the proper way to do that is:
 
 	loop
 	{
 		// do work
-		if !condition { break; }
+		if not condition { break; }
 	}
 
 ## `for`
@@ -40,7 +40,7 @@ For loops are Rust style like:
 		console.WriteLine("{x}");
 	}
 
-The for loop can operate over any value that is an iterator.
+The `for` loop can operate over any value that is an iterator.
 
 ## Enumerate
 
@@ -63,6 +63,19 @@ Outputs:
 
 You can use `break` and `continue` statements like in many other languages such as C# and Java.
 
+### `break` values
+
+The `break` statement can have a value.  This value then because the value of the loop expression.  All break statements must have values of compatible types.  The type of a `loop` expression is the type of the values.  The type of `while` and `for` loops are nullable because the value is null if the loop never executes.
+
+	let x = loop
+			{
+				DoSomething();
+				if condition
+				{
+					break GetValue();
+				}
+			};
+
 ## Loop Labels
 
 When breaking or continuing it may be necessary to indicate which loop you are controlling.  This can be done by labeling the loops.  Loop labels are essentially lifetimes and are named as such.
@@ -76,3 +89,5 @@ When breaking or continuing it may be necessary to indicate which loop you are c
 			console.WriteLine("x = {x}, y = {y}");
 		}
 	}
+
+When loop labels are combined with break values, the label is placed before the value as `break ~label value;`.
