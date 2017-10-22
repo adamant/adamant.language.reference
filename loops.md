@@ -1,6 +1,6 @@
 # Loops
 
-Adamant has three loop constructs.  They are `loop`, `while` and `for`.  As in Rust, all loops bodies must be block statements.
+Adamant has three loop constructs.  They are `loop`, `while` and `for`.  All loops bodies must be block statements.
 
 ## `loop`
 
@@ -21,7 +21,7 @@ While loops look like:
 		// do work
 	}
 
-You might be tempted to write an infinite loop as `while true` however `loop` is better for this because the compiler treats them different for definite assignment.  Namely, a variable can be definitely assigned in a `loop` but will not be considered definitely assigned by a `while true` loop.
+You might be tempted to write an infinite loop as `while true` however `loop` is better for this because the compiler treats them differently for definite assignment.  Namely, a variable can be definitely assigned in a `loop` but will not be considered definitely assigned by a `while true` loop.
 
 If you need something like a `do {} while` loop available in many other languages, the proper way to do that is:
 
@@ -33,18 +33,28 @@ If you need something like a `do {} while` loop available in many other language
 
 ## `for`
 
-For loops are Rust style like:
+For loops allow something to be done a set number of times or for a set of values.
 
 	for let x in 0..10
 	{
 		console.WriteLine("{x}");
 	}
 
-The `for` loop can operate over any value that is an iterator.
+The `for` loop can operate over any value that is iterable.
+
+Sometimes the actual value of the loop variable isn't needed.  This can be denoted using the underscore.
+
+	for _ in 0..10
+	{
+		console.WriteLine("Hi");
+	}
+
+**TODO:** maybe for loops should be like arguments and not require the `let` keyword, but require the `var` keyword?
+**TODO:** show how to handle references to structs
 
 ## Enumerate
 
-Standard library provides `Enumerate()` method for counting
+Standard library provides `Enumerate()` method for counting.  This provides the index of each value in the iterator sequence.
 
 	for let [i, x] in (5..10).Enumerate()
 	{
@@ -65,7 +75,7 @@ You can use `break` and `continue` statements like in many other languages such 
 
 ### `break` values
 
-The `break` statement can have a value.  This value then because the value of the loop expression.  All break statements must have values of compatible types.  The type of a `loop` expression is the type of the values.  The type of `while` and `for` loops are nullable because the value is null if the loop never executes.
+The `break` statement can have a value.  This value then because the value of the loop expression.  All break statements must have values of compatible types.  The type of a `loop` expression is the type of the values.  The type of `while` and `for` loops are nullable because the value is null if the loop never executes or exits without breaking.
 
 	let x = loop
 			{

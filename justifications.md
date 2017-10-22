@@ -94,7 +94,11 @@ Third, in implementing low level functionality like reference counting it seemed
 Control flow like `if`, `for` etc. require block statements and do not have parenthesis around the expression just like in Rust.  Originally, control flow was C style where the expression portion must be surrounded with parens, but the statement can be any statement.  The current approach solves the dangling else issue and also makes loop else unambiguous (i.e. people won't think the loop else is for an if). More importantly, I think this makes scopes clearer.  Whatever effect scopes have on value lifetimes, they will be visually apparent in the code.  With C style control flow, there is a scope introduced, but it may not be visually apparent when it is not surrounded by curly braces.
 
 ### `loop` Keyword
-As in Rust the justification is that the control flow analyzer treats it differently.  Also, just makes the thing  clearer.
+As in Rust the justification is that the control flow analyzer treats it differently.  Also, just makes the thing clearer.
 
 ### `do` `while` Loops
 Rust doesn't have `do` `while` loops.  While they are rare, they do come up.  In fact when writing a recursive decent parser there are quite a few.  Using `loop while` to avoid introducing a new keyword was considered.  However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
+
+### Iterators instead of Enumerators
+
+Iterator seems to be the more standard term.  It isn't clear that "Enumerable" and "Enumerator" are really clearer.

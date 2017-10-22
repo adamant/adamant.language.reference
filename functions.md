@@ -6,7 +6,7 @@ Every Adamant program has at least one function, the main function:
 	{
 	}
 
-This is the simplest possible function.  It is public meaning it is visible everywhere including outside of this package (see [Access Modifiers](access-modifiers.md). That is followed by the name of the function.  The empty parentheses indicate the function takes no arguments. The `->` indicates this is a function declaration and is followed by the return type.  This function doesn't return a value which is indicated with the special type `void`.
+This is the simplest possible function.  It is public, meaning it is visible everywhere including outside of this package (see [Access Modifiers](access-modifiers.md). That is followed by the name of the function.  The empty parentheses indicate the function takes no arguments. The `->` indicates this is a function declaration and is followed by the return type.  This function doesn't return a value which is indicated with the special type `void`.
 
 So how to take arguments?  Here is a main function that takes the console as an argument, so it can print hello world.
 
@@ -24,7 +24,7 @@ Function parameters are declared like `let` bindings.  In fact, they are complet
 		console.WriteLine("x - 1 = {x}");
 	}
 
-## Returning a Value from a Function
+## Returning from a Function
 
 To return a value simply declare the correct return type and use a return statement.
 
@@ -33,9 +33,11 @@ To return a value simply declare the correct return type and use a return statem
 		return x + 2;
 	}
 
+To return from a function whose return type is `void`, use a return statement without a value, as `return;`.
+
 ## Diverging Functions
 
-Adamant has special syntax for "diverging functions".  Those are functions that never return by normal means.  That could be because they always cause a panic (terminate the program), throw an exception or loop forever.
+Adamant has special syntax for [diverging functions](https://en.wikipedia.org/wiki/Divergence_(computer_science)).  Those are functions that never return by normal means.  That could be because they always cause a panic (terminate the program), throw an exception or loop forever.
 
 	public Diverges() -> !
 	{
@@ -44,26 +46,23 @@ Adamant has special syntax for "diverging functions".  Those are functions that 
 
 The function panic is a special function that crashes the program immediately, outputting the message passed to it.  The `Diverges` function never returns, because it crashes the program.  This is indicated with the special return type `!`.
 
-A diverging function can be used as any type:
+A diverging function can be used where an expression of any type is expected.  Thus the type `!` is a subtype of all other types.  In formal type theory, it is the [bottom type](https://en.wikipedia.org/wiki/Bottom_type).  This can be useful in situations where two expressions are expected to have the same type, but you want one to be an error.  For example, using an [`if` expression](choice.md#if_expression), we might write:
 
-	let x: int = Diverges();
-	let y: string = Diverges();
+	let y: string = if condition => "We're good" else => Panic();
 
-## Function Pointers
+## Function References
 
-**This seems really early to introduce this, but not sure where else to put it.**
-
-We can also create variable bindings that point at functions.
+We can also create variable bindings that reference a function.
 
 	let f: (int) -> int;
 
-`f` is a variable that points to a function taking an `int` and returning an `int`.  It can be assigned a function and called as a function.  For example:
+`f` is a variable that references a function taking an `int` and returning an `int`.  It can be assigned a function and called as a function.  For example:
 
 	// Without type inference
 	let f: (int) -> int = AddTwo;
 
 	// With type inference
-	let f = AddTwo;
+	let f = AddTwo;  // f: (int) -> int
 
 	// Calling f
 	let five = f(2);

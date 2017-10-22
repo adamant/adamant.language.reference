@@ -5,6 +5,7 @@
   * The Language
     * [Variable Bindings](variable-bindings.md)
 	* [Functions](functions.md)
+	  * [Anonymous Functions](anonymous-functions.md)
     * [Predefined Types](predefined-types.md)
       * [Tuples](tuples.md)
     * [Comments](comments.md)
@@ -19,7 +20,6 @@
       * [Summary of Ownership](ownership-summary.md)
     * Namespaces
     * [Access Modifiers](access-modifiers.md)
-    * Closures and Lambdas
     * Classes
       * [Fields](fields.md)
       * Methods (including `open`)
