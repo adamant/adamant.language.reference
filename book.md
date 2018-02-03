@@ -8,7 +8,7 @@
 	  * [Anonymous Functions](anonymous-functions.md)
     * [Predefined Types](predefined-types.md)
       * [Tuples](tuples.md)
-      * [Optional Types][optiona-types.md]
+      * [Optional Types][optional-types.md]
     * [Comments](comments.md)
     * [Choice](choice.md)
     * [Loops](loops.md)
