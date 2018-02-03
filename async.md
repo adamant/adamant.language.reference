@@ -73,3 +73,13 @@ TODO: async `for`
 ## Another Approach
 
 Have methods that return `Promise<T>` their implementation can then be declared async to have them work like C# async methods.  You can await a task in any method.  You can also call a sync method with the async keyword so that if it blocks on an async method, you will get a task.
+
+----
+
+Notes from 2017-10-15
+
+Believe decided on `Promise<T>` that is consistent with reading of generics as "Promise of T"
+
+Await keyword, await a promise
+
+Async, strange that it is put in front of method name.  Considered putting async near the return type.  even then it looks like it is part of the sigature.  Might make more sense if it were after the signature.  Like before the block.  But not sure about that.  To avoid contagion of async/await one should be able to await a task inside a non-async method that does not return a task.  That should be safe because I'll just suspend the thread.  However, it could still block the main line of execution.  It still encourages non-async way of programming.  Might make sense if you could await any method.  That way if there was async stuff inside of it, you could allow that to run in parallel.  However because of the way async works where it executes up to the first async operation, then you won't get async behavior.  This is why go has go routines that always start another thread.  That seems like it could just be a library,  however to make it really common it makes sense to make it a language feature.  If you allow async on any method then you don't really need Promise.  It is like everything returns Promise.  You could just async anywhere any time.  However, without the Promise you are encouraging people to write in synchronous where for example they call IO in a synchronous way without awaiting.
