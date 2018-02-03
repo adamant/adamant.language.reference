@@ -22,7 +22,7 @@ TODO need to determine how conversion to string works and how formatting works.
 
 TODO determine literal string syntax. That is strings that don't support embedded expressions and don't require characters to be escaped.
 
-A Unicode string encoded in UTF-8. String literals are created with double quotes `"Hello World!"`. Expressions can be embedded in strings using curly braces, for example `"x = {x_variable}"`.  The escape codes are:
+A Unicode string encoded in UTF-8. String literals are created with double quotes `"Hello World!"`. Expressions can be embedded in strings using curly braces, for example `"x = {x_variable}"`. The escape codes are:
 
 Code | Character
 ---- | ---------
@@ -44,13 +44,13 @@ Numeric types follow the pattern of a type name followed by an integer number of
 
 #### Integer Types
 
-Bits | Signed   | Unsigned
+Bits | Signed	| Unsigned
 ---- | -------- | --------
-8	 | `int8`   | `byte`
-16	 | `int16`  | `unit16`
-32	 | `int`    | `uint`
-64	 | `int64`  | `unit64`
-128	 | `int128` | `unit128`
+8	 | `int8`	| `byte`
+16	 | `int16`	| `unit16`
+32	 | `int`	| `uint`
+64	 | `int64`	| `unit64`
+128	 | `int128`	| `unit128`
 
 (all names matching the regular expressions `int\d+` or `unit\d+` are reserved words)
 
@@ -58,32 +58,28 @@ I> The `System.Numerics` package defines arbitrary precision integer types `inte
 
 #### Floating Point Types
 
-Bits | Type   | Standard
----- | -------- | ------------------
-32	 | `float32` | IEEE 754 binary32
-64	 | `float`  | IEEE 754 binary64
-128	 | `float128` | IEEE 754 binary128
+Bits | Type			| Standard
+---- | ------------ | ------------------
+32	 | `float32`	| IEEE 754 binary32
+64	 | `float`		| IEEE 754 binary64
+128	 | `float128`	| IEEE 754 binary128
 
 (all names matching the regular expression `float\d+` are reserved words)
 
 #### Fixed Point Types
 
-Let *f* be the number of fractional bits, *m* be the number of magnitude or integer bits and *b* be the total number of bits.  For *b*=*m*+*f* where *b*=8 or *b*=16 or *b*=32 or *b*=64, the signed fixed point type is `fixed`*m*`.`*f* and the unsiged type is `ufixed`*m*.*f*.
-
+Let *f* be the number of fractional bits, *m* be the number of magnitude or integer bits and *b* be the total number of bits. For *b*=*m*+*f* where *b*=8 or *b*=16 or *b*=32 or *b*=64, the signed fixed point type is `fixed`*m*`.`*f* and the unsiged type is `ufixed`*m*.*f*.
 
 (note 128 bit fixed types are not supported because of issues with handling multiply)
-
-X	 fixedN.M where X=N+M and X is one of 8,16,32,64 (note 128 not supported because of multiply)
-X	 ufixedN.M where X=N+M and X is one of 8,16,32,64 (note 128 not supported because of multiply)
 
 (all names matching the regular expressions `fixed\d+\.\d+` or `ufixed\d+\.\d+` are reserved words)
 
 #### Decimal Types
 
-Bits | Type    | Standard
----- | ---------- | -------------------
-32	 | `decimal32` | IEEE 754 decimal32 (binary representation preferred)
-64	 | `decimal`  | IEEE 754 decimal64 (binary representation preferred)
+Bits | Type			| Standard
+---- | ------------ | -------------------
+32	 | `decimal32`	| IEEE 754 decimal32 (binary representation preferred)
+64	 | `decimal`	| IEEE 754 decimal64 (binary representation preferred)
 128	 | `decimal128` | IEEE 754 decimal128 (binary representation preferred)
 
 (all names matching the regular expression `decimal\d+` are reserved words)
@@ -92,8 +88,8 @@ I> The `System.Numerics` package defines the `dec64` type following the standard
 for Fast Easy Arithmetic](http://www.cs.toronto.edu/~hehner/ratno.pdf) by Eric C. R. Hehner and R. N. S. Horspool.
 
 The `System.Numerics` package should also define:
-  * `real` - arbitrary precision decimal see Java BigDecimal defined in System.Numerics
-  * `real.`*f* - arbitrary precision with *f* digits to the right of decimal. Should this be `real<`*f*`>`?
+ * `real` - arbitrary precision decimal see Java BigDecimal defined in System.Numerics
+ * `real.`*f* - arbitrary precision with *f* digits to the right of decimal. Should this be `real<`*f*`>`?
 
 TODO should there be a numeric type better suited to money?
 
@@ -102,7 +98,7 @@ TODO should there be a numeric type better suited to money?
  * `size`
  * `offset`
 
-The bit size of these systems is system dependent. Size is an unsigned number large enough to hold the maximum size of an array on the system.  The size type is used to index into collections. Offset is a signed number with the same number of bits as size used to represent differences between array indexes.
+The bit size of these systems is system dependent. Size is an unsigned number large enough to hold the maximum size of an array on the system. The size type is used to index into collections. Offset is a signed number with the same number of bits as size used to represent differences between array indexes.
 
 #### Issues
 
@@ -118,4 +114,24 @@ The predefined package types are predefined types that are not keywords and are 
 
 ### `Unsafe_Array<T>`
 
-### `Maybe<T>`? `Option<T>`?
+Unsafe array is the "primitive" array type. It represents an array of elements and is unsafe because not checking is performed against the length of the array. This type acts as if it had the following class declaration.
+
+	public mut class Unsafe_Array<T>
+	{
+		public new(length: size);
+		// TODO account for get vs set, mutability and lifetimes.
+		// TODO what is the correct syntax for all that?
+		public unsafe operator [](index: size) -> T;
+		public unsafe Slice(index: size) -> Unsafe_Array<T>;
+	}
+
+Arrays are zero indexed. The indexing operator and slice method do not check there arguments are within the bounds of the array. Passing arguments outside the bounds of the array results in undefined behavior.
+
+The slice method returns a view into the array starting at the index. It does not take a second argument indicating the length or last index of the view because this argument could not be checked and would be unused.
+
+### `Optional<T>`
+
+TODO should it be forbidden to directly reference `Optional<T>
+`? Then it would only be available for extension and documentation purposes.
+
+The `Optional<T>` is the underlying type of the optional type constructor `T?`.  That is, `T?` is syntactic sugar for `Optional<T>`.

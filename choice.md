@@ -58,7 +58,7 @@ When more complex operations are needed in an if expression, expression blocks w
 		else
 		{
 			DoSomethingElse();
-			is "false";
+			=> "false";
 		}; // semi-colon ends let statement
 
 It is an error to have statements after the `=>` statement in the block.
