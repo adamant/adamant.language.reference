@@ -2,13 +2,13 @@
 
 ## Passing
 
-Kind                       | Move   | Copy*  | Borrow
+Kind                       | Move   | Copy†  | Borrow
 -------------------------- | -----: | -----: | -----:
 Move Value (`struct` w/o `implicit copy`)      |      x | copy x |  ref x
 Copy Value (`struct` w/ `copy`) | move x |      x |  ref x
 Reference (`class`)        | move x | copy x |      x
 
-* for Move Value and Reference types, a copy method must be implemented to do this
+† for Move Value and Reference types, a copy method must be implemented to do this
 
 ## Types
 

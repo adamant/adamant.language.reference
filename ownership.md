@@ -2,7 +2,7 @@
 
 The ownership system in Adamant is used to manage all resources.  Not just memory, but files, network sockets and any other resources.  This provides a great deal of safety to Adamant code.  At the same time, ownership is one of the most unique aspects of Adamant.  Like anything new and unfamiliar it can take a while to understand and learn (even if you're familiar with ownership in Rust, you'll find Adamant to be somewhat different).  Once you do though, you'll appreciate the significant benefits it brings and find that it doesn't get in your way, but rather serves as a useful aid in thinking about your code.  The ownership system of Adamant is designed to make the common cases clear and simple.
 
-First, we'll look at the history of memory management to get some background and lay the foundation.  
+First, we'll look at the history of memory management to get some background and lay the foundation.
 
 ## Background and History
 
@@ -28,7 +28,7 @@ The first approach to managing the heap was entirely manual.  When memory was ne
   * Accessing Memory out of Bounds: Reading or writing past the end of a block of memory that was allocated.
 
 Some of these pitfalls have been addressed in various languages with improved type systems.  However, the major issues of potential use after free, memory leaks and invalid pointers are essentially impossible to entirely prevent when using manual memory management.
-  
+
 ### Garbage Collection
 
 Currently, garbage collected languages have largely supplanted languages with manual memory management for high level programming tasks.  The garbage collector runs in the background, searching through allocated memory and determining what memory can no longer be reached and consequently, is no longer used.  Then it frees that memory.  Languages like C#, Java and many others with garbage collectors have totally eliminated almost the entire list of issues with manual memory management.  It is still possible to leak memory by unintentionally keeping a reference to it, but that is rarer than failing to call `free()` was.  It is also still possible to dereference a null pointer, but some modern languages have even corrected that.
@@ -47,6 +47,6 @@ The C++ language also originated the idea of Resource Acquisition is Initializat
 
 Several languages have taken the innovations of smart pointers and RAII and baked them into the language.
 
-First with Objective-C and the in Swift, Apple has provided "Automatic Reference Counting" (ARC).  ARC makes reference counting the default ubiquitous way of managing all references.  It builds into the language the bookkeeping of incrementing and decrementing reference counts.  Because it is built in, the language can avoid unnecessary modifications of the reference count.  It also makes RAII the default approach for managing resources.
+First with Objective-C and in Swift, Apple has provided "Automatic Reference Counting" (ARC).  ARC makes reference counting the default ubiquitous way of managing all references.  It builds into the language the bookkeeping of incrementing and decrementing reference counts.  Because it is built in, the language can avoid unnecessary modifications of the reference count.  It also makes RAII the default approach for managing resources.
 
-The real star of innovation in the space of memory management in languages is Rust.  Rust introduces an ownership model in which all memory is deterministically, safely and mostly automatically managed. RAII is then used to safely manage all other resources.  The ownership model also provides the basis of safety around concurrency in Rust.  Adamant takes its primary inspiration from Rust when it comes to managing memory, resources and concurrency.  However,  Rust is designed as a fairly low level language with zero cost abstractions.  The result is that the programmer is frequently forced to think about and keep track of issues related to memory management.  Adamant re-imagines reworks the ownership model to bring it to a high level language that will feel familiar to developers who have worked in languages like C# or Java.
+The real star of innovation in the space of memory management in languages is Rust.  Rust introduces an ownership model in which all memory is deterministically, safely and mostly automatically managed. RAII is then used to safely manage all other resources.  The ownership model also provides the basis of safety around concurrency in Rust.  Adamant takes its primary inspiration from Rust when it comes to managing memory, resources and concurrency.  However,  Rust is designed as a fairly low level language with zero cost abstractions.  The result is that the programmer is frequently forced to think about and keep track of issues related to memory management.  Adamant re-imagines and reworks the ownership model to bring it to a high level language that will feel familiar to developers who have worked in languages like C# or Java.

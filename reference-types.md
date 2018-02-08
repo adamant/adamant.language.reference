@@ -68,7 +68,7 @@ In this example, you'd get a compile error on the third line saying `a` could no
 
 ## Moving References
 
-We've seen how references can be borrowed both immutably and mutably.  However, sometimes one needs to actually transfer ownership of a reference to change who is responsible for releasing the object.  To do this, use the special lifetime `~own` and the `move` keyword.  Lifetimes are explained in detail later.  Every reference has a lifetime, and the lifetime of all references that own their value is the special lifetime `~own`.  In all the examples above, the own lifetime has been inferred by the compiler, so it wasn't necessary to type it.
+We've seen how references can be borrowed both immutably and mutably.  However, sometimes one needs to actually transfer ownership of a reference to change who is responsible for releasing the object.  To do this, use the special lifetime `~own` and the `move` keyword.  Lifetimes are explained in detail later.  Every reference has a lifetime, and the lifetime of all references that own their value is the special lifetime `~own`.  In all the examples above, the lifetime has been inferred by the compiler, so it wasn't necessary to type it.
 
 Imagine we need a function that will use up an object some how.  Say it will read the rest of and close a file.  Then it will want to take responsibility for releasing that object.  Of course, any such example for points will be a little contrived, but here goes.
 
@@ -155,7 +155,7 @@ Here the lifetime of `b` clearly ends before the call to `WriteLine` since `b` g
 
 ## Issues Ownership and Borrowing Prevent
 
-Why have these rules around ownership and borrowing and add the complexity of move?  Well, these rules provide safety for concurrency and other issues including iterator invalidation and use after free. 
+Why have these rules around ownership and borrowing and add the complexity of move?  Well, these rules provide safety for concurrency and other issues including iterator invalidation and use after free.
 
 ### Iterator Invalidation
 
@@ -163,7 +163,7 @@ TODO write section
 
 ### Use After Free
 
-References must not last longer than the resource they refer to.  Adamant will check the uses of references to ensure that this is true.  If this rule were not enforced, we could use an invalid reference.  In manual memory management this is known as 'use after free'. 
+References must not last longer than the resource they refer to.  Adamant will check the uses of references to ensure that this is true.  If this rule were not enforced, we could use an invalid reference.  In manual memory management this is known as 'use after free'.
 
 	let x: ref int;
 	{

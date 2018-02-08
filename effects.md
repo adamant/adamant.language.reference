@@ -34,9 +34,9 @@ Effects:
   * panic - preconditions and post conditions could cause panic.  So I need to prove that they hold to be able to say something won't panic
   * out of memory - separate because it seems more pervasive
   * overflow could be a panic
-  * unsafe - even functions marked safe that call unsafe code would be may unsafe
+  * unsafe - even functions marked safe that call unsafe code would be `may unsafe`
   * is trusted an effect?
 
-Do effects have a hierarchy?  How fine grained are effects.  For example, a method that panics could overflow because of overflow, precondition.  Are the effects for IO?  Is there a different effect for file and network IO.  Given pervasive async await, it seems like blocking shouldn't be an effect.  However, a long running computation could kind of be like blocking.
+Do effects have a hierarchy?  How fine grained are effects.  For example, a method that panics could do so because of overflow or precondition.  Are there effects for IO? Is there a different effect for file and network IO. Given pervasive async/await, it seems like blocking shouldn't be an effect.  However, a long running computation could kind of be like blocking.
 
 Perhaps it is valid to mark a function with a precondition as not panicking because the check of the precondition is effectively in the calling code not in the function itself?  (At call site because some call sites prove the precondition is satisfied).

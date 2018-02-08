@@ -2,7 +2,7 @@
 
 Anonymous functions allow the creation of unnamed functions inside another function.
 
-	let addTwo = (x) -> x + 2; // addTwo: int -> int
+	let addTwo = (x) -> x + 2; // addTwo: (int) -> int
 
 The parameter types can be inferred.  However, sometimes it is necessary or clearer to directly state them.
 

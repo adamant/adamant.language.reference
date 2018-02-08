@@ -22,13 +22,13 @@ Simple structs have *move semantics*.  That means rather than being borrowed lik
 	console.WriteLine("b.BufferSize = {b.BufferSize}");
 	console.WriteLine("a.BufferSize = {a.BufferSize}"); // complier error
 
-The last line give a compiler error stating that the value has been moved out of `a`.  We see that when we assigned `b = a` the value was moved just as if we had used the `move` keyword.  The same thing happens when passing a struct to a function.
+The last line gives a compiler error stating that the value has been moved out of `a`.  We see that when we assigned `b = a` the value was moved just as if we had used the `move` keyword.  The same thing happens when passing a struct to a function.
 
 Structs with move semantics aren't used very often.  The most common use is in [pseudo references](pseudo-references.md), where they are combined with other features to make something that feels more like a reference type.  Instead, most value types have copy semantics.
 
 ## Copy Semantics
 
-Most value types have *copy semantics*.  We're already familiar with a type that has copy semantics.  The `int` type we've been using all along is an example of a struct with copy semantics.  To see how to create our own types with copy semantics, let's make a simple complex number `struct`.
+Most value types have *copy semantics*.  We're already familiar with a type that has copy semantics.  The `int` type we've been using all along is an example of a struct with copy semantics.  To see how to create our own types with copy semantics, let's make a simple complex number struct.
 
 	public struct complex
 	{
