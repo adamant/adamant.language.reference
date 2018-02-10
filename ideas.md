@@ -120,6 +120,17 @@ Here the type overloads the dot operator.  This is consistent with the behavior 
 ### `repeat {} while <exp>;` or `do {} while <exp>;` Loops
 Rust doesn't have `do {} while <exp>;` loops. While they are rare, they do come up. In fact when writing a recursive decent parser there are quite a few. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
 
+### Make good use of other symbols
+
+I should seriously consider what other symbols are unused and how they could be used to good effect.  Of course, it might be good to leave some symbols for future use, but it is so hard to know if those uses will make sense for the available symbols.  Possible symbols are:
+
+ * `^`
+ * `&`
+ * `|`
+ * `$`
+
+And of course combinations of symbols and unary prefix and suffix versions of existing operators.
+
 # Obsolete Feature Ideas
 
 ## `if not` and `while not`
