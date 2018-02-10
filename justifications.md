@@ -98,11 +98,6 @@ Control flow like `if`, `for` etc. require block statements and do not have pare
 ### `loop` Keyword
 As in Rust the justification is that the control flow analyzer treats it differently. Also, just makes the thing clearer.
 
-
-### `do` `while` Loops
-Rust doesn't have `do` `while` loops. While they are rare, they do come up. In fact when writing a recursive decent parser there are quite a few. Using `loop while` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
-
-
 ### Iterators instead of Enumerators
 
 Iterator seems to be the more standard term. It isn't clear that "Enumerable" and "Enumerator" are really clearer.

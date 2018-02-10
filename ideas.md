@@ -117,6 +117,9 @@ Access Member          | ? `x.y`
 
 Here the type overloads the dot operator.  This is consistent with the behavior of the dot with variable references.  There doesn't seem to be a good way to handle dereference here though.  Perhaps there is some operator that could be allowed to be overloaded.  That operator maybe should be allowed on variable reference types to get the underlying reference.
 
+### `repeat {} while <exp>;` or `do {} while <exp>;` Loops
+Rust doesn't have `do {} while <exp>;` loops. While they are rare, they do come up. In fact when writing a recursive decent parser there are quite a few. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
+
 # Obsolete Feature Ideas
 
 ## `if not` and `while not`
