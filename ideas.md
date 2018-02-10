@@ -75,7 +75,7 @@ There may be situations where a class wants to borrow something, but we want to 
 
 ## Returns That Can't be Ignored
 
-Part of the Midori project's safety came from not being able to ignore the return value of a function except by explicit statement.  This had the effect of ensuring that return codes and error results couldn't be ignored.  If my error model includes Result<void> then it is possible people could ignore that.  Perhaps there should be some special handling to say that certain types shouldn't be ignored when returned.
+Part of the Midori project's safety came from not being able to ignore the return value of a function except by explicit statement.  This had the effect of ensuring that return codes and error results couldn't be ignored.  If my error model includes `Result<void>` then it is possible people could ignore that.  Perhaps there should be some special handling to say that certain types shouldn't be ignored when returned.
 
 ## Units of Measure
 
@@ -84,6 +84,46 @@ It would be really good to be able to have good units of measure either directly
 ## `else match`
 
 Allow a match to occur after an else.
+
+## Alternatives for Escaped Identifiers
+
+Currently, backtick `` ` `` is used to escape identifiers and double backtick creates escaped string identifiers.
+
+Font | Escaped Keyword | Escaped String
+---- | --------------- | --------------
+Monospace | `` `class ``  | ``` ``A name with spaces!`` ```
+Proportional | \`class | \`\`A name with spaces!\`\`
+
+However, this conflicts with the use of markdown in comments when referring to code.  While escaped identifiers are rare, it can still be confusing.  Unfortunately, preventing this would mean not being able to use the backtick as a symbol in the language.  Still, this might be worth it. Note in all these examples, that the single symbol form may be restricted to keywords and reserved words only.  So it may not be legal to use `` `hello``.  This can make the syntax less ambiguous. Possible syntaxes:
+
+ * `^class` and `^^This is a test!^^` (exponent would be `**`)
+ * `^class^` and `^This is a test^`
+ * At sign `@class`, but what about names with spaces? Confusing around attributes
+ * Square brackets `[class]` and `[This is a test!]` (this conflicts with tuple syntax, for example `let [x,y] = x` does that destructure or assign to the identifier `[x,y]`?)
+ * `[[class]]` and `[[This is a test!]]`
+ * `*class` or `class*`, and `**This is a test!**` (dereference could be caret `^` and exponent double caret `^^`) (Suffix asterisk makes it seem like the star of a footnote which I like) (Double star reads like bold or shouting though)
+ * `--This is a Test!--`
+ * `~~This is a Test!~~`
+ * `'class` and `''This is a test!''` vs string `"This is a test!"` but in variable width font that is ''This is a test!'' vs string "This is a test!"
+ * `'class'` and `'This is a test! but don't use apostrophes'`
+ * `#class` and `##This is a test!##`
+
+For some of these syntaxes, the symbol could be taken to mean "literal" and used as the prefix for literal strings.  However, it was suggested by Alex Burkhart that string escaped string identifiers could instead be created by prefixing strings with the same character. These strings would work like literal strings in terms of what characters they accept. Possible syntaxes for that are:
+
+ * `#class` and `#"An identifier"`
+ * `'class` and `'This is a test!'` and `'"A literal string\"`
+ * `\class` `\"This is a test!"`  (the blackslash is used for escape sequences, i.e. it escapes from the current mode. In this case escaping from regular parsing of keywords and strings)  The blackslash could possibly be combined with other characters to create other escape like things, perhaps around macros.
+ * `@class` `@"This is a test!"` (but this is confusing with attributes)
+ * `*class` `*"This is a test!"`
+
+Finally, perhaps using backtick isn't so bad. It is unlikely that a code snippet in markdown begins with a backtick.  If we could eliminate the double backtick by putting backtick in front of strings then code could always be surrounded by double backtick in markdown.
+
+Font | Escaped Keyword | Escaped String
+---- | --------------- | --------------
+Monospace | `` `class ``  | `` `"A name with spaces!"``
+Proportional | \`class | \`"A name with spaces!"
+
+However, this seems like a very easy to overlook syntax.
 
 # Obsolete Feature Ideas
 
