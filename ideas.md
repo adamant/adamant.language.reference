@@ -34,28 +34,15 @@ Note: Alternatively, a different keyword or group of keywords could be used for 
 
 Scheme uses `!` at the end of functions to indicate they are mutating.  That might not make sense for Adamant where mutation is probably more common and less frowned on.  Rust uses `!` to indicate macros.  It is nice to have a clear distinction for macros, but the syntax really strike one as clearly indicating a macro.  Since `!` denotes divergent functions and is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might be obvious that execution will terminate at one.
 
-## Extra Name Escapes
-
-Currently escaped identifiers really just allow the use of keywords as identifiers.  However, they could be expanded to allow any Unicode sequence not containing whitespace (or control characters?).  Names containing spaces could be enclosed in double backtick
-
-	let `2legit = 2;
-	let ``a really long name with spaces in it`` = 5;
-
-Identifiers with spaces would be really useful when naming tests.
-
-Allowing identifiers beginning with numbers could cause issues if we want to use backtick to mark of special literals like dates and times
-
 ## Date and Time Literals
 
-Add support for date and time literals.  Could be done using either the backtick or single quotes.
+Add support for date and time literals.  Could be done using either the backslash or single quotes.
 
-	// With backtick
-	let x = `2016-06-06;
+	// With backslash
+	let x = \2016-06-06;
 
 	// With quotes
 	let y = '2016-06-06';
-
-The first would not mix with expanding the backtick to allow anything as an identifier.
 
 ## Tuple Base Class
 
@@ -100,6 +87,8 @@ Address of an object   | `@x`
 Deference Points       | `x^`
 Access Member          | `x^.y`
 
+Note that Pascal like languages seem to allow `^` to be used as either a prefix or postfix operator.  That might make certain things clearer.
+
 ### `@` Means "at", `&` Means Address Of
 
 Use                    | Syntax
@@ -128,7 +117,17 @@ Access Member          | ? `x.y`
 
 Here the type overloads the dot operator.  This is consistent with the behavior of the dot with variable references.  There doesn't seem to be a good way to handle dereference here though.  Perhaps there is some operator that could be allowed to be overloaded.  That operator maybe should be allowed on variable reference types to get the underlying reference.
 
+# Obsolete Feature Ideas
+
+## `if not` and `while not`
+
+*Obsolete Reason:* adoption of control flow requiring blocks but not parenthesis (Rust style) means that this feature doesn't really makes sense as it is already essentially supported because control flow statements don't have parenthesis.
+
+Languages like Ruby have inverted control flow with `until(condition)` for `while(not condition)` and `unless(condition)` for `if(not condition)`.  In languages without that there is often a need for an extra set of parens which can be ugly and confusing (i.e. `if(not(a and b)) statement;`.  What if the language allowed a not outside the required parens?  So that could become `if not(a and b) statement;`.  Of course, if we switch to control flow not requiring parens this becomes a non-issue (i.e. `if not(a and b) { statement; }`).  Though there is some extra clarity when parens are required, because you know the not must apply to the whole condition, not just the first part of it.
+
 ## Alternatives for Escaped Identifiers
+
+*Obsolete Reason:* The backslash syntax was adopted.
 
 Currently, backtick `` ` `` is used to escape identifiers and double backtick creates escaped string identifiers.
 
@@ -168,10 +167,13 @@ Proportional | \`class | \`"A name with spaces!"
 
 However, this seems like a very easy to overlook syntax.
 
-# Obsolete Feature Ideas
+### Other Uses of Backtick
 
-## `if not` and `while not`
+There was some thought of using backtick in other places when it was the escape character. Those are recorded here.
 
-*Obsolete Reason:* adoption of control flow requiring blocks but not parenthesis (Rust style) means that this feature doesn't really makes sense as it is already essentially supported because control flow statements don't have parenthesis.
+Backtick may also be a convenient way to mark other literals. For example:
 
-Languages like Ruby have inverted control flow with `until(condition)` for `while(not condition)` and `unless(condition)` for `if(not condition)`.  In languages without that there is often a need for an extra set of parens which can be ugly and confusing (i.e. `if(not(a and b)) statement;`.  What if the language allowed a not outside the required parens?  So that could become `if not(a and b) statement;`.  Of course, if we switch to control flow not requiring parens this becomes a non-issue (i.e. `if not(a and b) { statement; }`).  Though there is some extra clarity when parens are required, because you know the not must apply to the whole condition, not just the first part of it.
+  * Date times - `` `2015-03-03``
+  * Intervals - `` `[3..6)`` or `` `[3,6)``
+
+Perhaps backtick could be used for operator overloading?  So `` `||`` would be the method name for overloading operator '`||`'  However, that might be confusing.

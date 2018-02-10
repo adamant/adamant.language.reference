@@ -4,7 +4,7 @@ Versions of the Adamant compiler before v1.0 will only implement subsets of the 
 The v0.5.0 version will represent a major milestone in the implementation of the language. Below is a list of features that could be omitted organized by whether they are likely to be omitted in v0.5.0.
 
 ## Features Probably in v0.5.0
-  * Single backtick [Escaped Identifiers](escaped-identifiers.md)
+  * Backslash [Escaped Identifiers](escaped-identifiers.md)
 
 ## Features that May be in v0.5.0
   * [Operator Overloading](operator-overloading.md)

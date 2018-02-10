@@ -6,7 +6,7 @@ There are two kinds of predefined types. The predefined keyword types are keywor
 
 ## Predefined Keyword Types
 
-The predefined keyword types are keywords, but also act as types. When the keyword is used in code as a type, it acts as a fully qualified reference to the predefined type. To declare an identifier with the same name as one of these, use an escaped name. That is, prefix the name with a backtick, for example `` `string``. References of an escaped identifier matching a predefined keyword type will apply standard name resolution rules. The predefined types are not declared in any namespace, including the global namespace, so an escaped identifier reference will never match to one of the predefined types.
+The predefined keyword types are keywords, but also act as types. When the keyword is used in code as a type, it acts as a fully qualified reference to the predefined type. To declare an identifier with the same name as one of these, use an escaped name. That is, prefix the name with a backslash, for example ``\string``. References of an escaped identifier matching a predefined keyword type will apply standard name resolution rules. The predefined types are not declared in any namespace, including the global namespace, so an escaped identifier reference will never match to one of the predefined types.
 
 ### `bool`
 
