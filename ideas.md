@@ -85,6 +85,49 @@ It would be really good to be able to have good units of measure either directly
 
 Allow a match to occur after an else.
 
+## Alternative Pointer Syntax
+
+While C/C++ have well established pointer syntax and Adamant is in that linage, it will use pointers much more rarely.  So it may be acceptable to change the pointer syntax for purposes of clarity or freeing up symbols. In terms of clarity, a postfix dereference operator may be clearer than a prefix one and would then combine well with the member access operator. In terms of freeing up symbols, the unary star operator and unary ampersand operators aren't actually that useful for anything else.
+
+### `@` Means Address Of, `^` Dereferences
+
+Use                    | Syntax
+---------------------- | --------
+Pointer to immutable T | `@T`
+Pointer to mutable T   | `@mut T`
+Address of a struct    | `@x`
+Address of an object   | `@x`
+Deference Points       | `x^`
+Access Member          | `x^.y`
+
+### `@` Means "at", `&` Means Address Of
+
+Use                    | Syntax
+---------------------- | --------
+Pointer to immutable T | `&T`
+Pointer to mutable T   | `&mut T`
+Address of a struct    | `&x`
+Address of an object   | `&x`
+Deference Points       | `@x`
+Access Member          | `(@x).y` ?
+
+This is confusing with C++ reference syntax. Also, it doesn't provide a clean member access unless the dot operator auto-dereferences which I've never liked.
+
+### `ptr<T>`
+
+Given that pointers are meant to be rare, why not say they are a special predefined type like unsafe array?
+
+Use                    | Syntax
+---------------------- | --------
+Pointer to immutable T | `ptr<T>`
+Pointer to mutable T   | `ptr<mut T>`
+Address of a struct    | `ptr.to(ref x)`
+Address of an object   | `ptr.to(x)`
+Deference Points       | ?? `@x`
+Access Member          | ? `x.y`
+
+Here the type overloads the dot operator.  This is consistent with the behavior of the dot with variable references.  There doesn't seem to be a good way to handle dereference here though.  Perhaps there is some operator that could be allowed to be overloaded.  That operator maybe should be allowed on variable reference types to get the underlying reference.
+
 ## Alternatives for Escaped Identifiers
 
 Currently, backtick `` ` `` is used to escape identifiers and double backtick creates escaped string identifiers.
