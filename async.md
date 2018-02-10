@@ -2,14 +2,14 @@
 
 Principle: Async Everywhere - use async in lots of places
 
-Operations that should be async, Disk, Network, Screen (writing to Console can be slower thatn writing to file), inter thread and process communication, and sleeping.
+Operations that should be async, Disk, Network, Screen (writing to Console can be slower than writing to file), inter thread and process communication, and sleeping.
 
   * Principle: No Blocking Operations - it should be impossible to block a thread
   * Principle: Don't divide the world into red and green methods
 
-Idea: the equivalent of C# async void methods would be safe for throws void methods (not sure anymore what this was supposed to mean)
+Idea: for functions returning void, it would be safe to allow them to be async like C# does where it will let you call one but then you have no way to determine when it is finished.  The catch would be that they need to be declared `no throw` so there was no risk of exceptions being lost.
 
-It still seems to make sense to indicate that some actions are expected to be async and that should be dealt with.  Kind of reminds me of the distinction of different 
+It still seems to make sense to indicate that some actions are expected to be async and that should be dealt with.
 
 There really needs to be back-pressure and throttling in async operations.
 
@@ -29,13 +29,13 @@ iterator and observable are dual, it would be good if they could be unified
 
 Note: Promises will have to carry information about what exceptions they can throw so we can know what exceptions our function can throw
 
-CPU bound vs IO bound.  In C#, use Task.Run for CPU bound, but it sounds like it really depends on who the caller is for whether you want that, so perhaps the rule should be that you push onto the caller to Task.Run you if needed?
+CPU bound vs IO bound.  In C#, use `Task.Run` for CPU bound, but it sounds like it really depends on who the caller is for whether you want that, so perhaps the rule should be that you push onto the caller to `Task.Run` you if needed?
 
-Note: Promise<T> may be a good example of a struct that should be a move type. Generally, only one person should be awaiting it.
+Note: `Promise<T>` may be a good example of a struct that should be a move type. Generally, only one person should be awaiting it.
 
 -------
 
-Idea: Implicit awaits.  Any time the compiler sees a conversion from async T to T it could insert an `await`.  In other languages, that would be horrible, it would confuse the shared state.  But with lifetimes in Adamant, the compiler would correctly enforce mutability.  If it wasn't right you'd get a compiler error and could add an await.
+Idea: Implicit awaits.  Any time the compiler sees a conversion from `async T` to `T` it could insert an `await`.  In other languages, that would be horrible, it would confuse the shared state.  But with lifetimes in Adamant, the compiler would correctly enforce mutability.  If it wasn't right you'd get a compiler error and could add an `await`.
 
 -------
 
@@ -61,7 +61,7 @@ There may be an issue with `await` and `async` being prefix.  This means they do
 
 	let x = await (await (await Foo()).Bar()).Baz();
 
-This could be addressed by switching to some postfix syntax.  For example, `Foo()^.Bar()^.Baz()^`.  Alternatively, a `.` could automatically await its parameter in an async method.
+This could be addressed by switching to some postfix syntax.  For example, `Foo()^.Bar()^.Baz()^` or `Foo()^.Bar()^.Baz()^`.  Alternatively, a `.` could automatically await its parameter in an async method.  This would not be too crazy if the `Promise<T>` override the dot operator to consume `self` that way you could only await in one place using dot. (Note: the ampersand makes some sense here as do something "and then" do something else).
 
 ## Async loops
 
@@ -82,4 +82,4 @@ Believe decided on `Promise<T>` that is consistent with reading of generics as "
 
 Await keyword, await a promise
 
-Async, strange that it is put in front of method name.  Considered putting async near the return type.  even then it looks like it is part of the sigature.  Might make more sense if it were after the signature.  Like before the block.  But not sure about that.  To avoid contagion of async/await one should be able to await a task inside a non-async method that does not return a task.  That should be safe because I'll just suspend the thread.  However, it could still block the main line of execution.  It still encourages non-async way of programming.  Might make sense if you could await any method.  That way if there was async stuff inside of it, you could allow that to run in parallel.  However because of the way async works where it executes up to the first async operation, then you won't get async behavior.  This is why go has go routines that always start another thread.  That seems like it could just be a library,  however to make it really common it makes sense to make it a language feature.  If you allow async on any method then you don't really need Promise.  It is like everything returns Promise.  You could just async anywhere any time.  However, without the Promise you are encouraging people to write in synchronous where for example they call IO in a synchronous way without awaiting.
+Async, strange that it is put in front of method name.  Considered putting async near the return type.  even then it looks like it is part of the signature.  Might make more sense if it were after the signature.  Like before the block.  But not sure about that.  To avoid contagion of async/await one should be able to await a task inside a non-async method that does not return a task.  That should be safe because I'll just suspend the thread.  However, it could still block the main line of execution.  It still encourages non-async way of programming.  Might make sense if you could await any method.  That way if there was async stuff inside of it, you could allow that to run in parallel.  However because of the way async works where it executes up to the first async operation, then you won't get async behavior.  This is why go has go routines that always start another thread.  That seems like it could just be a library,  however to make it really common it makes sense to make it a language feature.  If you allow async on any method then you don't really need Promise.  It is like everything returns Promise.  You could just async anywhere any time.  However, without the Promise you are encouraging people to write in synchronous where for example they call IO in a synchronous way without awaiting.
