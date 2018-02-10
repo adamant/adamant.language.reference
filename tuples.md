@@ -19,12 +19,12 @@ You can access the individual fields of a tuple using a destructuring let.
 
 ## Indexing Tuples
 
-You can also access the fields of a tuple by index.
+You can also access the fields of a tuple by index. Tuple indexes are one based because we normally refer to the first item in the tuple.
 
 	let t = new [1, 2, 3];
 
-	let x = t.0;
-	let y = t.1;
-	let z = t.2;
+	let x = t.1;
+	let y = t.2;
+	let z = t.3;
 
-TODO: it looks weird to access the zeroth item as `t.0`, perhaps tuple indexes should start at 1, but then that would be inconsistent with arrays.
+Note: `x.1.2` is a syntax error because it parses as `x . 1.2`. To avoid this write `x.1 .2` or `(x.1).2`. However, use of nested tuples is discouraged.

@@ -70,12 +70,13 @@ Alternatively, you can panic when an exception occurs.
 	// Note sure on syntax for this
 	let x = try! foo();
 	let y = try foo() catch!;
+	let a = catch! foo();
 	// Better to be explicit about the exception type
 	let z = try foo() catch! NetworkException;
 	// This makes it easy to search code for this
 	let a = try foo() catch NetworkException => panic!();
 
-Note: Swift has prefix expressions with `try` to allow them to throw.  `try?` turns their result into a nullable rather than throwing.  `try!` makes them panic if an exception is thrown.  Midori had `try <exp> else catch` that returned Result<T>.  You could also do `try <exp> else <value>` that would use value if an exception was thrown. My concern about those is that they don't specify the exception. So if a new exception is added, they could swallow it too.
+Note: Swift has prefix expressions with `try` to allow them to throw. `try?` turns their result into a nullable rather than throwing. `try!` makes them panic if an exception is thrown. Midori had `try <exp> else catch` that returned Result<T>. You could also do `try <exp> else <value>` that would use value if an exception was thrown. My concern about those is that they don't specify the exception. So if a new exception is added, they could swallow it too.
 
 ### Catch Patterns
 

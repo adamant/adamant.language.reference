@@ -6,11 +6,9 @@ Optional types are used to indicate situations where a value may not be present.
 
 To express that an optional type has no value, use the `none` keyword.
 
-TODO should you be allowed to check t == none? Seems like that could confuse the lifting of the equality operator to the underlying value.
-
 ## Conditioning on a Value
 
-TODO Not sure the preferred way to do this.  Listing options here.
+TODO: Not sure the preferred way to do this.  Listing options here.
 
 	let x: int? = ...;
 
