@@ -30,7 +30,7 @@ TODO: should `\x`*XX* be supported?
 
 ## `code_point`
 
-A 32 bit type used for a Unicode code point. Code point literals are created with single quotes as `'c'` or `'♠'`.  All the escape sequences are accept. In addition, the following code point literals are accepted.
+A 32 bit type used for a Unicode code point. Code point literals are created with single quotes as `'c'` or `'♠'`.  All the escape sequences are accepted. In addition, the following code point literals are accepted.
 
 Code  | Character
 ----- | ---------
@@ -53,7 +53,7 @@ String literals are created with double quotes `"Hello World!"`. Expressions can
 
 ### Non-interpolated String Literals
 
-To prevent interpolation in a string. Prefix it with the at sign. In non-interpolated string literals, left brace is not treated as a special character, but the `\{` and all other escape sequences is still accepted.
+To prevent interpolation in a string. Prefix it with the at sign. In non-interpolated string literals, left brace is not treated as a special character, but the `\{` and all other escape sequences are still accepted.
 
 	let s = @"\t{no interpolation}";
 

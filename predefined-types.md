@@ -5,6 +5,6 @@ The predefined types are those types that exist as part of the language. They ar
 There are a number of kinds of predefined types. The predefined keyword types are keywords of the language.  Keyword types make up the majority of the predefined types. Optional and tuple types have special syntax associated with the. Finally there are a small number of predefined package types.
 
  * [Keyword Types](keyword-types.md)
- * [Tuples](tuples.md)
  * [Optional Types](optional-types.md)
+ * [Tuples](tuples.md)
  * [Predefined Package Types](predefined-package-types.md)
