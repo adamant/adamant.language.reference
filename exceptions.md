@@ -126,4 +126,4 @@ Note: Swift uses the `do` keyword for blocks instead of the `try` keyword.  Howe
 
 Note: Swift doesn't have finally.  Instead it has `defer`.  I think that is because of definite assignment and no null values.  In a finally, you can't use any variables from the block because you don't know if they have been initialized.
 
-TODO: Not sure yet wether Adamant needs Swift style defer given the RAII pattern support. Clean up code may be less of an issue since you should do it in destructors.
+TODO: Not sure yet wether Adamant needs Swift style defer given the RAII pattern support. Clean up code may be less of an issue since you should do it in destructors. Also, there may be lifetime issues.

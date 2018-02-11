@@ -16,7 +16,7 @@ Generics over effects.  For example (Code from Midori, syntax may differ):
 Effects are written after the return type.  Any given effect is marked as `may` or `no`.  Omitted effects are inferred.  Throws clauses are effects.  The effects supported are:
 
   * unsafe - whether unsafe blocks can be executed
-  * panic - whether a function can cause a panic, note that since contracts and assertions could cause panics, this requires that the compiler be able to prove that the contracts are satisfied. (What if you could distinguish different kinds of panics?  Like contracts vs arithmetic overflow?)
+  * abandon - whether a function can cause abandonment, note that since contracts and assertions could cause abandonment, this requires that the compiler be able to prove that the contracts are satisfied. (What if you could distinguish different kinds of abandonment?  Like contracts vs arithmetic overflow?)
   * allocate? - whether memory can be allocated (besides the stack?)
   * io? - separate for network, file and console? other graphics?
   * init? - prevent constructors from calling other methods? see [No Leaky Abstractions](http://joeduffyblog.com/2016/11/30/15-years-of-concurrency/)
@@ -27,13 +27,13 @@ Effects are written after the return type.  Any given effect is marked as `may` 
 
 Notes from 2017-10-15
 
-Just as with inferred throws, it makes sense to have all effect types inferred except at public API boundaries where they have to be explicit.  How do you support generic kinds of effects.  How do you infer that an effect doesn't propagate.  The syntax for effects could be `may` or `no`.  So after the return type of a function could say `may effect` or `no effect`.  Effects would be listed comma separated for example `may panic, throw(exception1, exception2)`.  In theory `throw exception1, throw exception2` are the same.
+Just as with inferred throws, it makes sense to have all effect types inferred except at public API boundaries where they have to be explicit.  How do you support generic kinds of effects.  How do you infer that an effect doesn't propagate.  The syntax for effects could be `may` or `no`.  So after the return type of a function could say `may effect` or `no effect`.  Effects would be listed comma separated for example `may abandon, throw(exception1, exception2)`.  In theory `throw exception1, throw exception2` are the same.
 
 Effects:
   * throw
-  * panic - preconditions and post conditions could cause panic.  So I need to prove that they hold to be able to say something won't panic
+  * abandon - preconditions and post conditions could cause abandonment.  So I need to prove that they hold to be able to say something won't abandon
   * out of memory - separate because it seems more pervasive
-  * overflow could be a panic
+  * arithmetic overflow cause abandonment
   * unsafe - even functions marked safe that call unsafe code would be `may unsafe`
   * is trusted an effect?
 

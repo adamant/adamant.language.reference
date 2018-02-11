@@ -1,4 +1,10 @@
-# Contracts
+# Contracts and Assertions
+
+## Abandonment
+
+Abandonment conditions are allowed to report their error early. The compiler doesn't need to preserve there order relative to each other or other code.
+
+## Contracts
 
 Contracts are a special type of attribute.  Like all attributes they are introduced by the at sign, but are followed by an expression instead of arguments.  There are three kinds of contracts:
 
@@ -18,3 +24,10 @@ Which one happens varies by call site so that at one call site the compiler migh
 ## Accessing
 
 Midori used `old` keyword as a way to reference the previous state of `this` and then `old()` as a function of an argument to access the previous value of an argument.  One concern about that is whether it might require copying the value.
+
+# Assertions
+
+	Debug.Assert(condition);
+	Release.Assert(condition);
+
+Both of these will panic if the condition is not true.  Debug assertions are only checked when compiling for debug while release assertions are checked even in release builds.

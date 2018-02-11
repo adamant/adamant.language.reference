@@ -99,6 +99,8 @@ Interoperating with existing types can require extending them.
 		}
 	}
 
+TODO: it could be the case that this isn't sufficient because we don't have access to the private fields of the new type.  In that case, we would need to reintroduce the idea of having operator methods where self was not the first parameter.
+
 ## Comparison Operators
 
 The comparison operators can be overloaded like other binary operators. However, they must overloaded in pairs.  When one of the operators in pair is overloaded, the other one in the pair must be overloaded to.
