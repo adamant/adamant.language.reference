@@ -3,18 +3,18 @@
 ## Unsafe Context
 The `unsafe` keyword is used to create an unsafe context. An unsafe block is introduced with the `unsafe` keyword followed by a block. An unsafe expression is introduced by the `unsafe` keyword followed by an expression in parenthesis.
 
-	unsafe
-	{
-		// unsafe code
-	}
-	x = unsafe(/* unsafe expression */);
+    unsafe
+    {
+        // unsafe code
+    }
+    x = unsafe(/* unsafe expression */);
 
 An unsafe context is necessary to:
 
-	1. Access or modify a pointer
-	2. Access or update a mutable static variable
-	3. Call unsafe functions
-	4. Call untrusted functions (see [Trusted Packages](#TrustedPackages))
+    1. Access or modify a pointer
+    2. Access or update a mutable static variable
+    3. Call unsafe functions
+    4. Call untrusted functions (see [Trusted Packages](#TrustedPackages))
 
 It is a compile time error to perform any of those operations outside of an unsafe context.
 
@@ -28,7 +28,7 @@ It is a compile time error to mark a function `safe` that contains no unsafe con
 
 ## Unsafe and Safe Classes and Structs?
 
-TODO should it be necessary to mark the class as a whole as safe or unsafe? Exactly where would the use of an unsafe type cause an error? Does an unsafe class mean all of its constructors are unsafe?
+**TODO:** should it be necessary to mark the class as a whole as safe or unsafe? Exactly where would the use of an unsafe type cause an error? Does an unsafe class mean all of its constructors are unsafe?
 
 ## Trusted Packages
 

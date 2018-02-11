@@ -1,5 +1,5 @@
 # Implementation Roadmap
-Versions of the Adamant compiler before v1.0 will only implement subsets of the language.  This enables the boostrapping of the compiler. Rather than creating separate specifications for these subsets of the language, they will be described by listing which features of the language are supported and any restrictions on those features.
+Versions of the Adamant compiler before v1.0 will only implement subsets of the language. This enables the boostrapping of the compiler. Rather than creating separate specifications for these subsets of the language, they will be described by listing which features of the language are supported and any restrictions on those features.
 
 The v0.5.0 version will represent a major milestone in the implementation of the language. Below is a roadmap of when features are likely to be implemented.
 

@@ -3,7 +3,7 @@ Object Literals
 
 var foo = new :<base>:<interfaces>(<args...>)
 {
-	// constructor
-	// Fields
-	// Methods
+    // constructor
+    // Fields
+    // Methods
 }

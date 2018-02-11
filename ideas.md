@@ -4,49 +4,49 @@ This section describes a number of random ideas for the language that may or may
 
 ## Loop Else
 
-Sometimes it is useful to execute some code if a loop is never run.  This can be done with the else clause of the while and for loop.
+Sometimes it is useful to execute some code if a loop is never run. This can be done with the else clause of the while and for loop.
 
-	while condition
-	{
-		// do work
-	}
-	else
-	{
-		// condition was false to start with
-	}
+    while condition
+    {
+        // do work
+    }
+    else
+    {
+        // condition was false to start with
+    }
 
-	for let x in expression
-	{
-		// do work
-	}
-	else
-	{
-		// no items in collection
-	}
+    for let x in expression
+    {
+        // do work
+    }
+    else
+    {
+        // no items in collection
+    }
 
-This can be useful for definite assignment.  If the loop assigns a variable, it may be the case that the loop never runs and the variable may be unassigned.  However, you can assign the variable in the else clause to a reasonable default so that the variable will definitely be assigned after the loop.
+This can be useful for definite assignment. If the loop assigns a variable, it may be the case that the loop never runs and the variable may be unassigned. However, you can assign the variable in the else clause to a reasonable default so that the variable will definitely be assigned after the loop.
 
 Note: this is different from the python style loop else construct which runs as long as the loop completed successfully.
 
-Note: Alternatively, a different keyword or group of keywords could be used for loop else.  Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.
+Note: Alternatively, a different keyword or group of keywords could be used for loop else. Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.
 
 ## Allow `!` at the End of Function Names
 
-Scheme uses `!` at the end of functions to indicate they are mutating.  That might not make sense for Adamant where mutation is probably more common and less frowned on.  Rust uses `!` to indicate macros.  It is nice to have a clear distinction for macros, but the syntax really strike one as clearly indicating a macro.  Since `!` denotes divergent functions and is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might be obvious that execution will terminate at one.
+Scheme uses `!` at the end of functions to indicate they are mutating. That might not make sense for Adamant where mutation is probably more common and less frowned on. Rust uses `!` to indicate macros. It is nice to have a clear distinction for macros, but the syntax really strike one as clearly indicating a macro. Since `!` denotes divergent functions and is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might be obvious that execution will terminate at one.
 
 ## Date and Time Literals
 
-Add support for date and time literals.  Could be done using either the backslash or single quotes.
+Add support for date and time literals. Could be done using either the backslash or single quotes.
 
-	// With backslash
-	let x = \2016-06-06;
+    // With backslash
+    let x = \2016-06-06;
 
-	// With quotes
-	let y = '2016-06-06';
+    // With quotes
+    let y = '2016-06-06';
 
 ## Tuple Base Class
 
-It probably makes sense to have all tuple types inherit from and abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`.  C# has them implement several interfaces about structural equality.
+It probably makes sense to have all tuple types inherit from and abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`. C# has them implement several interfaces about structural equality.
 
 ## `out`
 
@@ -54,19 +54,19 @@ I have `ref`, does it make sense to add a `out` keyword like C#?  Or does the ab
 
 ## `var` is `mut` for Value Types
 
-Currently, `var` and `mut` have distinct meaning for value types.  It is assumed this will be needed to implement certain pseudo references.  Also, on struct constructors it makes sense to have a `ref mut self` parameter.  However, perhaps using `var` should always imply `mut` for mutable structs. Logically it seems if you can assign a new value you should be able to mutate the value.
+Currently, `var` and `mut` have distinct meaning for value types. It is assumed this will be needed to implement certain pseudo references. Also, on struct constructors it makes sense to have a `ref mut self` parameter. However, perhaps using `var` should always imply `mut` for mutable structs. Logically it seems if you can assign a new value you should be able to mutate the value.
 
 ## Owned borrows
 
-There may be situations where a class wants to borrow something, but we want to actually give it ownership.  One way to implement string would be for `string` to borrow the `Unsafe_Array` it contains.  That allows substring to work correctly.  However, there will need to be strings that own their `Unsafe_Array`.  If we could pass an owned reference where are borrow was expected, then that would be handled.  Of course, this may require pervasive drop flags adding complexity and hurting performance.
+There may be situations where a class wants to borrow something, but we want to actually give it ownership. One way to implement string would be for `string` to borrow the `Unsafe_Array` it contains. That allows substring to work correctly. However, there will need to be strings that own their `Unsafe_Array`. If we could pass an owned reference where are borrow was expected, then that would be handled. Of course, this may require pervasive drop flags adding complexity and hurting performance.
 
 ## Returns That Can't be Ignored
 
-Part of the Midori project's safety came from not being able to ignore the return value of a function except by explicit statement.  This had the effect of ensuring that return codes and error results couldn't be ignored.  If my error model includes `Result<void>` then it is possible people could ignore that.  Perhaps there should be some special handling to say that certain types shouldn't be ignored when returned.
+Part of the Midori project's safety came from not being able to ignore the return value of a function except by explicit statement. This had the effect of ensuring that return codes and error results couldn't be ignored. If my error model includes `Result<void>` then it is possible people could ignore that. Perhaps there should be some special handling to say that certain types shouldn't be ignored when returned.
 
 ## Units of Measure
 
-It would be really good to be able to have good units of measure either directly in the language or as a really clean library.  This might be a useful place for an effect that says all code uses units of measure.
+It would be really good to be able to have good units of measure either directly in the language or as a really clean library. This might be a useful place for an effect that says all code uses units of measure.
 
 ## `else match`
 
@@ -74,7 +74,7 @@ Allow a match to occur after an else.
 
 ## Alternative Pointer Syntax
 
-While C/C++ have well established pointer syntax and Adamant is in that linage, it will use pointers much more rarely.  So it may be acceptable to change the pointer syntax for purposes of clarity or freeing up symbols. In terms of clarity, a postfix dereference operator may be clearer than a prefix one and would then combine well with the member access operator. In terms of freeing up symbols, the unary star operator and unary ampersand operators aren't actually that useful for anything else.
+While C/C++ have well established pointer syntax and Adamant is in that linage, it will use pointers much more rarely. So it may be acceptable to change the pointer syntax for purposes of clarity or freeing up symbols. In terms of clarity, a postfix dereference operator may be clearer than a prefix one and would then combine well with the member access operator. In terms of freeing up symbols, the unary star operator and unary ampersand operators aren't actually that useful for anything else.
 
 ### `@` Means Address Of, `^` Dereferences
 
@@ -87,7 +87,7 @@ Address of an object   | `@x`
 Deference Points       | `x^`
 Access Member          | `x^.y`
 
-Note that Pascal like languages seem to allow `^` to be used as either a prefix or postfix operator.  That might make certain things clearer.
+Note that Pascal like languages seem to allow `^` to be used as either a prefix or postfix operator. That might make certain things clearer.
 
 ### `@` Means "at", `&` Means Address Of
 
@@ -115,14 +115,14 @@ Address of an object   | `ptr.to(x)`
 Deference Points       | ?? `@x`
 Access Member          | ? `x.y`
 
-Here the type overloads the dot operator.  This is consistent with the behavior of the dot with variable references.  There doesn't seem to be a good way to handle dereference here though.  Perhaps there is some operator that could be allowed to be overloaded.  That operator maybe should be allowed on variable reference types to get the underlying reference.
+Here the type overloads the dot operator. This is consistent with the behavior of the dot with variable references. There doesn't seem to be a good way to handle dereference here though. Perhaps there is some operator that could be allowed to be overloaded. That operator maybe should be allowed on variable reference types to get the underlying reference.
 
 ### `repeat {} while <exp>;` or `do {} while <exp>;` Loops
 Rust doesn't have `do {} while <exp>;` loops. While they are rare, they do come up. In fact when writing a recursive decent parser there are quite a few. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
 
 ### Make good use of other symbols
 
-I should seriously consider what other symbols are unused and how they could be used to good effect.  Of course, it might be good to leave some symbols for future use, but it is so hard to know if those uses will make sense for the available symbols.  Possible symbols are:
+I should seriously consider what other symbols are unused and how they could be used to good effect. Of course, it might be good to leave some symbols for future use, but it is so hard to know if those uses will make sense for the available symbols. Possible symbols are:
 
  * `^`
  * `&`
@@ -137,7 +137,7 @@ And of course combinations of symbols and unary prefix and suffix versions of ex
 
 *Obsolete Reason:* adoption of control flow requiring blocks but not parenthesis (Rust style) means that this feature doesn't really makes sense as it is already essentially supported because control flow statements don't have parenthesis.
 
-Languages like Ruby have inverted control flow with `until(condition)` for `while(not condition)` and `unless(condition)` for `if(not condition)`.  In languages without that there is often a need for an extra set of parens which can be ugly and confusing (i.e. `if(not(a and b)) statement;`.  What if the language allowed a not outside the required parens?  So that could become `if not(a and b) statement;`.  Of course, if we switch to control flow not requiring parens this becomes a non-issue (i.e. `if not(a and b) { statement; }`).  Though there is some extra clarity when parens are required, because you know the not must apply to the whole condition, not just the first part of it.
+Languages like Ruby have inverted control flow with `until(condition)` for `while(not condition)` and `unless(condition)` for `if(not condition)`. In languages without that there is often a need for an extra set of parens which can be ugly and confusing (i.e. `if(not(a and b)) statement;`. What if the language allowed a not outside the required parens?  So that could become `if not(a and b) statement;`. Of course, if we switch to control flow not requiring parens this becomes a non-issue (i.e. `if not(a and b) { statement; }`). Though there is some extra clarity when parens are required, because you know the not must apply to the whole condition, not just the first part of it.
 
 ## Alternatives for Escaped Identifiers
 
@@ -150,7 +150,7 @@ Font | Escaped Keyword | Escaped String
 Monospace | `` `class ``  | ``` ``A name with spaces!`` ```
 Proportional | \`class | \`\`A name with spaces!\`\`
 
-However, this conflicts with the use of markdown in comments when referring to code.  While escaped identifiers are rare, it can still be confusing.  Unfortunately, preventing this would mean not being able to use the backtick as a symbol in the language.  Still, this might be worth it. Note in all these examples, that the single symbol form may be restricted to keywords and reserved words only.  So it may not be legal to use `` `hello``.  This can make the syntax less ambiguous. Possible syntaxes:
+However, this conflicts with the use of markdown in comments when referring to code. While escaped identifiers are rare, it can still be confusing. Unfortunately, preventing this would mean not being able to use the backtick as a symbol in the language. Still, this might be worth it. Note in all these examples, that the single symbol form may be restricted to keywords and reserved words only. So it may not be legal to use `` `hello``. This can make the syntax less ambiguous. Possible syntaxes:
 
  * `^class` and `^^This is a test!^^` (exponent would be `**`)
  * `^class^` and `^This is a test^`
@@ -164,7 +164,7 @@ However, this conflicts with the use of markdown in comments when referring to c
  * `'class'` and `'This is a test! but don't use apostrophes'`
  * `#class` and `##This is a test!##`
 
-For some of these syntaxes, the symbol could be taken to mean "literal" and used as the prefix for literal strings.  However, it was suggested by Alex Burkhart that string escaped string identifiers could instead be created by prefixing strings with the same character. These strings would work like literal strings in terms of what characters they accept. Possible syntaxes for that are:
+For some of these syntaxes, the symbol could be taken to mean "literal" and used as the prefix for literal strings. However, it was suggested by Alex Burkhart that string escaped string identifiers could instead be created by prefixing strings with the same character. These strings would work like literal strings in terms of what characters they accept. Possible syntaxes for that are:
 
  * `#class` and `#"An identifier"`
  * `'class` and `'This is a test!'` and `'"A literal string\"`
@@ -172,7 +172,7 @@ For some of these syntaxes, the symbol could be taken to mean "literal" and used
  * `@class` `@"This is a test!"` (but this is confusing with attributes)
  * `*class` `*"This is a test!"`
 
-Finally, perhaps using backtick isn't so bad. It is unlikely that a code snippet in markdown begins with a backtick.  If we could eliminate the double backtick by putting backtick in front of strings then code could always be surrounded by double backtick in markdown.
+Finally, perhaps using backtick isn't so bad. It is unlikely that a code snippet in markdown begins with a backtick. If we could eliminate the double backtick by putting backtick in front of strings then code could always be surrounded by double backtick in markdown.
 
 Font | Escaped Keyword | Escaped String
 ---- | --------------- | --------------

@@ -66,16 +66,16 @@ Tuple element access using square brackets could be confusing. For example, `new
 ### Reference Recovered Mutability
 An interesting situation can occur.
 
-	public Swap(a: ref var Point, b: ref var Point) -> void
-	{
-		let t = move a; // TODO does this need to be move *a or something?
-		a = move b;
-		b = move t;
-	}
+    public Swap(a: ref var Point, b: ref var Point) -> void
+    {
+        let t = move a; // TODO does this need to be move *a or something?
+        a = move b;
+        b = move t;
+    }
 
-	var a = mut new Point(1, 1) // a: ~own mut Point
-	var b = new Point(2, 2); // b: ~own Point
-	Swap(ref var a, ref var b);
+    var a = mut new Point(1, 1) // a: ~own mut Point
+    var b = new Point(2, 2); // b: ~own Point
+    Swap(ref var a, ref var b);
 
 No one can mutate the object originally referenced by `b`. Yet, the swap function which can't mutate the values of either of its arguments is able to move object referenced by `b` into `a` thereby allowing the calling code to mutate it. This seems counter intuitive at first. However, since both references own their objects, the swap is simply recovering the mutability through changing ownership.
 
@@ -105,6 +105,6 @@ Iterator seems to be the more standard term. It isn't clear that "Enumerable" an
 
 ### Optional Type
 
-Different languages use different names for option types (see [Wikipedia Option type: Names and definitions](https://en.wikipedia.org/wiki/Option_type#Names_and_definitions)). At first, the C# convention of referring to them as nullable was followed because it was familiar. It also seemed to make clear that developers should expect that for reference types it would be represented as efficiently as a null pointer. However, the name "nullable" seemed to carry with it too much history and implied that they were bad or dangerous. A more neutral name seemed appropriate.  Looking at the options, it seemed that "optional" was the clearest.  Both Java and Swift name option types that and they are two of the languages most concerned with clear names.  Like Swift the `T?` syntax means it isn't necessary to write out the name optional normally.
+Different languages use different names for option types (see [Wikipedia Option type: Names and definitions](https://en.wikipedia.org/wiki/Option_type#Names_and_definitions)). At first, the C# convention of referring to them as nullable was followed because it was familiar. It also seemed to make clear that developers should expect that for reference types it would be represented as efficiently as a null pointer. However, the name "nullable" seemed to carry with it too much history and implied that they were bad or dangerous. A more neutral name seemed appropriate. Looking at the options, it seemed that "optional" was the clearest. Both Java and Swift name option types that and they are two of the languages most concerned with clear names. Like Swift the `T?` syntax means it isn't necessary to write out the name optional normally.
 
-When considering what to name the two values of an option type, `Some<T>` and `none`.  Seemed the clearly better choice.
+When considering what to name the two values of an option type, `Some<T>` and `none`. Seemed the clearly better choice.

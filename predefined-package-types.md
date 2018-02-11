@@ -6,18 +6,18 @@ The predefined package types are predefined types that are not keywords and are 
 
 Unsafe array is the "primitive" array type. It represents an array of elements and is unsafe because no checking is performed against the length of the array. This type acts as if it had the following class declaration.
 
-	public mut struct Unsafe_Array<T>
-	{
-		private let data: *T;
+    public mut struct Unsafe_Array<T>
+    {
+        private let data: *T;
 
-		public new(length: size);
-		public implicit new copy(value: ref Unsafe_Array<T>) {};
+        public new(length: size);
+        public implicit new copy(value: ref Unsafe_Array<T>) {};
 
-		// TODO account for get vs set, mutability and lifetimes.
-		// TODO what is the correct syntax for all that?
-		public unsafe operator [](index: size) -> T;
-		public unsafe Slice(index: size) -> Unsafe_Array<T>;
-	}
+        // TODO account for get vs set, mutability and lifetimes.
+        // TODO what is the correct syntax for all that?
+        public unsafe operator [](index: size) -> T;
+        public unsafe Slice(index: size) -> Unsafe_Array<T>;
+    }
 
 Arrays are zero indexed. The indexing operator and slice method do not check their arguments are within the bounds of the array. Passing arguments outside the bounds of the array results in undefined behavior.
 
@@ -25,12 +25,12 @@ The slice method returns a view into the array starting at the index. It does no
 
 Note: It should be possible to implement this type in Adamant, it is just that the language assumes it exists in certain cases.
 
-TODO: maybe the language should assume *T and not require this type? Or just assume the type `Adamant.Language.Unsafe_Array<T>` is it.  That way people not using the standard library could define it how they want?
+**TODO:** maybe the language should assume *T and not require this type? Or just assume the type `Adamant.Language.Unsafe_Array<T>` is it. That way people not using the standard library could define it how they want?
 
 ## `Optional<T>`
 
-`Optional<T>` is the underlying type of the optional type constructor `T?`.  That is, `T?` is syntactic sugar for `Optional<T>`. It is an error to directly use the `Optional<>` type in code.  It is used only for extension and documentation purposes.
+`Optional<T>` is the underlying type of the optional type constructor `T?`. That is, `T?` is syntactic sugar for `Optional<T>`. It is an error to directly use the `Optional<>` type in code. It is used only for extension and documentation purposes.
 
 Note: It should be possible to implement this type in Adamant. It is just that the language provides special syntax for it.
 
-TODO: Or just assume `Adamant.Language.Optional<T>` is it.
+**TODO:** Or just assume `Adamant.Language.Optional<T>` is it.

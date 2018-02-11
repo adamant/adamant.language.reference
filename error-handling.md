@@ -1,10 +1,10 @@
 # Error Handling
 
-Adamant's error handling model is built around a nuanced view of the different kinds of errors that can occur and how they should be handled.  It handles errors in a variety of ways.
+Adamant's error handling model is built around a nuanced view of the different kinds of errors that can occur and how they should be handled. It handles errors in a variety of ways.
 
 ## Prevent Errors
 
-The first and best strategy for error handling is to make prevent them or make them compile errors.  Any time you write code that could error at runtime by any mechanism, ask yourself whether it could be redesigned to prevent that error at compile time.
+The first and best strategy for error handling is to make prevent them or make them compile errors. Any time you write code that could error at runtime by any mechanism, ask yourself whether it could be redesigned to prevent that error at compile time.
 
 The Adamant language and standard library are built around this error handling approach because by greatly reducing the number of errors that can occur at runtime the correctness, performance and readability of the program is improved.
 
@@ -22,8 +22,8 @@ The error handling model is focused around a principled distinction between reco
     * Transient network failure
     * Hardware Failure
 
-   In these cases the program is expected to recover.  The developer must plan for and handle these errors. Possible responses include signalling the situation the user, retry, or abandoning the current task. Despite being called an error, it is a *predictable* and *planned* situation.
- * An *unrecoverable error* is any kind of error the programmer didn't expect. That is to say that unrecoverable errors are *bugs*. Input may not have been properly validated. Logic may be written wrong.  Often these are not detected at the moment they occur, but propagate through the program state until they are detected because of some unexpected consequence. By that point, nothing can be assumed. All program state is suspect.
+   In these cases the program is expected to recover. The developer must plan for and handle these errors. Possible responses include signalling the situation the user, retry, or abandoning the current task. Despite being called an error, it is a *predictable* and *planned* situation.
+ * An *unrecoverable error* is any kind of error the programmer didn't expect. That is to say that unrecoverable errors are *bugs*. Input may not have been properly validated. Logic may be written wrong. Often these are not detected at the moment they occur, but propagate through the program state until they are detected because of some unexpected consequence. By that point, nothing can be assumed. All program state is suspect.
 
 Most languages do not make the distinction between recoverable and unrecoverable errors or try to handle them in substantially similar ways.
 
@@ -33,11 +33,11 @@ For a detailed analysis of error handling options, read about [The Error Model](
 
 ## Unrecoverable Errors
 
-All bugs are unrecoverable errors and cause abandonment. Abandonment terminates the process without running any destructors or cleaning up anything.  These bugs are caught and abandonment triggered by [contracts and assertions](contracts-assertions.md).
+All bugs are unrecoverable errors and cause abandonment. Abandonment terminates the process without running any destructors or cleaning up anything. These bugs are caught and abandonment triggered by [contracts and assertions](contracts-assertions.md).
 
 Additionally, [out of memory errors and stack overflow](out-of-memory.md) are an edge case that are semi-recoverable, but can lead to abandonment.
 
-TODO: Need to create a way of having abandonment scopes that can be recovered. Rust recovery doesn't seem to provide adequate isolation
+**TODO:** Need to create a way of having abandonment scopes that can be recovered. Rust recovery doesn't seem to provide adequate isolation
 
 ## Recoverable Errors
 
