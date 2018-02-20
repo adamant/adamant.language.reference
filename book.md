@@ -66,7 +66,6 @@
       * Boxing
   * [Conventions](conventions.md)
   * Testing
-  * [Other Feature Ideas](ideas.md)
   * Standard Library
     * [Strings](strings.md)
     * [Paths](paths.md)
@@ -74,4 +73,7 @@
     * [Ranges](ranges.md)
     * Collections
     * Reflection
+  * [Feature Ideas](ideas.md)
+    * [Considering](ideas-considering.md)
+    * [Rejected](ideas-rejected.md)
   * [Justifications](justifications.md)

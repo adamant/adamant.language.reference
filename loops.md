@@ -11,7 +11,6 @@ The simplest kind of loop is an infinite loop. Infinite loops are created with t
         console.WriteLine("Loop Forever!");
     }
 
-
 ## `while`
 
 While loops look like:
@@ -75,7 +74,7 @@ You can use `break` and `continue` statements like in many other languages such 
 
 ### `break` values
 
-The `break` statement can have a value. This value then because the value of the loop expression. All break statements must have values of compatible types. The type of a `loop` expression is the type of the values. The type of `while` and `for` loops are nullable because the value is null if the loop never executes or exits without breaking.
+The `break` statement can have a value. This value then becomes the value of the loop expression. All break statements must have values of compatible types. The type of a `loop` expression is the type of the values. The type of `while` and `for` loops are optional because the value is `none` if the loop never executes or exits without breaking.
 
     let x = loop
             {
