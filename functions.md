@@ -12,7 +12,7 @@ So how to take arguments?  Here is a main function that takes the console as an 
 
     public Main(console: mut Console) -> void
     {
-        console.WriteLine("Hello World!");
+        console.WriteLine("Hello World");
     }
 
 Function parameters are declared like `let` bindings. In fact, they are completely equivalent to them except the type must always be fully annotated. No type inference is done on function parameters. Multiple arguments are separated by commas. In the rare circumstance where a parameter needs to be a mutable binding, preceded it with the var keyword.
@@ -39,16 +39,18 @@ To return from a function whose return type is `void`, use a return statement wi
 
 Adamant has special syntax for [diverging functions](https://en.wikipedia.org/wiki/Divergence_(computer_science)). Those are functions that never return by normal means. That could be because they always cause a panic (terminate the program), throw an exception or loop forever.
 
-    public Diverges() -> !
+    public Diverges() -> never
     {
-        Panic("Stop the program now!");
+        Panic("Stop the program now");
     }
 
-The function panic is a special function that crashes the program immediately, outputting the message passed to it. The `Diverges` function never returns, because it crashes the program. This is indicated with the special return type `!`.
+The function panic is a special function that crashes the program immediately, outputting the message passed to it. The `Diverges` function never returns, because it crashes the program. This is indicated with the special return type `never`.
 
-A diverging function can be used where an expression of any type is expected. Thus the type `!` is a subtype of all other types. In formal type theory, it is the [bottom type](https://en.wikipedia.org/wiki/Bottom_type). This can be useful in situations where two expressions are expected to have the same type, but you want one to be an error. For example, using an [`if` expression](choice.md#if_expression), we might write:
+A diverging function can be used where an expression of any type is expected. Thus the type `never` is a subtype of all other types. In formal type theory, it is the [bottom type](https://en.wikipedia.org/wiki/Bottom_type). This can be useful in situations where two expressions are expected to have the same type, but you want one to be an error. For example, using an [`if` expression](choice.md#if_expression), we might write:
 
     let y: string = if condition => "We're good" else => Panic();
+
+The `never` type is a first class type and can be used anywhere a type can be.  However, there can never be a value of that type.
 
 ## Function References
 

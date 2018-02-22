@@ -60,7 +60,7 @@ For some types, the value is inherently immutable and we need to use `var` to be
     // The next line does not compile. compile error: `int` is an immutable type and can't be declared mutable (`mut`).
     let y: mut = 6; // y: mut int
 
-There are many reasons things are immutable in Adamant by default. One of the primary reasons is safety. By making things immutable by default the compiler can check if you accidentally mutate something you didn't intend to. 
+There are many reasons things are immutable in Adamant by default. One of the primary reasons is safety. By making things immutable by default the compiler can check if you accidentally mutate something you didn't intend to.
 
 In general, you should prefer immutable data and avoid mutation when possible. Use `let` rather than `var` and don't declare things `mut` when possible. However, there are times when mutation is what is needed.
 
@@ -80,7 +80,7 @@ A `let` binding can be redeclared in order to bind a name to a different value.
     let x = 6; // x: int
     let y = x + 6; // x is an int here
     let x = "Hello"; // x: string
-    let s = x + " World!"; // x is a string here
+    let s = x + " World"; // x is a string here
 
 Note this can only be done with `let` bindings, not with `var`. This is to avoid confusion between assigning a new value to a variable and redeclaring it.
 

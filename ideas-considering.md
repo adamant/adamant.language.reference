@@ -30,7 +30,7 @@ Note: Alternatively, a different keyword or group of keywords could be used for 
 
 ## Allow `!` at the End of Function Names
 
-Scheme uses `!` at the end of functions to indicate they are mutating. That might not make sense for Adamant where mutation is probably more common and less frowned on. Rust uses `!` to indicate macros. It is nice to have a clear distinction for macros, but the syntax doesn't really strike one as clearly indicating a macro. Since `!` denotes divergent functions and is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might not be obvious that execution will terminate at one.
+Scheme uses `!` at the end of functions to indicate they are mutating. That might not make sense for Adamant where mutation is probably more common and less frowned on. Rust uses `!` to indicate macros. It is nice to have a clear distinction for macros, but the syntax doesn't really strike one as clearly indicating a macro. Since is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might not be obvious that execution will terminate at one.
 
 ## Date and Time Literals
 
@@ -137,3 +137,11 @@ And of course combinations of symbols and unary prefix and suffix versions of ex
 ## Don't Use `new` for Structs
 
 Desipte the justification given for using new with structs and tuples, there is still enough reason to consider not doing that. Instead, struct construction could look like a static call to the constructor or to the type name. So `My_Struct` would be constructed by calling `My_Struct(value)`. However, unlike C# all structs would be required to be initalized. There would be no default struct construction. This function all like syntax reflects that fact that no heap memory is being allocating, but some conbstruction work may be being done. It also removes confusions around trying to use the other new construction syntaxes on structs. For example, `new?` wouldn't make any sense for structs.
+
+## Rename `for` Loop to `foreach`
+
+The `foreach` keyword seems to read better. Compare "for child in children" to "for each child in children". The keyword `for` reads better for counted loops. Compare "for i equals 1 to 10" to "for each i equal 1 to 10". Of course, there is the mixed case "for each i in 1 to 10" which is unclear.
+
+## Change Divergent Function Type to `never`
+
+This is what TypeScript uses for it. The other common name is `nothing` but that would read as equaivalent to a return void function. The disadvantage of never is that it might read strangly if we used the type somewhere else.

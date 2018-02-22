@@ -23,7 +23,7 @@ To express that an optional type has no value, use the `none` keyword.
         none => ...,
     }
 
-    if x != none
+    if x <> none
     {
         // should work, but no good way to work with value of x
     }

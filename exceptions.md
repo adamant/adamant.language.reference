@@ -4,6 +4,8 @@ Exceptions are effects and may need to be explained after them. All exceptions t
 
 ## May Throw and No Throw
 
+**TODO:** What about `throw never` given the `never` type? Or maybe `never throw` and it could be used with other effects too.
+
 Functions are annotated with a list of exceptions they could throw.
 
     public Func() -> void
@@ -20,7 +22,7 @@ To throw an exception use a throw expression.
 
     throw new FileException("Foo");
 
-The type of a throw expression is `!` so it is a subtype of any type. This allows throw expressions to be used in interesting ways.
+The type of a throw expression is `never` so it is a subtype of any type. This allows throw expressions to be used in interesting ways.
 
     let x = ReadLine() ?? throw new UserInputException();
 
@@ -67,6 +69,7 @@ Exceptions can be caught and transformed into `Result<T>` values.
 
 Alternatively, you can panic when an exception occurs.
 
+    // Note: the syntax for the return type has been changed to `never` so bang may not make sense
     // Note sure on syntax for this
     let x = try! foo();
     let y = try foo() catch!;
@@ -77,6 +80,8 @@ Alternatively, you can panic when an exception occurs.
     let a = try foo() catch NetworkException => panic!();
 
 Note: Swift has prefix expressions with `try` to allow them to throw. `try?` turns their result into a nullable rather than throwing. `try!` makes them panic if an exception is thrown. Midori had `try <exp> else catch` that returned Result<T>. You could also do `try <exp> else <value>` that would use value if an exception was thrown. My concern about those is that they don't specify the exception. So if a new exception is added, they could swallow it too.
+
+**TODO:** can you combine try and return result with catch? For example `try? foo() catch e: NetworkException => throw e` would rethrow `NetworkException` but otherwise return Result.
 
 ### Catch Patterns
 

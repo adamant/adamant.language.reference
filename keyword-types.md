@@ -49,7 +49,7 @@ A Unicode string encoded in UTF-8.
 
 **TODO:** need to determine how conversion to string works and how formatting works.
 
-String literals are created with double quotes `"Hello World!"`. Expressions can be embedded in strings using curly braces, for example `"x = {x_variable}"`. This is referred to as interpolation. To avoid this, escape the left curly brace, for example `"Look Ma! \{ Braces! }"`.
+String literals are created with double quotes `"Hello World"`. Expressions can be embedded in strings using curly braces, for example `"x = {x_variable}"`. This is referred to as interpolation. To avoid this, escape the left curly brace, for example `"Look Ma. \{ Braces }"`.
 
 ### Non-interpolated String Literals
 

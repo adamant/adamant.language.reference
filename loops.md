@@ -8,7 +8,7 @@ The simplest kind of loop is an infinite loop. Infinite loops are created with t
 
     loop
     {
-        console.WriteLine("Loop Forever!");
+        console.WriteLine("Loop Forever");
     }
 
 ## `while`

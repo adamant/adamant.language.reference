@@ -102,7 +102,7 @@ It is more useful to have a reference to a mutable variable holding a reference 
     {
         public override Speak() -> string
         {
-            return "Meow!";
+            return "Meow";
         }
     }
 
@@ -110,7 +110,7 @@ It is more useful to have a reference to a mutable variable holding a reference 
     {
         public override Speak() -> string
         {
-            return "Woof!";
+            return "Woof";
         }
     }
 
@@ -120,11 +120,11 @@ It is more useful to have a reference to a mutable variable holding a reference 
     }
 
     var pet = new dog(); // pet: animal because it is passed to Replace()
-    console.WriteLine(pet.Speak()); // prints "Woof!"
+    console.WriteLine(pet.Speak()); // prints "Woof"
     Replace(ref var pet);
-    console.WriteLine(pet.Speak()); // prints "Meow!"
+    console.WriteLine(pet.Speak()); // prints "Meow"
 
-By taking a `ref var animal` the `Replace` function was able to change which object the `pet` variable referenced. The `~own` is a [lifetime](lifetimes.md) declaration needed in this situation. 
+By taking a `ref var animal` the `Replace` function was able to change which object the `pet` variable referenced. The `~own` is a [lifetime](lifetimes.md) declaration needed in this situation.
 
 And of course, we can even make mutable variables holding references to mutable variables referencing mutable objects.
 

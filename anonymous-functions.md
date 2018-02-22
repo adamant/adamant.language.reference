@@ -6,7 +6,7 @@ Anonymous functions allow the creation of unnamed functions inside another funct
 
 The parameter types can be inferred. However, sometimes it is necessary or clearer to directly state them.
 
-    let sayHello = (name: string) -> "Hello " + name + "!";
+    let sayHello = (name: string) -> "Hello " + name + ".";
 
 The above examples are simple functions that only require a single expression to compute. However, an anonymous function can have a complete function body by using a block.
 
