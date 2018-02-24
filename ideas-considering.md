@@ -66,6 +66,12 @@ The "High Line" pseudo Adamant code seemed to indicate the need for owned refere
 
 Part of the Midori project's safety came from not being able to ignore the return value of a function except by explicit statement. This had the effect of ensuring that return codes and error results couldn't be ignored. If my error model includes `Result<void>` then it is possible people could ignore that. Perhaps there should be some special handling to say that certain types shouldn't be ignored when returned.
 
+For example, there was a bug in the compiler where `ExpectToken(PublicKeyword);` should have been `children.Add(ExpectToken(PublicKeyword));`. If return values couldn't be ignored, this would have been a compiler error.
+
+Any function that is a pure function should not have its return value ignored because you can't be calling it for side effects.
+
+The syntax of `ignore foo()` is confusing because it seems you are ignoring the function call rather than the return value.  Another possible syntax would be `_ = foo()`. That is consistent with the use of underscore as a placeholder that isn't used.
+
 ## Units of Measure
 
 It would be really good to be able to have good units of measure either directly in the language or as a really clean library. This might be a useful place for an effect that says all code uses units of measure.
