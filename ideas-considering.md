@@ -141,7 +141,3 @@ Desipte the justification given for using new with structs and tuples, there is 
 ## Rename `for` Loop to `foreach`
 
 The `foreach` keyword seems to read better. Compare "for child in children" to "for each child in children". The keyword `for` reads better for counted loops. Compare "for i equals 1 to 10" to "for each i equal 1 to 10". Of course, there is the mixed case "for each i in 1 to 10" which is unclear.
-
-## Change Divergent Function Type to `never`
-
-This is what TypeScript uses for it. The other common name is `nothing` but that would read as equaivalent to a return void function. The disadvantage of never is that it might read strangly if we used the type somewhere else.
