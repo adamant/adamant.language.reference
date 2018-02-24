@@ -58,9 +58,9 @@ Currently, `var` and `mut` have distinct meaning for value types. It is assumed 
 
 There may be situations where a class wants to borrow something, but we want to actually give it ownership. One way to implement string would be for `string` to borrow the `Unsafe_Array` it contains. That allows substring to work correctly. However, there will need to be strings that own their `Unsafe_Array`. If we could pass an owned reference where are borrow was expected, then that would be handled. Of course, this may require pervasive drop flags adding complexity and hurting performance.
 
-My experience writing the sequence predict code in Rust indicates that this might be very necassary. There were many places around iterators where a value wouldn't live long enough for some borrow. If ownership could be handed into a borrow, that would not be an issue.
+My experience writing the sequence predict code in Rust indicates that this might be very necessary. There were many places around iterators where a value wouldn't live long enough for some borrow. If ownership could be handed into a borrow, that would not be an issue.
 
-The "High Line" psuedo Adamant code seemed to indicate the need for owned references that were bounded by some lifetime. This is similar I think to Rust `Box<'a T>`. However, owned borrows might eliminate this becuase they could just be borrows that happen to own the value.
+The "High Line" pseudo Adamant code seemed to indicate the need for owned references that were bounded by some lifetime. This is similar I think to Rust `Box<'a T>`. However, owned borrows might eliminate this because they could just be borrows that happen to own the value.
 
 ## Returns That Can't be Ignored
 
@@ -136,8 +136,27 @@ And of course combinations of symbols and unary prefix and suffix versions of ex
 
 ## Don't Use `new` for Structs
 
-Desipte the justification given for using new with structs and tuples, there is still enough reason to consider not doing that. Instead, struct construction could look like a static call to the constructor or to the type name. So `My_Struct` would be constructed by calling `My_Struct(value)`. However, unlike C# all structs would be required to be initalized. There would be no default struct construction. This function all like syntax reflects that fact that no heap memory is being allocating, but some conbstruction work may be being done. It also removes confusions around trying to use the other new construction syntaxes on structs. For example, `new?` wouldn't make any sense for structs.
+Despite the justification given for using new with structs and tuples, there is still enough reason to consider not doing that. Instead, struct construction could look like a static call to the constructor or to the type name. So `My_Struct` would be constructed by calling `My_Struct(value)`. However, unlike C# all structs would be required to be initialized. There would be no default struct construction. This function all like syntax reflects that fact that no heap memory is being allocating, but some construction work may be being done. It also removes confusions around trying to use the other new construction syntaxes on structs. For example, `new?` wouldn't make any sense for structs.
 
 ## Rename `for` Loop to `foreach`
 
 The `foreach` keyword seems to read better. Compare "for child in children" to "for each child in children". The keyword `for` reads better for counted loops. Compare "for i equals 1 to 10" to "for each i equal 1 to 10". Of course, there is the mixed case "for each i in 1 to 10" which is unclear.
+
+## Change Naming Conventions
+
+Since fields can act as properties, there won't be the C# issue of having private fields named the same as public properties. That means we don't need separate naming conventions for them. I find I like the readability of methods and fields being lowercased in rust. Though the underscore is annoying to type. Also, I like the underscore in type names, but single word type names show no indication that they are types. It may not be a breaking change to take a type that was immutable and make it mutable. Perhaps immutable types shouldn't be distinguished from mutable ones. Maybe the naming conventions should be:
+
+* Mutable Class Names, Type Parameters: Mixed_Case_With_Underscores
+* Immutable Class Names (including attributes): snake_case
+* Type Parameters: PascalCase
+* Namespaces: PascalCase case?
+* Functions, Public Fields, Static Variables, Parameters, Private & Protected Fields: camelCase
+* Constants, Immutable Globals: ??
+
+## Implicit Field Initialization
+
+What if any constructor argument would automatically initialize a field named the same, if that field wasn't otherwise assigned into? Or maybe there would be some other shortcut to eliminate the constructor boilerplate.
+
+## Omit `-> void` for Procedures
+
+Instead of requiring that procedures have `-> void` in their declaration, just leave it off. This is what Rust does. It also reduces noise and boilerplate. The one disadvantage is that `void` is still a valid type and it kind of obscures the role of the `void` type.

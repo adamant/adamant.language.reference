@@ -1,4 +1,3 @@
-
 # Predefined Keyword Types
 
 The predefined keyword types are keywords, but also act as types. When the keyword is used in code as a type, it acts as a fully qualified reference to the predefined type. To declare an identifier with the same name as one of these, use an escaped name. That is, prefix the name with a backslash, for example ``\string``. References of an escaped identifier matching a predefined keyword type will apply standard name resolution rules. The predefined types are not declared in any namespace, including the global namespace, so an escaped identifier reference will never match to one of the predefined types.
@@ -39,7 +38,7 @@ Code  | Character
 
 **TODO:** Is special casing backslash and single quote worth it? Does it block some future use of `'''` for something else?
 
-Note: it doesn't make sense to allow interpolation in code point literals because the expression would result in the whole value. Futhermore, having verbatim code point literals would only simplify the backslash character.
+Note: it doesn't make sense to allow interpolation in code point literals because the expression would result in the whole value. Furthermore, having verbatim code point literals would only simplify the backslash character.
 
 ## `string`
 
@@ -104,7 +103,7 @@ Bits | Type            | Standard
 
 ### Fixed Point Types
 
-Let *f* be the number of fractional bits, *m* be the number of magnitude or integer bits and *b* be the total number of bits. For *b*=*m*+*f* where *b*=8 or *b*=16 or *b*=32 or *b*=64, the signed fixed point type is `fixed`*m*`.`*f* and the unsiged type is `ufixed`*m*.*f*.
+Let *f* be the number of fractional bits, *m* be the number of magnitude or integer bits and *b* be the total number of bits. For *b*=*m*+*f* where *b*=8 or *b*=16 or *b*=32 or *b*=64 and *m* > 0, *f* > 0, the signed fixed point type is `fixed`*m*`.`*f* and the unsigned type is `ufixed`*m*.*f*.
 
 Note: 128 bit fixed types are not supported because of issues with handling multiply.
 
@@ -120,19 +119,20 @@ Bits | Type            | Standard
 
 (all names matching the regular expression `decimal\d+` are reserved words)
 
-The `System.Numerics` package defines the `dec64` type following the standard http://dec64.org It also defines `rational`. An arbitrary precision rational either [integer/uinteger](https://en.wikipedia.org/wiki/Rational_data_type#Representation) or [A New Representation of the Rational Numbers
+The `System.Numerics` package defines the `dec64` type following the standard [dec64.org](http://dec64.org) It also defines `rational`. An arbitrary precision rational either [integer/uinteger](https://en.wikipedia.org/wiki/Rational_data_type#Representation) or [A New Representation of the Rational Numbers
 for Fast Easy Arithmetic](http://www.cs.toronto.edu/~hehner/ratno.pdf) by Eric C. R. Hehner and R. N. S. Horspool.
 
 The `System.Numerics` package should also define:
- * `real` - arbitrary precision decimal (see Java `System.Numerics.BigDecimal`)
- * `real.`*f* - arbitrary precision with *f* digits to the right of decimal. Should this be `real<`*f*`>`?
+
+* `real` - arbitrary precision decimal (see Java `System.Numerics.BigDecimal`)
+* `real.`*f* - arbitrary precision with *f* digits to the right of decimal. Should this be `real<`*f*`>`?
 
 **TODO:** should there be a numeric type better suited to money?
 
 ### Platform Sized Types
 
- * `size`
- * `offset`
+* `size`
+* `offset`
 
 The bit sizes of these are is system dependent. Size is an unsigned number large enough to hold the maximum size of an array on the system. The size type is used to index into collections. Offset is a signed number with the same number of bits as size used to represent differences between array indexes.
 
@@ -142,6 +142,6 @@ The bit sizes of these are is system dependent. Size is an unsigned number large
 
 Does a C# checked context throw for loss of fractional digits? I don't think it does. That seems like it could be an issue in some situations.
 
-The concern is that decimal still doesn't form a good presentation for money because loss of sig figs still isn't checked?
+The concern is that decimal still doesn't form a good representation for money because loss of sig figs still isn't checked?
 
 **TODO:** What about a [Logarithmic number system](https://en.wikipedia.org/wiki/Logarithmic_number_system)?
