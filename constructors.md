@@ -39,19 +39,20 @@ It is illegal to simply repeat the class name or to use a subtype or unrelated t
 
 ### Open Issues
 
-  * If some type parameters are specified, what does that do to the type parameters when constructing?
-  * Can the constructor method be generic so it can control type parameters?
-  * How are type parameters passed when calling a constructor given that they may be changed/reduced it seems they belong with the name not the type?
-  * How can one combine specifying type parameters with returning a base type?
+* If some type parameters are specified, what does that do to the type parameters when constructing?
+* Can the constructor method be generic so it can control type parameters?
+* How are type parameters passed when calling a constructor given that they may be changed/reduced it seems they belong with the name not the type?
+* How can one combine specifying type parameters with returning a base type?
 
 Idea:
-    * Perhaps it is like the constructor is a static method on a non-generic version of the class that has all the same type parameters by default
+
+* Perhaps it is like the constructor is a static method on a non-generic version of the class that has all the same type parameters by default
 
 ## Calling Other Constructors
 
-A constructor must either call a base class constructor or another constructor on the class. base class constructors are called by `base(arguments...)` or `base.Name(arguments...)` for named constructors. Other constructors on the class are class similarly with `self(arguments...)` or `self.Name(arguments...)`. It is an error for self constructor calls to form a cycle.
+A constructor must either call a base class constructor or another constructor on the class. base class constructors are called by `base(arguments...)` or `base.Name(arguments...)` for named constructors. Other constructors on the class are called similarly with `self(arguments...)` or `self.Name(arguments...)`. It is an error for self constructor calls to form a cycle.
 
-**TODO:** the syntax for named constructor calling here is somewhat ambiguous and it may not be clear that a constructor is being called.
+**TODO:** the syntax for named constructor calling here is somewhat ambiguous and it may not be clear that a constructor is being called. Perhaps a better syntax would be `base.new()` and `base.new.Name()`
 
 ## Definite Assignment
 
@@ -69,7 +70,15 @@ After the call to the self or base constructor, all fields of the instance have 
 
 ### Rationale
 
-This construction sequence is similar to Swift and ensures that all fields are initialized before any use of self. This means we do not need to zero init memory and there is no chance of using uninitialised memory.
+This construction sequence is similar to Swift and ensures that all fields are initialized before any use of self. This means we do not need to zero init memory and there is no chance of using uninitialized memory.
+
+## Field Initialization Shorthand
+
+Fields can be directly initialized from constructor arguments. This is done by prefixing the parameter name with self and omitting the type. The type is determined by the type of the field. This can also be used with property setters.
+
+    public new(self.Field)
+    {
+    }
 
 ## Exceptions
 

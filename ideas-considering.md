@@ -155,8 +155,14 @@ Since fields can act as properties, there won't be the C# issue of having privat
 
 ## Implicit Field Initialization
 
-What if any constructor argument would automatically initialize a field named the same, if that field wasn't otherwise assigned into? Or maybe there would be some other shortcut to eliminate the constructor boilerplate.
+What if any constructor argument would automatically initialize a field named the same, if that field wasn't otherwise assigned into? Or maybe there would be some other shortcut to eliminate the constructor boilerplate.  `self.fieldName`
 
 ## Omit `-> void` for Procedures
 
 Instead of requiring that procedures have `-> void` in their declaration, just leave it off. This is what Rust does. It also reduces noise and boilerplate. The one disadvantage is that `void` is still a valid type and it kind of obscures the role of the `void` type.
+
+One way to do this would be to add a `function` or `func` keyword in front of function declarations similar to Rust's `fn` keyword.  This would then make function declarations unambiguous even without the `-> void`. Note that operators and properties would not be preceded by `function` as they already have `operator`, `get`, or `set` in front of them. This would make all declarations consistent in that they would be a keyword followed by a name. Alternatively, the keyword could be `method`? But then you would still need `function` for non-methods.
+
+## Generic Syntax Clarity
+
+Apparently, Java allows generic methods to be called like `instance.<String>foo()`. That removes some ambiguity. If the declaration syntax matched. For example, the declaration could be `function<T> foo() -> void`. There may however be a problem with classes where the generics need to come after the type name. Also, it just reads strangely to have the generics before the method name.
