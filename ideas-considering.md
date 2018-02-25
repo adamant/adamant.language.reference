@@ -4,23 +4,25 @@
 
 Sometimes it is useful to execute some code if a loop is never run. This can be done with the else clause of the while and for loop.
 
-    while condition
-    {
-        // do work
-    }
-    else
-    {
-        // condition was false to start with
-    }
+```adamant
+while condition
+{
+    // do work
+}
+else
+{
+    // condition was false to start with
+}
 
-    for let x in expression
-    {
-        // do work
-    }
-    else
-    {
-        // no items in collection
-    }
+for let x in expression
+{
+    // do work
+}
+else
+{
+    // no items in collection
+}
+```
 
 This can be useful for definite assignment. If the loop assigns a variable, it may be the case that the loop never runs and the variable may be unassigned. However, you can assign the variable in the else clause to a reasonable default so that the variable will definitely be assigned after the loop.
 
@@ -36,11 +38,13 @@ Scheme uses `!` at the end of functions to indicate they are mutating. That migh
 
 Add support for date and time literals. Could be done using either the backslash or single quotes.
 
-    // With backslash
-    let x = \2016-06-06;
+```adamant
+// With backslash
+let x = \2016-06-06;
 
-    // With quotes
-    let y = '2016-06-06';
+// With quotes
+let y = '2016-06-06';
+```
 
 ## Tuple Base Class
 
@@ -86,27 +90,27 @@ While C/C++ have well established pointer syntax and Adamant is in that linage, 
 
 ### `@` Means Address Of, `^` Dereferences
 
-Use                    | Syntax
----------------------- | --------
-Pointer to immutable T | `@T`
-Pointer to mutable T   | `@mut T`
-Address of a struct    | `@x`
-Address of an object   | `@x`
-Deference Pointer      | `x^`
-Access Member          | `x^.y`
+| Use                    | Syntax   |
+| ---------------------- | -------- |
+| Pointer to immutable T | `@T`     |
+| Pointer to mutable T   | `@mut T` |
+| Address of a struct    | `@x`     |
+| Address of an object   | `@x`     |
+| Deference Pointer      | `x^`     |
+| Access Member          | `x^.y`   |
 
 Note that Pascal like languages seem to allow `^` to be used as either a prefix or postfix operator. That might make certain things clearer.
 
 ### `@` Means "at", `&` Means Address Of
 
-Use                    | Syntax
----------------------- | --------
-Pointer to immutable T | `&T`
-Pointer to mutable T   | `&mut T`
-Address of a struct    | `&x`
-Address of an object   | `&x`
-Deference Pointer      | `@x`
-Access Member          | `(@x).y` ?
+| Use                    | Syntax     |
+| ---------------------- | ---------- |
+| Pointer to immutable T | `&T`       |
+| Pointer to mutable T   | `&mut T`   |
+| Address of a struct    | `&x`       |
+| Address of an object   | `&x`       |
+| Deference Pointer      | `@x`       |
+| Access Member          | `(@x).y` ? |
 
 This is confusing with C++ reference syntax. Also, it doesn't provide a clean member access unless the dot operator auto-dereferences which I've never liked.
 
@@ -114,14 +118,14 @@ This is confusing with C++ reference syntax. Also, it doesn't provide a clean me
 
 Given that pointers are meant to be rare, why not say they are a special predefined type like unsafe array?
 
-Use                    | Syntax
----------------------- | --------
-Pointer to immutable T | `ptr<T>`
-Pointer to mutable T   | `ptr<mut T>`
-Address of a struct    | `ptr.to(ref x)`
-Address of an object   | `ptr.to(x)`
-Deference Points       | ??
-Access Member          | `x.y`
+| Use                    | Syntax          |
+| ---------------------- | --------------- |
+| Pointer to immutable T | `ptr<T>`        |
+| Pointer to mutable T   | `ptr<mut T>`    |
+| Address of a struct    | `ptr.to(ref x)` |
+| Address of an object   | `ptr.to(x)`     |
+| Deference Points       | ??              |
+| Access Member          | `x.y`           |
 
 Here the type overloads the dot operator. This is consistent with the behavior of the dot with variable references. There doesn't seem to be a good way to handle dereference here though. Perhaps there is some operator that could be allowed to be overloaded. That operator maybe should be allowed on variable reference types to get the underlying reference.
 
@@ -148,16 +152,11 @@ Despite the justification given for using new with structs and tuples, there is 
 
 The `foreach` keyword seems to read better. Compare "for child in children" to "for each child in children". The keyword `for` reads better for counted loops. Compare "for i equals 1 to 10" to "for each i equal 1 to 10". Of course, there is the mixed case "for each i in 1 to 10" which is unclear.
 
-## Change Naming Conventions
+## Adjust Naming Conventions
 
-Since fields can act as properties, there won't be the C# issue of having private fields named the same as public properties. That means we don't need separate naming conventions for them. I find I like the readability of methods and fields being lowercased in rust. Though the underscore is annoying to type. Also, I like the underscore in type names, but single word type names show no indication that they are types. It may not be a breaking change to take a type that was immutable and make it mutable. Perhaps immutable types shouldn't be distinguished from mutable ones. Maybe the naming conventions should be:
-
-* Mutable Class Names, Type Parameters: Mixed_Case_With_Underscores
-* Immutable Class Names (including attributes): snake_case
-* Type Parameters: PascalCase
-* Namespaces: PascalCase case?
-* Functions, Public Fields, Static Variables, Parameters, Private & Protected Fields: camelCase
-* Constants, Immutable Globals: ??
+* Consider using `snake_case` for namespaces.
+* Consider using underscores around acronyms in constants: `Screen_DPI_ToPrint` or `ScreenDPI_ToPrint`.
+* Consider using `camelCase` or `PascalCase` for functions outside of a class.
 
 ## Implicit Field Initialization
 
