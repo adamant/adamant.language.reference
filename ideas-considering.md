@@ -172,3 +172,11 @@ One way to do this would be to add a `function` or `func` keyword in front of fu
 ## Generic Syntax Clarity
 
 Apparently, Java allows generic methods to be called like `instance.<String>foo()`. That removes some ambiguity. If the declaration syntax matched. For example, the declaration could be `function<T> foo() -> void`. There may however be a problem with classes where the generics need to come after the type name. Also, it just reads strangely to have the generics before the method name.
+
+## Operator for Await
+
+Given that async will be more pervasive in my language. Perhaps it makes sense to give in an operator. One idea is to use `!`. It conveys the do it sense.  Indeed, Haskell uses it as the force evaluation operator.
+
+## Use `|` as Remainder Operator
+
+Now that it isn't taken up by "or", the pipe could be used as the remainder operator, fitting the mathematical usage. However, it might be better to keep it available for future use as some kind of pipe operator.

@@ -29,7 +29,7 @@ Note: It should be possible to implement this type in Adamant, it is just that t
 
 ## `Optional<T>`
 
-`Optional<T>` is the underlying type of the optional type constructor `T?`. That is, `T?` is syntactic sugar for `Optional<T>`. It is an error to directly use the `Optional<>` type in code. It is used only for extension and documentation purposes.
+`Optional<T>` is the underlying type of the optional type constructor `T?`. That is, `T?` is syntactic sugar for `Optional<T>`. It is an error to directly use the `Optional<T>` type in code. It is used only for extension and documentation purposes.
 
 Note: It should be possible to implement this type in Adamant. It is just that the language provides special syntax for it.
 

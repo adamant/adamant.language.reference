@@ -6,7 +6,7 @@ Operators | Overloadability
 --- | ---
 `+` `-` `not` `?` | These unary operators can be overloaded
 `+` `-` `*` `/` `%` `xor` `.` | These binary operators can be overloaded
-`==` `<>` `<` `>` `<=` `>=` | The comparison operators can be overloaded in pairs
+`==` `=/=` `<` `>` `<=` `>=` | The comparison operators can be overloaded in pairs
 `and` `or` | These operators require special handling when overloading
 `??`  | The coalescing operator requires special handling
 `+=` `-=` `*=` `/=` `%=` | These operators can be overloaded for greater efficiency
@@ -107,7 +107,7 @@ The comparison operators can be overloaded like other binary operators. However,
 
 Operator | Pairs
 --- | ---
-`==` | `<>`
+`==` | `=/=`
 `>` |  `<`
 `>=` |  `<=`
 
