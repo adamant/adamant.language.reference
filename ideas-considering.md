@@ -174,7 +174,7 @@ Apparently, Java allows generic methods to be called like `instance.<String>foo(
 
 ## Operator for Await
 
-Given that async will be more pervasive in my language. Perhaps it makes sense to give in an operator. One idea is to use `!`. It conveys the do it sense.  Indeed, Haskell uses it as the force evaluation operator.
+Given that async will be more pervasive in my language. Perhaps it makes sense to give in an operator. One idea is to use `!`. It conveys the "do it" sense.  Indeed, Haskell uses it as the force evaluation operator. Other options include `>>` and `|>`. Those are reversible which might be useful. Both give the sense of directing output or ordering. If await has an operator, should `async` have one too?
 
 ## Use `|` as Remainder Operator
 
@@ -195,3 +195,7 @@ Java style wild card types could be done using underscore.  For example, `List<_
 ## Pass Generic Parameters Inside Parentheses
 
 Call `foo(<int, string>, 45, "hello")`. Could make declaration match, but this wouldn't fit with class declarations. It would remove the syntax ambiguity for function calls. Maybe in types, it would be `Type<T>` but then you would construct them as `new Type(<T>)`. This could make sense syntactically if constructors didn't auto share their class's type parameters and had to re-declare them. But that would be annoying. Other options, `foo[int, string](45, "hello")`, `foo<int, string>(45, "hello")`, `foo|int, string|(45, "hello")`, `foo(:int, :string, 45, "hello")` (but the variance will be wrong so that doesn't quite work).
+
+## Comparison Chaining
+
+Make `a < b < c` legal. This would also allow `a < b > c` which seems confusing. Perhaps there should be rules that the direction of comparisons can't change in a chain. So `a < b <= c` and `a > b >= c` and legal but `a < b >= c` and `a > b <= c` aren't. An equal would be allowed in the middle: `a < b == c < d`. What about not equal? That doesn't seems confusing. What does `a < b =/= c < d` mean?
