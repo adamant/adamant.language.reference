@@ -73,6 +73,7 @@ Tuple element access using square brackets could be confusing. For example, `new
 
 An interesting situation can occur.
 
+```adamant
     public Swap(a: ref var Point, b: ref var Point) -> void
     {
         let t = move a; // TODO does this need to be move *a or something?
@@ -83,6 +84,7 @@ An interesting situation can occur.
     var a = mut new Point(1, 1) // a: ~own mut Point
     var b = new Point(2, 2); // b: ~own Point
     Swap(ref var a, ref var b);
+```
 
 No one can mutate the object originally referenced by `b`. Yet, the swap function which can't mutate the values of either of its arguments is able to move object referenced by `b` into `a` thereby allowing the calling code to mutate it. This seems counter intuitive at first. However, since both references own their objects, the swap is simply recovering the mutability through changing ownership.
 
@@ -114,7 +116,7 @@ Different languages use different names for option types (see [Wikipedia Option 
 
 When considering what to name the two values of an option type, `Some<T>` and `none`. Seemed the clearly better choice.
 
-### Naming Convetions
+### Naming Conventions
 
 Originally, the naming conventions were:
 
@@ -144,3 +146,44 @@ Many possible naming conventions were considered. In deciding between them, ther
 * It still makes sense to use a wider variety of casing conventions, but single word names mean that initial case must distinguish things that are truly important to distinguish.
 * Acronyms have always been an issue in C# style naming conventions
 * Namespaces only rarely occur inside code so it is less of a concern if they conflict with variables. Having them be distinct from types and functions in using statements is more valuable.
+
+### `=>` Operator
+
+The expression evaluation operator was the result of trying to come up with a syntax for if expressions and after considering many different syntaxes, realizing that this was essentially the same problem as match, and Rust used `=>` for match expressions which I was likely to match just for familiarity.
+
+Before this syntax, the use of a keyword `is` was considered. It was thought of as mirroring the exiting of functions and loops.
+
+| Structure                 | Exit     |
+| ------------------------- | -------- |
+| Function                  | `return` |
+| Loop                      | `break`  |
+| Choice (`if` and `match`) | `is`     |
+
+This might have looked like:
+
+``adamant
+let x = if cond
+        {
+            DoSomething();
+            is 5;
+        }
+        else
+        {
+            SomethingElse();
+            is 6;
+        };
+
+let y = if cond is "Hello" else is "World";
+let z = match v
+        {
+            [0, y]
+            {
+                Action();
+                is y;
+            },
+            [x, 0] is x,
+            [x, y] is x + y,
+        };
+```
+
+But using `is` for this was also inconsistent with with C#'s use of `is` for typechecking. It seemed prudent to leave the `is` keyword avalible for that.

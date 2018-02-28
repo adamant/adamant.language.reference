@@ -168,6 +168,8 @@ Instead of requiring that procedures have `-> void` in their declaration, just l
 
 One way to do this would be to add a `function` or `func` keyword in front of function declarations similar to Rust's `fn` keyword.  This would then make function declarations unambiguous even without the `-> void`. Note that operators and properties would not be preceded by `function` as they already have `operator`, `get`, or `set` in front of them. This would make all declarations consistent in that they would be a keyword followed by a name. Alternatively, the keyword could be `method`? But then you would still need `function` for non-methods.
 
+Note that anonymous functions might indicate that `-> void` should be allowed. The expression `(x) -> returns_void()` seems reasonable. Yet, that means the arrow accepts a return type of void. This is consistent with essentially saying that a return statement with no value is `return void`.
+
 ## Generic Syntax Clarity
 
 Apparently, Java allows generic methods to be called like `instance.<String>foo()`. That removes some ambiguity. If the declaration syntax matched. For example, the declaration could be `function<T> foo() -> void`. There may however be a problem with classes where the generics need to come after the type name. Also, it just reads strangely to have the generics before the method name.
@@ -198,4 +200,27 @@ Call `foo(<int, string>, 45, "hello")`. Could make declaration match, but this w
 
 ## Comparison Chaining
 
-Make `a < b < c` legal. This would also allow `a < b > c` which seems confusing. Perhaps there should be rules that the direction of comparisons can't change in a chain. So `a < b <= c` and `a > b >= c` and legal but `a < b >= c` and `a > b <= c` aren't. An equal would be allowed in the middle: `a < b == c < d`. What about not equal? That doesn't seems confusing. What does `a < b =/= c < d` mean?
+Make `a < b < c` legal. This would also allow `a < b > c` which seems confusing. Perhaps there should be rules that the direction of comparisons can't change in a chain. So `a < b <= c` and `a > b >= c` are legal but `a < b >= c` and `a > b <= c` aren't. An equal would be allowed in the middle: `a < b == c < d`. What about not equal? That seems confusing. What does `a < b =/= c < d` mean?
+
+## All Statements are Expressions of Type `never`
+
+The `never` type is a true, first class type. There are already `if`, `match` and loop expressions. This could be expanded to that everything that is a statement can be used as an expression returning some variant of `never`. Note that type `never?` signifies that the value will always be `none` since there are no values of type `never`
+
+| Expression                                 | Type      |
+| ------------------------------------------ | --------- |
+| `loop` without break                       | `never`   |
+| `while` loop without break                 | `never?`  |
+| `for` loop without break                   | `never?`  |
+| loops with break that doesn't have a value | `void?` ? |
+| `let`                                      | ?         |
+| `var`                                      | ?         |
+
+## Anonymous Function Return Types
+
+How does one declare the return type of an anonymous function if it is needed? In Rust the `->` is not used for most closures because of the vertical bar syntax. That syntax has the advantage of clearly setting out the start of a closure. It also means that the arrow can be omitted except in the case when a type is being specified. If a `function` keyword were added, it could be used to introduce anonymous functions and the arrow could be used to specify the return type.  That would be inconsistent with allowing no arrow to mean returns void on function declarations.
+
+## Closure Syntax
+
+It isn't clear what a good closure syntax would be. One wants the type and the declaration to reflect the call syntax.  That would imply parens must be used around the closures arguments. However any syntax using parens will be confusing unless there is some prefix introducing the closure.  Yet, if there is a prefix there, then it would be very reasonable to expect the same prefix to be involved with function declarations.
+
+One possible syntax is `\(x) -> x`. This has the advantage of evoking the similarity of lambda with the backslash. It also kind of fits with the idea that backslash means escape. In this case we are escaping the standard meaning of left paren. This would require the parens never be dropped which is annoying.  However it would mean the arrow could be used similar to Rust to give the return type. It would be possible, though confusing to allow `\x -> x` when `x` was not a keyword.
