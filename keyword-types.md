@@ -58,7 +58,7 @@ To prevent interpolation in a string. Prefix it with the at sign. In non-interpo
 
 ### Verbatim String Literals
 
-In verbatim string literals, neither string interpolation or escape sequences are evaluated. To include double quotes use two double quote characters.
+In verbatim string literals, neither string interpolation nor escape sequences are evaluated. To include double quotes use two double quote characters.
 
     let s = @@"Fully literal, {no interpolation} no escapes \n but ""double quotes""";
 
