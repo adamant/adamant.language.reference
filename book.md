@@ -28,7 +28,7 @@
   * [Associated Functions](associated-functions.md)
   * [Constructors](constructors.md)
   * [Destructors](destructors.md)
-  * [Generics](generics.md)
+
   * [Operator Overloading](operator-overloading.md)
   * [Object Literals](object-literals.md)
   * [Extensions](extensions.md)
@@ -47,6 +47,7 @@
   * [Out of Memory and Stack Overflow](out-of-memory.md)
   * [Effects](effects.md)
   * Error Model Summary
+* [Generics](generics.md)
 * Const and Static
 * Attributes
 * [Params and List Initializers](params-and-list-initializers.md)

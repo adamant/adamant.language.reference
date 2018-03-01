@@ -33,4 +33,4 @@ Note: It should be possible to implement this type in Adamant, it is just that t
 
 Note: It should be possible to implement this type in Adamant. It is just that the language provides special syntax for it.
 
-**TODO:** Or just assume `Adamant.Language.Optional<T>` is it.
+**TODO:** Alternately, just define optional types as a translation to `Adamant.Language.Optional<T>` and let that be implemented in some package.
