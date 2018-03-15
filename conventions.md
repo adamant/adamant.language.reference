@@ -35,3 +35,7 @@ for x in 1..10
     if bar => break;
 }
 ```
+
+## Code Width
+
+Stay within 80 characters most of the time, never go beyond 100. This is not because of what fits on screen, but rather, what humans can easily read and which parts of text humans focus on.
