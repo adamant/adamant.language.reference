@@ -36,6 +36,15 @@ for x in 1..10
 }
 ```
 
+## Parameter placements
+
+Function parameters should all be one one line or each on a separate line. If on separate lines, the left parenthesis is on the line with the function and the first parameter goes on the line after. The close parenthesis goes on the line with the last parameter. The exception is the self parameter which stays on the line with the function unless it doesn't fit. When parameters are on separate lines the return type is on its own line starting with `->`.
+
 ## Code Width
 
 Stay within 80 characters most of the time, never go beyond 100. This is not because of what fits on screen, but rather, what humans can easily read and which parts of text humans focus on.
+
+## Other
+
+* Prefer named constructors to a method that makes an instance (for example making a child node, copy or converted value)
+* In constructors, always use self to access fields and properties, in methods, use only when necassary
