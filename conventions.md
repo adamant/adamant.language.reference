@@ -47,4 +47,4 @@ Stay within 80 characters most of the time, never go beyond 100. This is not bec
 ## Other
 
 * Prefer named constructors to a method that makes an instance (for example making a child node, copy or converted value)
-* In constructors, always use self to access fields and properties, in methods, use only when necassary
+* In constructors, always use self to access fields and properties, in methods, use only when necessary. (There should be compiler warnings for this).

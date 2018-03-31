@@ -12,7 +12,7 @@ An enum in Adamant is a type that can have one of a number of possible variants.
 
 All enums are distinguished by a discriminator field created by the compiler. Enum structs can specify the exact type of this discriminator and the value of it for variants without data. The type of the discriminator follows the `enum` keyword with a colon and the discriminator type.
 
-    public enum:int struct DayOfWeek
+    public enum:int struct Day_Of_Week
     {
         Sunday = 0, // The value for Sunday is 0
         Monday = 1, // The value for Monday is 1
@@ -23,54 +23,60 @@ All enums are distinguished by a discriminator field created by the compiler. En
         Saturday,
     }
 
-When a discriminator value is specified for a variant, each variant after without a discriminator value is inferred to have the discriminator one greater than the previous variant. 
+When a discriminator value is specified for a variant, each variant after without a discriminator value is inferred to have the discriminator one greater than the previous variant.
 
 ## Enum Forms
 
 There are a number of forms that an enum variant can take.
 
-    public enum struct Example
+```adamant
+public enum struct Example
+{
+    // TODO what are the naming convetions for enum values?
+    InferredDiscriminator, // discriminator value unknown
+    ExplicitDiscriminator = 1, // discriminator value is 10
+    ImplicitDiscriminator, // follows explicit discriminator 1 so discriminator is 2
+    Constructed = new(45), // call constructor, don't need to name the class, can call named constructor
+    SubclassA
     {
-        InferredDiscriminator, // discriminator value unknown
-        ExplicitDiscriminator = 1, // discriminator value is 10
-        ImplicitDiscriminator, // follows explicit discriminator 1 so discriminator is 2
-        Constructed = new(45), // call constructor, don't need to name the class, can call named constructor
-        SubclassA
-        {
-            // new members
-        },
-        SubclassB:: Interface // subclass implementing interface, again base class implied
-        {
-            // new members
-        },
-        SubclassC: OtherBase : Example // inherits another class, implements the interface of Example, not allowed for structs
-        {
-            // new members
-        },
-        PatternType(type1, type2) // Allow names? auto create stuff?  Combine with class members?
+        // new members
+    },
+    SubclassB:: Interface // subclass implementing interface, again base class implied
+    {
+        // new members
+    },
+    SubclassC: OtherBase : Example // inherits another class, implements the interface of Example, not allowed for structs
+    {
+        // new members
+    },
+    PatternType(type1, type2) // Allow names? auto create stuff?  Combine with class members?
 
-        public let Value: int?;
+    // Members
+    public let value: int?;
 
-        public new()
-        {
-            value = null;
-        }
-
-        public new(value: int)
-        {
-            Value = value;
-        }
+    public new()
+    {
+        self.value = null;
     }
+
+    public new(value: int)
+    {
+        self.value = value;
+    }
+}
+```
 
 ## Custom Matching
 
-Any type can be pattern matched. To control matching implement the `is` operator (TODO something better? scala uses unapply). This is modelled on C#.
+Any type can be pattern matched. To control matching implement the `is` operator (TODO something better? scala uses unapply). This is modeled on C#.
 
-    public operator is(self, x: ref int, y: ref int)
-    {
-        x = self.X;
-        y = self.Y;
-    }
+```adamant
+public operator is(self, x: ref int, y: ref int)
+{
+    x = self.X;
+    y = self.Y;
+}
+```
 
 ---------
 ## Old Notes
@@ -190,10 +196,10 @@ This might be a hint at how to define sum types. Perhaps you can literally say a
           private int value;
 
           public abstract String color();
-        
+
           private Currency(int value) {
                   this.value = value;
           }
           ..............
-    }       
+    }
 

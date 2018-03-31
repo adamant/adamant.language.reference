@@ -74,7 +74,14 @@ For example, there was a bug in the compiler where `ExpectToken(PublicKeyword);`
 
 Any function that is a pure function should not have its return value ignored because you can't be calling it for side effects.
 
-The syntax of `ignore foo()` is confusing because it seems you are ignoring the function call rather than the return value.  Another possible syntax would be `_ = foo()`. That is consistent with the use of underscore as a placeholder that isn't used.
+The syntax of `ignore foo()` is confusing because it seems you are ignoring the function call rather than the return value. Possible syntaxes include:
+
+| Syntax             | Notes                                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `_ = foo()`        | Consistent with the use of underscore as unused placeholder. Not obvious or searchable. |
+| `__ = foo()`       | Double underscore should be unique and more noticeable.                                 |
+| `_ignored = foo()` | Uses the underscore along the ideas of unused variables and is very clear.              |
+| `ignored = foo()`  | Reads more like a proper keyword.                                                       |
 
 ## Units of Measure
 
@@ -232,3 +239,7 @@ The preprocessor is only very rarely used. It could be given an alternate syntax
 ## Don't Distinguish between Non-interpolated and Verbatim String Literals
 
 It may not make sense to have non-interpolated string literals as distinct from verbatim ones. The only thing that lets one do is write curly braces without escaping them. That also opens up the idea of using a syntax that doesn't support distinguishing the two, like the number sign.
+
+## Copy with Change Syntax
+
+If immutability is used with true object orientation, there will be many more instances where a copy with only a few changes will be needed. There should be a short syntax for this. Similar to how Rust has the syntax for taking all the other fields of a struct from an existing one.
