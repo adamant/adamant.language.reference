@@ -250,8 +250,12 @@ It might be nice to have literals for dates, times, GUIDs and other types. Howev
 
 ## Swift Style Interpolated Strings
 
-Swift uses backslash left paren to begin an interpolated expression in a string. That makes excellent use of the escape character, is only one character longer that other options, parens fit with it being an expression, and no special syntax is needed for verbatim strings. The curly braces used by C# and other languages would imply that a block is allowed rather than an expression. The C# style has the benefit of matching the string format placeholder and using a character that rarely appears in strings otherwise. Using parens around numbers as placeholders would be reasonable, but doesn't seem unique enough.
+Swift uses backslash left paren to begin an interpolated expression in a string. That makes excellent use of the escape character, is only one character longer that other options, parens fit with it being an expression, and no special syntax is needed for verbatim strings. The curly braces used by C# and other languages would imply that a block is allowed rather than an expression. The C# style has the benefit of matching the string format placeholder and using a character that rarely appears in strings otherwise. Using parens around numbers as placeholders would be reasonable, but doesn't seem unique enough. Swift style interpolated strings would make using backslash left paren as the start of lambda expressions confusing.
 
 ## Interpolated String Localization
 
 Interpolated strings don't fit well with localization. The language would ideally steer people into the pit of success which would be easy transition to localized strings. That would imply that interpolated strings are only for programmer output and not user display. That could be done by making interpolation always call the debug format. On the other hand almost all the programs I've written haven't needed localization and interpolation is such a good feature that it would be bad to not support it for user display strings.
+
+## Use `read` and `write` for Properties
+
+Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin Henny talks about that "get" is side-effecting in English and isn't the opposite of "set". Alternatively, "assign" could be used. If assignment were turned into a set statement, then set might make sense again.

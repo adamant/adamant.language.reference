@@ -14,7 +14,7 @@ The following naming conventions are enforced by compiler warnings.
 | Divergent Functions | `ALL_CAPS()`                            |
 | Local variables     | `snake_case`                            |
 | Fields              | `snake_case`                            |
-| Constants           | `PascalCase`**                            |
+| Constants           | `PascalCase`**                          |
 | Global variables    | `ALL_CAPS`                              |
 \* usually single uppercase letter: `T`<br>
 \*\* Acronyms are capitalized and run together: `ScreenDPIToPrint`
@@ -48,3 +48,4 @@ Stay within 80 characters most of the time, never go beyond 100. This is not bec
 
 * Prefer named constructors to a method that makes an instance (for example making a child node, copy or converted value)
 * In constructors, always use self to access fields and properties, in methods, use only when necessary. (There should be compiler warnings for this).
+* Use spaces instead of tabs (need compiler warning for this).
