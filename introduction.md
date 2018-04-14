@@ -2,21 +2,21 @@
 
 Adamant is a new language that is under development. It will be a general-purpose language with high performance, deterministic safe resource management, and guaranteed thread safety. Documentation and resources can be found at [adamant-lang.org](http://adamant-lang.org). Adamant should be a compelling alternative to other high level languages like C# and Java. It's focus on compile time safety aids in creating correct code. Other features of interest include:
 
- * object lifetimes
- * write once, compile anywhere
- * guaranteed optimizations
- * asynchronous everywhere
- * type inference
- * generics with partial specialization
- * class defined interfaces
- * optional exception specifications
- * minimal runtime
+* object lifetimes
+* write once, compile anywhere
+* guaranteed optimizations
+* asynchronous everywhere
+* type inference
+* generics with partial specialization
+* class defined interfaces
+* optional exception specifications
+* minimal runtime
 
 ## Purpose
 
-This document serves as both an informal specification of the language by covering all features of the language but not formally defining it. At the same time, it should serve as an introduction to the language for programmers who are already familiar with another language like C#, Java or Rust.
+This book serves is an informal reference to the Adamant language. It tries to be comprehensive by covering all features of the language. It can serve as an introduction to the language for programmers who are already familiar with another language like C#, Java or Rust. Features unique to Adamant are explained in more detail while features shared with other languages are only briefly covered with a focus on stating how they work and any differences with other languages.
 
-If you are already very comfortable with computer programming and just want to see what set Adamant apart from other languages, continue on to the next section for a brief summary of some of the unique features of Adamant. If you'd like to simply learn Adamant. Feel free to skip ahead to the section on the language, [Variable Bindings](variable-bindings.md).
+Those less familiar with programming would do better to read the [Introduction to Programming in Adamant](https://github.com/adamant/adamant.language.introduction/blob/master/book.md) book. If you are already very comfortable with computer programming and just want to see what sets Adamant apart from other languages, continue on to the next section for a brief summary of some of the unique features of Adamant. If you'd like to simply learn Adamant. Feel free to skip ahead to the section on the language, [Variable Bindings](variable-bindings.md).
 
 ## Unique Features
 
@@ -28,20 +28,22 @@ Adamant takes a very different approach to memory management than other high-lev
 
 ### Inferred Throws Clauses
 
-Adamant has checked exceptions similar to Java or C++. However, unlike either of those languages, but default the exceptions thrown by a function are automatically inferred. Only on externally exposed APIs are exception specifications required.
+Adamant has checked exceptions similar to Java or C++. However, unlike either of those languages, by default the exceptions thrown by a function are automatically inferred. Only on externally exposed APIs are exception specifications required.
 
-    // Throws clause is required because this functions is publicly exposed
-    public Function1() -> void
-        throws exception
-    {
-        Function2();
-    }
+```adamant
+// Throws clause is required because this functions is publicly exposed
+public Function1() -> void
+    throws exception
+{
+    Function2();
+}
 
-    // Throws clause is inferred because it is omitted and this is an internal function
-    internal Function2() -> void
-    {
-        throw new exception();
-    }
+// Throws clause is inferred because it is omitted and this is an internal function
+internal Function2() -> void
+{
+    throw new exception();
+}
+```
 
 For more information see [Exceptions](exceptions.md).
 
@@ -91,16 +93,16 @@ The `..` operator is the accept operator used to accept visitors following the v
 
 This section lists features Adamant shares with other languages that are less common, but still contribute to the distinctive flavor of the Adamant language.
 
- * Type Inference on Local variable declarations
- * Diverging Functions
- * A Specific Infinite Loop Keyword
- * All `for` loops are iterator based
- * Iterator performance often optimizes down to a C style for loops
- * Operator Overloading
- * Object Literals - allows creation of single instance of anonymous type
- * Classes can be extended with additional methods in separate libraries
- * Partial Classes - supports code generation
- * Both reference and value types
- * C# style generators with `yield` keyword
- * `unsafe` code blocks and low level language features like raw pointers
- * C interop
+* Type Inference on Local variable declarations
+* Diverging Functions
+* A Specific Infinite Loop Keyword
+* All `for` loops are iterator based
+* Iterator performance often optimizes down to a C style for loops
+* Operator Overloading
+* Object Literals - allows creation of single instance of anonymous type
+* Classes can be extended with additional methods in separate libraries
+* Partial Classes - supports code generation
+* Both reference and value types
+* C# style generators with `yield` keyword
+* `unsafe` code blocks and low level language features like raw pointers
+* C interop

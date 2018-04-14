@@ -243,3 +243,15 @@ It may not make sense to have non-interpolated string literals as distinct from 
 ## Copy with Change Syntax
 
 If immutability is used with true object orientation, there will be many more instances where a copy with only a few changes will be needed. There should be a short syntax for this. Similar to how Rust has the syntax for taking all the other fields of a struct from an existing one.
+
+## Flexible Type Literals
+
+It might be nice to have literals for dates, times, GUIDs and other types. However, adding all those to the language seems bad. It would require that they all be fixed and determined and guaranteed to be in the core library. One of the syntaxes considered for them was that they would be different values in single quotes. The idea is that using type inference, and the ability to evaluate constant expressions, a flexible literal syntax could be supported. So any string of more than one character in single quotes would be a flexible literal string (a better name is needed). These would be interpreted by the compiler as constant expressions that need to be evaluated by calling a special constructor. That constructor could be distinguished by taking only a single parameter of a special type the compiler uses for unprocessed literals. This object would contain the string value of the literal. The compiler would use type inference to select the type to use. It may also be possible to provide some way to filter on the literal value. So that if it looks nothing like a date, it would exclude that from the possible types.
+
+## Swift Style Interpolated Strings
+
+Swift uses backslash left paren to begin an interpolated expression in a string. That makes excellent use of the escape character, is only one character longer that other options, parens fit with it being an expression, and no special syntax is needed for verbatim strings. The curly braces used by C# and other languages would imply that a block is allowed rather than an expression. The C# style has the benefit of matching the string format placeholder and using a character that rarely appears in strings otherwise. Using parens around numbers as placeholders would be reasonable, but doesn't seem unique enough.
+
+## Interpolated String Localization
+
+Interpolated strings don't fit well with localization. The language would ideally steer people into the pit of success which would be easy transition to localized strings. That would imply that interpolated strings are only for programmer output and not user display. That could be done by making interpolation always call the debug format. On the other hand almost all the programs I've written haven't needed localization and interpolation is such a good feature that it would be bad to not support it for user display strings.

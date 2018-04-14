@@ -1,4 +1,4 @@
-# The Adamant Language: An Informal Specification and Introduction
+# The Adamant Programming Language Reference
 
 * [Introduction](introduction.md)
 * [Implementation Road Map](roadmap.md)
