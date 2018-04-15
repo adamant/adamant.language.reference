@@ -27,10 +27,10 @@ Note: It should be possible to implement this type in Adamant, it is just that t
 
 **TODO:** maybe the language should assume *T and not require this type? Or just assume the type `adamant.language.Unsafe_Array<T>` is it. That way people not using the standard library could define it how they want?
 
-## `Optional<T>`
+## `optional<T>`
 
-`Optional<T>` is the underlying type of the optional type constructor `T?`. That is, `T?` is syntactic sugar for `Optional<T>`. It is an error to directly use the `Optional<T>` type in code. It is used only for extension and documentation purposes.
+`optional<T>` is the underlying type of the optional type constructor `T?`. That is, `T?` is syntactic sugar for `optional<T>`. It is an error to directly use the `optional<T>` type in code. It is used only for extension and documentation purposes.
 
 Note: It should be possible to implement this type in Adamant. It is just that the language provides special syntax for it.
 
-**TODO:** Alternately, just define optional types as a translation to `Adamant.Language.Optional<T>` and let that be implemented in some package.
+**TODO:** Alternately, just define optional types as a translation to `adamant.language.optional<T>` and let that be implemented in some package.
