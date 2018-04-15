@@ -259,3 +259,19 @@ Interpolated strings don't fit well with localization. The language would ideall
 ## Use `read` and `write` for Properties
 
 Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin Henny talks about that "get" is side-effecting in English and isn't the opposite of "set". Alternatively, "assign" could be used. If assignment were turned into a set statement, then set might make sense again.
+
+## Use `next` instead of `cotinue`
+
+Ruby and other languages use this. It seems clearer.
+
+## Simple Dependent Types
+
+Full dependent types are complicated and confusing. But basic dependent types, say that an indexer object can only be used with the collection instance it indexes could be useful and easy. Something like this may already come along with lifetimes. On the other hand, this feature could make working with lifetimes easier.
+
+## `published` Access Modifier
+
+Developers are in the habit of making everything public. However, the default should not have the members be visible from outside the package. One way to do this would be to have a `published` access modifier that is used to expose members outside the package. Another way to encourage exposing things less would be to make private the default access when no modifier was specified. That is consistent with local variable declarations etc, but makes code less directly readable and consistent.
+
+## Lifetimes After Type Names
+
+Consider putting lifetimes after type names as `Type_Name~own` that allows them to be run together. It also allows references to have very clear and consistent lifetimes. For example, `ref~x T` would be a reference with lifetime `x` to something of type `T`. Thus the lifetime always follows the reference. Currently, I think that would be `~x ref T`.
