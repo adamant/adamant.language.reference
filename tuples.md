@@ -4,7 +4,7 @@ A tuple is an ordered list of values that can be of different types.
 
     let t = new [1, "something"];
 
-Adamant has no primitive arrays. Generally collections are of `List<T>` or sometimes `Array<T>`. Instead, square brackets are used for tuples. Though square brackets are still used for indexing into a collection. Here is the same declaration with the types annotated.
+Adamant has no primitive arrays. Generally collections are of type `List<T>` or sometimes `Array<T>`. Instead, square brackets are used for tuples. Though square brackets are still used for indexing into a collection. Here is the same declaration with the types annotated.
 
     let t: [int, string] = new [1, "something"];
 
@@ -19,7 +19,7 @@ You can access the individual fields of a tuple using a destructuring let.
 
 ## Indexing Tuples
 
-You can also access the fields of a tuple by index. Tuple indexes are one based because we normally refer to the first item in the tuple.
+You can also access the fields of a tuple by index. Tuple indexes are one based because we normally refer to the "first" item in the tuple.
 
     let t = new [1, 2, 3];
 

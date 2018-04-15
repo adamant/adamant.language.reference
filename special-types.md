@@ -1,6 +1,6 @@
-# Predefined Package Types
+# Special Types
 
-The predefined package types are predefined types that are not keywords and are instead defined in a pseudo-package. That is they appear to be defined in the package `Adamant.Language` even though they are actually predefined types. Within that package they are all declared in the namespace `Adamant.Language`. To reference them, one must use a fully qualified name or a using statement.
+The special types are primitive types that are not keywords and are instead defined in a pseudo-package. That is they appear to be defined in the package `adamant.language` even though they are actually primitive types. Within that package they are all declared in the namespace `adamant.language`. To reference them, one must use a fully qualified name or a using statement.
 
 ## `Unsafe_Array<T>`
 
@@ -16,16 +16,16 @@ Unsafe array is the "primitive" array type. It represents an array of elements a
         // TODO account for get vs set, mutability and lifetimes.
         // TODO what is the correct syntax for all that?
         public unsafe operator [](index: size) -> T;
-        public unsafe Slice(index: size) -> Unsafe_Array<T>;
+        public unsafe slice(index: size) -> Unsafe_Array<T>;
     }
 
-Arrays are zero indexed. The indexing operator and slice method do not check their arguments are within the bounds of the array. Passing arguments outside the bounds of the array results in undefined behavior.
+Arrays are zero indexed. The indexing operator and slice method do not check that their arguments are within the bounds of the array. Passing arguments outside the bounds of the array results in undefined behavior.
 
 The slice method returns a view into the array starting at the index. It does not take a second argument indicating the length or last index of the view because this argument could not be checked and would be unused.
 
 Note: It should be possible to implement this type in Adamant, it is just that the language assumes it exists in certain cases.
 
-**TODO:** maybe the language should assume *T and not require this type? Or just assume the type `Adamant.Language.Unsafe_Array<T>` is it. That way people not using the standard library could define it how they want?
+**TODO:** maybe the language should assume *T and not require this type? Or just assume the type `adamant.language.Unsafe_Array<T>` is it. That way people not using the standard library could define it how they want?
 
 ## `Optional<T>`
 

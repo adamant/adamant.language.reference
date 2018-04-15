@@ -1,10 +1,10 @@
-# Optional Types
+# Optional Type
 
-Optional types are used to indicate situations where a value may not be present. They replace the role of null pointers and null references in languages that support them. Handling of optional types is highly optimized and using an optional type should never be a performance concern.
+The optional type is used to indicate situations where a value may not be present. It replaces the role of null pointers and null references in languages that support them. Handling of optional types is highly optimized and using an optional type should never be a performance concern.
 
 ## The `none` Value
 
-To express that an optional type has no value, use the `none` keyword.
+To express that an optional type has no value, use the `none` keyword. Note, the type of `none` is `never?`
 
 ## Conditioning on a Value
 
