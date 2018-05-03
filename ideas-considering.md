@@ -48,11 +48,11 @@ let y = '2016-06-06';
 
 ## Tuple Base Class
 
-It probably makes sense to have all tuple types inherit from and abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`. C# has them implement several interfaces about structural equality.
+It probably makes sense to have all tuple types inherit from an abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`. C# has them implement several interfaces about structural equality.
 
 ## `out`
 
-I have `ref`, does it make sense to add an `out` keyword like C#?  Or does the ability to return tuples make `out` not useful enough?  They could be really useful with external functions (though, not sure how the memory would get cleaned up).
+I have `ref`, does it make sense to add an `out` keyword like C#? Or does the ability to return tuples make `out` not useful enough?  They could be really useful with external functions (though, not sure how the memory would get cleaned up).
 
 ## `var` is `mut` for Value Types
 
@@ -153,7 +153,7 @@ And of course combinations of symbols and unary prefix and suffix versions of ex
 
 ## Don't Use `new` for Structs
 
-Despite the justification given for using new with structs and tuples, there is still enough reason to consider not doing that. Instead, struct construction could look like a static call to the constructor or to the type name. So `My_Struct` would be constructed by calling `My_Struct(value)`. However, unlike C# all structs would be required to be initialized. There would be no default struct construction. This function all like syntax reflects that fact that no heap memory is being allocating, but some construction work may be being done. It also removes confusions around trying to use the other new construction syntaxes on structs. For example, `new?` wouldn't make any sense for structs.
+Despite the justification given for using new with structs and tuples, there is still enough reason to consider not doing that. Instead, struct construction could look like a static call to the constructor or to the type name. So `My_Struct` would be constructed by calling `My_Struct(value)`. However, unlike C# all structs would be required to be initialized. There would be no default struct construction. This function call like syntax reflects that fact that no heap memory is being allocated, but some construction work may be being done. It also removes confusions around trying to use the other new construction syntaxes on structs. For example, `new?` wouldn't make any sense for structs. However, it becomes unclear how to call named constructors, and seems inconsistent with the way the constructor is declared. One possibility is to use syntax similar to how constructors call each other. So a regular constructor call would be `My_Struct.new(value)` and a named constructor call would be `My_Struct.new.from(value)`. But, syntax is long and feels like memory allocation. It just makes it seem weird compared to class construction. Alternatively, named struct constructors could just be treated as associated functions i.e. `My_Struct.from(value)`.
 
 ## Rename `for` Loop to `foreach`
 
@@ -167,7 +167,7 @@ The `foreach` keyword seems to read better. Compare "for child in children" to "
 
 ## Implicit Field Initialization
 
-What if any constructor argument would automatically initialize a field named the same, if that field wasn't otherwise assigned into? Or maybe there would be some other shortcut to eliminate the constructor boilerplate.  `self.fieldName`
+What if any constructor argument would automatically initialize a field named the same, if that field wasn't otherwise assigned into? Or maybe there would be some other shortcut to eliminate the constructor boilerplate. A possible syntax would be an argument like `self.fieldName`.
 
 ## Omit `-> void` for Procedures
 
@@ -179,11 +179,11 @@ Note that anonymous functions might indicate that `-> void` should be allowed. T
 
 ## Generic Syntax Clarity
 
-Apparently, Java allows generic methods to be called like `instance.<String>foo()`. That removes some ambiguity. If the declaration syntax matched. For example, the declaration could be `function<T> foo() -> void`. There may however be a problem with classes where the generics need to come after the type name. Also, it just reads strangely to have the generics before the method name.
+Apparently, Java allows generic methods to be called like `instance.<string>foo()`. That removes some ambiguity. If the declaration syntax matched. For example, the declaration could be `function<T> foo() -> void`. There may however be a problem with classes where the generics need to come after the type name. Also, it just reads strangely to have the generics before the method name. Following along the lines of the Rust turbofish operator, generic arguments could be separated from the function name with a dot i.e. `instance.foo.<string>()`. They could be declared with a dot as `foo.<T>() -> void`.
 
 ## Operator for Await
 
-Given that async will be more pervasive in my language. Perhaps it makes sense to give in an operator. One idea is to use `!`. It conveys the "do it" sense.  Indeed, Haskell uses it as the force evaluation operator. Other options include `>>` and `|>`. Those are reversible which might be useful. Both give the sense of directing output or ordering. If await has an operator, should `async` have one too?
+Given that async will be more pervasive in my language. Perhaps it makes sense to give it an operator. One idea is to use `!`. It conveys the "do it" sense.  Indeed, Haskell uses it as the force evaluation operator. Other options include `>>` and `|>`. Those are reversible which might be useful. Both give the sense of directing output or ordering. If await has an operator, should `async` have one too?
 
 ## Use `|` as Remainder Operator
 
@@ -234,7 +234,7 @@ One possible syntax is `\(x) -> x`. This has the advantage of evoking the simila
 
 ## Use `##` for Preprocessor
 
-The preprocessor is only very rarely used. It could be given an alternate syntax like `##` to free the `#` symbol up for other uses. For example, it could be used for anonymous functions `#x => x`. Other ideas are, verbatim strings `#"\foo"`, or tuples `#(a, b)`, or attributes following the idea of hash tags as metadata. It could even be used to access tuple elements as `x#1` which might make sense if it is the syntax for tuples. It actually could be used for almost all of those at the same time. That is use it for verbatim strings, tuples, tuple access and attributes. If `@` means address of then using it to prefix string literals could cause problems for taking the address of string literal. That would almost require the use of something else for verbatim string literals.
+The preprocessor is only very rarely used. It could be given an alternate syntax like `##` to free the `#` symbol up for other uses. For example, it could be used for anonymous functions `#x => x`. Other ideas are, verbatim strings `#"\foo"`, or tuples `#(a, b)`, or attributes following the idea of hash tags as metadata. It could even be used to access tuple elements as `x#1` which might make sense if it is the syntax for tuples. It actually could be used for almost all of those at the same time. That is, use it for verbatim strings, tuples, tuple access and attributes. If `@` means address of then using it to prefix string literals could cause problems for taking the address of string literal. That would almost require the use of something else for verbatim string literals.
 
 ## Don't Distinguish between Non-interpolated and Verbatim String Literals
 
@@ -260,7 +260,7 @@ Interpolated strings don't fit well with localization. The language would ideall
 
 Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin Henny talks about that "get" is side-effecting in English and isn't the opposite of "set". Alternatively, "assign" could be used. If assignment were turned into a set statement, then set might make sense again.
 
-## Use `next` instead of `cotinue`
+## Use `next` instead of `continue`
 
 Ruby and other languages use this. It seems clearer.
 
