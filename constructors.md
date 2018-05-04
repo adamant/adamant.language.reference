@@ -58,7 +58,7 @@ A constructor must either call a base class constructor or another constructor o
 
 Any field initializers are run before the body of the constructor of the class.
 
-When calling a base class constructor, all fields must be initialize before calling the base class constructor. The compiler enforces definite assignment on the fields and a field can't be used before being initialized. Up through the call to the base class constructor, the self parameter can't be used except to initialize fields (i.e. self can't be passed to a function, and methods can't be called on self). Any owned fields that have not been initialized before the base class constructor call will be automatically initialized with `null` if it is nullable.
+When calling a base class constructor, all fields must be initialized before calling the base class constructor. The compiler enforces definite assignment on the fields and a field can't be used before being initialized. Up through the call to the base class constructor, the self parameter can't be used except to initialize fields (i.e. self can't be passed to a function, and methods can't be called on self). Any owned fields that have not been initialized before the base class constructor call will be automatically initialized with `none` if they are optional.
 
 **TODO:** perhaps there is a special constructor the compiler calls for this case so people could define other types that auto init with a certain constructor.
 

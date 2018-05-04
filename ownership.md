@@ -20,12 +20,12 @@ Some values need to exist for spans of time that don't correspond to any particu
 
 The first approach to managing the heap was entirely manual. When memory was needed, the programmer requested it using a function like `malloc()` and when the memory was no longer needed it was freed with `free()`. This approach was error prone leading to many potential issues, such as:
 
-  * Use After Free: Using some memory even though free had already been called on it.
-  * Memory Leaks: Never calling free on some memory even though it is no longer used. Leads to running out of memory.
-  * Dereferencing Null or Invalid Pointers: Accessing memory at address zero or simply at an invalid address.
-  * Freeing Invalid Pointers: Freeing the same block of memory more than once or simply attempting to call free on an invalid pointer.
-  * Use of Uninitialized Memory: Accessing memory that has been allocated before anything has been written to it, producing essentially random data leading to incorrect behavior.
-  * Accessing Memory out of Bounds: Reading or writing past the end of a block of memory that was allocated.
+* Use After Free: Using some memory even though free had already been called on it.
+* Memory Leaks: Never calling free on some memory even though it is no longer used. Leads to running out of memory.
+* Dereferencing Null or Invalid Pointers: Accessing memory at address zero or simply at an invalid address.
+* Freeing Invalid Pointers: Freeing the same block of memory more than once or simply attempting to call free on an invalid pointer.
+* Use of Uninitialized Memory: Accessing memory that has been allocated before anything has been written to it, producing essentially random data leading to incorrect behavior.
+* Accessing Memory out of Bounds: Reading or writing past the end of a block of memory that was allocated.
 
 Some of these pitfalls have been addressed in various languages with improved type systems. However, the major issues of potential use after free, memory leaks and invalid pointers are essentially impossible to entirely prevent when using manual memory management.
 

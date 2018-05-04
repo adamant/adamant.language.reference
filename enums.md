@@ -32,7 +32,7 @@ There are a number of forms that an enum variant can take.
 ```adamant
 public enum struct Example
 {
-    // TODO what are the naming convetions for enum values?
+    // TODO what are the naming conventions for enum values?
     InferredDiscriminator, // discriminator value unknown
     ExplicitDiscriminator = 1, // discriminator value is 10
     ImplicitDiscriminator, // follows explicit discriminator 1 so discriminator is 2
@@ -56,7 +56,7 @@ public enum struct Example
 
     public new()
     {
-        self.value = null;
+        self.value = none;
     }
 
     public new(value: int)

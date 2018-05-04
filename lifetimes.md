@@ -175,7 +175,7 @@ A static lifetime may be passed where ownership is expected if the value referen
 
     public DisplayValue(x: int) -> ~own string
     {
-        return int.TryParse(x) ?? "(null)";
+        return int.TryParse(x) ?? "(none)";
     }
 
 Here, the lifetime of the string constant is `~static` and the reference returned by `TryParse()` is owned, but both are compatible with the return type of `~own string`.

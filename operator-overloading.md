@@ -115,7 +115,7 @@ Note: The `obsolete` attribute can be used to mark a member of the pair as uncal
 
 ## Logical Operators
 
-The logical operators `and` and `or` are special because they perform short circuit evaluation. That is, there second argument may not be evaluated. To support this, each requires two overloads. The first determines when the second argument isn't evaluated, the second provides the value when it is. The first must return an optional type. If the result is `none` then the second argument will be evaluated and the binary form called. If one form is implemented, the other is required. When overloaded for some type, `x and y` is effectively evaluated as `x.and() ?? x.and(y)` and `x or y` is effectively evaluated as `x.or() ?? x.or(y)`. Note the first argument will only be evaluated once.
+The logical operators `and` and `or` are special because they perform short circuit evaluation. That is, their second argument may not be evaluated. To support this, each requires two overloads. The first determines when the second argument isn't evaluated, the second provides the value when it is. The first must return an optional type. If the result is `none` then the second argument will be evaluated and the binary form called. If one form is implemented, the other is required. When overloaded for some type, `x and y` is effectively evaluated as `x.and() ?? x.and(y)` and `x or y` is effectively evaluated as `x.or() ?? x.or(y)`. Note the first argument will only be evaluated once.
 
 **TODO:** one actually may want to transform the value before passing to the second function. Perhaps the result needs to be some other type that allows a value to be passed in the "none" case?
 

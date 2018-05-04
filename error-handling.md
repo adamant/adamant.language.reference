@@ -8,7 +8,7 @@ The first and best strategy for error handling is to make prevent them or make t
 
 The Adamant language and standard library are built around this error handling approach because by greatly reducing the number of errors that can occur at runtime the correctness, performance and readability of the program is improved.
 
-For example, optional types entirely eliminate null pointer errors the bedevil code written in other languages. Instead looping through an array by index, the preferred idiom which the language directs programmers to is iterators. Code using iterators will never cause an array index out of bounds exception. At the same time, the code is usually simpler and better conveys the intent of the code.
+For example, optional types entirely eliminate null pointer errors that bedevil code written in other languages. Instead looping through an array by index, the preferred idiom which the language directs programmers to is iterators. Code using iterators will never cause an array index out of bounds exception. At the same time, the code is usually simpler and better conveys the intent of the code.
 
 When reading about the error handling mechanisms available, remember that a large percentage of Adamant code is error free by design. It doesn't have to concern itself with any of these.
 

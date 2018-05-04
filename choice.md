@@ -43,7 +43,7 @@ If is actually an expression that can evaluate to a value. By default the value 
 
 This can be used with `else if` as well. Each `if` must have an expression block and the values must be convertible to a common type.
 
-For `if` expressions without an else case, the expression evaluates to `null` in the else case. So if the result of the then block is of type `T`, then the result of the whole expression is of type `T?`.
+For `if` expressions without an else case, the expression evaluates to `none` in the else case. So if the result of the then block is of type `T`, then the result of the whole expression is of type `T?`.
 
     let x = (if condition => "value") ?? "default";
 

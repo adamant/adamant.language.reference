@@ -197,7 +197,7 @@ Since I somewhat want to discourage the use of tuples. I could give them a worse
 
 They allow you to just use a single quote with a name as a type to indicate it is a type parameter. This could be confusing to Rust developers. Also, it then isn't clear how to explicitly pass type arguments. Perhaps there is another symbol that could be used instead.
 
-## Use `_` for Wild Card Types
+## Use `_` or `*` for Wild Card Types
 
 Java style wild card types could be done using underscore.  For example, `List<_>` would be a list of anything. `List<_:Foo>` a list of things that inherit from foo. Of course, then it isn't clear how to get the opposite type relation. `List<_:>Foo>` is too confusing. `List<_/Foo>` as in the wild card is above the `Foo`. Maybe the `in` and `out` keywords are the correct thing here. So `List<out Foo>` and `List<in Foo>` works pretty well.  It is just missing the sense of wild card. That would be read as a list that I can take out `Foo`s from and a list that you can put `Foo`s in. Adding the underscore back could be `List<Foo out _>` and `List<Foo in _>` (note this order so that it is "get Foo out of _" and "put Foo in _" but that has reversed the sense).
 
