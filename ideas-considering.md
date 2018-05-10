@@ -193,6 +193,8 @@ Now that it isn't taken up by "or", the pipe could be used as the remainder oper
 
 Since I somewhat want to discourage the use of tuples. I could give them a worse syntax and thereby free up square brackets for something else. Options include `[| |]`, `[[ ]]`, `([ ])`, `(( ))` (could be confusing), `[< >]`, or `</ />`. The square brackets would then be free for either lists/collection construction, or generics. Going with the idea of product types, they could be written `a**b**c` and the type declarations would match.
 
+Also, I could make the element access both longer and avoid ambiguity by useing `item1`, `item2`... the way C# does.
+
 ## F# and Haskell Style Generics
 
 They allow you to just use a single quote with a name as a type to indicate it is a type parameter. This could be confusing to Rust developers. Also, it then isn't clear how to explicitly pass type arguments. Perhaps there is another symbol that could be used instead.
@@ -275,3 +277,7 @@ Developers are in the habit of making everything public. However, the default sh
 ## Lifetimes After Type Names
 
 Consider putting lifetimes after type names as `Type_Name~own` that allows them to be run together. It also allows references to have very clear and consistent lifetimes. For example, `ref~x T` would be a reference with lifetime `x` to something of type `T`. Thus the lifetime always follows the reference. Currently, I think that would be `~x ref T`.
+
+## Nested functions
+
+The equivalent of Rust's nested functions might be a constant whose value is a lambda expression.
