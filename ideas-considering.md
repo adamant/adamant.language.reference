@@ -281,3 +281,7 @@ Consider putting lifetimes after type names as `Type_Name~own` that allows them 
 ## Nested functions
 
 The equivalent of Rust's nested functions might be a constant whose value is a lambda expression.
+
+## Change `?` from Suffix to Prefix
+
+Some languages use the `?` as a prefix for optional types. While it looks a little strange, it resolves all ambiguity with all the other type prefixes. Also, `?T` can be read as "optional T".
