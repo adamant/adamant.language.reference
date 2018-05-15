@@ -91,66 +91,9 @@ It would be really good to be able to have good units of measure either directly
 
 Allow a match to occur after an else.
 
-## Alternative Pointer Syntax
+## Exact Types
 
-While C/C++ have well established pointer syntax and Adamant is in that linage, it will use pointers much more rarely. So it may be acceptable to change the pointer syntax for purposes of clarity or freeing up symbols. In terms of clarity, a postfix dereference operator may be clearer than a prefix one and would then combine well with the member access operator. In terms of freeing up symbols, the unary star operator and unary ampersand operators aren't actually that useful for anything else.
-
-### `@` Means Address Of, `^` Dereferences
-
-| Use                    | Syntax   |
-| ---------------------- | -------- |
-| Pointer to immutable T | `@T`     |
-| Pointer to mutable T   | `@mut T` |
-| Address of a struct    | `@x`     |
-| Address of an object   | `@x`     |
-| Deference Pointer      | `x^`     |
-| Access Member          | `x^.y`   |
-
-Note that Pascal like languages seem to allow `^` to be used as either a prefix or postfix operator. That might make certain things clearer.
-
-### `@` Means "at", `&` Means Address Of
-
-| Use                    | Syntax     |
-| ---------------------- | ---------- |
-| Pointer to immutable T | `&T`       |
-| Pointer to mutable T   | `&mut T`   |
-| Address of a struct    | `&x`       |
-| Address of an object   | `&x`       |
-| Deference Pointer      | `@x`       |
-| Access Member          | `(@x).y` ? |
-
-This is confusing with C++ reference syntax. Also, it doesn't provide a clean member access unless the dot operator auto-dereferences which I've never liked.
-
-### `ptr<T>`
-
-Given that pointers are meant to be rare, why not say they are a special predefined type like unsafe array?
-
-| Use                    | Syntax          |
-| ---------------------- | --------------- |
-| Pointer to immutable T | `ptr<T>`        |
-| Pointer to mutable T   | `ptr<mut T>`    |
-| Address of a struct    | `ptr.to(ref x)` |
-| Address of an object   | `ptr.to(x)`     |
-| Deference Points       | ??              |
-| Access Member          | `x.y`           |
-
-Here the type overloads the dot operator. This is consistent with the behavior of the dot with variable references. There doesn't seem to be a good way to handle dereference here though. Perhaps there is some operator that could be allowed to be overloaded. That operator maybe should be allowed on variable reference types to get the underlying reference.
-
-### Non-null Pointers
-
-What if pointers are non-null by default and must be declared optional to be nullable? So `@Foo` is a pointer to `Foo` and `@Foo?` is a nullable pointer to `Foo`. Of course, that might force checks for null when you don't want to for performance reasons.
-
-### Thin vs. Fat Pointers
-
-Since most types will have vtables, their pointers would be fat pointers. there should be a way to indicate that a pointer is to a specific object type, not a subclass, to ensure a thin pointer. I.e. `@exact<Foo>`
-
-### Pointer Ownership
-
-Given a variable `x`, the expression `@x` would give a non-null pointer to it. However, the value would still be dropped. How does one move the ownership into the pointer so it must be explicitly deleted? It would seem that a new expression or function returning ownership should force ownership. So `@new Foo()` would give ownership to the pointer. However, for functions, that could be less than obvious. For example, does `@Function()` move ownership into the pointer, or are you taking a pointer to a borrowed value? If so, how long does the borrow last? Maybe, following the pattern of moving a value to a function, you use the move keyword so `@move x` and `@move Function()`. The `move` keyword would not be required with `new`.
-
-### Struct on the Heap
-
-Can you allocate a struct on the heap and get a pointer to it? Does `new Bar()` just return a `@Bar` if `Bar` is a struct? That seems like it could confuse users who accidentally use new with a struct type. Maybe `@new Bar()` is allowed for struct types and gives a pointer to it.
+An exact type would be a type that references to a superclass but can't hold a subclass type. Since most types will have vtables, their pointers would be fat pointers. Exact would provide a way to ensure that reference and pointer types were thin pointers. This could be done with a special syntax like `!Foo` for an exact references and`@!Foo` for exact pointers. A user on Reddit said the P6 language allows constrained type declarations. This could provide another way of supporting exact types. So `type Exact_Foo = T where typeof(T)=Foo` and the `typeof` operator would be taken to mean the concrete type.
 
 ## `repeat {} while <exp>;` or `do {} while <exp>;` Loops
 
