@@ -20,6 +20,7 @@
   * [Lifetimes](lifetimes.md)
   * [Pseudo References](pseudo-references.md)
   * [Summary of Ownership](ownership-summary.md)
+* [Patterns](patterns.md)
 * Namespaces
 * [Access Modifiers](access-modifiers.md)
 * Classes

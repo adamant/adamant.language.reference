@@ -2,38 +2,46 @@
 
 Constructors are declared as class members with the new keyword:
 
-    public class Example
+```adamant
+public class Example
+{
+    public new()
     {
-        public new()
-        {
-        }
     }
+}
+```
 
 and called with the new keyword.
 
-    let x = new Example();
+```adamant
+let x = new Example();
+```
 
 Constructors can also be named:
 
-    public class Example
+```adamant
+public class Example
+{
+    public new named()
     {
-        public new Named()
-        {
-        }
     }
+}
 
-    let x = new Example.Named();
+let x = new Example.named();
+```
 
 Constructors implicitly have a parameter of `mut self`. Notice this is not owned, because the caller will receive ownership, and the constructor is not free to pass ownership off.
 
 Constructors can optionally be given a return type. This type must be a base type or must have at least one type parameter specified.
 
-    public class Example: BaseExample
+```adamant
+public class Example: Base_Example
+{
+    public new() -> Base_Example
     {
-        public new() -> BaseExample
-        {
-        }
     }
+}
+```
 
 It is illegal to simply repeat the class name or to use a subtype or unrelated type.
 
@@ -74,11 +82,13 @@ This construction sequence is similar to Swift and ensures that all fields are i
 
 ## Field Initialization Shorthand
 
-Fields can be directly initialized from constructor arguments. This is done by prefixing the parameter name with self and omitting the type. The type is determined by the type of the field. This can also be used with property setters.
+Fields can be directly initialized from constructor arguments. This is done by prefixing the parameter name with `.` and omitting the type. The type is determined by the type of the field. This can also be used with property setters.
 
-    public new(self.Field)
+```adamant
+    public new(.field)
     {
     }
+```
 
 ## Exceptions
 

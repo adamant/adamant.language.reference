@@ -136,6 +136,22 @@ Given that pointers are meant to be rare, why not say they are a special predefi
 
 Here the type overloads the dot operator. This is consistent with the behavior of the dot with variable references. There doesn't seem to be a good way to handle dereference here though. Perhaps there is some operator that could be allowed to be overloaded. That operator maybe should be allowed on variable reference types to get the underlying reference.
 
+### Non-null Pointers
+
+What if pointers are non-null by default and must be declared optional to be nullable? So `@Foo` is a pointer to `Foo` and `@Foo?` is a nullable pointer to `Foo`. Of course, that might force checks for null when you don't want to for performance reasons.
+
+### Thin vs. Fat Pointers
+
+Since most types will have vtables, their pointers would be fat pointers. there should be a way to indicate that a pointer is to a specific object type, not a subclass, to ensure a thin pointer. I.e. `@exact<Foo>`
+
+### Pointer Ownership
+
+Given a variable `x`, the expression `@x` would give a non-null pointer to it. However, the value would still be dropped. How does one move the ownership into the pointer so it must be explicitly deleted? It would seem that a new expression or function returning ownership should force ownership. So `@new Foo()` would give ownership to the pointer. However, for functions, that could be less than obvious. For example, does `@Function()` move ownership into the pointer, or are you taking a pointer to a borrowed value? If so, how long does the borrow last? Maybe, following the pattern of moving a value to a function, you use the move keyword so `@move x` and `@move Function()`. The `move` keyword would not be required with `new`.
+
+### Struct on the Heap
+
+Can you allocate a struct on the heap and get a pointer to it? Does `new Bar()` just return a `@Bar` if `Bar` is a struct? That seems like it could confuse users who accidentally use new with a struct type. Maybe `@new Bar()` is allowed for struct types and gives a pointer to it.
+
 ## `repeat {} while <exp>;` or `do {} while <exp>;` Loops
 
 Rust doesn't have `do {} while <exp>;` loops. While they are rare, they do come up. In fact when writing a recursive decent parser there are quite a few. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
@@ -285,3 +301,11 @@ The equivalent of Rust's nested functions might be a constant whose value is a l
 ## Change `?` from Suffix to Prefix
 
 Some languages use the `?` as a prefix for optional types. While it looks a little strange, it resolves all ambiguity with all the other type prefixes. Also, `?T` can be read as "optional T".
+
+## Sum Types
+
+```adamant
+type Foo = Bar | Baz;
+```
+
+Effectively making `Foo` a base class of `Bar` and `Baz` except they must be matched to split them.
