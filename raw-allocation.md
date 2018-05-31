@@ -1,6 +1,6 @@
 # Raw Memory Allocation
 
-In additional to regular reference type allocation using `new`, the `new` operator allows a number of other allocation forms for use with pointers.
+When using `new` to allocate objects for pointers, the memory can be freed using the delete operator. When allocating memory for other purposes, the `allocate()` and `free()` functions can be used.
 
 ## Allocating Structs on the Heap
 
@@ -54,8 +54,8 @@ unsafe
 
 ```adamant
 var x: @mut Point = allocate<Point>(2);
-x = resize(x, 4); // copies contents as raw bytes, may return new pointer value
-x = resize(x, 8, 2); // resize to 8, only copy 2 items
-x = resize(x, 2); // just drops memory contents after first two
+x = reallocate<Point>(x, 4); // copies contents as raw bytes, may return new pointer value
+x = reallocate<Point>(x, 8, 2); // resize to 8, only copy 2 items
+x = reallocate<Point>(x, 2); // just drops memory contents after first two
 free(x);
 ```
