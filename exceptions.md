@@ -89,7 +89,7 @@ You can only catch declared exceptions, not specific subtypes of declare excepti
 
 Note: This idea comes from Midori.
 
-**TODO:** This implies sum types almost. If a function `may throw NetworkException, FileException` effectively, it throws the type `NetworkException|FileException`. If the result type is `Result<T, E> where E: Exception` then we might want to be able to say `Result<T, NetworkException|FileException>`. Likewise the function could be declared `may throw NetworkException|FileException` and type aliases could be `alias IOException = NetworkException|FileException;`.
+**TODO:** This implies sum types almost. If a function `may throw NetworkException, FileException` effectively, it throws the type `NetworkException | FileException`. If the result type is `Result<T, E> where E: Exception` then we might want to be able to say `Result<T, NetworkException | FileException>`. Likewise the function could be declared `may throw NetworkException|FileException` and type aliases could be `type alias IOException = NetworkException | FileException;`.
 
 **Should catch clauses have to be exhaustive?** Probably makes sense to start in the more restrictive form.
 

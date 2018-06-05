@@ -146,13 +146,13 @@ Given that async will be more pervasive in my language. Perhaps it makes sense t
 
 ## Use `|` as Remainder Operator
 
-Now that it isn't taken up by "or", the pipe could be used as the remainder operator, fitting the mathematical usage. However, right now it is the magnitude operator.
+Now that it isn't taken up by "or", the pipe could be used as the remainder operator, fitting the mathematical usage. However, that still seems a pretty rare operator. Perhaps it should be used for something else more common
 
 ## Give Tuples Uglier Syntax
 
 Since I somewhat want to discourage the use of tuples. I could give them a worse syntax and thereby free up square brackets for something else. Options include `[| |]`, `[[ ]]`, `([ ])`, `(( ))` (could be confusing), `[< >]`, or `</ />`. The square brackets would then be free for either lists/collection construction, or generics. Going with the idea of product types, they could be written `a**b**c` and the type declarations would match.
 
-Also, I could make the element access both longer and avoid ambiguity by useing `item1`, `item2`... the way C# does.
+Also, I could make the element access both longer and avoid ambiguity by using `item1`, `item2`... the way C# does.
 
 ## F# and Haskell Style Generics
 

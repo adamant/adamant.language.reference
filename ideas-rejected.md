@@ -57,7 +57,7 @@ Backtick may also be a convenient way to mark other literals. For example:
 * Date times - `` `2015-03-03``
 * Intervals - `` `[3..6)`` or `` `[3,6)``
 
-Perhaps backtick could be used for operator overloading?  So `` `||`` would be the method name for overloading operator '`||`'  However, that might be confusing.
+Perhaps backtick could be used for operator overloading?  So `` `*`` would be the method name for overloading operator '`*`'  However, that might be confusing.
 
 ## Don't Distinguish between Non-interpolated and Verbatim String Literals
 
