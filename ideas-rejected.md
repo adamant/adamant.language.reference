@@ -12,10 +12,10 @@ Languages like Ruby have inverted control flow with `until(condition)` for `whil
 
 Currently, backtick `` ` `` is used to escape identifiers and double backtick creates escaped string identifiers.
 
-Font | Escaped Keyword | Escaped String
----- | --------------- | --------------
-Monospace | `` `class``  | ``` ``A name with spaces`` ```
-Proportional | \`class | \`\`A name with spaces\`\`
+| Font         | Escaped Keyword                               | Escaped String |
+| ------------ | --------------------------------------------- | -------------- |
+| Monospace    | `` `class``                                   | ``` ``A name with spaces`` ``` |
+| Proportional | \`class                                       | \`\`A name with spaces\`\`          |
 
 However, this conflicts with the use of markdown in comments when referring to code. While escaped identifiers are rare, it can still be confusing. Unfortunately, preventing this would mean not being able to use the backtick as a symbol in the language. Still, this might be worth it. Note in all these examples, that the single symbol form may be restricted to keywords and reserved words only. So it may not be legal to use `` `hello``. This can make the syntax less ambiguous. Possible syntaxes:
 
@@ -41,16 +41,16 @@ For some of these syntaxes, the symbol could be taken to mean "literal" and used
 
 Finally, perhaps using backtick isn't so bad. It is unlikely that a code snippet in markdown begins with a backtick. If we could eliminate the double backtick by putting backtick in front of strings then code could always be surrounded by double backtick in markdown.
 
-Font | Escaped Keyword | Escaped String
----- | --------------- | --------------
-Monospace | `` `class``  | `` `"A name with spaces"``
-Proportional | \`class | \`"A name with spaces"
+| Font         | Escaped Keyword                           | Escaped String |
+| ------------ | ----------------------------------------- | -------------- |
+| Monospace    | `` `class``                               | `` `"A name with spaces"`` |
+| Proportional | \`class                                   | \`"A name with spaces"          |
 
 However, this seems like a very easy to overlook syntax.
 
 ## Other Uses of Backtick
 
-There was some thought of using backtick in other places when it was the escape character. Those are recorded here.
+*Note:* There was some thought of using backtick in other places when it was the escape character. Those are recorded here.
 
 Backtick may also be a convenient way to mark other literals. For example:
 
@@ -58,3 +58,9 @@ Backtick may also be a convenient way to mark other literals. For example:
 * Intervals - `` `[3..6)`` or `` `[3,6)``
 
 Perhaps backtick could be used for operator overloading?  So `` `||`` would be the method name for overloading operator '`||`'  However, that might be confusing.
+
+## Don't Distinguish between Non-interpolated and Verbatim String Literals
+
+*Note:* When string interpolation was done using curly braces, and there were verbatim strings, there was some thoughts that verbatim strings may not be that important of a feature.
+
+It may not make sense to have non-interpolated string literals as distinct from verbatim ones. The only thing that lets one do is write curly braces without escaping them. That also opens up the idea of using a syntax that doesn't support distinguishing the two, like the number sign.
