@@ -148,12 +148,6 @@ Given that async will be more pervasive in my language. Perhaps it makes sense t
 
 Now that it isn't taken up by "or", the pipe could be used as the remainder operator, fitting the mathematical usage. However, that still seems a pretty rare operator. Perhaps it should be used for something else more common
 
-## Give Tuples Uglier Syntax
-
-Since I somewhat want to discourage the use of tuples. I could give them a worse syntax and thereby free up square brackets for something else. Options include `[| |]`, `[[ ]]`, `([ ])`, `(( ))` (could be confusing), `[< >]`, or `</ />`. The square brackets would then be free for either lists/collection construction, or generics. Going with the idea of product types, they could be written `a**b**c` and the type declarations would match.
-
-Also, I could make the element access both longer and avoid ambiguity by using `item1`, `item2`... the way C# does.
-
 ## F# and Haskell Style Generics
 
 They allow you to just use a single quote with a name as a type to indicate it is a type parameter. This could be confusing to Rust developers. Also, it then isn't clear how to explicitly pass type arguments. Perhaps there is another symbol that could be used instead.
