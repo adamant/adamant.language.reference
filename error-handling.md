@@ -4,7 +4,7 @@ Adamant's error handling model is built around a nuanced view of the different k
 
 ## Prevent Errors
 
-The first and best strategy for error handling is to make prevent them or make them compile errors. Any time you write code that could error at runtime by any mechanism, ask yourself whether it could be redesigned to prevent that error at compile time.
+The first and best strategy for error handling is to prevent them or make them compile errors. Any time you write code that could error at runtime by any mechanism, ask yourself whether it could be redesigned to prevent that error at compile time.
 
 The Adamant language and standard library are built around this error handling approach because by greatly reducing the number of errors that can occur at runtime the correctness, performance and readability of the program is improved.
 
@@ -16,20 +16,20 @@ When reading about the error handling mechanisms available, remember that a larg
 
 The error handling model is focused around a principled distinction between recoverable and non-errors.
 
- * A *recoverable error* is an anticipated state that detected by some programmatic validation. That is, the code has examined the state of the world and determined it is not possible to make progress on the computation in some manner. Recoverable errors generally include:
-    * Invalid user input
-    * Invalid data input (files, network data etc.)
-    * Transient network failure
-    * Hardware Failure
+* A *recoverable error* is an anticipated state that detected by some programmatic validation. That is, the code has examined the state of the world and determined it is not possible to make progress on the computation in some manner. Recoverable errors generally include:
+  * Invalid user input
+  * Invalid data input (files, network data etc.)
+  * Transient network failure
+  * Hardware Failure
 
-   In these cases the program is expected to recover. The developer must plan for and handle these errors. Possible responses include signalling the situation the user, retry, or abandoning the current task. Despite being called an error, it is a *predictable* and *planned* situation.
- * An *unrecoverable error* is any kind of error the programmer didn't expect. That is to say that unrecoverable errors are *bugs*. Input may not have been properly validated. Logic may be written wrong. Often these are not detected at the moment they occur, but propagate through the program state until they are detected because of some unexpected consequence. By that point, nothing can be assumed. All program state is suspect.
+  In these cases the program is expected to recover. The developer must plan for and handle these errors. Possible responses include signalling the situation the user, retry, or abandoning the current task. Despite being called an error, it is a *predictable* and *planned* situation.
+* An *unrecoverable error* is any kind of error the programmer didn't expect. That is to say that unrecoverable errors are *bugs*. Input may not have been properly validated. Logic may be written wrong. Often these are not detected at the moment they occur, but propagate through the program state until they are detected because of some unexpected consequence. By that point, nothing can be assumed. All program state is suspect.
 
 Most languages do not make the distinction between recoverable and unrecoverable errors or try to handle them in substantially similar ways.
 
 Given that bugs are inherently unrecoverable, Adamant treats them that way by *abandonment*.
 
-For a detailed analysis of error handling options, read about [The Error Model](http://joeduffyblog.com/2016/02/07/the-error-model/) of Midori by Joe Duffey.
+For a detailed analysis of error handling options, read about [The Error Model](http://joeduffyblog.com/2016/02/07/the-error-model/) of Midori by Joe Duffy.
 
 ## Unrecoverable Errors
 

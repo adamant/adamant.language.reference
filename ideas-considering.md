@@ -82,6 +82,7 @@ The syntax of `ignore foo()` is confusing because it seems you are ignoring the 
 | `__ = foo()`       | Double underscore should be unique and more noticeable.                                 |
 | `_ignored = foo()` | Uses the underscore along the ideas of unused variables and is very clear.              |
 | `ignored = foo()`  | Reads more like a proper keyword.                                                       |
+| `discard foo()`    | Syntax used by Nim, again seems like you are discarding the call, not the value         |
 
 ## Units of Measure
 
