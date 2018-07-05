@@ -82,7 +82,7 @@ Given that, it makes sense to interpret optional types to be of the second form.
 | Type             | Meaning                   |
 | ---------------- | ------------------------- |
 | `V?`             | `Optional<V>`             |
-| `mut V?`         | `Optional<mut v>`         |
+| `mut V?`         | `Optional<mut V>`         |
 | `ref V?`         | `Optional<ref V>`         |
 | `ref mut V?`     | `Optional<ref mut V>`      |
 | `ref var V?`     | `ref var Optional<V>`     |
