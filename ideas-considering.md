@@ -208,6 +208,10 @@ It might be nice to have literals for dates, times, GUIDs and other types. Howev
 
 Interpolated strings don't fit well with localization. The language would ideally steer people into the pit of success which would be an easy transition to localized strings. That would imply that interpolated strings are only for programmer output and not user display. That could be done by making interpolation always call the debug format. On the other hand almost all the programs I've written haven't needed localization and interpolation is such a good feature that it would be bad to not support it for user display strings.
 
+## Use `set` statement for Mutating Variables
+
+There are several cases that make it seem like it would be useful to have assignment be done with a `set` statement. For example, `set x = 1;`. Set statements would be used any time you needed to assign into a variable. This makes them symmetric with just doing another `let` statement which would sometimes be better. It then would create a unique context for assignment so that `=` could be used for both assignment and equality. In fact, `/=` could possibly even be used for inequality because it couldn't mean divide assign. There are requests that Rust allow destructing on regular assignment, but that leads to ambiguous, confusing syntax. With a set statement it would be clear and destructuring could be allowed.
+
 ## Use `read` and `write` for Properties
 
 Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin Henny talks about that "get" is side-effecting in English and isn't the opposite of "set". Alternatively, "assign" could be used. If assignment were turned into a set statement, then set might make sense again.
