@@ -17,7 +17,7 @@ If you want or need to spell out the type of a variable you can do so by placing
 
     let x: int = 5;
 
-You can read this as let x be an int with the value 5. The `int` type is one of the many [predefined types](predefined-types.md) in Adamant. It is a 32 bit signed integer. There are other types for the various standard integer sizes.
+You can read this as let x be an int with the value 5. The `int` type is one of the many [primitive types](primitive-types.md) in Adamant. It is a 32 bit signed integer. There are other types for the various standard integer sizes.
 
 In future examples, we many annotate the type of a variable that Adamant can infer using a comment to make sure the type is clear to you. That would look like:
 
