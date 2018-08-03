@@ -140,7 +140,7 @@ Let's consider again an example from earlier.
     console.WriteLine("a = ({a.X}, {a.Y})"); // compile error
     b.Y = 6; // mutate the point
 
-Now that we no the rules of borrowing, we can see that the second line makes a mutable borrow of the point in `b`. On the third line, the borrow `b` is still alive because it will be used on the fourth line. But the call to `WriteLine` needs to borrow `a` immutably in order to read the values of `X` and `Y`. This isn't allowed at the same time, so we get a compiler error.
+Now that we know the rules of borrowing, we can see that the second line makes a mutable borrow of the point in `b`. On the third line, the borrow `b` is still alive because it will be used on the fourth line. But the call to `WriteLine` needs to borrow `a` immutably in order to read the values of `X` and `Y`. This isn't allowed at the same time, so we get a compiler error.
 
 The code that did compile was:
 
