@@ -247,3 +247,28 @@ type Foo = Bar | Baz;
 ```
 
 Effectively making `Foo` a base class of `Bar` and `Baz` except they must be matched to split them.
+
+## Better Name for `~static` Lifetime
+
+The "static" lifetime uses the word static which is overused and ambiguous. One might naively assume it means the value or reference can't change. However, that is not the case.
+
+Possible alternatives:
+
+* global
+* unlimited
+* main (as in, it will live during the entire main function)
+* program/application
+* run/execution
+* forever
+* always
+* undying
+* endless
+
+## Better Name for `own` Lifetime
+
+The own lifetime doesn't seem to quite convey the right sense. The problem is we can pass the object off. Also, it may not be a lifetime. An owned reference may also have a lifetime.
+
+* own
+* owned
+* unique
+* only

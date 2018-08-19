@@ -58,7 +58,7 @@ Idea:
 
 ## Calling Other Constructors
 
-A constructor must either call a base class constructor or another constructor on the class. base class constructors are called by `base(arguments...)` or `base.Name(arguments...)` for named constructors. Other constructors on the class are called similarly with `self(arguments...)` or `self.Name(arguments...)`. It is an error for self constructor calls to form a cycle.
+A constructor must either call a base class constructor or another constructor on the class. Base class constructors are called by `base(arguments...)` or `base.Name(arguments...)` for named constructors. Other constructors on the class are called similarly with `self(arguments...)` or `self.Name(arguments...)`. It is an error for self constructor calls to form a cycle.
 
 **TODO:** the syntax for named constructor calling here is somewhat ambiguous and it may not be clear that a constructor is being called. Perhaps a better syntax would be `base.new()` and `base.new.Name()`
 
@@ -68,7 +68,7 @@ Any field initializers are run before the body of the constructor of the class.
 
 When calling a base class constructor, all fields must be initialized before calling the base class constructor. The compiler enforces definite assignment on the fields and a field can't be used before being initialized. Up through the call to the base class constructor, the self parameter can't be used except to initialize fields (i.e. self can't be passed to a function, and methods can't be called on self). Any owned fields that have not been initialized before the base class constructor call will be automatically initialized with `none` if they are optional.
 
-**TODO:** perhaps there is a special constructor the compiler calls for this case so people could define other types that auto init with a certain constructor.
+**TODO:** perhaps there is a special constructor the compiler calls for fields that are not initialized so people could define other types that auto init with a certain constructor.
 
 When calling a self constructor, no fields can be initialized before the call. They would simply be overwritten by the other constructor. However, other statements can occur before the self constructor call for any needed computation.
 

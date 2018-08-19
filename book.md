@@ -20,6 +20,7 @@
   * [Lifetimes](lifetimes.md)
   * [Pseudo References](pseudo-references.md)
   * [Summary of Ownership](ownership-summary.md)
+  * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
 * Namespaces
 * [Access Modifiers](access-modifiers.md)
@@ -74,6 +75,7 @@
   * [Ranges](ranges.md)
   * Collections
   * Reflection
+* [Syntax Reference](syntax.md)
 * [Version Number Scheme](version-numbers.md)
 * [Feature Ideas](ideas.md)
   * [Considering](ideas-considering.md)
