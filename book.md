@@ -80,3 +80,4 @@
 * [Feature Ideas](ideas.md)
   * [Considering](ideas-considering.md)
   * [Rejected](ideas-rejected.md)
+* [Glossary](glossary.md)

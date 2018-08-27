@@ -12,8 +12,8 @@
 
 ## Types
 
-| Kind                                      | Move  | Copy  | Borrow |
-| ----------------------------------------- | ----: | ----: | -----: |
-| Move Value (`struct` w/o `implicit copy`) | T     | T     | ref T  |
-| Copy Value (`struct` w/ `implicit copy`)  | T     | T     | ref T  |
-| Reference (`class`)                       | own T | own T | T      |
+| Kind                                      | Move    | Copy    | Borrow |
+| ----------------------------------------- | ------: | ------: | -----: |
+| Move Value (`struct` w/o `implicit copy`) | T       | T       | ref T  |
+| Copy Value (`struct` w/ `implicit copy`)  | T       | T       | ref T  |
+| Reference (`class`)                       | T$owned | T$owned | T      |

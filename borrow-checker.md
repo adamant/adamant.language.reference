@@ -2,6 +2,171 @@
 
 This section attempts to give a more formal and precise description of how the borrow checker works. This is both for programmer's understanding and to aid in implementation. Please note that this section makes careful distinctions between similar sounding terminology.
 
+## Lifetime of What
+
+One of the first questions that arises in understanding and developing borrow checking is what lifetimes are and what they refer to.
+
+### Lifetimes in Rust
+
+In Rust, it has always been confusing what lifetime parameters mean. What lifetime do they actually refer to? I think now, that they are actually an abstract lifetime not identical to the lifetime of any value or reference. Rather, it is a constraint on the lifetimes of references and value. As one author put it:
+
+1. The lifetime parameter of a reference type represents an upper bound for how long you can hold on to that reference.
+2. The lifetime parameter of a reference type represents a lower bound for the lifetime of the things you can make the reference point to.
+
+(source https://stackoverflow.com/a/29851211/268898)
+
+Also note, that this definition says nothing about borrowing and the blocking of access to the primary value. Consider a function like substring:
+
+```rust
+fn substr<'a>(s: &'a str, until: u32) -> &'a str {
+    "a static result"
+}
+```
+
+Here, the actual reference `s` is dead after the end of the function. So `'a` can't simply be the lifetime of it. However, the returned string may be held for only a portion of the life of the string that `s` references, so the lifetime `'a` isn't simply the lifetime of the value `s` references. Rather, it is a span of time that forms a constraint relating the lifetimes of these vales.
+
+This example also illustrates that lifetimes are independent of actual borrows. The compiler is using lifetimes to infer whether it is possible that a borrow still exists and conservatively enforcing borrow rules.
+
+Notice though that the lifetime parameter forms a constraint on what we might call the scopes of the variables. That is how long the references and values can be in scope by being bound to some variable. These could easily be thought of as lifetimes, but it seems that officially they are not according to Rust. However, colloquially people often refer to them as such.
+
+This all effectively makes lifetimes a property or field that a reference has that is separate from it.
+
+### Review of References in C# and Java
+
+Recall that in C# and Java, most types are reference types. However, the programmer doesn't think of and keep track of references as such. For example, when declaring a variable `Test t = ...;` the developer is aware that `t` is actually a reference to an object of type `Test`, but generally thinks of `t` as simply being a `Test` object. The existence of the reference fades into the background and os not the focus. This is very different from Rust where value types are the default and references must be explicitly declared for parameters and created using the `& operator.
+
+### Lifetimes in Adamant
+
+In Adamant, the references involved in reference types should fade into the background just as they do for C# and Java. The default in Adamant is reference types rather than value types and owning or unique references are fully built into the language rather than being a somewhat separate concept as in Rust (i.e. `Box<T>`). These combine to make it so that it doesn't seem to make sense to think of lifetimes in Adamant being associated to the object/value rather than the reference.
+
+Given a variable declaration like `let manager: Employee = ...;` in Adamant, then the lifetime operator applied to the manager variable `|manager` should be thought of as the lifetime of the manager object. Indeed, this is what truly matters. If a reference to the manager is borrowed, that borrow needs to not outlive the manager object. It may however outlive the reference it was originally borrowed from.
+
+The fact that lifetimes are the lifetime of the object rather than the reference is why the special lifetime `owned` is so named. It is a description of the object lifetime. Other terms like "owns" and "unique" are descriptions of the reference.
+
+## Borrow Checking in Functions
+
+Within the body of any function, borrow checking operates similarly to Rust. Each variable type has a lifetime component. It can statically be determined whether a given lifetime is the "owned" lifetime. Expressions transferring ownership imply that the reference being taken has ownership and that the value being assigned has ownership. The expressions that transfer ownership are:
+
+1. Move expressions `move x`
+2. For non-copy value types, all bare variable references `a`. That is, they are not taking a reference to it.
+3. Functions returning ownership of a reference type or returning a non-copy value type.
+
+Additionally, the move expression implies that the variable being moved out of must have a lifetime type of owned.  Thus the language can assign a lifetime even if it is unknown to each variable type and then infer and check these in the borrow check phase after lowering to IL.
+
+### Ref Types and Borrow Checking
+
+A reference type implicitly has a distinction between the reference and the object being referenced. So it makes sense to think of the type of this as `T|a` where `T` is a reference type and `a` is a lifetime. For value types, they are always owned by their variable binding and so don't have a lifetime in their type. That is the same as Rust. However, one can take a reference to a variable, and then it becomes important how long that variable lives. There is now a distinction between the reference and the value. The possible combinations are (we use `int` as a representative value type:
+
+* `ref int|a` (should this be `ref let|a int` instead?)
+* `ref var|a int`
+* `ref var|a T|b` where `T` is a reference type
+* `out|a int`
+* `out|a T|b` where `T` is a reference type
+
+Note that the type `ref T|a` where `T` is a reference type doesn't make any sense because an extra level of indirection has been added without benefit. Though perhaps it is possible for a type like that to be created using generics?
+
+Here the lifetime occurs after the variable to indicate that it is the lifetime of the variable that holds that value. For example, if the value were to be moved out of the variable, that would invalidate this reference. The exception is `ref int|a` where the variable is elided. However, it might make more sense to give this the type `ref let|a int` for clarity and consistency. If that is done, the ref keyword could possibly be dropped from the types so that they become:
+
+* `let|a int`
+* `var|a int`
+* `var|a T|b` where `T` is a reference type
+* `out|a int`
+* `out|a T|b` where `T` is a reference type
+
+But it is a little confusing that one needs to use the ref keyword to create them and that they don't look like references. Given the expected rarity of ref types, it might make sense to always require the `ref` keyword anyway as:
+
+* `ref let|a int`
+* `ref var|a int`
+* `ref var|a T|b` where `T` is a reference type
+* `ref out|a int`
+* `ref out|a T|b` where `T` is a reference type
+
+Of course, more complex types like references to references can be constructed. For example, `ref var|a ref var|b int` is a double reference. But notice that in other cases the resulting type doesn't make any sense. For example, `ref let|a ref let|b int` can be collapsed to a single direct reference and so does `ref let|a ref var|b int`.
+
+### `var` and Borrow Checking
+
+For simplicity, variable bindings are given a single type that must hold throughout its use. So that for example, are variable with type `T|owned` must have ownership over any object assigned into it. Conceptually, one could imagine that each assignment to the variable is like a let rebinding with a possibly different lifetime. This is something like flow typing. However, that could lead to great complications when the control flow causes the same variable with different lifetimes to be unified. Thus for now, this is not done, and a variable is given a single lifetime type.
+
+### Pseudo References
+
+While theoretically, one could imagine taking references to pseudo references as if they were values types, they are treated as if they were actually reference types. If this were not done, and the first syntax form is adopted there would be a syntactical conflict. For example a string might have the type `string|a` but then a reference to a string the type `ref string|a` and it is now unclear whether the lifetime `a` should be for the variable being referenced, or the data the string references.
+
+## Lifetimes in Function Parameters
+
+Function parameters require that the lifetime relationships be explicit. The syntax previous thought of was to reference the lifetime of another parameter. Consider a function that selects an owned string field from an object:
+
+```adamant
+public select(t: Test) -> string|t
+{
+    return t.field;
+}
+```
+
+Here the type implies that the return value has the lifetime of the `Test` object referenced by `t`. This is in some sense true, however it could be argued it is actually false because the lifetime of the return might actually be shorter than that of the `Test` object. In fact, what is being expressed here is a bound on the lifetime of the return. So a signature of `select(t: Test) -> string <=|t` might be more appropriate. Taking a more Rust like approach it would seem you could write `select[ |a](t: Test|a) -> string|a` however this also seems incorrect. It implies that the test object and the string have the same lifetime. This is exactly what is confusing in Rust. In Rust this actually means there is a bound on lifetimes of the objects and references. Correctly rewriting this would then be `select[ |a](t: Test >= |a) -> string <=|a` but that seems quite verbose. An additional problem with this syntax is that it favors the strictly greater or lesser case which is valid but should not be the default.
+
+Syntax idea, lifetime comparison. Here I have switched to `$` to mean lifetime to free up the vertical bar `|` for other uses. The previously used tilde `~` looks awkward in these constructs and may be difficult to type. Supposedly, many encodings have dollar sign even when they don't need to so it is an ok character to use.
+
+```adamant
+public select(t: Test) -> string$< t
+{
+    return t.field;
+}
+
+public select[$a](t: Test$> a) -> string$< a
+{
+    return t.field;
+}
+```
+
+Operators are then:
+
+| Operator | Meaning                                |
+| :------: | -------------------------------------- |
+| `$a`     | Names a lifetime `a`                   |
+| `$<`     | Lifetime less than (or equal)          |
+| `$>`     | Lifetime greater than (or equal)       |
+| `$</=`   | Lifetime less than but not equal to    |
+| `$>/=`   | Lifetime greater than but not equal to |
+
+There is the even thornier issue of having multiple variables with related lifetimes. For example:
+
+```adamant
+public longer(s1: string, s2: string) -> string$< s1 $< s2
+{
+    return if s1.length >= s2.length
+        => s1
+    else
+        => s2;
+}
+```
+
+Here `string$< s1 $< s2` seems to imply that `s1` is less than `s2` which is not what is intended. I think we here need set operations like intersection. So `string$< s1 $& s2` or `string$< s1 && s2` or even `string$< s1 ∩ s2` would be options. Using an explicit lifetime parameter, this could be:
+
+```adamant
+public longer[$a](s1: string$> a, s2: string$> a) -> string$< a
+{
+    return if s1.length >= s2.length
+        => s1
+    else
+        => s2;
+}
+
+// or even
+public longer[$a](s1: string, s2: string) -> string$< a
+    where a$< s1 && s2
+{
+    return if s1.length >= s2.length
+        => s1
+    else
+        => s2;
+}
+
+```
+
+---
+
+## Old Notes
+
 ## Scopes
 
 Scopes are the lexical regions that variables and values are available in.
@@ -182,6 +347,7 @@ public class Inner()
 ```
 
 But can you then hide the `~self` behind another type
+
 ```adamant
 public class A
 {
@@ -428,7 +594,7 @@ The ownership tree forms a safe tree of contexts. If you have ownership or mutab
 
 ---
 
-For constructors, the reason for the init then cal base is after the base call the object should be valid and references can be given out and methods called. Invariants should be checked for all subclasses at the top of the constructor call chain to ensure it is a valid object at that moment.
+For constructors, the reason for the init then call base is after the base call the object should be valid and references can be given out and methods called. Invariants should be checked for all subclasses at the top of the constructor call chain to ensure it is a valid object at that moment.
 
 ---
 

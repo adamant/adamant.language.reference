@@ -6,33 +6,38 @@ So far, we have seen reference types and value types. In the section on copy typ
 
 Sometimes we want to pass a value type to a function, but we don't want to move it and we don't want to incur the potential cost of copying it. We can do that by passing a reference to the variable.
 
-    public AbsoluteValue(x: ref complex) -> float
-    {
-        return sqrt<float>(p.Real*p.Real + p.Imaginary*p.Imaginary);
-    }
+```adamant
+public absolute_value(x: ref complex) -> float
+{
+    return sqrt(p.real*p.real + p.imaginary*p.imaginary);
+}
 
-    // In Main
-    let a = new complex(6, 4);
-    let abs = AbsoluteValue(ref a);
+// In Main
+let a = new complex(6, 4);
+let abs = absolute_value(ref a);
 
-    console.WriteLine("a = {a.Real}+{a.Imaginary}i");
-    console.WriteLine("|a| = {abs}");
+console.write_line("a = \(a.real)+\(a.imaginary)i");
+console.write_line("|a| = \(abs)");
+```
 
-Here we declared the `AbsoluteValue` value to take a reference to a complex. That means the function will take a reference to a variable holding a value of type `complex`. When we call the function we need to take the reference of the value we want to pass using the `ref` keyword. This way the value in `a` is not copied. The copy constructor will not be called in this example.
+Here we declared the `absolute_value` function to take a reference to a complex. That means the function will take a reference to a variable holding a value of type `complex`. When we call the function we need to take the reference of the value we want to pass using the `ref` keyword. This way the value in `a` is not copied. The copy constructor will not be called in this example.
 
 Just because we have a reference to an immutable variable, doesn't mean we can't change our reference to a different variable.
 
-    let a = new complex(6, 4);
-    let b = new complex(7, 2);
-    var x = ref a; // x: ref complex
-    console.WriteLine("x = {x.Real}+{x.Imaginary}i");
-    x = ref b;
-    console.WriteLine("x = {x.Real}+{x.Imaginary}i");
+```adamant
+let a = new complex(6, 4);
+let b = new complex(7, 2);
+var x = ref a; // x: ref complex
+console.write_line("x = \(x.real)+\(x.imaginary)i");
+x = ref b;
+console.write_line("x = \(x.real)+\(x.imaginary)i");
+```
 
 Outputs:
-
-    x = 6+4i
-    x = 7+2i
+```console
+x = 6+4i
+x = 7+2i
+```
 
 Notice we declared `x` with `var` meaning that even though the referenced variable couldn't be mutated, we can mutate which variable it references. Just like we can use `var` with reference types to allow us to change which immutable object a variable references.
 
@@ -40,40 +45,50 @@ Notice we declared `x` with `var` meaning that even though the referenced variab
 
 We can also use variable references when we want to mutate the value of a variable.
 
-    public Double(x: ref var complex) -> void
-    {
-        x = new complex(x.Real*2, x.Imaginary*2);
-    }
+```adamant
+public double(x: ref var complex) -> void
+{
+    x = new complex(x.real*2, x.imaginary*2);
+}
 
-    // In Main
-    var a = new complex(6, 4);
-    console.WriteLine("a = {a.Real}+{a.Imaginary}i");
-    Double(ref var a);
-    console.WriteLine("a = {a.Real}+{a.Imaginary}i");
+// In Main
+var a = new complex(6, 4);
+console.write_line("a = \(a.real)+\(a.imaginary)i");
+double(ref var a);
+console.write_line("a = \(a.real)+\(a.imaginary)i");
+```
 
 Outputs:
 
-    a = 6+4i
-    a = 12+8i
+```console
+a = 6+4i
+a = 12+8i
+```
 
 Here we indicate that we want a reference to a mutable variable by declaring our parameter `ref var`. Notice that we are referring to the mutability of the variable rather than the value so we use `var` instead of `mut`. When we call the function, we must pass a reference to a mutable variable using `ref var`. If `a` were immutable, having been declared with `let`, then we would not be allowed to take a mutable reference to it.
 
 Even with a reference to a mutable value, we can still mutate which variable we are referencing.
 
-    let a = new complex(6, 4);
-    let b = new complex(7, 2);
-    var x = ref var a;  // must be declared `var`, x: ref var complex
-    Double(x); // don't need `ref var` because `x` already is one
-    console.WriteLine("x = {x.Real}+{x.Imaginary}i");
-    x = ref var b;
-    console.WriteLine("x = {x.Real}+{x.Imaginary}i");
+```adamant
+let a = new complex(6, 4);
+let b = new complex(7, 2);
+var x = ref var a;  // must be declared `var`, x: ref var complex
+Double(x); // don't need `ref var` because `x` already is one
+console.write_line("x = \(x.real)+\(x.imaginary)i");
+x = ref var b;
+console.write_line("x = \(x.real)+\(x.imaginary)i");
+```
 
 Outputs:
 
-    x = 12+8i
-    x = 7+2i
+```console
+x = 12+8i
+x = 7+2i
+```
 
 ## Variable References to Reference Types
+
+**TODO:** support for `ref T` where `T` is a reference type may be removed.
 
 So far, we've seen how you can use references to variables holding value types. However, you can also make references to variables holding reference types.
 

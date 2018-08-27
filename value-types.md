@@ -6,21 +6,23 @@ We have covered value types which are the majority of types you will deal with i
 
 Simple structs have *move semantics*. That means rather than being borrowed like reference types, the value always moves. The equivalent for reference types would be if we used `move` whenever passing it.
 
-    public mut struct ChannelReceiver
+```adamant
+public mut struct Channel_Receiver
+{
+    public let buffer_size: int;
+
+    public new(buffer_size: int)
     {
-        public let BufferSize: int;
-
-        public new(bufferSize: int)
-        {
-            BufferSize = bufferSize;
-        }
+        self.buffer_size = buffer_size;
     }
+}
 
-    // In Main
-    let a = new ChannelReceiver(83);
-    let b = a; // implicit move
-    console.WriteLine("b.BufferSize = {b.BufferSize}");
-    console.WriteLine("a.BufferSize = {a.BufferSize}"); // complier error
+// In Main
+let a = new Channel_Receiver(83);
+let b = a; // implicit move
+console.write_line("b.buffer_size = \(b.buffer_size)");
+console.write_line("a.buffer_size = \(a.buffer_size)"); // complier error
+```
 
 The last line gives a compiler error stating that the value has been moved out of `a`. We see that when we assigned `b = a` the value was moved just as if we had used the `move` keyword. The same thing happens when passing a struct to a function.
 
@@ -30,41 +32,47 @@ Structs with move semantics aren't used very often. The most common use is in [p
 
 Most value types have *copy semantics*. We're already familiar with a type that has copy semantics. The `int` type we've been using all along is an example of a struct with copy semantics. To see how to create our own types with copy semantics, let's make a simple complex number struct.
 
-    public struct complex
+```adamant
+public struct complex
+{
+    public let real: int;
+    public let imaginary: int;
+
+    public new(real: int, imaginary: int)
     {
-        public let Real: int;
-        public let Imaginary: int;
-
-        public new(real: int, imaginary: int)
-        {
-            Real = real;
-            Imaginary = imaginary;
-        }
-
-        public implicit new copy(from: ref complex)
-        {
-        }
+        self.real = real;
+        self.imaginary = imaginary;
     }
 
-    // In Main
-    let a = new complex(6, 4);
-    let b = a;
+    public implicit new copy(from: ref complex)
+    {
+    }
+}
 
-    console.WriteLine("b = {b.Real}+{b.Imaginary}i");
-    console.WriteLine("a = {a.Real}+{a.Imaginary}i");
+// In Main
+let a = new complex(6, 4);
+let b = a;
+
+console.write_line("b = \(b.real)+\(b.imaginary)i");
+console.write_line("a = \(a.real)+\(a.imaginary)i");
+```
 
 We did the same thing we did with our `foo` struct, but this time it compiles and runs, outputting:
 
+```console
     b = 6+4i
     a = 6+4i
+```
 
 We see that `b` became a copy of `a`. How did that happen?  It's because of the special *copy constructor* we declared. Copy constructors are declared with `new copy`. The `implicit` keyword in front tells the compiler to go ahead and call the copy constructor whenever a copy of the struct is needed. That gives this struct copy semantics instead of move semantics. If we really wanted to, we could still explicitly move a value though.
 
-    let a = new complex(6, 4);
-    let b = move a; // note the use of `move`
+```adamant
+let a = new complex(6, 4);
+let b = move a; // note the use of `move`
 
-    console.WriteLine("b = {b.Real}+{b.Imaginary}i");
-    console.WriteLine("a = {a.Real}+{a.Imaginary}i"); // complier error
+console.write_line("b = \(b.real)+\(b.imaginary)i");
+console.write_line("a = \(a.real)+\(a.imaginary)i"); // complier error
+```
 
 Now we get the same compiler error as before stating that we can't use `a` because the value has been moved out of it. The `move` keyword has just the same effect on copy types as it does on reference types.
 
@@ -78,15 +86,16 @@ Notice that we made our complex struct immutable rather than mutable like our Po
 
 It doesn't make sense to give copy semantics to some structs, but we still want to be able to copy them when needed. For example, if we wanted to make our complex struct mutable, then it would make sense to give it move semantics, but be able to explicitly copy it. This can be done simply by declaring the copy constructor as `explicit` instead of `implicit`.
 
+```adamant
     public mut struct Complex
     {
-        public var Real: int;
-        public var Imaginary: int;
+        public var real: int;
+        public var imaginary: int;
 
         public new(real: int, imaginary: int)
         {
-            Real = real;
-            Imaginary = imaginary;
+            self.real = real;
+            self.imaginary = imaginary;
         }
 
         public explicit new copy(from: ref Complex)
@@ -99,13 +108,16 @@ It doesn't make sense to give copy semantics to some structs, but we still want 
     let b = new copy(ref a); // explicit copy
     a.X = 4;
 
-    console.WriteLine("b = {b.Real}+{b.Imaginary}i");
-    console.WriteLine("a = {a.Real}+{a.Imaginary}i");
+    console.write_line("b = \(b.real)+\(b.imaginary)i");
+    console.write_line("a = \(a.real)+\(a.imaginary)i");
+```
 
 This outputs:
 
-    b = 6+4i
-    a = 4+4i
+```console
+b = 6+4i
+a = 4+4i
+```
 
 Notice that `b` is a copy of `a`. We were able to mutate `a` without affecting `b`. The copy didn't happen automatically though, we had to explicitly ask for a copy to be made. If we hadn't the value would have moved from `a` to `b` and we couldn't have used `a` anymore. Calling a copy constructor is different from calling other constructors. Where we would normally give the type we are constructing we use the `copy` keyword instead. The type we are constructing matches the type we are copying. Because the argument to the copy constructor is a reference, we have to take a reference to `a` using the `ref` keyword.
 

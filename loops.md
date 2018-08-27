@@ -67,19 +67,21 @@ for _ in 0..10
 Standard library provides `Enumerate()` method for counting. This provides the index of each value in the iterator sequence.
 
 ```adamant
-for let [i, x] in (5..10).Enumerate()
+for let #(i, x) in (5..10).Enumerate()
 {
-    console.WriteLine("i = {i}, x = {x}");
+    console.WriteLine("i = \(i), x = \(x)");
 }
 ```
 
 Outputs:
 
-    i = 0, x = 5
-    i = 1, x = 6
-    i = 2, x = 7
-    i = 3, x = 8
-    i = 4, x = 9
+```console
+i = 0, x = 5
+i = 1, x = 6
+i = 2, x = 7
+i = 3, x = 8
+i = 4, x = 9
+```
 
 ## Controlling Loop Iteration
 
@@ -100,7 +102,7 @@ let x = for x in items
         } ?? alternate_value;
 ```
 
-The  `while` and `for` loop return an optional value because to indicate that the loop exited because the condition evaluated to false. This may mean the loop was never executed. In those situations, the value of the loop expression is `none`. This allows you to use the coalesce operator to easily specify a value for that case.
+The  `while` and `for` loop return an optional value to indicate that the loop exited because the condition evaluated to false. This may mean the loop was never executed. In those situations, the value of the loop expression is `none`. This allows you to use the coalesce operator to easily specify a value for that case.
 
 ```adamant
 let x = for let y in sdf
@@ -117,15 +119,15 @@ let x = for let y in sdf
 When breaking or continuing it may be necessary to indicate which loop you are controlling. This can be done by labeling the loops. Loop labels are essentially lifetimes and are named as such.
 
 ```adamant
-~outer: for let x in 0..10
+$outer: for let x in 0..10
 {
-    ~inner: for let y in 0..10
+    $inner: for let y in 0..10
     {
-        if x % 2 == 0 { continue ~outer; }
-        if y % 2 == 0 { continue ~inner; }
+        if x % 2 == 0 { continue $outer; }
+        if y % 2 == 0 { continue $inner; }
         console.WriteLine("x = {x}, y = {y}");
     }
 }
 ```
 
-When loop labels are combined with break values, the label is placed before the value as `break ~label value;`.
+When loop labels are combined with break values, the label is placed before the value as `break $label value;`.
