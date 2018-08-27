@@ -268,7 +268,8 @@ Possible alternatives:
 
 The own lifetime doesn't seem to quite convey the right sense. The problem is we can pass the object off. Also, it may not be a lifetime. An owned reference may also have a lifetime.
 
-* own
-* owned
-* unique
-* only
+* own - vague on reference vs object
+* owned - describes the object
+* owns - describes the reference
+* unique - describes the reference
+* only - describes the reference

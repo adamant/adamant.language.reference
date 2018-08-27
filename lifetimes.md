@@ -84,7 +84,7 @@ Here we declare that the lifetime of the reference in `y` is the lifetime of the
 
 ## `own` Lifetime
 
-There a special lifetime `~own` that indicates a reference controls the lifetime of the value it references, and is not bound by any other lifetime. Unless the reference is moved to a different variable, the lifetime of the reference will end before the scope of the variable it is in. In essence, an `~own` reference owns the value it references and is owned by the variable it is in. If something has a lifetime of `~own` we typically say it is owned and conflate the reference and value.
+There is a special lifetime `~own` that indicates a reference controls the lifetime of the value it references, and is not bound by any other lifetime. Unless the reference is moved to a different variable, the lifetime of the reference will end before the scope of the variable it is in. In essence, an `~own` reference owns the value it references and is owned by the variable it is in. If something has a lifetime of `~own` we typically say it is owned and conflate the reference and value.
 
 Objects of reference types are owned by their original reference. The reference returned by `new`. That reference is owned by the variable it is assigned into. By that means, the actual lifetime of the value will be determined. Effectively, when the root of the chain of ownership goes out of scope, a value with be destructed. We can extend the lifetime of a value by moving the ownership of the reference that owns it.
 

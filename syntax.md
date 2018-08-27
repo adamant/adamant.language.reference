@@ -18,11 +18,12 @@ This section gives a brief statement of the syntax for easy reference.
 
 ## Operators
 
-| Operator | Meaning                     |
-| -------- | --------------------------- |
-| `x + y`  | Addition                    |
-| `^x`     | Dereference                 |
-| `x^.y`   | Deference and Access Member |
+| Operator | Meaning                      |
+| -------- | ---------------------------- |
+| `x + y`  | Addition                     |
+| `^x`     | Dereference                  |
+| `x^.y`   | Deference and Access Member  |
+| `@x`     | Address Of (i.e. pointer to) |
 
 ## Types
 
@@ -32,9 +33,8 @@ This section gives a brief statement of the syntax for easy reference.
 | `Type[T, R]`                   | Generic parameters and compile time code execution |
 | `@T`                           | Non-null Pointer to `T`    (i.e. Address of `T`)   |
 | `@T?`                          | Nullable Pointer to `T`                            |
-| `@void` `@mut void`            | Void Pointers?                                      |
+| `@void` `@mut void`            | Void Pointers?                                     |
 | `(Type1, Type2) -> ReturnType` | Function Type                                      |
-
 
 ## Expressions
 
@@ -43,7 +43,7 @@ This section gives a brief statement of the syntax for easy reference.
 | `#[x, y]`             | List/Array Initializer                  |
 | `#{x, y}`             | Set Initializer                         |
 | `#(x, y)`             | Tuple Initializer                       |
-| `fn(x) {}`            | Anonymous Function                      |
+| `fn(x) { ... }`       | Anonymous Function                      |
 | `fn(x) -> Type {...}` | Anonymous Function with Return Type     |
 | `fn(x) => expression` | Anonymous Function with Expression Body |
 
