@@ -178,7 +178,51 @@ public longer[$a](s1: string, s2: string) -> string$< a
 
 ```
 
+## Lifetimes Parameters in Objects
 
+By default, all fields of object have ownership types. In order to put a borrowed reference into a structure, it must take a lifetime parameter.
+
+```adamant
+public class Borrowed[$a]
+    // Notice this is greater than or equal
+    // implicit: where a $> self
+{
+    private let value: ref$a int;
+
+    public new(value: ref$a int)
+    {
+        self.value = value;
+    }
+}
+```
+
+The implicit greater than or equal to means it is not valid to access that field during destruction. They may be destroyed "at the same time". No field may be accessed in a destructor if its type contains a lifetime that does not strictly outlive the lifetime of self. If a field is needed in the destructor a where clause can be used to explicitly say it must outlive the current object.
+
+```adamant
+public class Write_Buffer[$a] <: Writer
+    where a $>/= self
+{
+    private let writer: Writer$a;
+
+    public new(writer: Writer$a)
+    {
+        self.writer = writer;
+    }
+
+    public delete()
+    {
+        // It is safe and allowed to access `writer` here to flush the buffer.
+    }
+}
+```
+
+One open question revolves around the idea of having objects that only need to borrow their data actually own it. Given that lifetimes are actually parameters, and that `$owned` is a lifetime. It may be the case that classes can be generic over whether they own their data. For example a a write buffer could own the underlying writer:
+
+```adamant
+let writer = new Write_Buffer(File.Open(file_name)); // writer: Write_Buffer[$owned]$owned
+writer.write("hello");
+// when the writer is destructed, it will now destruct the file writer too because it owns it
+```
 
 ---
 
@@ -244,7 +288,7 @@ Destructors don't have access to borrowed references, only to owned references a
 }
 
 // Given
-public class Borrowed()
+public class Borrowed
 {
     private let calc_value: int = 6;
 
@@ -254,7 +298,7 @@ public class Borrowed()
         return calc_value;
     }
 }
-public class Outer()
+public class Outer
 {
     private let value: mut Inner; // implicit: ~own
 
@@ -271,7 +315,7 @@ public class Outer()
         // implicit: delete value;
     }
 }
-public class Inner()
+public class Inner
 {
     private let outer: Outer~self;
     private let value: mut Borrowed~self;
@@ -307,7 +351,7 @@ That breaks the case of a buffered writer that needs to clear its buffer. It ver
 Maybe the self lifetime is somehow dealt with specially kind of like the `Self` type would be? Like you must explicitly say you are using it, but then don't have to specify what it is.
 
 ```adamant
-public class Borrowed()
+public class Borrowed
 {
     private let calc_value: int = 6;
     private var outer: Outer?~self = none;
@@ -322,7 +366,7 @@ public class Borrowed()
         return calc_value;
     }
 }
-public class Outer()
+public class Outer
 {
     private let value: mut Inner; // implicit: ~own
 
@@ -340,7 +384,7 @@ public class Outer()
         // implicit: delete value;
     }
 }
-public class Inner()
+public class Inner
 {
     private let outer: Outer~self;
     private let value: mut Borrowed~self;

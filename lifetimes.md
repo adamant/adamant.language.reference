@@ -39,7 +39,7 @@ Destructor execution in Adamant occurs sometime between the end of the lifetime 
 ```adamant
 let x = 45;
 let y = ref x;
-console.WriteLine("x + y = {x+y}");
+console.write_line("x + y = \(x+y)");
 ```
 
 Here, `y` is a reference to `x` so the lifetime of the reference must end before the lifetime of the value it references. Consequently, the reference is destroyed before the value it references.
@@ -55,7 +55,7 @@ public foo(a: Point) -> void
 }
 
 // explicit
-public foo<$x>(a: Point$x) -> void
+public foo[$x](a: Point$x) -> void
 {
 }
 ```
@@ -63,7 +63,7 @@ public foo<$x>(a: Point$x) -> void
 Lifetimes are marked with a dollar sign '$'. The `$x` is read as 'the lifetime x'. Every reference and value has a a lifetime, but the compiler lets you omit them in many cases. To specify lifetimes one can use lifetime parameters or refer to the lifetime of another variable.
 
 ```adamant
-public bar<$x>(a: Point$> x, b: Point$> x) -> void
+public bar[$x](a: Point$> x, b: Point$> x) -> void
 {
 }
 ```
@@ -73,7 +73,7 @@ In the first declaration, we create an explicit lifetime variable `$x`. We then 
 When declaring the lifetimes of mutable references, the lifetime is the same.
 
 ```adamant
-public baz<$x>(a: mut Point$x) -> void
+public baz[$x](a: mut Point$x) -> void
 {
 }
 ```
@@ -91,7 +91,7 @@ public one_of(x: ref int, y: ref int) -> ref$< x && y int
 
 Here we declare that the lifetime of the reference in `y` is the lifetime of the reference in `x` and the return type is a reference with the same lifetime.
 
-## `own` Lifetime
+## `owned` Lifetime
 
 There is a special lifetime `$owned` that indicates a reference controls the lifetime of the value it references, and is not bound by any other lifetime. Unless the reference is moved to a different variable, the lifetime of the reference will end before the scope of the variable it is in. In essence, an `$owned` reference owns the value it references and is owned by the variable it is in. If something has a lifetime of `$owned` we typically say it is owned and conflate the reference and value.
 
