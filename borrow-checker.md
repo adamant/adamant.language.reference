@@ -91,6 +91,21 @@ For simplicity, variable bindings are given a single type that must hold through
 
 While theoretically, one could imagine taking references to pseudo references as if they were values types, they are treated as if they were actually reference types. If this were not done, and the first syntax form is adopted there would be a syntactical conflict. For example a string might have the type `string|a` but then a reference to a string the type `ref string|a` and it is now unclear whether the lifetime `a` should be for the variable being referenced, or the data the string references.
 
+### Moving Borrowed Data
+
+The borrowing rules enforce that only a single mutable reference can be accessible at a time. They also enforce that multiple read only references can be accessible but that no mutable reference can be when that is the case. Interestingly though, they do not prevent moving these references so long as the lifetimes work out. This is something that Rust does not support. As an example of something that would be safe:
+
+```adamant
+public test() -> void
+{
+    let t = mut new Test(); // t: mut Test$owned
+    let x = t;
+    // Now `t` is read only because of the reference x to it. However, we can still move the test object
+    let t2 = mut move t; // t2: mut Test$owned
+    // `t2` now has ownership of the object, but the reference `x` is still valid and the lifetimes work. Once `x` goes out of scope, `t2` will be a unique mutable reference to it.
+}
+```
+
 ## Lifetimes in Function Parameters
 
 Function parameters require that the lifetime relationships be explicit. The syntax previous thought of was to reference the lifetime of another parameter. Consider a function that selects an owned string field from an object:
@@ -162,6 +177,8 @@ public longer[$a](s1: string, s2: string) -> string$< a
 }
 
 ```
+
+
 
 ---
 
