@@ -75,6 +75,7 @@
   * [Ranges](ranges.md)
   * Collections
   * Reflection
+  * [Localization](localization.md)
 * [Syntax Reference](syntax.md)
 * [Version Number Scheme](version-numbers.md)
 * [Feature Ideas](ideas.md)
