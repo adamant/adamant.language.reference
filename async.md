@@ -4,8 +4,8 @@ Principle: Async Everywhere - use async in lots of places
 
 Operations that should be async, Disk, Network, Screen (writing to Console can be slower than writing to file), inter thread and process communication, and sleeping.
 
-  * Principle: No Blocking Operations - it should be impossible to block a thread
-  * Principle: Don't divide the world into red and green methods
+* Principle: No Blocking Operations - it should be impossible to block a thread
+* Principle: Don't divide the world into red and green methods
 
 Idea: for functions returning void, it would be safe to allow them to be async like C# does where it will let you call one but then you have no way to determine when it is finished. The catch would be that they need to be declared `no throw` so there was no risk of exceptions being lost.
 
@@ -15,15 +15,16 @@ There really needs to be back-pressure and throttling in async operations.
 
 There are different kinds of functions:
 
-  * Expected to be prompt, synchronous
-  * Expected to be asynchronous
+* Expected to be prompt, synchronous
+* Expected to be asynchronous
 
 Independently of that, you have functions that can throw exceptions and those that can't. Of course, it seems like there could be functions you expect to be prompt, synchronous that aren't. Also, distinguishing these in the type system seems to lead to fragility problems. We are implying that we always know in an interface what our subclass implementation will be. Given you can implement the interface of any class, that feels dangerous.
 
 Coroutine like behavior
-  * await a result
-  * pull from an iterator
-  * push to an observable
+
+* await a result
+* pull from an iterator
+* push to an observable
 
 iterator and observable are dual, it would be good if they could be unified
 

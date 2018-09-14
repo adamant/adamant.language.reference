@@ -8,7 +8,6 @@ Array types are `baseType[N]` where N is a constant size or `baseType[]` which i
 
 Array elements should be mutable. However the question becomes whether you can have much more complex array types. Can you say "an array of immutable references to mutable objects?"  Can you have an array of references to other variables (i.e ref). It may simplify things if those are disallowed. Those aspects are then not part of the type, but properties of the variable binding. If arrays are allowed to do those complex things, then so should lists be allowed.
 
-
 Arrays as other collections have a `Count`. Length might apply but seems over specific and doesn't fit with the other collections. Size might imply size in bytes or even capacity. For example, the size of a box or other container isn't how many things are in it. But how many could fit in it. With those options rules out. Count seems the only reasonable choice
 
 # Alternative: Non-primitive Arrays
@@ -116,12 +115,12 @@ Imagine a syntax where lifetimes can be tied to generic parameters. The buffer t
 
 We imagine there are a number of types:
 
-  * own Buffer<own T>
-  * own Buffer<mut T>
-  * own Buffer<T> - T's are immutable
-  * mut Buffer<own T>
-  * mut Buffer<mut T>
-  * Buffer<T> - T's are immutable, here nothing but immut T would be allowed
+* own Buffer<own T>
+* own Buffer<mut T>
+* own Buffer<T> - T's are immutable
+* mut Buffer<own T>
+* mut Buffer<mut T>
+* Buffer<T> - T's are immutable, here nothing but immut T would be allowed
 
 
     public class Buffer<T|, [Elements = [own]> // T| means T bounded by an un-named lifetime, |Elements means a lifetime named elements

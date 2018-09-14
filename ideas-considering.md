@@ -96,6 +96,8 @@ Allow a match to occur after an else.
 
 An exact type would be a type that references to a superclass but can't hold a subclass type. Since most types will have vtables, their pointers would be fat pointers. Exact would provide a way to ensure that reference and pointer types were thin pointers. This could be done with a special syntax like `!Foo` for an exact references and`@!Foo` for exact pointers. A user on Reddit said the P6 language allows constrained type declarations. This could provide another way of supporting exact types. So `type Exact_Foo = T where typeof(T)=Foo` and the `typeof` operator would be taken to mean the concrete type.
 
+More recently, the syntax `^Foo` has been considered. The intent being that you "dereference" the type to get a non-reference type.
+
 ## `repeat {} while <exp>;` or `do {} while <exp>;` Loops
 
 Rust doesn't have `do {} while <exp>;` loops. While they are rare, they do come up. In fact when writing a recursive decent parser there are quite a few. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
@@ -115,10 +117,6 @@ And of course combinations of symbols and unary prefix and suffix versions of ex
 
 Despite the justification given for using new with structs and tuples, there is still enough reason to consider not doing that. Instead, struct construction could look like a static call to the constructor or to the type name. So `My_Struct` would be constructed by calling `My_Struct(value)`. However, unlike C# all structs would be required to be initialized. There would be no default struct construction. This function call like syntax reflects that fact that no heap memory is being allocated, but some construction work may be being done. It also removes confusions around trying to use the other new construction syntaxes on structs. For example, `new?` wouldn't make any sense for structs. However, it becomes unclear how to call named constructors, and seems inconsistent with the way the constructor is declared. One possibility is to use syntax similar to how constructors call each other. So a regular constructor call would be `My_Struct.new(value)` and a named constructor call would be `My_Struct.new.from(value)`. But, syntax is long and feels like memory allocation. It just makes it seem weird compared to class construction. Alternatively, named struct constructors could just be treated as associated functions i.e. `My_Struct.from(value)`.
 
-## Rename `for` Loop to `foreach`
-
-The `foreach` keyword seems to read better. Compare "for child in children" to "for each child in children". The keyword `for` reads better for counted loops. Compare "for i equals 1 to 10" to "for each i equal 1 to 10". Of course, there is the mixed case "for each i in 1 to 10" which is unclear.
-
 ## Adjust Naming Conventions
 
 * Consider using `snake_case` for namespaces.
@@ -137,10 +135,6 @@ One way to do this would be to add a `function` or `func` keyword in front of fu
 
 Note that anonymous functions might indicate that `-> void` should be allowed. The expression `(x) -> returns_void()` seems reasonable. Yet, that means the arrow accepts a return type of void. This is consistent with essentially saying that a return statement with no value is `return void`.
 
-## Generic Syntax Clarity
-
-Apparently, Java allows generic methods to be called like `instance.<string>foo()`. That removes some ambiguity. If the declaration syntax matched. For example, the declaration could be `function<T> foo() -> void`. There may however be a problem with classes where the generics need to come after the type name. Also, it just reads strangely to have the generics before the method name. Following along the lines of the Rust turbofish operator, generic arguments could be separated from the function name with a dot i.e. `instance.foo.<string>()`. They could be declared with a dot as `foo.<T>() -> void`.
-
 ## Operator for Await
 
 Given that async will be more pervasive in my language. Perhaps it makes sense to give it an operator. One idea is to use `!`. It conveys the "do it" sense.  Indeed, Haskell uses it as the force evaluation operator. Other options include `>>` and `|>`. Those are reversible which might be useful. Both give the sense of directing output or ordering. If await has an operator, should `async` have one too?
@@ -156,10 +150,6 @@ They allow you to just use a single quote with a name as a type to indicate it i
 ## Use `_` or `*` for Wild Card Types
 
 Java style wild card types could be done using underscore.  For example, `List<_>` would be a list of anything. `List<_:Foo>` a list of things that inherit from foo. Of course, then it isn't clear how to get the opposite type relation. `List<_:>Foo>` is too confusing. `List<_/Foo>` as in the wild card is above the `Foo`. Maybe the `in` and `out` keywords are the correct thing here. So `List<out Foo>` and `List<in Foo>` works pretty well.  It is just missing the sense of wild card. That would be read as a list that I can take out `Foo`s from and a list that you can put `Foo`s in. Adding the underscore back could be `List<Foo out _>` and `List<Foo in _>` (note this order so that it is "get Foo out of _" and "put Foo in _" but that has reversed the sense).
-
-## Pass Generic Parameters Inside Parentheses
-
-Call `foo(<int, string>, 45, "hello")`. Could make declaration match, but this wouldn't fit with class declarations. It would remove the syntax ambiguity for function calls. Maybe in types, it would be `Type<T>` but then you would construct them as `new Type(<T>)`. This could make sense syntactically if constructors didn't auto share their class's type parameters and had to re-declare them. But that would be annoying. Other options, `foo[int, string](45, "hello")`, `foo<int, string>(45, "hello")`, `foo|int, string|(45, "hello")`, `foo(:int, :string, 45, "hello")` (but the variance will be wrong so that doesn't quite work).
 
 ## Use `[ ]` for Compile Time Computing
 
@@ -216,10 +206,6 @@ There are several cases that make it seem like it would be useful to have assign
 
 Instead of using `get` and `set` for properties, use `read` and `write`. This corrects what Kevlin Henny talks about that "get" is side-effecting in English and isn't the opposite of "set". Alternatively, "assign" could be used. If assignment were turned into a set statement, then set might make sense again.
 
-## Use `next` instead of `continue`
-
-Ruby and other languages use this. It seems clearer.
-
 ## Simple Dependent Types
 
 Full dependent types are complicated and confusing. But basic dependent types, say that an indexer object can only be used with the collection instance it indexes could be useful and easy. Something like this may already come along with lifetimes. On the other hand, this feature could make working with lifetimes easier.
@@ -230,7 +216,7 @@ Developers are in the habit of making everything public. However, the default sh
 
 ## Lifetimes After Type Names
 
-Consider putting lifetimes after type names as `Type_Name~own` that allows them to be run together. It also allows references to have very clear and consistent lifetimes. For example, `ref~x T` would be a reference with lifetime `x` to something of type `T`. Thus the lifetime always follows the reference. Currently, I think that would be `~x ref T`.
+Consider putting lifetimes after type names as `Type_Name$own` that allows them to be run together. It also allows references to have very clear and consistent lifetimes. For example, `ref$x T` would be a reference with lifetime `x` to something of type `T`. Thus the lifetime always follows the reference. Currently, I think that would be `~x ref T`.
 
 ## Nested functions
 
