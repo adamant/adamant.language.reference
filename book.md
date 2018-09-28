@@ -71,7 +71,6 @@
   * [External](external.md)
   * [Memory Layout](memory-layout.md)
   * [Unchecked](unchecked.md)
-  * Boxing
 * [Conventions](conventions.md)
 * Testing
 * Standard Library
