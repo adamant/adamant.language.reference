@@ -1,18 +1,12 @@
 # Tuples
 
-A tuple is an ordered list of values that can be of different types.
+The `Tuple[T...]` type is declared in the standard library. A tuple is an ordered list of values that can be of different types. Tuples can be constructed using the [tuple initializer](composite-initializers.md) syntax.
 
 ```adamant
-let t = #(1, "something");
+let t = #(1, "something"); // t: Tuple[int, string]
 ```
 
-A tuple constructor follows the pattern of other composite value constructors of using the hash sign followed by some form of brackets. Here is the same declaration with the types annotated.
-
-```adamant
-let t: #(int, string) = #(1, "something");
-```
-
-The types of tuples look like the tuple with types instead of values. Tuples are reference types like most objects in Adamant.
+Tuples are reference types like most objects in Adamant.
 
 ## Destructing With `let`
 
@@ -34,7 +28,3 @@ let x = t.\1;
 let y = t.\2;
 let z = t.\3;
 ```
-
-## The `Tuple<...>` Type
-
-**TODO:** Given the above syntax is just composite constructor syntax, it should be possible to say `Tuple<int, string>` and `new Tuple(4, "hello")`. In fact, tuples may be fully implemented in the standard library.

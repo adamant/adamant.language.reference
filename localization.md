@@ -10,7 +10,7 @@ For localization, there are a number of locales that might be in play. They are:
 Many applications are developed without regard for internalization. For these applications the concept of *target locale* exists. The target locale determines the default for the current locale. Target locale can be set to one of three options:
 
 * User Locale - The app is meant to be fully localized, current culture defaults to the user's culture
-* Specific Locale *with* User Overrides - The the default locale is the specified locale with user settings overriding things like date formatting.
+* Specific Locale *with* User Overrides - The default locale is the specified locale with user settings overriding things like date formatting.
 * Specific Locale *without* User Overrides - The default locale is the specified locale without any user overrides. This then allows the setting of specific formatting etc. In this case, the locale is fully determined at compile time.
 
 **The target locale defaults to en-US *with* user overrides.**
@@ -19,7 +19,7 @@ Note: .NET uses the term "culture", but "locale" seems to be both the more stand
 
 ## Debug Formatting
 
-When converting a value to a string for debug purposes the display locale is used by default. However, there should be a way to override this for a developer working wishing to test the app in a separate local from their testing. That probably means there is a debug display locale.
+When converting a value to a string for debug purposes the display locale is used by default. However, there should be a way to override this for a developer wishing to test the app in a separate locale from their testing. That probably means there is a debug display locale.
 
 ## Conventions
 

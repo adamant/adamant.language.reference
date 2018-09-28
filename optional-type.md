@@ -4,34 +4,32 @@ The optional type is used to indicate situations where a value may not be presen
 
 ## The `none` Value
 
-To express that an optional type has no value, use the `none` keyword. Note, the type of `none` is `never?`
+To express that an optional type has no value, use the `none` keyword. Note, the type of `none` is `never?` thus it can be assigned into any optional type.
 
 ## Conditioning on a Value
 
-**TODO:** Not sure the preferred way to do this. Listing options here.
+To conditionally operate on an optional value, use an `if let` expression. Other ways of checking for `none` are possible but not preferred.
 
 ```adamant
 let x: int? = ...;
 
+// Idiomatic way of checking for `none`
 if let y? = x
 {
     // y is the value of x
 }
 
+// Not Recommend
 match x
 {
     y? => ...,
     none => ...,
 }
 
+// Not Recommend
 if x =/= none
 {
-    // should work, but no good way to work with value of x
-}
-
-if x? // an "is none" operator
-{
-    // x is not none
+    // Can't directly use the value of `x` in this block
 }
 ```
 
@@ -41,7 +39,7 @@ The coalescing operator `??` allows for the replacement of `none` with another v
 
 ## Conditional Access
 
-**TODO:** should there be C# style `x?.y` and `x?[y]` operators or should that be implicit.
+Members of optional values can be accessed using the conditional access operator `x?.y`. This operator evaluates the left hand side. If the left hand side evaluates to `none`, then the right hand side is not evaluated and the result of the expression is `none`. Otherwise, the member is accessed and evaluated. Note that this is a short ciructing evaluation so that `x?.y.z()` would prevent the method `z` from being called if `x` were `none`, rather than simply evaluating `x?.y` to `none` and then attempting to call `z()` on it.
 
 ## Operator Lifting
 
@@ -49,13 +47,13 @@ Operators are lifted for optional types similar to how they are in C#.
 
 ## Optional Types Precedence
 
-The `Optional<T>` struct is immutable so `mut T?` must mean `Optional<mut T>`. But what does `ref V?` mean? Is it a reference to a variable of type `V?` or an option of a `ref V`? Phrased another way, is it `ref (V?)` or `(ref V)?` ?
+The optional type is immutable so `mut T?` must mean `(mut T)?`. But what does `ref V?` mean? Is it a reference to a variable of type `V?` or an option of a `ref V`? Phrased another way, is it `ref (V?)` or `(ref V)?` ?
 
 ```adamant
 let x1: int? = none;
 let y1 = ref x; // y: ref (int?)
 var x2: int? = none;
-let y2 = ref x2; // y: ref var (int?)
+let y2 = ref x2; // y2: ref var (int?)
 
 foo(x: ref x?) -> void
 {
@@ -70,26 +68,26 @@ foo(ref z) // requires (ref int)?
 
 Notice that certain implicit conversions are safe.
 
-| From                      | To                    |
-| ------------------------- | --------------------- |
-| `ref Optional<V>`         | `Optional<ref V>`     |
-| `ref Optional<mut v>`     | `Optional<ref mut V>` |
-| `ref var Optional<V>`     | not safe              |
-| `ref var Optional<mut V>` | not safe              |
+| From               | To             |
+| ------------------ | -------------- |
+| `ref (V?)`         | `(ref V)?`     |
+| `ref (mut V?)`     | `(ref mut V)?` |
+| `ref var (V?)`     | not safe       |
+| `ref var (mut V?)` | not safe       |
 
 Given that, it makes sense to interpret optional types to be of the second form. On the other hand, it seems much more likely you will want a reference to a variable of type `T?` than an optional reference to a variable of type `T`. So, `mut` and `ref` have higher precedence than optional, but optional has higher precedence than `ref var`.  Thus for value type `V` and reference type `R` the optional types have the following meanings.
 
-| Type             | Meaning                   |
-| ---------------- | ------------------------- |
-| `V?`             | `Optional<V>`             |
-| `mut V?`         | `Optional<mut V>`         |
-| `ref V?`         | `Optional<ref V>`         |
-| `ref mut V?`     | `Optional<ref mut V>`      |
-| `ref var V?`     | `ref var Optional<V>`     |
-| `ref var mut V?` | `ref var Optiona<mut V>`  |
-| `R?`             | `Optional<R>`             |
-| `mut R?`         | `Optional<mut R>`         |
-| `ref var R?`     | `ref var Optional<R>`     |
-| `ref var mut R?` | `ref var Optional<mut R>` |
+| Type             | Meaning            |
+| ---------------- | ------------------ |
+| `V?`             | `V?`               |
+| `mut V?`         | `(mut V)?`         |
+| `ref V?`         | `(ref V)?`         |
+| `ref mut V?`     | `(ref mut V)?`     |
+| `ref var V?`     | `ref var (V?)`     |
+| `ref var mut V?` | `ref var (mut V?)` |
+| `R?`             | `R?`               |
+| `mut R?`         | `(mut R)?`         |
+| `ref var R?`     | `ref var (R?)`     |
+| `ref var mut R?` | `ref var (mut R?)` |
 
-**TODO:** What would be the syntax for `Optional<ref var V>`?
+**TODO:** What would be the syntax for "`(ref var V)?`"?

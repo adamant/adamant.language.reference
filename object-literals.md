@@ -1,7 +1,7 @@
 # Object Literals
 
 ```adamant
-var foo = new :<base>:<interfaces>(<args...>)
+var foo = new : <base> <: <interfaces> (<args...>)
 {
     // constructor
     // Fields

@@ -12,18 +12,92 @@ This section gives a brief statement of the syntax for easy reference.
 
 ## Literals
 
-| Syntax         | Meaning          |
-| -------------- | ---------------- |
-| `true` `false` | Boolean Literals |
+| Syntax                   | Meaning                     |
+| ------------------------ | --------------------------- |
+| `true`, `false`          | Boolean Literals            |
+| `"Hello!"`               | String Literal              |
+| `""" Multiple lines """` | Multiline String Literal    |
+| `" Hello \(name)`        | Interpolated String Literal |
 
 ## Operators
 
-| Operator | Meaning                      |
-| -------- | ---------------------------- |
-| `x + y`  | Addition                     |
-| `^x`     | Dereference                  |
-| `x^.y`   | Deference and Access Member  |
-| `@x`     | Address Of (i.e. pointer to) |
+| Operator  | Meaning                        |
+| --------- | ------------------------------ |
+| `x + y`   | Addition                       |
+| `x - y`   | Subtraction                    |
+| `x * y`   | Multiplication                 |
+| `x / y`   | Division                       |
+| `^x`      | Dereference                    |
+| `x^.y`    | Deference and Access Member    |
+| `@x`      | Address Of (i.e. pointer to)   |
+| `x??y`    | Coalesce Operator}             |
+| `x?.y`    | Conditional Access Operator    |
+| `x and y` | Logical And (Short Circuiting) |
+| `x or y`  | Logical Or (Short Circuiting)  |
+| `x xor y` | Logical Xor                    |
+
+## Keywords
+
+| Keyword     | Meaning |
+| ----------- | ------- |
+| `if`        |         |
+| `else`      |
+| `match`     |
+| `let`       |         |
+| `var`       |         |
+| `ref`       |
+| `new`       |
+| `init`      |
+| `delete`    |
+| `mut`       |
+| `never`     |
+| `void`      |
+| `bool`      |
+| `true`      |
+| `false`     |
+| `string`    |
+| `int`       |
+| `uint`      |
+| `float`     |
+| `decimal`   |
+| `byte`      |
+| `size`      |
+| `offset`    |
+| `none`      |
+| `public`    |
+| `private`   |
+| `protected` |
+| `internal`  |
+| `safe`      |
+| `unsafe`    |
+| `struct`    |
+| `class`     |
+| `implicit`  |
+| `copy`      |
+| `move`      |
+| `operator`  |
+| `loop`      |
+| `while`     |
+| `foreach`   |
+| `in`        |
+| `break`     |
+| `next`      |
+| `self`      |
+| `base`      |
+| `Self`      |
+| `sizeof`    |
+| `no`        |
+| `throw`     |
+| `extend`    |
+| `partial`   |
+| `replace`   |
+| `alias`     |
+| `enum`      |
+| `return`    |
+| `yield`     |
+| `params`    |
+| `external`  |
+| `unchecked` |
 
 ## Types
 
@@ -33,7 +107,7 @@ This section gives a brief statement of the syntax for easy reference.
 | `Type[T, R]`                   | Generic parameters and compile time code execution |
 | `@T`                           | Non-null Pointer to `T`    (i.e. Address of `T`)   |
 | `@T?`                          | Nullable Pointer to `T`                            |
-| `@void` `@mut void`            | Void Pointers?                                     |
+| `@void`, `@mut void`           | Void Pointers?                                     |
 | `(Type1, Type2) -> ReturnType` | Function Type                                      |
 
 ## Expressions
@@ -55,6 +129,7 @@ This section gives a brief statement of the syntax for easy reference.
 
 ## Preprocessor
 
-| Syntax | Meaning |
-| ------ | ------- |
-| `##if` |         |
+| Syntax       | Meaning |
+| ------------ | ------- |
+| `##if`       |         |
+| `##define X` |         |

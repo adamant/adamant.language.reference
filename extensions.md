@@ -3,7 +3,7 @@
 A class can be extended with additional traits and methods using an extension. To use an extension, you must use the namespace it is declared in.
 
 ```adamant
-public extend Class::Trait
+public extend class Class <: Trait
 {
 }
 ```

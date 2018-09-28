@@ -1,6 +1,7 @@
 # The Adamant Programming Language Reference
 
 * [Introduction](introduction.md)
+* [Target](target.md)
 * [Implementation Road Map](roadmap.md)
 * [Variable Bindings](variable-bindings.md)
 * [Functions](functions.md)
@@ -8,8 +9,12 @@
 * [Primitive Types](primitive-types.md)
   * [Basic Types](basic-types.md)
   * [Optional Type](optional-type.md)
+* [Standard Types](standard-types.md)
+  * [User Defined Literals](user-defined-literals.md)
+  * [Text Types](text-types.md)
+  * [Composite Initializers](composite-initializers.md)
   * [Tuples](tuples.md)
-  * [Special Types](special-types.md)
+  * [Raw Array](raw-array.md)
 * [Comments](comments.md)
 * [Choice](choice.md)
 * [Loops](loops.md)
@@ -60,6 +65,7 @@
 * Advanced Features
   * [Preprocessor](preprocessor.md)
   * [Unsafe](unsafe.md)
+  * [Class Value Types](class-value-types.md)
   * [Raw Pointers](raw-pointers.md)
   * [Raw Memory Allocation](raw-allocation.md)
   * [External](external.md)

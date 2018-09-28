@@ -51,9 +51,11 @@ For more information see [Exceptions](exceptions.md).
 
 In many languages there is a distinction between an interface or trait that has no implementation and a class which can have implementation. Adamant doesn't have separate interfaces. Instead, any class can implement the implicitly defined interface of another class. In a class declaration, the base class appears after the first colon and classes whose interface is being implemented appear after the second colon.
 
-    public class MyClass: BaseClass : ClassAsInterface1, ClassAsInterface2
-    {
-    }
+```adamant
+public class MyClass: BaseClass <: ClassAsInterface1, ClassAsInterface2
+{
+}
+```
 
 This simplifies the type hierarchy and eliminates the practice often needed in C# and Java of defining a matching interface for most classes. The feature also necessitates several of Adamant's other unique features. Members declared private are accessible only from the same instance, not by other instances of the same class. Public fields can be overridden by properties in subclasses, so there is no need to declare properties for every field. For more information see [Interfaces](traits.md).
 
@@ -96,8 +98,8 @@ This section lists features Adamant shares with other languages that are less co
 * Type Inference on Local variable declarations
 * Diverging Functions
 * A Specific Infinite Loop Keyword
-* All `for` loops are iterator based
-* Iterator performance often optimizes down to a C style for loops
+* All for loops are iterator based
+* Iterator performance often optimizes down to a C style for loop
 * Operator Overloading
 * Object Literals - allows creation of single instance of anonymous type
 * Classes can be extended with additional methods in separate libraries
