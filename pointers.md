@@ -1,4 +1,4 @@
-# Raw Pointers
+# Pointers
 
 Classes declare reference types whose values are always stored and passed by reference. Sometimes, more low level control is needed of references. For this purpose, raw pointers can be used. Raw pointers are very similar to pointers in languages like C, C++ and Rust. Many operations on pointers are inherently dangerous and require an unsafe context.
 
