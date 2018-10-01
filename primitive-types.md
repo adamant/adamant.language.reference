@@ -5,6 +5,7 @@ The *primitive types* are those types that exist as part of the language. They a
 There are two kinds of primitive types. The *basic types* are keywords of the language.<sup>1</sup> Basic types make up the majority of the primitive types. In addition to the basic types, there is the optional type which is a *built-in type* with special syntax.
 
 * [Basic Types](basic-types.md)
+* [Tuples](tuples.md)
 * [Optional Type](optional-type.md)
 
 1: see [Wikipedia: Primitive data type](https://en.wikipedia.org/wiki/Primitive_data_type) for the term "basic type"

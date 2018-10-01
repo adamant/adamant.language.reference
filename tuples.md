@@ -1,6 +1,6 @@
 # Tuples
 
-The `Tuple[T...]` type is declared in the standard library. A tuple is an ordered list of values that can be of different types. Tuples can be constructed using the [tuple initializer](composite-initializers.md) syntax.
+The `Tuple[T...]` type is also a basic keyword type. A tuple is an ordered list of values that can be of different types. Tuples can be constructed using the [tuple initializer](composite-initializers.md) syntax.
 
 ```adamant
 let t = #(1, "something"); // t: Tuple[int, string]
