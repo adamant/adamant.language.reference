@@ -33,7 +33,7 @@ This all effectively makes lifetimes a property or field that a reference has th
 
 ### Review of References in C# and Java
 
-Recall that in C# and Java, most types are reference types. However, the programmer doesn't think of and keep track of references as such. For example, when declaring a variable `Test t = ...;` the developer is aware that `t` is actually a reference to an object of type `Test`, but generally thinks of `t` as simply being a `Test` object. The existence of the reference fades into the background and os not the focus. This is very different from Rust where value types are the default and references must be explicitly declared for parameters and created using the `& operator.
+Recall that in C# and Java, most types are reference types. However, the programmer doesn't think of and keep track of references as such. For example, when declaring a variable `Test t = ...;` the developer is aware that `t` is actually a reference to an object of type `Test`, but generally thinks of `t` as simply being a `Test` object. The existence of the reference fades into the background and is not the focus. This is very different from Rust where value types are the default and references must be explicitly declared for parameters and created using the `& operator.
 
 ### Lifetimes in Adamant
 
