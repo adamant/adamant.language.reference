@@ -4,18 +4,19 @@
 
 The following naming conventions are enforced by compiler warnings.
 
-| Item                | Convention                              |
-| ------------------- | --------------------------------------- |
-| Packages            | `dotted.camelCase`                      |
-| Namespaces          | plural `camelCase`                      |
-| Types               | `Pascal_Case_With_Underscores`          |
-| Type Parameters     | concise* `Pascal_Case_With_Underscores` |
-| Functions           | `snake_case()`                          |
-| Divergent Functions | `ALL_CAPS()`                            |
-| Local variables     | `snake_case`                            |
-| Fields              | `snake_case`                            |
-| Constants           | `PascalCase`**                          |
-| Global variables    | `ALL_CAPS`                              |
+| Item                        | Convention                              |
+| --------------------------- | --------------------------------------- |
+| Packages                    | `dotted.camelCase`                      |
+| Namespaces                  | plural `camelCase`                      |
+| Types (except copy structs) | `Pascal_Case_With_Underscores`          |
+| Copy Structs                | `snake_case`                            |
+| Type Parameters             | concise* `Pascal_Case_With_Underscores` |
+| Functions                   | `snake_case()`                          |
+| Divergent Functions         | `ALL_CAPS()`                            |
+| Local variables             | `snake_case`                            |
+| Fields                      | `snake_case`                            |
+| Constants                   | `PascalCase`**                          |
+| Global variables            | `ALL_CAPS`                              |
 \* usually single uppercase letter: `T`<br>
 \*\* Acronyms are capitalized and run together: `ScreenDPIToPrint`
 
