@@ -35,6 +35,10 @@ This section gives a brief statement of the syntax for easy reference.
 | `x and y` | Logical And (Short Circuiting) |
 | `x or y`  | Logical Or (Short Circuiting)  |
 | `x xor y` | Logical Xor                    |
+| `x..y`    | Inclusive Range                |
+| `x..<y`   | Range Exclusive of End         |
+| `x<..y`   | Range Exclusive of Start       |
+| `x<..<y`  | Exclusive Range                |
 
 ## Keywords
 

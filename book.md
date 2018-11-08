@@ -2,7 +2,6 @@
 
 * [Introduction](introduction.md)
 * [Target](target.md)
-* [Implementation Road Map](roadmap.md)
 * [Variable Bindings](variable-bindings.md)
 * [Functions](functions.md)
   * [Anonymous Functions](anonymous-functions.md)
@@ -87,3 +86,29 @@
   * [Considering](ideas-considering.md)
   * [Rejected](ideas-rejected.md)
 * [Glossary](glossary.md)
+
+---
+
+Proposed New Document Structure
+
+* Introduction
+* Lexical Structure
+* Prepocessor
+* Basic Concepts
+* Types
+* Expressions
+  * Choice
+  * Loop
+* Statements
+* Namespaces
+* Class Declarations
+* Struct Declarations
+* Type Declarations
+* Enum Class Declarations
+* Enum Struct Declarations
+* Generics
+* Exceptions
+* Attributes
+* Unsafe Code
+* Standard Library
+* Conventions
