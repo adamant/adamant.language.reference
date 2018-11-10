@@ -28,7 +28,7 @@ namespace ::anotherRoot
 
 ## Declaration Visibility
 
-Namespaces are searched from inside out for a name. If a name in a nested package is visible outside that package (i.e. it is public or published), they it is in scope inside that namespace and all namespaces nested inside it. This means that all declarations will be visible in the global namespace. If an identifer corresponds to multiple identifiers when viewed from a given namespace, then references to it are ambiguous and must be disambiguated either by overloading, or by a using statement.
+Namespaces are searched from inside out for a name. If a matching declaration is found in the namespace, then resolution stops. Otherwise, declarations in nested namespaces visible from the current code are searched. All declarations in nested namespaces are considered together so that declarations in two different sub-namespaces could cause ambiguity. Then the containing namespace of the namespace currently being searched is checked. This means that all declarations will be visible in the global namespace. If a declaration with the same name whose type doesn't match the usage is found, name resolution continues to search.
 
 ## Using Directives
 
@@ -49,7 +49,25 @@ namespace example1
 
 namespace example2
 {
-    using system.collections; // Without this, references to List[T] would search up to the global namespace and be ambigious.
+    using system.collections; // Without this, references to List[T] would search up to the global namespace and be ambiguous.
     using example1.Foo[int]; // This makes `Bar() -> int` visible.
 }
 ```
+
+Using directives pull in names for the given namespace from all packages. If needed, the name can be disambiguated using a package qualifier.
+
+```adamant
+using ::example; // Only members of the example namespace in the current package.
+using system.collections::system.collections.specialized; // Only members of the system.collections.specialized namespace in the `system.collections` package.
+```
+
+## Summary of Name Resolution
+
+Name resolution searches until it finds a matching declaration. If a given scope has multiple matching declarations, then name resolution fails and an ambiguous reference error is reported. Scopes are searched recursively in the following order:
+
+1. The current declaration
+2. Declarations the current declaration is nested inside
+3. For each containing namespace from inside out
+    1. Using directives
+    2. Declarations in the namespace
+    3. Declarations in nested namespaces that are visible from the current declaration
