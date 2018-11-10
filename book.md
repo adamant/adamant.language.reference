@@ -26,7 +26,7 @@
   * [Summary of Ownership](ownership-summary.md)
   * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
-* Namespaces
+* [Namespaces](namespaces.md)
 * [Access Modifiers](access-modifiers.md)
 * Classes
   * [Fields](fields.md)
