@@ -76,3 +76,81 @@ Here we compute with type parameters.
     }
 
 Then with inlining and constant folding `let x = Factorial[10];` could be evaluated at compile time.
+
+## Computing Types
+
+Types can be computed at compile time. For example, given a type `Array[n: size, T]` one can declare a variable like so:
+
+```adamant
+let x = new Array[5.power(2), int]();
+for i in 0..5.power(2)
+{
+    x[i] = i;
+}
+```
+
+However, in such cases, the arguments need to be constant expressions. But, a generic argument should itself be considered to be known at compile time. So could it be used as well?
+
+```adamant
+public fn matrix[n: size]() -> Array[n.power(2), int]
+{
+    return new Array[n.power(2), int]();
+}
+```
+
+This seems like it could easily lead to issues. What if the two expressions differed in some inconsequential way? For example what if one used `3-1` in place of the power `2`? Even though only pure functions are allowed it isn't obvious that the same value is being used twice. I think it makes sense to restrict them to use a shared calculation. This could be done with a special from of where.
+
+```adamant
+public fn matrix[n: size]() -> Array[n2, int]
+    where let n2: size = n.power(2)
+{
+    return new Array[n2, int]();
+}
+```
+
+It is now straight forward to type check this function without any code evaluation. Conceptually, the same thing could come up for non-generic functions.
+
+```adamant
+public fn matrix() -> Array[n, int]
+    where let n: size = 5.power(2)
+{
+    return new Array[n, int]();
+}
+```
+
+The compiler would thus treat each constant expression in a type position as a separate type. If one wanted to use the same type in multiple places, one would need to use a `where let` clause. Of course, defining which kinds of expressions require this could be awkward.
+
+Compare https://github.com/rust-lang/rfcs/blob/master/text/2000-const-generics.md
+
+There is also the issue of what one can know about the result of a function evaluating to a type.
+
+```adamant
+public fn make_array(n: size) -> Array[T]
+    where T = compute_type()
+{
+    return (1..size).select(fn i => T.default()).to_array();
+}
+
+// TODO how to make promises about the type returned?
+public fn compute_type() -> type
+    ensures return <: Default
+    // or does it need some form of `where let`?
+{
+    // ...
+}
+
+public trait Default
+{
+    public fn default() -> Self;
+}
+```
+
+This same mechanism can be used to implement specialization. Assuming generics can only be overloaded on number of parameters then a `List[T]` could be specialized like so:
+
+```adamant
+public class List[T] <: List[T]
+    where let T = bool
+{
+    // special implementation
+}
+```
