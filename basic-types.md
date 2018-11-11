@@ -59,6 +59,8 @@ The type never is a type with no values. It is used to indicate that a function 
 
 The type void is a type used to indicate that something logically has no value. It is similar to the unit type in functional programming. However, the Adamant language enforces that an expression of type `void` can't be assigned into anything. The exception to this is when a generic parameter is passed the `void` type leading to an assignment from `void` to `void`. While functions may not have parameters of type `void`, if a parameter of generic type ends up with the type `void` it is dropped from the parameter list.
 
+However, in other respects, `void` acts like a top type. If a base class function returns `void` then it can be overridden with a function returning any type.
+
 ## Numeric Types
 
 Numeric types follow the pattern of a type name followed by an integer number of bits. The exception being that certain default sizes omit the bit length. The language requires that certain sizes be supported, but all sizes are reserved words for future use or compiler specific extensions.
@@ -129,3 +131,17 @@ Does a C# checked context throw for loss of fractional digits? I don't think it 
 The concern is that decimal still doesn't form a good representation for money because loss of sig figs still isn't checked?
 
 **TODO:** What about a [Logarithmic number system](https://en.wikipedia.org/wiki/Logarithmic_number_system)?
+
+## `any`
+
+A variable of the type `any` can have any reference or value type placed in it.
+
+**TODO:** Can we say `any` supports function types too?
+
+Additionally, `@any` can be assigned from any pointer type.
+
+**TODO:** Can `@x` where `x` is of a reference type return a value of type `@any` so we can compare reference equality?
+
+## Types
+
+`type` and `metatype` can these be pseudo references so the programmer doesn't need to worry about them? What about constructing generic types? If they are reference types, should the be capitalized?
