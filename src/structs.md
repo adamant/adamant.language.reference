@@ -1,4 +1,4 @@
-# Struct Declarations
+# Structs
 
 Structs are similar to classes. They contain field and function members. Unlike classes, structs are value types and are allocated on the stack instead of the heap by default. A variable with a struct type directly contains the data of the struct. A variable of a class type contains a reference to the object which contains the data.
 

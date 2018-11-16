@@ -14,18 +14,21 @@ Note: This is the new version of the reference. Sections are being moved from th
 7. Statements
 8. Namespaces
 9. Functions
-10. Class Declarations
-11. [Struct Declarations](struct-declarations.md)
+10. Classes
+11. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
-12. Type Declarations
-13. Enum Class Declarations
-14. Enum Struct Declarations
-15. Generics
-16. Exceptions
-17. Attributes
-18. Patterns
-19. Unsafe Code
-20. Documentation Comments
-21. Standard Library
-22. Conventions
+12. Traits
+13. [Enumerations](enumerations.md)
+    * Enumeration Structs
+    * Enumeration Classes
+14. Generics
+15. Exceptions
+16. Attributes
+17. Patterns
+18. Unsafe Code
+19. Documentation Comments
+20. Standard Library
+21. Conventions
+
+[Appendix: Ideas](ideas.md)

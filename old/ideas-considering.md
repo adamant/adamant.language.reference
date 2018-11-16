@@ -155,10 +155,6 @@ Java style wild card types could be done using underscore.  For example, `List<_
 
 Use square brackets instead of angle brackets for generics, but then allow other values etc. These are conceptually evaluated at compile like the same way as templates. Allow meta functions with only compile time arguments which are then guaranteed to be executed at compile time. Const expressions could be done as some form of this as `const[foo]`.
 
-## Comparison Chaining
-
-Make `a < b < c` legal. This would also allow `a < b > c` which seems confusing. Perhaps there should be rules that the direction of comparisons can't change in a chain. So `a < b <= c` and `a > b >= c` are legal but `a < b >= c` and `a > b <= c` aren't. An equal would be allowed in the middle: `a < b == c < d`. What about not equal? That seems confusing. What does `a < b =/= c < d` mean?
-
 ## All Statements are Expressions of Type `never`
 
 The `never` type is a true, first class type. There are already `if`, `match` and loop expressions. This could be expanded to that everything that is a statement can be used as an expression returning some variant of `never`. Note that type `never?` signifies that the value will always be `none` since there are no values of type `never`
