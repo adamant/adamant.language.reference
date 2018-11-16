@@ -2,7 +2,9 @@
 
 Will be a complete, though informal, reference to the entire Adamant language.
 
-Browse the [Table of Contents](book.md).
+Browse the [Table of Contents](src/book.md).
+
+Note: The [Old Version](old/book.md) is still available while its sections are being moved over. If something is missing from the new version, it may be in the old version.
 
 ## Influences
 
