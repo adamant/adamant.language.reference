@@ -4,18 +4,20 @@ Note: This is the new version of the reference. Sections are being moved from th
 
 1. Introduction
 2. Lexical Structure
-   * Preprocessor
+    * Preprocessor
 3. Basic Concepts
 4. Types
 5. Conversions
 6. Expressions
-   * Choice
-   * Loop
+    * Choice
+    * Loop
 7. Statements
 8. Namespaces
 9. Functions
 10. Class Declarations
 11. [Struct Declarations](struct-declarations.md)
+    * [Struct Initializers](struct-initializers.md)
+    * [Struct Constructors](struct-constructors.md)
 12. Type Declarations
 13. Enum Class Declarations
 14. Enum Struct Declarations
