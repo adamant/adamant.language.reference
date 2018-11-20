@@ -5,12 +5,19 @@ Note: This is the new version of the reference. Sections are being moved from th
 1. Introduction
 2. Lexical Structure
     * Preprocessor
+    * [Reserved Words](reserved-words.md)
 3. Basic Concepts
 4. Types
+    * Simple Types
+    * Optional Types
+    * Tuple Types
 5. Conversions
 6. Expressions
     * Choice
     * Loop
+    * Operators
+      * Logical Operators
+    * Bitwise Operations
 7. Statements
 8. Namespaces
 9. Functions

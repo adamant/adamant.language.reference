@@ -62,7 +62,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Casting with `as`](casting.md)
 * [Escaped Identifiers](escaped-identifiers.md)
 * [Package Qualifier](package-qualifier.md)
-* [Reserved Words](reserved-words.md)
+* Reserved Words
 * Advanced Features
   * [Preprocessor](preprocessor.md)
   * [Unsafe](unsafe.md)
