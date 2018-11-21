@@ -8,6 +8,8 @@ simple_type
     | "bool"
     | "never"
     | "void"
+    | "type"
+    | "metatype"
     ;
 
 numeric_type
@@ -70,3 +72,11 @@ The type "`never`" is a type with no values. It is used to indicate that a funct
 The type "`void`" is a type used to indicate that something logically has no value. It is similar to the unit type in functional programming. However, the Adamant language enforces that an expression of type "`void`" can't be assigned into anything. However, when a type parameter is passed the "`void`" type this can create assignments from "`void`" to "`void`" which are not an error. Functions may not have parameters of type "`void`". However, if "`void`" is passed as a type parameter used as the type of a function parameter, that parameter is dropped from the parameter list.
 
 For purposes of covariance and contravariance, "`void`" acts like a top type. For example, if a base class function returns "`void`" then it can be overridden with a function returning any type.
+
+### `type` Type
+
+The type "`type`" is the type of all objects that represent types during reflection and in generics. The default type of a generic parameter is "`type`" (thus "`foo[T]`" and "`foo[T: type]` are equivalent). Any generic parameter with this type is referred to as a "type parameter". Note that "`type`" is a value type. If necessary, it will use reference counting behind the scenes. This simplifies issues of lifetimes around type parameters.
+
+### `metatype` type
+
+The type "`metatype`" is a subtype of "`type`". Objects representing the type of classes and structs have a type that is a subtype of "`metatype`". When calling associated functions as "`Example.function()`", the expression "`Example`" has a subtype of "`metatype`". Metatypes describe the associated functions and constructors on the type object.

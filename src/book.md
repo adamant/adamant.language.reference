@@ -12,6 +12,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Member Access](member-access.md)
 4. [Types](types.md)
     * [Simple Types](simple-types.md)
+    * [Reference Types](reference-types.md)
     * [Optional Types](optional-types.md)
     * Tuple Types
 5. Conversions

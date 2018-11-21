@@ -8,7 +8,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Functions](functions.md)
   * [Anonymous Functions](anonymous-functions.md)
 * Primitive Types
-  * [Basic Types](basic-types.md)
+  * Basic Types
   * [Tuples](tuples.md)
   * Optional Types
 * Standard Types
@@ -66,7 +66,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Advanced Features
   * Preprocessor
   * [Unsafe](unsafe.md)
-  * [Class Value Types](class-value-types.md)
+  * Class Value Types
   * [Pointers](pointers.md)
   * [Memory Allocation](memory-allocation.md)
   * [External](external.md)
