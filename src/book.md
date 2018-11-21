@@ -19,7 +19,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 6. [Expressions](expressions.md)
     * [Expression Blocks](expression-blocks.md)
     * [Choice Expressions](choice-expressions.md)
-    * Loop Expressions
+    * [Loop Expressions](loop-expressions.md)
     * Operators
       * Logical Operators
     * Bitwise Operations
@@ -42,6 +42,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 19. [Documentation Comments](documentation-comments.md)
 20. Standard Library
     * [Global Namespace](std-lib-global-namespace.md)
+    * [`system` Namespace](system.md)
     * [`system.collections.specialized` Namespace](system.collections.specialized.md)
     * [`system.math` Namespace](system.math.md)
     * [`system.text` Namespace](system.text.md)

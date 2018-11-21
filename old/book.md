@@ -18,7 +18,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * Raw Array
 * Comments
 * Choice
-* [Loops](loops.md)
+* Loops
 * [Ownership](ownership.md)
   * [Reference Types and Borrowing](reference-types.md)
   * [Value Types and Copy](value-types.md)
