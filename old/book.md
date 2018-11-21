@@ -13,7 +13,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * Optional Types
 * Standard Types
   * User Defined Literals
-  * [Text Types](text-types.md)
+  * Text Types
   * [Composite Initializers](composite-initializers.md)
   * [Raw Array](raw-array.md)
 * Comments
