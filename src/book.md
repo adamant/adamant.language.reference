@@ -42,6 +42,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 19. [Documentation Comments](documentation-comments.md)
 20. Standard Library
     * [Global Namespace](std-lib-global-namespace.md)
+    * [`system.collections.specialized` Namespace](system.collections.specialized.md)
     * [`system.math` Namespace](system.math.md)
     * [`system.text` Namespace](system.text.md)
 21. Conventions

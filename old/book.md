@@ -15,7 +15,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * User Defined Literals
   * Text Types
   * [Composite Initializers](composite-initializers.md)
-  * [Raw Array](raw-array.md)
+  * Raw Array
 * Comments
 * Choice
 * [Loops](loops.md)
