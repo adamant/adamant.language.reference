@@ -10,19 +10,20 @@ This references presents the syntax of Adamant using two grammars. The *lexical 
 
 ### Grammar Notation
 
-The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The grammars in this reference are not formal and may be ambiguous or have a structure which is not supported by certain parsing algorithms. Ambiguity in the grammar may be resolved by additional restrictions stated alongside the grammar. The notation used is summarized in the table below.
+The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The grammars in this reference are not formal and may be ambiguous or have a structure which is not supported by certain parsing algorithms. Ambiguity in the grammar may be resolved by additional restrictions stated alongside the grammar. The notation used is summarized in the table below. When matching, the matching strings, the longest match is taken
 
 | Syntax                        | Meaning                                         |
 | ----------------------------- | ----------------------------------------------- |
 | *name*                        | A nonterminal                                   |
 | *name* `:` *expression* `;`   | A derivation rule for the nonterminal *name*    |
 | *expression* `|` *expression* | Unordered choice                                |
-| *expression*`*`               | Expression repeated zero or more times.         |
-| *expression*`+`               | Expression repeated one or more times.          |
-| *expression*`?`               | Expression is optional.                         |
-| `(`*expression*`)`            | Expression order of operations.                 |
-| "*literal*"                   | Matches a literal string.                       |
-| '*regex*'                     | Matches strings matching the regular expression |
+| *expression*`*`               | Expression repeated zero or more times          |
+| *expression*`+`               | Expression repeated one or more times           |
+| *expression*`?`               | Expression is optional                          |
+| `(`*expression*`)`            | Expression order of operations                  |
+| `"`*literal*`"`               | Matches a literal string                        |
+| `'`*regex*`'`                 | Matches strings matching the regular expression |
+| `<`*description*`>`           | Matches a string according to the description   |
 | `//` *comment* *eol*          | A line comment                                  |
 | `/*` *comment* `*/`           | A multi-line comment                            |
 
@@ -40,9 +41,9 @@ input_element
     ;
 ```
 
-### Whitespace
+For comments, see [Comments](comments.md).
 
-### Comments
+### Whitespace
 
 ### Tokens
 

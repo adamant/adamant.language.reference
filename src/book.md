@@ -4,6 +4,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 
 1. Introduction
 2. [Lexical Structure](lexical-structure.md)
+    * [Comments](comments.md)
     * [Identifiers](identifiers.md)
     * [Reserved Words](reserved-words.md)
 3. Basic Concepts
@@ -34,7 +35,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 16. Attributes
 17. Patterns
 18. Unsafe Code
-19. Documentation Comments
+19. [Documentation Comments](documentation-comments.md)
 20. Standard Library
     * [`system.math` Namespace](system.math.md)
 21. Conventions

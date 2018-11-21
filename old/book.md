@@ -16,7 +16,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Text Types](text-types.md)
   * [Composite Initializers](composite-initializers.md)
   * [Raw Array](raw-array.md)
-* [Comments](comments.md)
+* Comments
 * [Choice](choice.md)
 * [Loops](loops.md)
 * [Ownership](ownership.md)

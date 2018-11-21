@@ -6,6 +6,7 @@ Sections:
 
 * [Operators](#operators)
 * [Preprocessor](#preprocessor)
+* [Documentation Comments](#documentation-comments)
 
 ## Operators
 
@@ -53,3 +54,13 @@ C# offers a preprocessor which doesn't suffer from the issues of the C/C++ prepr
 * `##line`
 * `##region`
 * `##endregion`
+
+## Documentation Comments
+
+## Extended Markdown
+
+Currently, documentation only supports a subset of [CommonMark](https://commonmark.org/). Ideally, it should support a much wider of range syntax, something like [Markua](http://markua.com/).
+
+## Compile Code in Documentation Comments
+
+Code in documentation comments should either be compiled, or have a way of causing it to be compiled.
