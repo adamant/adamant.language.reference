@@ -14,7 +14,13 @@ numeric_type
     : integral_type
     | floating_point_type
     ;
+```
 
+### Integral Types
+
+The integral types provide signed and unsigned integers of various sizes. The "`int`" and "`uint`" types are each 32 bits.
+
+```grammar
 integral_type
     : "int8"
     | "byte"
@@ -27,16 +33,7 @@ integral_type
     | "size"
     | "offset"
     ;
-
-floating_point_type
-    : "float32"
-    | "float"
-    ;
 ```
-
-### Integral Types
-
-The integral types provide signed and unsigned integers of various sizes. The "`int`" and "`uint`" types are each 32 bits.
 
 #### "`size`" and "`offset`" Types
 
@@ -48,6 +45,13 @@ The bit sizes of these are system dependent. "`size`" is an unsigned number larg
 ### Floating Point Types
 
 The types "`float32`" and "`float`" are floating-point types represented as IEEE 754 32-bit and 64-bit values.
+
+```grammar
+floating_point_type
+    : "float32"
+    | "float"
+    ;
+```
 
 Floating point operations never cause abandonment. In exceptional situations, they produce zero, positive or negative infinity or not a number (NaN). Floating point operations may be performed with higher precision than the result type of the operation. Some hardware architectures support higher precision operations and implicitly perform all floating-point operations using this higher precision type. Only with a performance impact can they be made to perform floating point operations with lower precision. This rarely has an impact on the results of a numeric calculation. However in expressions like "`x * y / z`" where the multiplication produces results outside the floating point range and the division brings the temporary result back in range, the higher precision may cause a finite result to be produced rather than infinity.
 

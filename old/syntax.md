@@ -40,69 +40,6 @@ This section gives a brief statement of the syntax for easy reference.
 | `x<..y`   | Range Exclusive of Start       |
 | `x<..<y`  | Exclusive Range                |
 
-## Keywords
-
-| Keyword     | Meaning |
-| ----------- | ------- |
-| `if`        |         |
-| `else`      |
-| `match`     |
-| `let`       |         |
-| `var`       |         |
-| `ref`       |
-| `new`       |
-| `init`      |
-| `delete`    |
-| `mut`       |
-| `never`     |
-| `void`      |
-| `bool`      |
-| `true`      |
-| `false`     |
-| `string`    |
-| `int`       |
-| `uint`      |
-| `float`     |
-| `decimal`   |
-| `byte`      |
-| `size`      |
-| `offset`    |
-| `none`      |
-| `public`    |
-| `private`   |
-| `protected` |
-| `internal`  |
-| `safe`      |
-| `unsafe`    |
-| `struct`    |
-| `class`     |
-| `implicit`  |
-| `copy`      |
-| `move`      |
-| `operator`  |
-| `loop`      |
-| `while`     |
-| `foreach`   |
-| `in`        |
-| `break`     |
-| `next`      |
-| `self`      |
-| `base`      |
-| `Self`      |
-| `sizeof`    |
-| `no`        |
-| `throw`     |
-| `extend`    |
-| `partial`   |
-| `replace`   |
-| `alias`     |
-| `enum`      |
-| `return`    |
-| `yield`     |
-| `params`    |
-| `external`  |
-| `unchecked` |
-
 ## Types
 
 | Syntax                         | Meaning                                            |
@@ -130,10 +67,3 @@ This section gives a brief statement of the syntax for easy reference.
 | Syntax                 | Meaning |
 | ---------------------- | ------- |
 | `#Attribute public...` |         |
-
-## Preprocessor
-
-| Syntax       | Meaning |
-| ------------ | ------- |
-| `##if`       |         |
-| `##define X` |         |

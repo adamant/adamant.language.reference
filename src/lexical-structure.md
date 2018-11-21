@@ -38,7 +38,8 @@ input
     ;
 
 input_element
-    : whitespace
+    : new_line
+    | whitespace
     | comment
     | token
     ;
@@ -46,8 +47,126 @@ input_element
 
 For comments, see [Comments](comments.md).
 
+### Line Terminators
+
+```grammar
+new_line
+    : <Carriage return character (U+000D)>
+    | <Line feed character (U+000A)>
+    | <Carriage return character (U+000D) followed by line feed character (U+000A)>
+    | <Next line character (U+0085)>
+    | <Line separator character (U+2028)>
+    | <Paragraph separator character (U+2029)>
+    ;
+```
+
 ### Whitespace
 
+```grammar
+whitespace
+    : <Any character with Unicode class Zs>
+    | <Horizontal tab character (U+0009)>
+    | <Vertical tab character (U+000B)>
+    | <Form feed character (U+000C)>
+    ;
+```
+
 ### Tokens
+
+```grammar
+token
+    : identifier
+    | keyword
+    | integer_literal
+    | real_literal
+    | user_literal
+    | string_literal
+    | interpolated_string_literal
+    | operator_or_punctuator
+    ;
+```
+
+### Keywords
+
+```grammar
+keyword
+    :
+    | "abstract"
+    | "and"
+    | "as"
+    | "base"
+    | "bool"
+    | "break"
+    | "byte"
+    | "class"
+    | "const"
+    | "copy"
+    | "delete"
+    | "else"
+    | "ensures"
+    | "enum"
+    | "explicit"
+    | "false"
+    | "float"
+    | "float32"
+    | "fn"
+    | "foreach"
+    | "get"
+    | "if"
+    | "implicit"
+    | "in"
+    | "init"
+    | "int"
+    | "int8"
+    | "int16"
+    | "int64"
+    | "invariant"
+    | "let"
+    | "loop"
+    | "match"
+    | "may"
+    | "metatype"
+    | "move"
+    | "mut"
+    | "namespace"
+    | "new"
+    | "never"
+    | "next"
+    | "no"
+    | "none"
+    | "not"
+    | "offset"
+    | "operator"
+    | "or"
+    | "override"
+    | "owned"
+    | "params"
+    | "protected"
+    | "public"
+    | "published"
+    | "ref"
+    | "return"
+    | "requires"
+    | "safe"
+    | "self"
+    | "Self"
+    | "set"
+    | "size"
+    | "struct"
+    | "throw"
+    | "true"
+    | "type"
+    | "uint"
+    | "uint16"
+    | "uint64"
+    | "uninitialized"
+    | "unsafe"
+    | "using"
+    | "var"
+    | "void"
+    | "where"
+    | "while"
+    ;
+```
 
 ## Syntactic grammar
