@@ -29,7 +29,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
 * Namespaces and Using Directives
-* [Access Modifiers](access-modifiers.md)
+* Access Modifiers
 * Classes
   * [Fields](fields.md)
   * Methods (including `open`)

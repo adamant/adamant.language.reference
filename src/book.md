@@ -8,6 +8,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Identifiers](identifiers.md)
     * [Reserved Words](reserved-words.md)
 3. Basic Concepts
+    * [Member Access](member-access.md)
 4. [Types](types.md)
     * [Simple Types](simple-types.md)
     * [Optional Types](optional-types.md)
@@ -21,7 +22,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Bitwise Operations
 7. Statements
 8. [Namespaces and Using Directives](namespaces-and-usings.md)
-9. Functions
+9.  Functions
 10. Classes
 11. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
