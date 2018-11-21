@@ -14,13 +14,14 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Optional Types](optional-types.md)
     * Tuple Types
 5. Conversions
-6. Expressions
-    * Choice
-    * Loop
+6. [Expressions](expressions.md)
+    * [Expression Blocks](expression-blocks.md)
+    * [Choice Expressions](choice-expressions.md)
+    * Loop Expressions
     * Operators
       * Logical Operators
     * Bitwise Operations
-7. Statements
+7. [Statements](statements.md)
 8. [Namespaces and Using Directives](namespaces-and-usings.md)
 9. Functions
 10. Classes

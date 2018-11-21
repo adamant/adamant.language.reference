@@ -17,7 +17,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Composite Initializers](composite-initializers.md)
   * [Raw Array](raw-array.md)
 * Comments
-* [Choice](choice.md)
+* Choice
 * [Loops](loops.md)
 * [Ownership](ownership.md)
   * [Reference Types and Borrowing](reference-types.md)
