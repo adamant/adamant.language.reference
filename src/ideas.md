@@ -9,6 +9,7 @@ Sections:
 * [Documentation Comments](#documentation-comments)
 * [Expressions](#expressions)
 * [Types](#types)
+* [Named Parameters](#named-parameters)
 
 ## Operators
 
@@ -111,8 +112,41 @@ Note: this is different from the python style loop else construct which runs as 
 
 Note: Alternatively, a different keyword or group of keywords could be used for loop else. Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.
 
+### Change Block Delimiters
+
+The curly braces use up lines when declaring blocks. However, using only indention is problematic and doesn't allow for good auto formatting. Consider alternate block delimiters. Possibly use "`--`" to end a block. However, a block start is also needed to separate the condition of an if expression from the block unless parens are going to be required around the condition again. There is also a problem determining when a function signature ends and the body begins (consider requires clauses etc).
+
+```adamant
+public fn function()
+    if(condition)
+        statement1;
+        statement2;
+    --
+--
+```
+
+```adamant
+public fn function()    {
+    if condition    {
+        statement1;
+        statement2; }   }
+```
+
+### `set` Expressions/Statements
+
+Instead of allowing assignment expressions anywhere. Use a set expression "`set x = 5`". This makes a set as long as a redeclaration with "`let`". It allows the single equals sign "`=`" to be used as both assignment and comparison operations. Finally, it prevents any ambiguity for destructuring assignments "`set #(x, y) = function()`".
+
 ## Types
 
 ### Logarithmic Numbers
 
 Support in the standard library for numbers that are represented in the [Logarithmic number system](https://en.wikipedia.org/wiki/Logarithmic_number_system).
+
+## Named Parameters
+
+Named parameters can be useful. I don't like how in C# every parameter could be potentially called as a named parameter. In Swift, there is syntax to control the name of a parameter independent of the name within the function. I think that makes sense since changing a parameter name is a breaking change. One could even allow multiple names for a parameter as a way of transitioning from an old name to a new name. The problem is that there is no good syntax for calling named parameters. The "`=`" would be ambiguous with assignment. The "`:`" would look like variable declarations and might conflict with current or future syntax. One person suggested using the keyword "`for`".
+
+```adamant
+function(5 for arg_2, 6 for arg_1);
+```
+

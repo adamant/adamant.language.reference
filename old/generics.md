@@ -33,6 +33,7 @@ where T: struct
 where T: move struct
 where T: copy struct
 where T: copy() // T has a copy method, explicit or implicit. must be used explicitly though
+where T <: S // subtype
 ```
 
 ## Type Lists

@@ -23,3 +23,7 @@ boolean_expression
     : embedded_expression
     ;
 ```
+
+## Order of Operations
+
+Expressions are evaluated left to right. Arguments to function calls are evaluated left to right. If an expression is a constant expression or contains only pure functions/operations, then the compiler may execute them in any order for optimization purposes.
