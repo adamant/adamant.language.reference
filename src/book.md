@@ -4,12 +4,13 @@ Note: This is the new version of the reference. Sections are being moved from th
 
 1. Introduction
 2. Lexical Structure
+    * [Identifiers](identifiers.md)
     * Preprocessor
     * [Reserved Words](reserved-words.md)
 3. Basic Concepts
-4. Types
-    * Simple Types
-    * Optional Types
+4. [Types](types.md)
+    * [Simple Types](simple-types.md)
+    * [Optional Types](optional-types.md)
     * Tuple Types
 5. Conversions
 6. Expressions
@@ -36,6 +37,8 @@ Note: This is the new version of the reference. Sections are being moved from th
 18. Unsafe Code
 19. Documentation Comments
 20. Standard Library
+    * [`system.math` Namespace](system.math.md)
 21. Conventions
+22. [Planned Features](planned-features.md)
 
 [Appendix: Ideas](ideas.md)

@@ -1,5 +1,11 @@
 # Appendix: Ideas
 
+This appendix describes various ideas for features that could be added to the Adamant language in the future. Sometimes, it clarifies why a particular feature is currently not in the language.
+
+Sections:
+
+* [Operators](#operators)
+
 ## Operators
 
 ### Symmetric Operators

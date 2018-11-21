@@ -7,10 +7,10 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Variable Bindings](variable-bindings.md)
 * [Functions](functions.md)
   * [Anonymous Functions](anonymous-functions.md)
-* [Primitive Types](primitive-types.md)
+* Primitive Types
   * [Basic Types](basic-types.md)
   * [Tuples](tuples.md)
-  * [Optional Type](optional-type.md)
+  * Optional Types
 * [Standard Types](standard-types.md)
   * [User Defined Literals](user-defined-literals.md)
   * [Text Types](text-types.md)

@@ -1,14 +1,20 @@
-# Optional Type
+## Optional Types
 
-The optional type is used to indicate situations where a value may not be present. It replaces the role of null pointers and null references in languages that support them. Handling of optional types is highly optimized and using an optional type should never be a performance concern.
+Optional types can have all values of an underlying type plus an additional value "`none`". The underlying type can be any type including value or a reference types.
 
-## The `none` Value
+```grammar
+optional_type
+    : type "?"
+    ;
+```
 
-To express that an optional type has no value, use the `none` keyword. Note, the type of `none` is `never?` thus it can be assigned into any optional type.
+## The "`none`" Value
+
+The special value "`none`" is used to represent when an optional type does not have a value. The value "`none`" has the type "`never?`" thus it can be assigned into any optional type.
 
 ## Conditioning on a Value
 
-To conditionally operate on an optional value, use an `if let` expression. Other ways of checking for `none` are possible but not preferred.
+To conditionally operate on an optional value, use an "`if let`" expression. Other ways of checking for "`none`" are possible but not preferred.
 
 ```adamant
 let x: int? = ...;
