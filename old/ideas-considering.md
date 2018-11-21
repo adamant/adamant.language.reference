@@ -1,35 +1,5 @@
 # Feature Ideas being Considered
 
-## Loop Else
-
-Sometimes it is useful to execute some code if a loop is never run. This can be done with the else clause of the while and for loop.
-
-```adamant
-while condition
-{
-    // do work
-}
-else
-{
-    // condition was false to start with
-}
-
-for let x in expression
-{
-    // do work
-}
-else
-{
-    // no items in collection
-}
-```
-
-This can be useful for definite assignment. If the loop assigns a variable, it may be the case that the loop never runs and the variable may be unassigned. However, you can assign the variable in the else clause to a reasonable default so that the variable will definitely be assigned after the loop.
-
-Note: this is different from the python style loop else construct which runs as long as the loop completed successfully.
-
-Note: Alternatively, a different keyword or group of keywords could be used for loop else. Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.
-
 ## Allow `!` at the End of Function Names
 
 Scheme uses `!` at the end of functions to indicate they are mutating. That might not make sense for Adamant where mutation is probably more common and less frowned on. Rust uses `!` to indicate macros. It is nice to have a clear distinction for macros, but the syntax doesn't really strike one as clearly indicating a macro. Since is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might not be obvious that execution will terminate at one.
@@ -88,19 +58,11 @@ The syntax of `ignore foo()` is confusing because it seems you are ignoring the 
 
 It would be really good to be able to have good units of measure either directly in the language or as a really clean library. This might be a useful place for an effect that says all code uses units of measure.
 
-## `else match`
-
-Allow a match to occur after an else.
-
 ## Exact Types
 
 An exact type would be a type that references to a superclass but can't hold a subclass type. Since most types will have vtables, their pointers would be fat pointers. Exact would provide a way to ensure that reference and pointer types were thin pointers. This could be done with a special syntax like `!Foo` for an exact references and`@!Foo` for exact pointers. A user on Reddit said the P6 language allows constrained type declarations. This could provide another way of supporting exact types. So `type Exact_Foo = T where typeof(T)=Foo` and the `typeof` operator would be taken to mean the concrete type.
 
 More recently, the syntax `^Foo` has been considered. The intent being that you "dereference" the type to get a non-reference type.
-
-## `repeat {} while <exp>;` or `do {} while <exp>;` Loops
-
-Rust doesn't have `do {} while <exp>;` loops. While they are rare, they do come up. In fact when writing a recursive decent parser there are quite a few. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while.
 
 ## Make good use of other symbols
 
@@ -149,7 +111,7 @@ They allow you to just use a single quote with a name as a type to indicate it i
 
 ## Use `_` or `*` for Wild Card Types
 
-Java style wild card types could be done using underscore.  For example, `List<_>` would be a list of anything. `List<_:Foo>` a list of things that inherit from foo. Of course, then it isn't clear how to get the opposite type relation. `List<_:>Foo>` is too confusing. `List<_/Foo>` as in the wild card is above the `Foo`. Maybe the `in` and `out` keywords are the correct thing here. So `List<out Foo>` and `List<in Foo>` works pretty well.  It is just missing the sense of wild card. That would be read as a list that I can take out `Foo`s from and a list that you can put `Foo`s in. Adding the underscore back could be `List<Foo out _>` and `List<Foo in _>` (note this order so that it is "get Foo out of _" and "put Foo in _" but that has reversed the sense).
+Java style wild card types could be done using underscore.  For example, `List[_]` would be a list of anything. `List[_ <: Foo]` a list of things that inherit from `Foo`. Of course, then it isn't clear how to get the opposite type relation. `List[_ :> Foo]` seems strange. `List[_/Foo]` as in the wild card is above the `Foo`. Maybe the `in` and `out` keywords are the correct thing here. So `List[out Foo]` and `List[in Foo]` works pretty well. It is just missing the sense of wild card. That would be read as a list that I can take out `Foo`s from and a list that you can put `Foo`s in. Adding the underscore back could be `List[Foo out _]` and `List[Foo in _]` (note this order so that it is "get Foo out of _" and "put Foo in _" but that has reversed the sense).
 
 ## Use `[ ]` for Compile Time Computing
 
@@ -178,10 +140,6 @@ It isn't clear what a good closure syntax would be. One wants the type and the d
 
 One possible syntax is `\(x) -> x`. This has the advantage of evoking the similarity of lambda with the backslash. It also kind of fits with the idea that backslash means escape. In this case we are escaping the standard meaning of left paren. This would require the parens never be dropped which is annoying.  However it would mean the arrow could be used similar to Rust to give the return type. It would be possible, though confusing to allow `\x x` when `x` was not a keyword. This resurrects the idea of using the fat arrow.  If it allows an expression where a block is expected then `\x => x` would be a substitute for `\x { return x; }`. Then is `\x { => x; }` valid though? If that is valid, then why can't you use the same syntax with a function to return? Also, why would `\x { return x; }` return from the lambda rather than the outer function?
 
-## Use `##` for Preprocessor
-
-The preprocessor is only very rarely used. It could be given an alternate syntax like `##` to free the `#` symbol up for other uses. For example, it could be used for anonymous functions `#x => x`. Other ideas are, verbatim strings `#"\foo"`, or tuples `#(a, b)`, or attributes following the idea of hash tags as metadata. It could even be used to access tuple elements as `x#1` which might make sense if it is the syntax for tuples. It actually could be used for almost all of those at the same time. That is, use it for verbatim strings, tuples, tuple access and attributes. If `@` means address of then using it to prefix string literals could cause problems for taking the address of string literal. That would almost require the use of something else for verbatim string literals.
-
 ## Copy with Change Syntax
 
 If immutability is used with true object orientation, there will be many more instances where a copy with only a few changes will be needed. There should be a short syntax for this. Similar to how Rust has the syntax for taking all the other fields of a struct from an existing one.
@@ -205,10 +163,6 @@ Instead of using `get` and `set` for properties, use `read` and `write`. This co
 ## Simple Dependent Types
 
 Full dependent types are complicated and confusing. But basic dependent types, say that an indexer object can only be used with the collection instance it indexes could be useful and easy. Something like this may already come along with lifetimes. On the other hand, this feature could make working with lifetimes easier.
-
-## `published` Access Modifier
-
-Developers are in the habit of making everything public. However, the default should not have the members be visible from outside the package. One way to do this would be to have a `published` access modifier that is used to expose members outside the package. Another way to encourage exposing things less would be to make private the default access when no modifier was specified. That is consistent with local variable declarations etc, but makes code less directly readable and consistent.
 
 ## Lifetimes After Type Names
 

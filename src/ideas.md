@@ -7,6 +7,7 @@ Sections:
 * [Operators](#operators)
 * [Preprocessor](#preprocessor)
 * [Documentation Comments](#documentation-comments)
+* [Expressions](#expressions)
 
 ## Operators
 
@@ -57,10 +58,50 @@ C# offers a preprocessor which doesn't suffer from the issues of the C/C++ prepr
 
 ## Documentation Comments
 
-## Extended Markdown
+### Extended Markdown
 
 Currently, documentation only supports a subset of [CommonMark](https://commonmark.org/). Ideally, it should support a much wider of range syntax, something like [Markua](http://markua.com/).
 
-## Compile Code in Documentation Comments
+### Compile Code in Documentation Comments
 
 Code in documentation comments should either be compiled, or have a way of causing it to be compiled.
+
+## Expressions
+
+### `else match` Expression
+
+Allow a match to occur immediatly after an else. Currently only if can occur there.
+
+## `repeat {} while condition;` Loops
+
+Rust doesn't have `do {} while condition;` loops. While they are rare, they do come up. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while. Instead, the Swift style syntax was chosen. This makes it clear from the first keyword that this is a loop construct and not just some kind of action.
+
+## Loop Else
+
+Sometimes it is useful to execute some code if a loop is never run. This could be done with an else clause of the while and for loop.
+
+```adamant
+while condition
+{
+    // do work
+}
+else
+{
+    // condition was false to start with
+}
+
+for let x in expression
+{
+    // do work
+}
+else
+{
+    // no items in collection
+}
+```
+
+This can be useful for definite assignment. If the loop assigns a variable, it may be the case that the loop never runs and the variable may be unassigned. However, you can assign the variable in the else clause to a reasonable default so that the variable will definitely be assigned after the loop.
+
+Note: this is different from the python style loop else construct which runs as long as the loop completed successfully.
+
+Note: Alternatively, a different keyword or group of keywords could be used for loop else. Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.
