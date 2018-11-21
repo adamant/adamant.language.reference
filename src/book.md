@@ -20,7 +20,7 @@ Note: This is the new version of the reference. Sections are being moved from th
       * Logical Operators
     * Bitwise Operations
 7. Statements
-8. Namespaces
+8. [Namespaces and Using Directives](namespaces-and-usings.md)
 9. Functions
 10. Classes
 11. [Structs](structs.md)

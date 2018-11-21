@@ -7,7 +7,7 @@ type
     : value_type
     | reference_type
     | type_parameter
-    | optiona_type
+    | optional_type
     ;
 ```
 
@@ -17,6 +17,5 @@ The values types can be further divided into a number of subcategories. Most val
 value_type
     : struct_type
     | simple_type
-    | optional_type
     ;
 ```

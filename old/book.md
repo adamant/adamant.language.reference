@@ -28,7 +28,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Summary of Ownership](ownership-summary.md)
   * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
-* [Namespaces and Using Directives](namespaces-and-usings.md)
+* Namespaces and Using Directives
 * [Access Modifiers](access-modifiers.md)
 * Classes
   * [Fields](fields.md)
