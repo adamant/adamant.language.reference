@@ -43,7 +43,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Structs
   * [Constructors](struct-constructors.md)
 * Type Aliases
-* [Traits](traits.md)
+* Traits
 * [Enums](enums.md)
 * [Generators](generators.md)
 * [Async and Await](async.md)
