@@ -4,18 +4,6 @@
 
 Scheme uses `!` at the end of functions to indicate they are mutating. That might not make sense for Adamant where mutation is probably more common and less frowned on. Rust uses `!` to indicate macros. It is nice to have a clear distinction for macros, but the syntax doesn't really strike one as clearly indicating a macro. Since is not used to mean "not" what if we allowed `!` at the end of function names and used it to indicate divergent functions?  Otherwise it might not be obvious that execution will terminate at one.
 
-## Date and Time Literals
-
-Add support for date and time literals. Could be done using either the backslash or single quotes.
-
-```adamant
-// With backslash
-let x = \2016-06-06;
-
-// With quotes
-let y = '2016-06-06';
-```
-
 ## Tuple Base Class
 
 It probably makes sense to have all tuple types inherit from an abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`. C# has them implement several interfaces about structural equality.
