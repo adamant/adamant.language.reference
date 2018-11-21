@@ -3,9 +3,8 @@
 Note: This is the new version of the reference. Sections are being moved from the old version to the new version. If something is missing, it may be documented in the [old version](../old/book.md).
 
 1. Introduction
-2. Lexical Structure
+2. [Lexical Structure](lexical-structure.md)
     * [Identifiers](identifiers.md)
-    * Preprocessor
     * [Reserved Words](reserved-words.md)
 3. Basic Concepts
 4. [Types](types.md)

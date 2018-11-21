@@ -5,6 +5,7 @@ This appendix describes various ideas for features that could be added to the Ad
 Sections:
 
 * [Operators](#operators)
+* [Preprocessor](#preprocessor)
 
 ## Operators
 
@@ -35,3 +36,20 @@ These seem like fairly standard useful operators. They may not be defined on the
 ### Use `<<` and `>>` as Operators
 
 These character sequences are now available in the language and seem like they are evocative of operations like directing data etc. They could be useful.
+
+## Preprocessor
+
+C# offers a preprocessor which doesn't suffer from the issues of the C/C++ preprocessor. A preprocessor could be very useful in Adamant for conditional compilation of packages for different target platforms and controlling compilation. However, Adamant packages are meant to be cross-platform, and having different versions for different platforms could be bad. There is an idea to support different platforms through native packages. That may obviate some of the need for a preprocessor. Preprocessor directives would be introduced with "`##`" but otherwise function similar to the C# preprocessor. While the list below includes begin and end region directives, it should be carefully evaluated whether these should be added to Adamant.
+
+* `##define`
+* `##undefine`
+* `##if`
+* `##else`
+* `##elseif`
+* `##endif`
+* `##error`
+* `##warning`
+* `##pragma`
+* `##line`
+* `##region`
+* `##endregion`

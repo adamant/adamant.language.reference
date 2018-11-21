@@ -43,8 +43,8 @@ numeric_type
     ;
 
 fixed_point_type
-    : "fixed<m>.<f>"
-    | "ufixed<m>.<f>"
+    : 'fixed\d+\.\d+'
+    | 'ufixed\d+\.\d+'
     ;
 ```
 
@@ -92,11 +92,11 @@ numeric_type
 
 real_type
     : "real"
-    | "real.<f>"
+    | 'real\.\d+'
     ;
 ```
 
-If these types are defined in the standard library, then "`real.<f>`" could instead be "`real[f]`".
+If these types are defined in the standard library, then "`real\.\d+`" could instead be "`real[f]`".
 
 ### Money Type
 

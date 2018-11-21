@@ -58,3 +58,4 @@ Symbols not already defined are not technically reserved. They are simply invali
 | ------- | ----------------------------- |
 | `**`    | Raise to power.               |
 | `` ` `` | Reserved for use in Markdown. |
+| `##`    | Preprocessor                  |
