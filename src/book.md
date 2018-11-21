@@ -7,6 +7,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Comments](comments.md)
     * [Identifiers](identifiers.md)
     * [Reserved Words](reserved-words.md)
+    * [Literals](literals.md)
 3. Basic Concepts
     * [Member Access](member-access.md)
 4. [Types](types.md)
@@ -40,6 +41,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 19. [Documentation Comments](documentation-comments.md)
 20. Standard Library
     * [`system.math` Namespace](system.math.md)
+    * [`system.text` Namespace](system.text.md)
 21. Conventions
 22. [Planned Features](planned-features.md)
 

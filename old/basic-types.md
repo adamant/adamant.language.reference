@@ -1,22 +1,5 @@
 # Basic Types
 
-## Escape Sequences
-
-Both the `string` and [user defined literals](user-defined-literals.md) support escape sequences. These are:
-
-| Code         | Character                                |
-| ------------ | ---------------------------------------- |
-| `\"`         | Double Quote                             |
-| `\'`         | Single Quote                             |
-| `\\`         | Backslash                                |
-| `\n`         | Newline                                  |
-| `\r`         | Carriage Return                          |
-| `\0`         | Null                                     |
-| `\t`         | Horizontal Tab                           |
-| `\u(`*X*+`)` | Unicode Scalar Value (1 to 6 hex digits) |
-
-Other characters following a backslash (except the left parenthesis of an interpolated string expression) in a string or user defined literal are an error.
-
 ## `string`
 
 A Unicode string encoded in UTF-8. String literals are created with double quotes `"Hello World"`. All the escape sequences are accepted.

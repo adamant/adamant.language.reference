@@ -49,19 +49,19 @@ The following words are reserved for future use as Adamant keywords. To use thes
 
 The following identifier patterns are reserved for use as simple types:
 
-| Pattern           |                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------- |
-| `int`*n*          | Where *n* is any sequence of digits not already defined to be an integral type.       |
-| `uint`*n*         | Where *n* is any sequence of digits not already defined to be an integral type.       |
-| `float`*n*        | Where *n* is any sequence of digits not already defined to be an floating point type. |
-| `fixed`           |                                                                                       |
-| `fixed`*n*`.`*m*  | Where *n* and *m* are any sequence of digits.                                         |
-| `ufixed`          |                                                                                       |
-| `ufixed`*n*`.`*m* | Where *n* and *m* are any sequence of digits.                                         |
-| `decimal`         |                                                                                       |
-| `decimal`*n*      | Where *n* is any sequence of digits.                                                  |
-| `real`            |                                                                                       |
-| `real.`*n*        | Where *n* is any sequence of digits.                                                  |
+| Pattern                        | Condition                                               |
+| ------------------------------ | ------------------------------------------------------- |
+| "`int`" [0-9]+                 | Where not already defined to be an integral type.       |
+| "`uint`" [0-9]+                | Where not already defined to be an integral type.       |
+| "`float`" [0-9]+               | Where not already defined to be an floating point type. |
+| "`fixed`"                      |                                                         |
+| "`fixed`" [0-9]+ "`.`" [0-9]+  |                                                         |
+| "`ufixed`"                     |                                                         |
+| "`ufixed`" [0-9]+ "`.`" [0-9]+ |                                                         |
+| "`decimal`"                    |                                                         |
+| "`decimal`" [0-9]+             |                                                         |
+| "`real`"                       |                                                         |
+| "`real.`" [0-9]+               |                                                         |
 
 Note that patterns with leading zeros are also reserved.
 

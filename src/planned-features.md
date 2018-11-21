@@ -44,8 +44,8 @@ numeric_type
     ;
 
 fixed_point_type
-    : 'fixed\d+\.\d+'
-    | 'ufixed\d+\.\d+'
+    : "fixed" [0-9]+ "." [0-9]+
+    | "ufixed" [0-9]+ "." [0-9]+
     ;
 ```
 
@@ -93,7 +93,7 @@ numeric_type
 
 real_type
     : "real"
-    | 'real\.\d+'
+    | "real." [0-9]+
     ;
 ```
 

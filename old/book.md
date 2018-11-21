@@ -11,8 +11,8 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Basic Types](basic-types.md)
   * [Tuples](tuples.md)
   * Optional Types
-* [Standard Types](standard-types.md)
-  * [User Defined Literals](user-defined-literals.md)
+* Standard Types
+  * User Defined Literals
   * [Text Types](text-types.md)
   * [Composite Initializers](composite-initializers.md)
   * [Raw Array](raw-array.md)
