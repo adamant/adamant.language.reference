@@ -87,9 +87,9 @@ sign
     ;
 ```
 
-### User Defined Literals
+### User Literals
 
-User defined literals allow for literal values for user defined types. They are enclosed in single quotes and allow character escape sequences for special characters. Examples include "`'c'`", "`'♠'`", "`'2018-09-28'`" or "`'c29a3471-ea8d-40e3-bb2b-ef563687f'`".
+User literals allow for literal values for user defined types. They are enclosed in single quotes and allow character escape sequences for special characters. Examples include "`'c'`", "`'♠'`", "`'2018-09-28'`" or "`'c29a3471-ea8d-40e3-bb2b-ef563687f'`".
 
 ```grammar
 character_literal
@@ -110,8 +110,9 @@ simple_escape_sequence
     : <Backslash (U+005C)> (["'nr0t] | <Backslash (U+005C)>)
     ;
 
-hexadecimal_escape_sequence
-    : <Backslash (U+005C)> "(" [0-9a-f-A-F]{1,6} ")";
+unicode_escape_sequence
+    : <Backslash (U+005C)> "(" [0-9a-f-A-F]{1,6} ")"
+    ;
 ```
 
 | Code         | Character                                |
@@ -125,36 +126,38 @@ hexadecimal_escape_sequence
 | `\t`         | Horizontal Tab U+0009                    |
 | `\u(`*X*+`)` | Unicode Scalar Value (1 to 6 hex digits) |
 
-Other characters following a backslash (except the left parenthesis of an interpolated string expression) in a string or user defined literal are an error.
+Other characters following a backslash (except the left parenthesis of an interpolated string expression) in a string or user literal are an error.
 
-#### Literal Constructor
+#### User Literal Construction
 
-User defined literals are constructed with a special constructor. The resulting object must be read only and has the static lifetime. This constructor must be an implicit meta function and has the special name `''`. If it is a `struct` constructor, it must be an `init` function.
+User literals are constructed with an operator overload. The resulting object must be read only and have the static lifetime. This operator must be an implicit pure function.
 
 ```adamant
 public struct Example
 {
     public let value: string;
 
-    public implicit init ''[value: string]
+    public init(.value) { }
+
+    public implicit operator '_'(value: string) -> Example$forever
     {
-        self.value = value;
+        return Example(value);
     }
 }
 ```
 
 #### Type Determination
 
-Which type a user defined literal is for is determined by type inference. This means one can declare the type of a variable to force what literal will be constructed. However, this process can be further limited by filtering.
+Which type a user literal is for is determined by type inference. This means one can declare the type of a variable to force what literal will be constructed. However, this process can be further limited by filtering.
 
 #### Requiring match
 
-To filter which literal constructors a user defined literal might match, add preconditions to the constructors. These should not filter to only the allowed values, but to a set of values that a developer might reasonably think could match.
+To filter which literal type a user literal might match, add preconditions to the operator overload. These should not filter to only the allowed values, but to a set of values that a developer might reasonably think could match.
 
 ```adamant
 public struct Date
 {
-    public implicit init ''[value: string]
+    public implicit operator '_'(value: string) -> Date$forever
         requires value.matches(#"\d+-\d+-\d+")
     {
         // construct date
@@ -164,4 +167,81 @@ public struct Date
 
 ### String Literals
 
+String literals are Unicode strings encoded in UTF-8. They are enclosed in double quotes. There are two kinds of string literals. Regular string literals allow the same escape sequences as user defined literals. Verbatim string literals do not allow escape sequences. Similar to user defined literals, the data type of string literals is not fixed. Instead it is inferred to be a type with the appropriate operator overload.
+
+```grammar
+string_literal
+    : regular_string_literal
+    | verbatim_string_literal
+    ;
+
+regular_string_literal
+    : ["] regular_string_character* ["]
+    ;
+
+regular_string_character
+    : single_regular_string_character
+    | simple_escape_sequence
+    | unicode_escape_sequence
+    ;
+
+single_regular_string_character
+    : <Any character except double quote (U+0022), backslash (U+005C), and new_line_characters>
+    ;
+
+verbatim_string_literal
+    : "#" ["] verbatim_string_character* ["]
+    ;
+
+verbatim_string_character
+    : single_verbatim_string_character
+    | quote_escape_sequence
+    ;
+
+single_verbatim_string_character
+    : [^"]
+    ;
+
+quote_escape_sequence
+    : ["]{2}
+    ;
+```
+
+**TODO:** verbatim strings could conflict with future multiline verbatim strings `#""" string """`.
+
+#### String Literal Construction
+
+String literals are constructed with an operator overload. The resulting object must be read only and have the static lifetime. This operator must be an implicit pure function.
+
+```adamant
+public struct Example
+{
+    public let count: size;
+    public let bytes: @byte;
+
+    public init(.value, .bytes) { }
+
+    public implicit operator "_"(count: size, bytes: @byte) -> Example$forever
+    {
+        return Example(count, bytes);
+    }
+}
+```
+
 ### Interpolated String Literals
+
+Interpolated string literals are distinguished from regular string literals only by have interpolated expressions in them. An interpolated expression is enclosed by "`\()`". The interpolated expression can contain a string literal, but can’t contain an unescaped backslash, a carriage return, or a line feed.
+
+```grammar
+interpolated_string_literal
+    : ["] interpolated_string_item* ["]
+    ;
+
+interpolated_string_item
+    : <Backslash (U+005C)> "(" expression ")"
+    | regular_string_character+
+    ;
+```
+
+**TODO:** determine how conversion to string works for interpolated string.
+**TODO:** determine how formatting of the expression works.

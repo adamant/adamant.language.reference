@@ -8,6 +8,7 @@ Sections:
 * [Preprocessor](#preprocessor)
 * [Documentation Comments](#documentation-comments)
 * [Expressions](#expressions)
+* [Types](#types)
 
 ## Operators
 
@@ -72,11 +73,11 @@ Code in documentation comments should either be compiled, or have a way of causi
 
 Allow a match to occur immediatly after an else. Currently only if can occur there.
 
-## `repeat {} while condition;` Loops
+### `repeat {} while condition;` Loops
 
 Rust doesn't have `do {} while condition;` loops. While they are rare, they do come up. Using `loop {} while <exp>;` to avoid introducing a new keyword was considered. However, someone reading the code wouldn't know to look for the while at the end or would have to check all loops to see if they ended with a while. Instead, the Swift style syntax was chosen. This makes it clear from the first keyword that this is a loop construct and not just some kind of action.
 
-## Loop Else
+### Loop Else
 
 Sometimes it is useful to execute some code if a loop is never run. This could be done with an else clause of the while and for loop.
 
@@ -105,3 +106,9 @@ This can be useful for definite assignment. If the loop assigns a variable, it m
 Note: this is different from the python style loop else construct which runs as long as the loop completed successfully.
 
 Note: Alternatively, a different keyword or group of keywords could be used for loop else. Options include `otherwise`, `loop else`, `while else`, `for else`, or `if none`.
+
+## Types
+
+### Logarithmic Numbers
+
+Support in the standard library for numbers that are represented in the [Logarithmic number system](https://en.wikipedia.org/wiki/Logarithmic_number_system).
