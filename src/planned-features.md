@@ -6,6 +6,7 @@ Sections:
 
 * [Types](#types)
 * [Using Directives](#using-directives)
+* [Aliases](#aliases)
 
 ## Types
 
@@ -120,3 +121,13 @@ Allow using directives to name a type, in which case all associated functions of
 ```adamant
 using example1.Foo[int]; // This makes all associated functions of `Foo[int]` available
 ```
+
+## Aliases
+
+The keyword "`alias`" introduces an alias for a type name. It does not create a separate type.
+
+```adamant
+alias PromiseResult[T] = Promise[Result[T]]
+```
+
+Aliases can have any access modifier.

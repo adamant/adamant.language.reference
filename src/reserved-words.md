@@ -6,6 +6,7 @@ The following words are reserved for future use as Adamant keywords. To use thes
 
 | Word          | Possible Uses                                                               |
 | ------------- | --------------------------------------------------------------------------- |
+| `alias`       | Planned Type Alias Feature                                                  |
 | `case`        | Useful for switch like constructs.                                          |
 | `continue`    | Useful for control flow.                                                    |
 | `default`     | Useful for switch like constructs and default values.                       |
@@ -21,7 +22,7 @@ The following words are reserved for future use as Adamant keywords. To use thes
 | `select`      | C# style query.                                                             |
 | `symmetric`   | Symmetric operators.                                                        |
 | `unless`      | Ruby style `if not` statement or `unless break` for Python style loop else. |
-| `when`        | C# exception filters.                                                       |
+| `when`        | C# style exception filters.                                                       |
 | `xor`         | Logical exclusive or operator.                                              |
 
 <sup>1</sup> The "`then`" keyword would allow for "`while condition { } then { } else { }`". The "else" block would be executed if the condition is false the first time it is evaluated. The "then" block would be executed in control flow left the end of the loop body (i.e. the loop body executed at least once and wasn't exited with a "`break`" expression). Note though that a "`then`" without an "`else`" would execute even if the loop never did. (see also `unless break`)
