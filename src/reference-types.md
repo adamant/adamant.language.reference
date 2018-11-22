@@ -25,6 +25,16 @@ pointer_type
 
 #### `@Any` Type
 
-The pointer to any type "`@Any`" is a pointer type that places no limits on what may be at the memory pointed to. It is the equivalent of a void pointer in C/C++ or Rust.
+The type "`@Any`", is a pointer type that places no limits on what may be at the memory pointed to. It is the equivalent of a void pointer in C/C++ or Rust.
 
-**TODO:** Can `@x` where `x` is a variable of reference type return a value of type `@Any` so we can compare reference equality?
+References can be compared for reference equality by converting them to "`@Any`".
+
+```adamant
+let f = new Foo();
+let g = f;
+
+if f as @Any == g as @Any // reference equality
+{
+    // ...
+}
+```
