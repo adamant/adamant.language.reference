@@ -46,7 +46,7 @@ The bit sizes of these are system dependent. "`size`" is an unsigned number larg
 
 ### Floating Point Types
 
-The types "`float32`" and "`float`" are floating-point types represented as IEEE 754 32-bit and 64-bit values.
+The types "`float32`" and "`float`" are floating-point types represented as IEEE 754 binary32 and binary64 values.
 
 ```grammar
 floating_point_type

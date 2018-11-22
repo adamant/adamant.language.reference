@@ -15,7 +15,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Reference Types](reference-types.md)
     * [Optional Types](optional-types.md)
     * Tuple Types
-5. Conversions
+5. [Conversions](conversions.md)
 6. [Expressions](expressions.md)
     * [Expression Blocks](expression-blocks.md)
     * [Choice Expressions](choice-expressions.md)

@@ -149,4 +149,3 @@ Named parameters can be useful. I don't like how in C# every parameter could be 
 ```adamant
 function(5 for arg_2, 6 for arg_1);
 ```
-
