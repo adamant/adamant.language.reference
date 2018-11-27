@@ -110,6 +110,7 @@ keyword
     | "float32"
     | "fn"
     | "foreach"
+    | "forever"
     | "get"
     | "if"
     | "implicit"
