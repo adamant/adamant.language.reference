@@ -17,6 +17,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Literals](literals.md)
 3. Basic Concepts
     * [Member Access](member-access.md)
+    * [Execution Order](execution-order.md)
 4. [Types](types.md)
     * [Struct Types](struct-types.md)
     * [Simple Types](simple-types.md)
@@ -33,7 +34,8 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Loop Expressions](loop-expressions.md)
     * Operators
       * Logical Operators
-    * Bitwise Operations
+    * [Bitwise Operations](bitwise-operations.md)
+    * [Boolean Expression](boolean-expression.md)
 7. [Statements](statements.md)
 8. [Namespaces and Using Directives](namespaces-and-usings.md)
 9. Functions

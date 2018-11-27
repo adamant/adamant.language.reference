@@ -58,7 +58,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Const and Static
 * Attributes
 * [Params and List Initializers](params-and-list-initializers.md)
-* [Bitwise Operations](bitwise-operations.md)
+* Bitwise Operations
 * [Casting with `as`](casting.md)
 * Escaped Identifiers
 * [Package Qualifier](package-qualifier.md)
