@@ -3,9 +3,16 @@
 Note: This is the new version of the reference. Sections are being moved from the old version to the new version. If something is missing, it may be documented in the [old version](../old/book.md).
 
 1. Introduction
-2. [Lexical Structure](lexical-structure.md)
+2. Lexical Structure
+    * [Packages](packages.md)
+    * [Grammars](grammars.md)
+    * [Lexical Analysis](lexical-analysis.md)
+    * [Line Terminators](line-terminators.md)
+    * [Whitespace](whitespace.md)
     * [Comments](comments.md)
+    * [Tokens](tokens.md)
     * [Identifiers](identifiers.md)
+    * [Keywords](keywords.md)
     * [Reserved Words](reserved-words.md)
     * [Literals](literals.md)
 3. Basic Concepts
