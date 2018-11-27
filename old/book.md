@@ -71,7 +71,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Memory Allocation](memory-allocation.md)
   * [External](external.md)
   * [Memory Layout](memory-layout.md)
-  * [Unchecked](unchecked.md)
+  * Unchecked
 * Conventions
 * Testing
 * Standard Library
