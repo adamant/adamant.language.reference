@@ -13,17 +13,17 @@ simple_type
     ;
 
 numeric_type
-    : integral_type
+    : integer_type
     | floating_point_type
     ;
 ```
 
-### Integral Types
+### Integer Types
 
-The integral types provide signed and unsigned integers of various sizes. The "`int`" and "`uint`" types are each 32 bits.
+The integer types provide signed and unsigned integers of various sizes. The "`int`" and "`uint`" types are each 32 bits.
 
 ```grammar
-integral_type
+integer_type
     : "int8"
     | "byte"
     | "int16"
@@ -61,7 +61,7 @@ Floating point operations never cause abandonment. In exceptional situations, th
 
 The "`bool`" type represents boolean values. The possible values of a boolean are "`true`" and "`false`". The boolean logical operators "`and`" and "`or`" operate on boolean types. The condition of an "`if`" expression and "`while`" loop must evaluate to booleans.
 
-No standard conversions exist between "`bool`" and other types. The bool type is distinct and separate from the integral types. A bool value cannot be used in place of an integral value, and vice versa.
+No standard conversions exist between "`bool`" and other types. The bool type is distinct and separate from the integer types. A bool value cannot be used in place of an integer value, and vice versa.
 
 ### `never` Type
 

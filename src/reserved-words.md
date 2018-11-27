@@ -51,8 +51,8 @@ The following identifier patterns are reserved for use as simple types:
 
 | Pattern                        | Condition                                               |
 | ------------------------------ | ------------------------------------------------------- |
-| "`int`" [0-9]+                 | Where not already defined to be an integral type.       |
-| "`uint`" [0-9]+                | Where not already defined to be an integral type.       |
+| "`int`" [0-9]+                 | Where not already defined to be an integer type.        |
+| "`uint`" [0-9]+                | Where not already defined to be an integer type.        |
 | "`float`" [0-9]+               | Where not already defined to be an floating point type. |
 | "`fixed`"                      |                                                         |
 | "`fixed`" [0-9]+ "`.`" [0-9]+  |                                                         |

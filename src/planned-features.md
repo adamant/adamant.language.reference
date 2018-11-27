@@ -13,10 +13,10 @@ Sections:
 
 ### 128-bit Integer Types
 
-Additional integral types for 128-bit integers.
+Additional integer types for 128-bit integers.
 
 ```grammar
-integral_type
+integer_type
     : ...
     | "int128"
     | "uint128"
