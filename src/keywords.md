@@ -70,7 +70,7 @@ keyword
     | "struct"
     | "throw"
     | "true"
-    | "tuple"
+    | "Tuple"
     | "type"
     | "uint"
     | "uint16"

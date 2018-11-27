@@ -9,7 +9,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Anonymous Functions](anonymous-functions.md)
 * Primitive Types
   * Basic Types
-  * [Tuples](tuples.md)
+  * Tuples
   * Optional Types
 * Standard Types
   * User Defined Literals
