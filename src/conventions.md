@@ -4,21 +4,21 @@
 
 The following naming conventions are enforced by compiler warnings.
 
-| Item                        | Convention                              |
-| --------------------------- | --------------------------------------- |
-| Packages                    | `dotted.camelCase`                      |
-| Namespaces                  | plural `camelCase`                      |
-| Types (except copy structs) | `Pascal_Case_With_Underscores`          |
-| Copy Structs                | `snake_case`                            |
-| Type Parameters             | concise* `Pascal_Case_With_Underscores` |
-| Functions                   | `snake_case()`                          |
-| Divergent Functions         | `ALL_CAPS()`                            |
-| Local variables             | `snake_case`                            |
-| Fields                      | `snake_case`                            |
-| Constants                   | `PascalCase`**                          |
-| Global variables            | `ALL_CAPS`                              |
-\* usually single uppercase letter: `T`<br>
-\*\* Acronyms are capitalized and run together: `ScreenDPIToPrint`
+| Item                        | Convention                                         |
+| --------------------------- | -------------------------------------------------- |
+| Packages                    | `dotted.snake_case`                                |
+| Namespaces                  | plural `snake_case`                                |
+| Types (except copy structs) | `Pascal_Case_With_Underscores`                     |
+| Copy Structs                | `snake_case`                                       |
+| Type Parameters             | concise `Pascal_Case_With_Underscores`<sup>1</sup> |
+| Functions                   | `snake_case()`                                     |
+| Divergent Functions         | `ALL_CAPS()`                                       |
+| Local variables             | `snake_case`                                       |
+| Fields                      | `snake_case`                                       |
+| Constants                   | `PascalCase`<sup>2</sup>                           |
+| Global variables            | `ALL_CAPS`                                         |
+<sup>1</sup> Type parameters are often single uppercase letters (i.e. "`T`").<br>
+<sup>2</sup> Acronyms are capitalized and run together (i.e. "`ScreenDPIToPrint`").
 
 ## Curly Brace Placement
 
@@ -41,6 +41,19 @@ for x in 1..10
 
 Function parameters should all be one one line or each on a separate line. If on separate lines, the left parenthesis is on the line with the function and the first parameter goes on the line after. The close parenthesis goes on the line with the last parameter. The exception is the self parameter which stays on the line with the function unless it doesn't fit. When parameters are on separate lines the return type is on its own line starting with `->`.
 
+```adamant
+
+public fn example(self,
+    arg1: int,
+    arg2: int,
+    arg3: int,
+    arg4: int)
+    -> int
+{
+    // ...
+}
+```
+
 ## Code Width
 
 Stay within 80 characters most of the time, never go beyond 100. This is not because of what fits on screen, but rather, what humans can easily read and which parts of text humans focus on.
@@ -48,5 +61,5 @@ Stay within 80 characters most of the time, never go beyond 100. This is not bec
 ## Other
 
 * Prefer named constructors to a method that makes an instance (for example making a child node, copy or converted value)
-* In constructors, always use self to access fields and properties, in methods, use only when necessary. (There should be compiler warnings for this).
+* In constructors, always use self or implicit self to access fields and properties, in methods, use only when necessary. (There should be compiler warnings for this).
 * Use spaces instead of tabs (need compiler warning for this).

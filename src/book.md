@@ -57,7 +57,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.collections.specialized` Namespace](system.collections.specialized.md)
     * [`system.math` Namespace](system.math.md)
     * [`system.text` Namespace](system.text.md)
-21. Conventions
+21. [Conventions](conventions.md)
 22. [Planned Features](planned-features.md)
 
 [Appendix: Ideas](ideas.md)

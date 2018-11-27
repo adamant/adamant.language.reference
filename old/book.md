@@ -72,7 +72,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [External](external.md)
   * [Memory Layout](memory-layout.md)
   * [Unchecked](unchecked.md)
-* [Conventions](conventions.md)
+* Conventions
 * Testing
 * Standard Library
   * [Strings](strings.md)
