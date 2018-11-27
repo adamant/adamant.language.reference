@@ -154,6 +154,7 @@ keyword
     | "struct"
     | "throw"
     | "true"
+    | "tuple"
     | "type"
     | "uint"
     | "uint16"

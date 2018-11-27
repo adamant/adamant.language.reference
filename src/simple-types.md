@@ -80,3 +80,5 @@ The type "`type`" is the type of all objects that represent types during reflect
 ### `metatype` type
 
 The type "`metatype`" is a subtype of "`type`". Objects representing the type of classes and structs have a type that is a subtype of "`metatype`". When calling associated functions as "`Example.function()`", the expression "`Example`" has a subtype of "`metatype`". Metatypes describe the associated functions and constructors on the type object.
+
+**TODO:** how can `metatype` be a subtype of `type` when struct types can't be subtypes of each other? Is this a feature of psuedo references?

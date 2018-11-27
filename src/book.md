@@ -11,10 +11,14 @@ Note: This is the new version of the reference. Sections are being moved from th
 3. Basic Concepts
     * [Member Access](member-access.md)
 4. [Types](types.md)
+    * [Struct Types](struct-types.md)
     * [Simple Types](simple-types.md)
+    * [Tuple Types](tuple-types.md)
+    * [Class Value Types](class-value-types.md)
     * [Reference Types](reference-types.md)
+    * Type Parameters
     * [Optional Types](optional-types.md)
-    * Tuple Types
+    * Generic Types
 5. [Conversions](conversions.md)
 6. [Expressions](expressions.md)
     * [Expression Blocks](expression-blocks.md)

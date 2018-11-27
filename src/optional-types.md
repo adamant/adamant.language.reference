@@ -8,6 +8,10 @@ optional_type
     ;
 ```
 
+### Subtyping
+
+For all reference types `T` and `U` where `T <: U`, `T <: U?`. However, given value type `S` and reference type `T`, the type `S` is not a subtype of `T?`. However, there is an implicit conversion.
+
 ### The "`none`" Value
 
 The special value "`none`" is used to represent when an optional type does not have a value. The value "`none`" has the type "`never?`" thus it can be assigned into any optional type.

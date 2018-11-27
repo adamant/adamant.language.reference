@@ -41,9 +41,7 @@ The implicit numeric conversions are:
 
 ### Implicit Optional conversions
 
-Given `S <: T`, there is an implicit conversion from "`S?`" to "`T?`" and from "`S`" to "`T?`".
-
-**TODO:** Maybe this should be treated as a subtype relationship rather than a conversion.
+Given a value type `S` and reference type `T` such that `S <: T`, there are implicit boxing conversions from "`S?`" to "`T?`" and from "`S`" to "`T?`". There is also an implicit conversion from `S` to `S?`.
 
 ### Implicit Constant Expression Conversions
 
