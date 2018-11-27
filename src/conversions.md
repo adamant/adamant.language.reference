@@ -25,18 +25,18 @@ The "`as`" operator can be used to explicitly cause an implicit conversion.
 
 ### Implicit Numeric Conversions
 
-Generally, numeric conversions are implicit when they can be safely performed with no loss of precision.
+The implicit numeric conversions are those conversions between simple numeric types that can be safely performed with no loss of precision.
 
 The implicit numeric conversions are:
 
 | From      | To                                                                        |
 | --------- | ------------------------------------------------------------------------- |
 | `int8`    | `int16`, `int`, `int64`, `float32`, `float`                               |
-| `byte`    | `int16`, `uint16`, `int`, `uint32`, `int64`, `uint64`, `float32`, `float` |
+| `byte`    | `int16`, `uint16`, `int`, `uint`, `int64`, `uint64`, `float32`, `float` |
 | `int16`   | `int`, `int64`, `float32`, `float`                                        |
-| `uint16`  | `int`, `uint32`, `int64`, `uint64`, `float32`, `float`                    |
+| `uint16`  | `int`, `uint`, `int64`, `uint64`, `float32`, `float`                    |
 | `int`     | `int64`, `float`                                                          |
-| `uint32`  | `int64`, `uint64`, `float`                                                |
+| `uint`  | `int64`, `uint64`, `float`                                                |
 | `float32` | `float`                                                                   |
 
 ### Implicit Optional conversions
@@ -45,7 +45,7 @@ Given a value type `S` and reference type `T` such that `S <: T`, there are impl
 
 ### Implicit Constant Expression Conversions
 
-A constant expression of the types "`int8`", "`byte`", "`int16`", "`uint16`", "`int`", "`uint32`", "`int64`", "`uint64`", "`size`", "`offset`", "`float32`", or "`float`" can be implicitly converted to any other type in the list if the value of the constant expression is within the range of the destination type and can be represented without loss of precision. Thus for conversion to "`float32`" and "`float`" the value must not have more significant bits than be represented by the type.
+A constant expression of the types "`int8`", "`byte`", "`int16`", "`uint16`", "`int`", "`uint`", "`int64`", "`uint64`", "`size`", "`offset`", "`float32`", or "`float`" can be implicitly converted to any other type in the list if the value of the constant expression is within the range of the destination type and can be represented without loss of precision. Thus for conversion to "`float32`" and "`float`" the value must not have more significant bits than be represented by the type.
 
 ### User-defined Implicit Conversions
 

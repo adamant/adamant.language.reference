@@ -29,7 +29,7 @@ integral_type
     | "int16"
     | "uint16"
     | "int"
-    | "uint32"
+    | "uint"
     | "int64"
     | "uint64"
     | "size"
