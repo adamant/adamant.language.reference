@@ -27,6 +27,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Reference Types](reference-types.md)
     * Type Parameters
     * [Optional Types](optional-types.md)
+    * [Variable Reference Types](ref-types.md)
     * Generic Types
 5. [Conversions](conversions.md)
 6. [Expressions](expressions.md)
