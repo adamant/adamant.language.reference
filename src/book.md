@@ -23,6 +23,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Simple Types](simple-types.md)
     * [Tuple Types](tuple-types.md)
     * [Class Value Types](class-value-types.md)
+    * [Pointer Types](pointer-types.md)
     * [Reference Types](reference-types.md)
     * Type Parameters
     * [Optional Types](optional-types.md)

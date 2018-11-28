@@ -19,6 +19,7 @@ value_type
     | simple_type
     | tuple_type
     | class_value_type
+    | pointer_type
     ;
 ```
 
