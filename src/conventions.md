@@ -17,6 +17,7 @@ The following naming conventions are enforced by compiler warnings.
 | Fields                      | `snake_case`                                       |
 | Constants                   | `PascalCase`<sup>2</sup>                           |
 | Global variables            | `ALL_CAPS`                                         |
+
 <sup>1</sup> Type parameters are often single uppercase letters (i.e. "`T`").<br>
 <sup>2</sup> Acronyms are capitalized and run together (i.e. "`ScreenDPIToPrint`").
 
