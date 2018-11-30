@@ -54,14 +54,15 @@ Note: This is the new version of the reference. Sections are being moved from th
 16. Attributes
 17. Patterns
 18. Unsafe Code
-19. [Documentation Comments](documentation-comments.md)
-20. Standard Library
+19. [External Declarations](external.md)
+20. [Documentation Comments](documentation-comments.md)
+21. Standard Library
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
     * [`system.collections.specialized` Namespace](system.collections.specialized.md)
     * [`system.math` Namespace](system.math.md)
     * [`system.text` Namespace](system.text.md)
-21. [Conventions](conventions.md)
-22. [Planned Features](planned-features.md)
+22. [Conventions](conventions.md)
+23. [Planned Features](planned-features.md)
 
 [Appendix: Ideas](ideas.md)

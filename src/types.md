@@ -1,6 +1,6 @@
 # Types
 
-Types in Adamant are divided into two main categories: *value types* and *reference types*. Both value and reference types may be *generic types*, which take *generic parameters*. Generic parameters can be types (both value and reference types) or values. Generic parameters that are types are called *type parameters*. *Optional types* can act as value types or reference types. Finally, *variable reference types* aka *ref types* a special form of reference with their own rules.
+Types in Adamant are divided into two main categories: *value types* and *reference types*. Both value and reference types may be *generic types*, which take *generic parameters*. Generic parameters can be types (both value and reference types) or values. Generic parameters that are types are called *type parameters* and can be used as types. *Optional types* modify both value types or reference types. Finally, *variable reference types* aka *ref types* are a special form of reference with their own rules.
 
 ```grammar
 type
@@ -24,4 +24,4 @@ value_type
     ;
 ```
 
-Note that while value types are declared to be subtypes of reference types, the reality is more compilcated. Given value type `S` that is a subtype of reference type `T`, then `ref S <: T`. There is an implicit boxing conversion from `S` to `T$owned`.
+Note that while value types are declared to be subtypes of reference types, the reality is more complicated. Given value type `S` that is a subtype of reference type `T`, then `ref S <: T`. There is an implicit boxing conversion from `S` to `T$owned`.

@@ -20,6 +20,7 @@ keyword
     | "ensures"
     | "enum"
     | "explicit"
+    | "external"
     | "false"
     | "float"
     | "float32"

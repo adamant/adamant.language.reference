@@ -18,7 +18,6 @@ The following words are reserved for future use as Adamant keywords. To use thes
 | `dynamic_cast`     | Casting                                                                    |
 | `extend`           | Extensions                                                                 |
 | `extension`        | Extensions                                                                 |
-| `external`         | Common Keyword                                                             |
 | `fallthrough`      | Useful for switch like constructs                                          |
 | `for`              | Common Keyword                                                             |
 | `from`             | Common Keyword                                                             |

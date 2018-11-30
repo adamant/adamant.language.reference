@@ -69,7 +69,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * Class Value Types
   * [Pointers](pointers.md)
   * [Memory Allocation](memory-allocation.md)
-  * [External](external.md)
+  * External
   * [Memory Layout](memory-layout.md)
   * Unchecked
 * Conventions
