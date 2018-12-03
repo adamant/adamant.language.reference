@@ -73,11 +73,11 @@ decimal_type
 
 They provide IEEE 754 32-bit, 64-bit and 128-bit decimal numbers respectively (binary representation preferred).
 
-### "`dec64`" Type
+### DEC64 Type
 
 The "`system.math`" package defines the `dec64` type following the standard [dec64.org](http://dec64.org).
 
-### "`rational`" Type
+### Rational Type
 
 The "`system.math`" package defines the `rational` type. An arbitrary precision rational either [integer/uinteger](https://en.wikipedia.org/wiki/Rational_data_type#Representation) or [A New Representation of the Rational Numbers
 for Fast Easy Arithmetic](http://www.cs.toronto.edu/~hehner/ratno.pdf) by Eric C. R. Hehner and R. N. S. Horspool.
@@ -137,7 +137,7 @@ Aliases can have any access modifier.
 
 ### Multiline String Literals
 
-Multiline string literals start with three double quotes followed by only whitespace on the line. They continue until a line that begins with whitespace followed by three double quotes. The lines with the double quotes are not included. So the final line does not end with a line break. They can be indented. The indent of the first line is ignored, indentation beyond that is included in the string. Double quotes can be used in a multiline string. A line can be continued by ending it with a backslash. *Regardless of the line endings of the source file, lines in the string are terminated with '\n'.* a line can be continued useing a backslash followed by a newline. Multiline string literals should also support string interpolation. (see [Swift Multiline String Literals](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html) for more information).
+Multiline string literals start with three double quotes followed by only whitespace on the line. They continue until a line that begins with whitespace followed by three double quotes. The lines with the double quotes are not included. So the final line does not end with a line break. They can be indented. The indent of the first line is ignored, indentation beyond that is included in the string. Double quotes can be used in a multiline string. A line can be continued by ending it with a backslash. *Regardless of the line endings of the source file, lines in the string are terminated with '\n'.* a line can be continued using a backslash followed by a newline. Multiline string literals should also support string interpolation. (see [Swift Multiline String Literals](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html) for more information).
 
 ```adamant
 let s = """
@@ -147,3 +147,22 @@ let s = """
     onto the next line.
     """;
 ```
+
+### Unchecked Expressions
+
+Inside an unchecked expression, the basic operators on integer types would be unchecked. Thus overflow on "`+`", "`-`", "`*`" and "`/`" would not be checked. Note that wrapping on division can occur for `MIN / -1` on signed types. Because the result is `-MIN` which is too large of a positive value. Also note that unary "`-`" can likewise overflow.
+
+Like unsafe, both expression and block forms would be allowed:
+
+```adamant
+let x = unchecked(y + z);
+
+unchecked
+{
+    let a = b * c;
+}
+```
+
+Additionally, it might be possible to allow operator and function overloading on unchecked by using "`unchecked`" as a modifier on the function. This would allow non-primitive types to participate in unchecked contexts. For clarity, a "`checked`" modifier could be used as well. Both keywords are reserved.
+
+One open question is what the spec should say about wrapping behavior in unchecked contexts. It could specify two's complement wrapping. However, there might be a performance benefit to leaving it more open. We wouldn't want the C style undefined behavior, but allowing different bit representations and segfaults might help for some hardware.

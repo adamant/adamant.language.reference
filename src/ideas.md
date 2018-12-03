@@ -31,7 +31,7 @@ Instead of having a total order of precedence on the operators, have only a part
 
 ### "`xor`" Operator
 
-Use "`xor`" as the logical exclusive or operator. It could have no precedence relative to the "`and`" and "`or`" operators. It is unlikely anyone would know the precedence of it. In fact, there may be disagreement about the correct precedence. *This has been omitted from the language for now to avoid imposing a precedence relative to the "`and`" and "`or`" operators before operator partial ordering is supported.
+Use "`xor`" as the logical exclusive or operator. It could have no precedence relative to the "`and`" and "`or`" operators. It is unlikely anyone would know the precedence of it. In fact, there may be disagreement about the correct precedence. This has been omitted from the language for now to avoid imposing a precedence relative to the "`and`" and "`or`" operators before operator partial ordering is supported.
 
 ### Dot Product and Cross Product Operators
 
@@ -76,7 +76,7 @@ Code in documentation comments should either be compiled, or have a way of causi
 
 ### `else match` Expression
 
-Allow a match to occur immediatly after an else. Currently only if can occur there.
+Allow a match to occur immediately after an else. Currently only if can occur there.
 
 ### `repeat {} while condition;` Loops
 
@@ -149,3 +149,11 @@ Named parameters can be useful. I don't like how in C# every parameter could be 
 ```adamant
 function(5 for arg_2, 6 for arg_1);
 ```
+
+### Big Integers are Default
+
+Make "`int`" and "`uint`" big integers with "`int32`" and "`uint32`" being added back. These big integers would pack into 64 bits most of the time and when they got bigger, change to 64 bit pointers. Given there is already overflow checks, the instructions for checking if a big integer is a pointer may not really be an issue. Also, on modern CPUs the performance issues are much more to do with waiting on other hardware. However, big integers that are a pointer could cause cash line misses and may require reference counting which could be costly.
+
+### Have Both Default and Sized Integers
+
+Currently, "`int`" and "`uint`" replace possible "`int32`" and "`uint32`" types. The language could have both as synonyms. This would allow for better conveying programmer intent. Programmers who weren't thinking about integer sizes could use "`int`" and "`uint`", programmers who consciously decided that 32 bits was the correct size for the situation could use "`int32`" and "`uint32`". However, this could lead to style splits with some devs claiming one should always use the explicit size variants. Furthermore, it would not be possible to produce a warning on their use, because it is only programmer intent.
