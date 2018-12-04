@@ -10,6 +10,8 @@ Sections:
 * [Expressions](#expressions)
 * [Types](#types)
 * [Named Parameters](#named-parameters)
+* [Development Aids](#development-aids)
+* [Generics](#generics)
 
 ## Operators
 
@@ -142,6 +144,26 @@ Instead of allowing assignment expressions anywhere. Use a set expression "`set 
 
 Support in the standard library for numbers that are represented in the [Logarithmic number system](https://en.wikipedia.org/wiki/Logarithmic_number_system).
 
+### Big Integers are Default
+
+Make "`int`" and "`uint`" big integers with "`int32`" and "`uint32`" being added back. These big integers would pack into 64 bits most of the time and when they got bigger, change to 64 bit pointers. Given there is already overflow checks, the instructions for checking if a big integer is a pointer may not really be an issue. Also, on modern CPUs the performance issues are much more to do with waiting on other hardware. However, big integers that are a pointer could cause cash line misses and may require reference counting which could be costly.
+
+### Have Both Default and Sized Integers
+
+Currently, "`int`" and "`uint`" replace possible "`int32`" and "`uint32`" types. The language could have both as synonyms. This would allow for better conveying programmer intent. Programmers who weren't thinking about integer sizes could use "`int`" and "`uint`", programmers who consciously decided that 32 bits was the correct size for the situation could use "`int32`" and "`uint32`". However, this could lead to style splits with some devs claiming one should always use the explicit size variants. Furthermore, it would not be possible to produce a warning on their use, because it is only programmer intent.
+
+### Relative Pointers
+
+JAI will likely have relative pointers to pack pointers into smaller spaces that the 64-bit address space requires. Instead a relative pointer is smaller, but is a pointer relative to its own location. Thus to get the actual pointer, you must add the address of the relative pointer to the value of the regular pointer. Relative pointers would require the ability to specify their size. However, this requires that the programmer knows something about where things are allocated. For example, that all the values will be allocated in a single block of memory. Additionally, relative pointers introduce the possibility of overflow. Assigning a pointer into a relative pointer would cause overflow if the address pointed to is outside of what the relative pointer can point to. Early versions of JAI used "`*~s32 Node`" for a 32-bit relative pointer to a node. Notice a signed int is used. It may be possible to implement relative pointers in the standard library using structs.
+
+### Reference Counted References
+
+If reference counted references are built into the language then certain optimizations become possible. Whole program optimization could determine that no weak references are take to a given type and the weak count could be omitted. The graph of references between types could be used to determine which references could possibly for cycles. Then some form of cycle breaking might become efficient enough to use so that weak references aren't necessary. Of course, that could lead to issues where devs just use reference counting for everything and it becomes just a slow garbage collector.
+
+### Move and Copy Reference Types
+
+Copy constructors can be defined for reference types. However, would it be useful to have reference types that are implicit copy? Would it be useful to have reference types that are move by default. It seems that this might be useful for implementing something like a type state. Consider a socket object. This should be a reference type because it is large and may have multiple subtypes. However, it could go through three states represented by types (i.e. `AvailableSocket`, `OpenSocket`, `ClosedSocket`). There would be methods that took the one and returned the other. For example, the `close()` method would consume the socket and then return a `ClosedSocket`. However, this may not require move reference types. Indeed, one may not want move for most methods on socket. The close method could be declared `fn close(self$owned) -> ClosedSocket$owned`. It would then take ownership of self. That is a little strange because one can't use the `move` keyword with the self reference. The dot operator would have to do this implicitly.
+
 ## Named Parameters
 
 Named parameters can be useful. I don't like how in C# every parameter could be potentially called as a named parameter. In Swift, there is syntax to control the name of a parameter independent of the name within the function. I think that makes sense since changing a parameter name is a breaking change. One could even allow multiple names for a parameter as a way of transitioning from an old name to a new name. The problem is that there is no good syntax for calling named parameters. The "`=`" would be ambiguous with assignment. The "`:`" would look like variable declarations and might conflict with current or future syntax. One person suggested using the keyword "`for`".
@@ -150,10 +172,20 @@ Named parameters can be useful. I don't like how in C# every parameter could be 
 function(5 for arg_2, 6 for arg_1);
 ```
 
-### Big Integers are Default
+## Development Aids
 
-Make "`int`" and "`uint`" big integers with "`int32`" and "`uint32`" being added back. These big integers would pack into 64 bits most of the time and when they got bigger, change to 64 bit pointers. Given there is already overflow checks, the instructions for checking if a big integer is a pointer may not really be an issue. Also, on modern CPUs the performance issues are much more to do with waiting on other hardware. However, big integers that are a pointer could cause cash line misses and may require reference counting which could be costly.
+### Relaxed Borrow Checking
 
-### Have Both Default and Sized Integers
+During development, the rules of borrow checking could be relaxed by actually using a garbage collector. It would be important to not let this get out of hand, but it might allow the running of functions that are being developed that still need to have the borrowing worked out.
 
-Currently, "`int`" and "`uint`" replace possible "`int32`" and "`uint32`" types. The language could have both as synonyms. This would allow for better conveying programmer intent. Programmers who weren't thinking about integer sizes could use "`int`" and "`uint`", programmers who consciously decided that 32 bits was the correct size for the situation could use "`int32`" and "`uint32`". However, this could lead to style splits with some devs claiming one should always use the explicit size variants. Furthermore, it would not be possible to produce a warning on their use, because it is only programmer intent.
+## Generics
+
+### Meta Functions
+
+Functions with no runtime parameters that would always be evaluated at compile time. These would be declared by omitting the parens (i.e. `fn foo[n: size] -> Type`). They would be called without parens (i.e. `foo[45]`). Initially these seem like a cool idea. However there are some serious issues. They can't be generic in the types the operate on. For example, it wouldn't be possible to create a function that evaluated something as a const expression by passing it as a parameter (i.e. `constant[some_function()]`). That would not be possible because the function can't be generic in the type of its parameter. It might seem that meta functions would be useful for evaluating types, but pure functions can already be used for this. For example a pure function `fn tuple_of(params types: Array[Type]) -> Type` which constructs the tuple type for a list of types can already be written and (assuming it is pure) called in a type context. It would seem the only thing meta functions would allow one to do is create functions that appeared to be type constructors in the same way generic classes are. One question there is whether they would need to return a metatype for consistency with the way classes work. It isn't clear this would add much value when one can already use regular functions to construct types.
+
+If one curried meta functions or allowed direct declaration, then maybe they could be generic. For example, `fn constant[T] -> [v: T] -> T` would accept a generic type parameter, then return a meta function that would take a value of that type and return it. It isn't clear whether the inference system could handle that. Alternatively, one could allow them to be directly declared as `fn constant[T][v: T] -> T`.
+
+### Default To Inferred
+
+Generic parameters can be given a default value. However, there are cases where one expects that users of a class will often want to pass one argument but have later arguments inferred. As an example, fixed size arrays `Unsafe_Array[n: size, T]` will need the size specified, but will often be able to infer the type parameter. Of course, this can already be fairly easily done with `Unsafe_Array[5, _]` at the use site. However, it could be useful to allow the class to declare that a parameter can be inferred if it is not used. One possible syntax for this would be `Unsafe_Array[n: size, T = _]`. Another possible syntax would be to allow curried or nested generics: `Unsafe_Array[n: size][T]`. Thus the first argument would be specified, but the second inferred. That syntax might imply that using the type would require double brackets as `Unsafe_Array[5][int]` which is odd.

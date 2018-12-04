@@ -41,11 +41,11 @@ public enum struct Example
     {
         // new members
     },
-    SubclassB:: Interface // subclass implementing interface, again base class implied
+    SubclassB <: Interface // subclass implementing interface, again base class implied
     {
         // new members
     },
-    SubclassC: OtherBase : Example // inherits another class, implements the interface of Example, not allowed for structs
+    SubclassC: OtherBase <: Example // inherits another class, implements the interface of Example, not allowed for structs
     {
         // new members
     },

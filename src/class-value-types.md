@@ -9,3 +9,5 @@ class_value_type
     : "^" class_reference_type
     ;
 ```
+
+Just as with struct types, a value of the type "`ref ^T`" can be converted to all of the traits implemented by "`T`".
