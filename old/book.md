@@ -70,7 +70,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Pointers](pointers.md)
   * [Memory Allocation](memory-allocation.md)
   * External
-  * [Memory Layout](memory-layout.md)
+  * Memory Layout
   * Unchecked
 * Conventions
 * Testing
