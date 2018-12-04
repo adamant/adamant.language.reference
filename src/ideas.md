@@ -12,6 +12,7 @@ Sections:
 * [Named Parameters](#named-parameters)
 * [Development Aids](#development-aids)
 * [Generics](#generics)
+* [Misc](#misc)
 
 ## Operators
 
@@ -189,3 +190,21 @@ If one curried meta functions or allowed direct declaration, then maybe they cou
 ### Default To Inferred
 
 Generic parameters can be given a default value. However, there are cases where one expects that users of a class will often want to pass one argument but have later arguments inferred. As an example, fixed size arrays `Unsafe_Array[n: size, T]` will need the size specified, but will often be able to infer the type parameter. Of course, this can already be fairly easily done with `Unsafe_Array[5, _]` at the use site. However, it could be useful to allow the class to declare that a parameter can be inferred if it is not used. One possible syntax for this would be `Unsafe_Array[n: size, T = _]`. Another possible syntax would be to allow curried or nested generics: `Unsafe_Array[n: size][T]`. Thus the first argument would be specified, but the second inferred. That syntax might imply that using the type would require double brackets as `Unsafe_Array[5][int]` which is odd.
+
+### Reified Generics
+
+Ability to explicitly create functions with specific types filled in. This would be like "bake" in JAI to some extent. As an example of how this could be used, given a function that uses reflection to serialize a type to JSON, one could reify it to get a JSON serializer that was optimized for the given type because the compiler knew exactly all the steps/operations needed.
+
+### Inline Generic Constraints
+
+One could use the subtype operator to allow inline generic constraints. So instead of `class Foo[T] where T <: Bar` one could write `class F[T <: Bar]`. The drawback of this is what Rust noticed that generic parameters can get really cluttered and confusing.
+
+## Misc
+
+### Compile Time Only Functions
+
+Regular functions that are intended to be used only at compile time. This would be a modifier or attribute that told the compiler the function couldn't be used at runtime and would ensure that the function was never emitted as compiled code.
+
+### Package Wide Namespace Alias
+
+Just like you can give a package an alias in the project file when referencing the package, allow you to specify aliases for namespaces inside that package. This could avoid the need to alias the package because you could move all of the declarations to a namespace that didn't conflict. In fact, this could almost replace the package alias ability.
