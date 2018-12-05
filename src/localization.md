@@ -27,7 +27,7 @@ When converting a value to a string for debug purposes the display locale is use
 
 The names below are used throughout the standard library for converting to strings. In these, the "`FormatEnum`" is specific to the type being formatted. Overloads with a "`FormatEnum`" may not be provided in cases where formatting can't be controlled.
 
-* `to_display_format()`
+* `to_display_string()`
 * `to_display_string(format: FormatEnum)`
 * `to_debug_string()`
 * `to_debug_string(format: FormatEnum)`
