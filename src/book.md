@@ -57,6 +57,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 19. [External Declarations](external.md)
 20. [Documentation Comments](documentation-comments.md)
 21. Standard Library
+    * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
     * [`system.collections.specialized` Namespace](system.collections.specialized.md)

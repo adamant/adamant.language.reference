@@ -81,7 +81,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Ranges](ranges.md)
   * Collections
   * Reflection
-  * [Localization](localization.md)
+  * Localization
 * [Syntax Reference](syntax.md)
 * [Version Number Scheme](version-numbers.md)
 * [Feature Ideas](ideas.md)

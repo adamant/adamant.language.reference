@@ -1,4 +1,6 @@
-# Localization
+## Localization
+
+The standard library relies on a concept of locals for all formatting and parsing.
 
 For localization, there are a number of locales that might be in play. They are:
 
@@ -17,19 +19,19 @@ Many applications are developed without regard for internalization. For these ap
 
 Note: .NET uses the term "culture", but "locale" seems to be both the more standard term and more precise.
 
-## Debug Formatting
+### Debug Formatting
 
 When converting a value to a string for debug purposes the display locale is used by default. However, there should be a way to override this for a developer wishing to test the app in a separate locale from their testing. That probably means there is a debug display locale.
 
-## Conventions
+### Conventions
 
-**TODO:** Would it be better to name these methods "format" as the opposite of parse instead of "to string"?
+The names below are used throughout the standard library for converting to strings. In these, the "`FormatEnum`" is specific to the type being formatted. Overloads with a "`FormatEnum`" may not be provided in cases where formatting can't be controlled.
 
-* `to_display_string()`
-* `to_display_string(format: string)`
+* `to_display_format()`
+* `to_display_string(format: FormatEnum)`
 * `to_debug_string()`
-* `to_debug_string(format: string)`
+* `to_debug_string(format: FormatEnum)`
 * `to_invariant_string()`
-* `to_invariant_string(format: string)`
+* `to_invariant_string(format: FormatEnum)`
 * `to_string(locale: Locale)`
-* `to_string(locale: Locale, format: string)`
+* `to_string(locale: Locale, format: FormatEnum)`
