@@ -66,5 +66,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 22. [Conventions](conventions.md)
 23. [Planned Features](planned-features.md)
 
-[Appendix: Ideas](ideas.md)
-[Appendix: Implementor's Notes](implementors-notes.md)
+Appendices:
+
+* [Ideas](ideas.md)
+* [Implementor's Notes](implementors-notes.md)
