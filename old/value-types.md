@@ -87,7 +87,7 @@ Notice that we made our complex struct immutable rather than mutable like our Po
 It doesn't make sense to give copy semantics to some structs, but we still want to be able to copy them when needed. For example, if we wanted to make our complex struct mutable, then it would make sense to give it move semantics, but be able to explicitly copy it. This can be done simply by declaring the copy constructor as `explicit` instead of `implicit`.
 
 ```adamant
-    public mut struct Complex
+    public mut copy struct Complex
     {
         public var real: int;
         public var imaginary: int;

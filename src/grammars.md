@@ -1,6 +1,6 @@
 ## Grammars
 
-This reference presents the syntax of Adamant using two grammars. The *lexical grammar* ([Lexical Grammar](lexical-grammar.md)) defines how characters combine to define tokens. The *syntactic grammar*([Syntactic grammar](syntactic-grammar.md)) defines how the tokens resulting from the lexical grammar are combined to form Adamant programs.
+This reference presents the syntax of Adamant using two grammars. The *lexical grammar* defines how characters combine to define tokens. The *syntactic grammar* defines how the tokens resulting from the lexical grammar are combined to form Adamant programs.
 
 ### Grammar Notation
 

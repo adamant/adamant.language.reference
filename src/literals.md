@@ -92,8 +92,8 @@ sign
 User literals allow for literal values for user defined types. They are enclosed in single quotes and allow character escape sequences for special characters. Examples include "`'c'`", "`'♠'`", "`'2018-09-28'`" or "`'c29a3471-ea8d-40e3-bb2b-ef563687f'`".
 
 ```grammar
-character_literal
-    : "'" character "'"
+user_literal
+    : "'" character* "'"
     ;
 
 character
