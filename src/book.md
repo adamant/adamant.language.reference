@@ -44,6 +44,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 9. [Namespaces and Using Directives](namespaces-and-usings.md)
 10. Functions
 11. Classes
+    * [Operator Overloading](operator-overloading.md)
 12. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
