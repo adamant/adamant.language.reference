@@ -15,6 +15,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Keywords](keywords.md)
     * [Reserved Words](reserved-words.md)
     * [Literals](literals.md)
+    * [Operators and Punctuators](operators-and-punctuators.md)
 3. Basic Concepts
     * [Member Access](member-access.md)
     * [Execution Order](execution-order.md)
@@ -30,7 +31,8 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Variable Reference Types](ref-types.md)
     * Generic Types
 5. [Conversions](conversions.md)
-6. [Expressions](expressions.md)
+6. Variables
+7. [Expressions](expressions.md)
     * [Expression Blocks](expression-blocks.md)
     * [Choice Expressions](choice-expressions.md)
     * [Loop Expressions](loop-expressions.md)
@@ -38,33 +40,33 @@ Note: This is the new version of the reference. Sections are being moved from th
       * Logical Operators
     * [Bitwise Operations](bitwise-operations.md)
     * [Boolean Expression](boolean-expression.md)
-7. [Statements](statements.md)
-8. [Namespaces and Using Directives](namespaces-and-usings.md)
-9. Functions
-10. Classes
-11. [Structs](structs.md)
+8. [Statements](statements.md)
+9. [Namespaces and Using Directives](namespaces-and-usings.md)
+10. Functions
+11. Classes
+12. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
-12. [Traits](traits.md)
-13. [Enumerations](enumerations.md)
+13. [Traits](traits.md)
+14. [Enumerations](enumerations.md)
     * Enumeration Structs
     * Enumeration Classes
-14. Generics
-15. Exceptions
-16. Attributes
-17. Patterns
-18. Unsafe Code
-19. [External Declarations](external.md)
-20. [Documentation Comments](documentation-comments.md)
-21. Standard Library
+15. Generics
+16. Exceptions
+17. Attributes
+18. Patterns
+19. Unsafe Code
+20. [External Declarations](external.md)
+21. [Documentation Comments](documentation-comments.md)
+22. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
     * [`system.collections.specialized` Namespace](system.collections.specialized.md)
     * [`system.math` Namespace](system.math.md)
     * [`system.text` Namespace](system.text.md)
-22. [Conventions](conventions.md)
-23. [Planned Features](planned-features.md)
+23. [Conventions](conventions.md)
+24. [Planned Features](planned-features.md)
 
 Appendices:
 

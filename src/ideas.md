@@ -26,7 +26,9 @@ Make `a < b < c` legal. This would also allow `a < b > c` which seems confusing.
 
 ### Advanced Operator Overloading
 
-A number of additional options for operator overloading are possible. One could allow overloading of additional symbols and sequences of symbols. Such operators could have no precedence, or the programmer could be allowed to specify their precedence. Additionally, one could declare an operator to be commutative. This would be similar to the idea of allowing symmetric operators. It would mean that overloads of the operator could have there arguments passed in either order. Of course, with imprecision of number types, that could change behavior. Perhaps it would also make sense to allow the programmer to specify the associativity of new operators.
+A number of additional options for operator overloading are possible. One could allow overloading of additional symbols and sequences of symbols. Such mixfix operator overloading could build on the underscore syntax already used for overloading unary operators and surrounding operators (i.e. `_>>_<<_` would be a ternary operator). Such operators could have no precedence, or the programmer could be allowed to specify their precedence.
+
+Additionally, one could declare an operator to be commutative. This would be similar to the idea of allowing symmetric operators. It would mean that overloads of the operator could have their arguments passed in either order. Of course, with imprecision of number types, that could change behavior. Perhaps it would also make sense to allow the programmer to specify the associativity of new operators.
 
 ### Operator Partial Order
 

@@ -36,7 +36,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Associated Functions](associated-functions.md)
   * [Constructors](constructors.md)
   * [Destructors](destructors.md)
-  * [Operator Overloading](operator-overloading.md)
+  * Operator Overloading
   * [Object Literals](object-literals.md)
   * [Extensions](extensions.md)
   * [Partial Classes](partial-classes.md)

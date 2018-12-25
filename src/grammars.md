@@ -10,7 +10,7 @@ The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/w
 | ---------------------------------------------- | -------------------------------------------------------------------------------- |
 | *name*                                         | A nonterminal                                                                    |
 | *name* `:` *expression* `;`                    | A derivation rule for the nonterminal *name*                                     |
-| *expression* `|` *expression*                  | Unordered choice                                                                 |
+| *expression* `\|` *expression*                 | Unordered choice                                                                 |
 | *expression*`*`                                | Expression repeated zero or more times                                           |
 | *expression*`+`                                | Expression repeated one or more times                                            |
 | *expression*`?`                                | Expression is optional                                                           |
