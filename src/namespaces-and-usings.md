@@ -45,7 +45,7 @@ Namespaces do not have a declared visibility (no access modifier). Within a pack
 
 ## Name Resolution
 
-Namespaces are searched from inside out for a name. If a matching declaration is found in the namespace, then resolution stops. Otherwise, declarations in nested namespaces visible from the current code are searched. All declarations in nested namespaces are considered together so that declarations in two different sub-namespaces could cause ambiguity. Name resolution then continues to the containing namespace. This means that all declarations will be visible in the global namespace. If a declaration with the same name whose type doesn't match the usage is found, name resolution continues does not stop.
+Namespaces are searched from inside out for a name. If a matching declaration is found in the namespace, then resolution stops. Otherwise, declarations in nested namespaces visible from the current code are searched. All declarations in nested namespaces are considered together so that declarations in two different sub-namespaces could cause ambiguity. Name resolution then continues to the containing namespace. This means that all declarations will be visible in the global namespace. If a declaration with the same name whose type doesn't match the usage is found, name resolution continues.
 
 ## Using Directives
 
