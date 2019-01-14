@@ -171,6 +171,10 @@ Copy constructors can be defined for reference types. However, would it be usefu
 
 It probably makes sense to have all tuple types implement a common interface. C# has them implement several interfaces about structural equality.
 
+### Product Types for Tuples
+
+Adamant has sum types (`|`) and intersection types (`&`). For consistency with those, it may make sense to make tuple types be product types. These could be constructed with the `*` operator.
+
 ## Parameters
 
 ### Named Parameters
