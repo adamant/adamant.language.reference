@@ -36,13 +36,14 @@ The following words are reserved for future use as Adamant keywords. To use thes
 | `symmetric`        | Symmetric operators                                                        |
 | `transmute`        | Reinterpret Cast                                                           |
 | `then`             | Python style loop else<sup>1</sup>                                         |
+| `type`             | Type aliases and declarations                                              |
 | `unchecked`        | Unchecked Operations                                                       |
 | `unless`           | Ruby style `if not` statement or `unless break` for Python style loop else |
 | `when`             | C# style exception filters                                                 |
 | `xor`              | Logical exclusive or operator                                              |
 | `yield`            | Generators                                                                 |
 
-<sup>1</sup> The "`then`" keyword would allow for "`while condition { } then { } else { }`". The "else" block would be executed if the condition is false the first time it is evaluated. The "then" block would be executed in control flow left the end of the loop body (i.e. the loop body executed at least once and wasn't exited with a "`break`" expression). Note though that a "`then`" without an "`else`" would execute even if the loop never did. (see also `unless break`)
+<sup>1</sup> The "`then`" keyword would allow for "`while condition { } then { } else { }`". The "else" block would be executed if the condition is false the first time it is evaluated. The "then" block would be executed if control flow left the end of the loop body (i.e. the loop body executed at least once and wasn't exited with a "`break`" expression). It is unclear of the semantics should be that a "`then`" without an "`else`" would execute even if the loop never did. (see also `unless break`)
 
 ### Reserved Simple Types
 

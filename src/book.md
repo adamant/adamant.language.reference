@@ -29,6 +29,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * Type Parameters
     * [Optional Types](optional-types.md)
     * [Variable Reference Types](ref-types.md)
+    * [Composite Types](composite-types.md)
     * Generic Types
 5. [Conversions](conversions.md)
 6. Variables

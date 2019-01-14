@@ -175,6 +175,10 @@ It probably makes sense to have all tuple types implement a common interface. C#
 
 Adamant has sum types (`|`) and intersection types (`&`). For consistency with those, it may make sense to make tuple types be product types. These could be constructed with the `*` operator.
 
+### Unify Union Types and Enum Classes
+
+Enum classes are very similar to union types where all the types implement/inherit a single class. Rather than having two separate features, perhaps union types should be the only way of declaring enum classes. This may make them more verbose so perhaps the syntax for union classes should reflect the syntax for union types instead.
+
 ## Parameters
 
 ### Named Parameters
