@@ -9,7 +9,7 @@ type
     | type_parameter
     | optional_type
     | variable_reference_type
-    | composite_type
+    | type_expression
     ;
 ```
 
