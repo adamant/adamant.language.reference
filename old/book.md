@@ -84,7 +84,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * Localization
 * [Syntax Reference](syntax.md)
 * [Version Number Scheme](version-numbers.md)
-* [Feature Ideas](ideas.md)
+* Feature Ideas
   * [Considering](ideas-considering.md)
   * [Rejected](ideas-rejected.md)
 * [Glossary](glossary.md)
