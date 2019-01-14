@@ -167,6 +167,10 @@ If reference counted references are built into the language then certain optimiz
 
 Copy constructors can be defined for reference types. However, would it be useful to have reference types that are implicit copy? Would it be useful to have reference types that are move by default. It seems that this might be useful for implementing something like a type state. Consider a socket object. This should be a reference type because it is large and may have multiple subtypes. However, it could go through three states represented by types (i.e. `AvailableSocket`, `OpenSocket`, `ClosedSocket`). There would be methods that took the one and returned the other. For example, the `close()` method would consume the socket and then return a `ClosedSocket`. However, this may not require move reference types. Indeed, one may not want move for most methods on socket. The close method could be declared `fn close(self$owned) -> ClosedSocket$owned`. It would then take ownership of self. That is a little strange because one can't use the `move` keyword with the self reference. The dot operator would have to do this implicitly.
 
+### Tuple Base Class
+
+It probably makes sense to have all tuple types implement a common interface. C# has them implement several interfaces about structural equality.
+
 ## Named Parameters
 
 Named parameters can be useful. I don't like how in C# every parameter could be potentially called as a named parameter. In Swift, there is syntax to control the name of a parameter independent of the name within the function. I think that makes sense since changing a parameter name is a breaking change. One could even allow multiple names for a parameter as a way of transitioning from an old name to a new name. The problem is that there is no good syntax for calling named parameters. The "`=`" would be ambiguous with assignment. The "`:`" would look like variable declarations and might conflict with current or future syntax. One person suggested using the keyword "`for`".

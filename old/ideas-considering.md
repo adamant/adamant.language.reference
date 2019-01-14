@@ -1,9 +1,5 @@
 # Feature Ideas being Considered
 
-## Tuple Base Class
-
-It probably makes sense to have all tuple types inherit from an abstract base class `Adamant.Predefined::Adamant.Predefined.Tuple`. C# has them implement several interfaces about structural equality.
-
 ## `out`
 
 I have `ref`, does it make sense to add an `out` keyword like C#? Or does the ability to return tuples make `out` not useful enough?  They could be really useful with external functions (though, not sure how the memory would get cleaned up).
