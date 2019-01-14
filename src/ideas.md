@@ -9,7 +9,7 @@ Sections:
 * [Documentation Comments](#documentation-comments)
 * [Expressions](#expressions)
 * [Types](#types)
-* [Named Parameters](#named-parameters)
+* [Parameters](#parameters)
 * [Development Aids](#development-aids)
 * [Generics](#generics)
 * [Misc](#misc)
@@ -171,13 +171,19 @@ Copy constructors can be defined for reference types. However, would it be usefu
 
 It probably makes sense to have all tuple types implement a common interface. C# has them implement several interfaces about structural equality.
 
-## Named Parameters
+## Parameters
+
+### Named Parameters
 
 Named parameters can be useful. I don't like how in C# every parameter could be potentially called as a named parameter. In Swift, there is syntax to control the name of a parameter independent of the name within the function. I think that makes sense since changing a parameter name is a breaking change. One could even allow multiple names for a parameter as a way of transitioning from an old name to a new name. The problem is that there is no good syntax for calling named parameters. The "`=`" would be ambiguous with assignment. The "`:`" would look like variable declarations and might conflict with current or future syntax. One person suggested using the keyword "`for`".
 
 ```adamant
 function(5 for arg_2, 6 for arg_1);
 ```
+
+### "`out`" Parameters
+
+The `ref` types function as reference parameters. Does it make sense to add an `out` keyword like C#? Or does the ability to return tuples make `out` not useful enough? They might be really useful with external functions.
 
 ## Development Aids
 

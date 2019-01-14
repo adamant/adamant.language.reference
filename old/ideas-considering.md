@@ -1,9 +1,5 @@
 # Feature Ideas being Considered
 
-## `out`
-
-I have `ref`, does it make sense to add an `out` keyword like C#? Or does the ability to return tuples make `out` not useful enough?  They could be really useful with external functions (though, not sure how the memory would get cleaned up).
-
 ## `var` is `mut` for Value Types
 
 Currently, `var` and `mut` have distinct meaning for value types. It is assumed this will be needed to implement certain pseudo references. Also, on struct constructors it makes sense to have a `ref mut self` parameter. However, perhaps using `var` should always imply `mut` for mutable structs. Logically it seems if you can assign a new value you should be able to mutate the value.
