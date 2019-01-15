@@ -76,7 +76,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Testing
 * Standard Library
   * Strings
-  * [Paths](paths.md)
+  * Paths
   * [Arrays](arrays.md)
   * Ranges
   * Collections
