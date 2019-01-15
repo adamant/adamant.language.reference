@@ -182,15 +182,17 @@ The coalesce operator would require its own overload. This would either take as 
 
 ## Logical Operator Overloading
 
+Support for overloading the logical operators `and`, `or`, and `not`. Note that the `not` operator is included here for consistency rather than because of any issues supporting overloads of it.
+
 The logical operators `and` and `or` are special because they perform short circuit evaluation. That is, their second argument may not be evaluated. Thus they can not be simple method calls. One approach would be to make the second argument a closure of the rest of the expression. However, the performance of that would need to be evaluated before that could be adopted. Another approach, similar to the one used by C# is to evaluate these operators in two steps. This approach is described below.
 
 Each operator has two overloads. The first determines when the second argument isn't evaluated, the second provides the value when it is. The first must return an optional type. If the result is `none` then the second argument will be evaluated and the binary form called. The two overloads for an operator must be overloaded together. When overloaded for some type, `x and y` is effectively evaluated as `x.and() ?? x.and(y)` and `x or y` is effectively evaluated as `x.or() ?? x.or(y)`. Note the first argument will only be evaluated once. Not that for the `and` operator, the unary version returns either its "false" value or `none` when it is "true". Another challenge of this approach is that the unary version of the operator can't easily be overloaded based on the type of the right operand. In the example code below, this is handled using a type parameter. However, this is awkward without a type equality operator for the where clause. Even with one, it makes overloading have to account for constraint clauses.
 
-An issue with this approach is that one may want to transform the value before passing it to the second overload. Perhaps the result needs to be some other type that allows a value to be passed in the "none" case?
+An issue with this approach is that one may want to transform the value before passing it to the second overload. Perhaps the result needs to be some other type that allows a value to be passed in the "none" case? Another issue is that the placeholders for the operands will fuse with the token for the operator because `_and_` and `_or_` are valid identifiers. This may require spaces or special handling in the compiler.
 
 ```adamant
 // In `fuzzy_bool`
-public operator[Other] and(self) -> fuzzy_bool?
+public operator[Other] _and_(self) -> fuzzy_bool?
     where Other: fuzzy_bool
 {
     return if Value == 0 => self else => none;
@@ -201,13 +203,13 @@ public operator and(self, other: fuzzy_bool) -> fuzzy_bool
     return new fuzzy_bool(value.min(other.value));
 }
 
-public operator[Other] or(self) -> fuzzy_bool?
+public operator[Other] _or_(self) -> fuzzy_bool?
     where Other: fuzzy_bool
 {
     return if value == 1 => self else => none;
 }
 
-public operator or(self, other: fuzzy_bool) -> fuzzy_bool
+public operator _or_(self, other: fuzzy_bool) -> fuzzy_bool
 {
     return new fuzzy_bool(value.max(other.value));
 }
