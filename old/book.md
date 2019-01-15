@@ -78,7 +78,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Strings](strings.md)
   * [Paths](paths.md)
   * [Arrays](arrays.md)
-  * [Ranges](ranges.md)
+  * Ranges
   * Collections
   * Reflection
   * Localization
