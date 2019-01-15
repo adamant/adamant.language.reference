@@ -66,6 +66,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system` Namespace](system.md)
     * [`system.collections.specialized` Namespace](system.collections.specialized.md)
     * [`system.math` Namespace](system.math.md)
+    * [`system.memory` Namespace](system.memory.md)
     * [`system.text` Namespace](system.text.md)
 23. [Conventions](conventions.md)
 24. [Planned Features](planned-features.md)
