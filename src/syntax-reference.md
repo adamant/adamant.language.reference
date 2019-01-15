@@ -1,6 +1,6 @@
-# Syntax Reference
+## Appendix: Syntax Reference
 
-This section gives a brief statement of the syntax for easy reference.
+A brief statement of the syntax for easy reference.
 
 ## Identifiers
 
@@ -34,7 +34,6 @@ This section gives a brief statement of the syntax for easy reference.
 | `x?.y`    | Conditional Access Operator    |
 | `x and y` | Logical And (Short Circuiting) |
 | `x or y`  | Logical Or (Short Circuiting)  |
-| `x xor y` | Logical Xor                    |
 | `x..y`    | Inclusive Range                |
 | `x..<y`   | Range Exclusive of End         |
 | `x<..y`   | Range Exclusive of Start       |

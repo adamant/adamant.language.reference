@@ -78,3 +78,4 @@ Appendices:
 * [Glossary](glossary.md)
 * [Implementor's Notes](implementors-notes.md)
 * [Influences](influences.md)
+* [Syntax Reference](syntax-reference.md)

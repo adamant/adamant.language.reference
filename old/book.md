@@ -82,7 +82,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * Collections
   * Reflection
   * Localization
-* [Syntax Reference](syntax.md)
+* Syntax Reference
 * [Version Number Scheme](version-numbers.md)
 * Feature Ideas
   * [Considering](ideas-considering.md)
