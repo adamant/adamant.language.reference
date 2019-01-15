@@ -1,4 +1,4 @@
-## Appendix: Syntax Reference
+# Appendix: Syntax Reference
 
 A brief statement of the syntax for easy reference.
 

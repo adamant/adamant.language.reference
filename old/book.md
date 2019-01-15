@@ -57,7 +57,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Generics](generics.md)
 * Const and Static
 * Attributes
-* [Params and List Initializers](params-and-list-initializers.md)
+* Params and List Initializers
 * Bitwise Operations
 * [Casting with `as`](casting.md)
 * Escaped Identifiers

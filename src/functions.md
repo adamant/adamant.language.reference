@@ -1,8 +1,8 @@
-# Params and List Initializers
-
-The `params` keyword allows for the creation of variadic functions. That is function that can take a variable number of arguments. It also allows for the invocation of variadic functions using list of arguments. Additionally, it can operate with tuples, not just lists.
+# Functions
 
 ## Params List
+
+The `params` keyword allows for the creation of variadic functions. That is function that can take a variable number of arguments. It also allows for the invocation of variadic functions using a list of arguments. Additionally, it can operate with tuples, not just lists.
 
 ### Declaring a Variadic Function
 
@@ -25,7 +25,7 @@ example(1, 2, 3, 4, 5);
 
 ### Construction of the List
 
-When gathering the parameters into the collection type of the parameter, the compiler will generate code based on the available constructors and methods of the type. It will first look for a constructor taking `size, Raw_Array[T]` or `size, mut Raw_Array[T]`. If one of those exists, it will construct an raw array of the values and pass the number of values and the raw array to that constructor. Even if that constructor is `unsafe` (which it should be), no safety error will be generated if it is outside an unsafe context. If no such constructor is present, it will look for a constructor named `capacity` taking a single argument of `size`. If it exists, it will construct the collection using that constructor passing the number of values, then call `add()` repeatedly, passing each value. If no such constructor is present, it will look for a default constructor, use it and add the values. If none of these exists, an error will be generated.
+When gathering the parameters into the collection type of the parameter, the compiler will generate code based on the available constructors and methods of the type. It will first look for a constructor taking `size, Raw_Array[T]` or `size, mut Raw_Array[T]`. If one of those exists, it will construct a raw array of the values and pass the number of values and the raw array to that constructor. Even if that constructor is `unsafe` (which it should be), no safety error will be generated if it is outside an unsafe context. If no such constructor is present, it will look for a constructor named `capacity` taking a single argument of `size`. If it exists, it will construct the collection using that constructor passing the number of values, then call `add()` repeatedly, passing each value. If no such constructor is present, it will look for a default constructor, use it and add the values. If none of these exists, an error will be generated.
 
 ### Calling Variadic Functions with a List
 

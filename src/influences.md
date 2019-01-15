@@ -1,4 +1,4 @@
-## Appendix: Influences
+# Appendix: Influences
 
 This appendix lists various languages and papers that have influenced the design and implementation of the Adamant language. This is not an exhaustive list.
 

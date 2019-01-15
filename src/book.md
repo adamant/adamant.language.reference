@@ -43,7 +43,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Boolean Expression](boolean-expression.md)
 8. [Statements](statements.md)
 9. [Namespaces and Using Directives](namespaces-and-usings.md)
-10. Functions
+10. [Functions](functions.md)
 11. Classes
     * [Operator Overloading](operator-overloading.md)
 12. [Structs](structs.md)
