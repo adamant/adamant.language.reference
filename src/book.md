@@ -73,4 +73,5 @@ Note: This is the new version of the reference. Sections are being moved from th
 Appendices:
 
 * [Ideas](ideas.md)
+* [Glossary](glossary.md)
 * [Implementor's Notes](implementors-notes.md)

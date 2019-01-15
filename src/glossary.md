@@ -1,4 +1,4 @@
-# Glossary
+## Appendix: Glossary
 
 Reference Type
 : Any type that is implicitly passed by reference. All types declared using the `class` keyword are reference types.
