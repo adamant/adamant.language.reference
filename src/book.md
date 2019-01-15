@@ -75,3 +75,4 @@ Appendices:
 * [Ideas](ideas.md)
 * [Glossary](glossary.md)
 * [Implementor's Notes](implementors-notes.md)
+* [Influences](influences.md)
