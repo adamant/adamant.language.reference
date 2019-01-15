@@ -57,7 +57,7 @@ Note: This is the new version of the reference. Sections are being moved from th
 16. Exceptions
 17. Attributes
 18. Patterns
-19. Unsafe Code
+19. [Unsafe Code](unsafe.md)
 20. [External Declarations](external.md)
 21. [Documentation Comments](documentation-comments.md)
 22. Standard Library

@@ -1,20 +1,22 @@
-# Unsafe
+## Unsafe
 
-## Unsafe Context
+### Unsafe Context
 The `unsafe` keyword is used to create an unsafe context. An unsafe block is introduced with the `unsafe` keyword followed by a block. An unsafe expression is introduced by the `unsafe` keyword followed by an expression in parenthesis.
 
-    unsafe
-    {
-        // unsafe code
-    }
-    x = unsafe(/* unsafe expression */);
+```adamant
+unsafe
+{
+    // unsafe code
+}
+x = unsafe(/* unsafe expression */);
+```
 
 An unsafe context is necessary to:
 
-    1. Access or modify a pointer
-    2. Access or update a mutable static variable
-    3. Call unsafe functions
-    4. Call untrusted functions (see [Trusted Packages](#TrustedPackages))
+1. Access or modify a pointer
+2. Access or update a mutable static variable
+3. Call unsafe functions
+4. Call untrusted functions (see [Trusted Packages](#TrustedPackages))
 
 It is a compile time error to perform any of those operations outside of an unsafe context.
 
@@ -32,9 +34,7 @@ It is a compile time error to mark a function `safe` that contains no unsafe con
 
 ## Trusted Packages
 
-Packages referenced from adamantforge.com may be trusted or untrusted. By default all packages in the System namespace are trusted while all other packages are untrusted. This can be changed for individual packages using the `trusted` attribute of the project file. Any function marked `unsafe` or `safe` in an untrusted package is untrusted. Note that this can propagate from one package to another. Any function that calls an untrusted function is untrusted. Calling an untrusted function requires an unsafe context.
-
-Note: the System.Runtime package is always trusted.
+Packages referenced from adamantforge.com may be trusted or untrusted. By default all packages in the `system` namespace are trusted while all other packages are untrusted. This can be changed for individual packages using the `trusted` attribute of the project file. Any function marked `unsafe` or `safe` in an untrusted package is untrusted. Note that this can propagate from one package to another. Any function that calls an untrusted function is untrusted. Calling an untrusted function requires an unsafe context.
 
 ## Docs
 
@@ -48,4 +48,4 @@ Rust and C# have no equivalent of the `safe` keyword. Requiring developers to ma
 
 ## Unsafe References
 
-An old implementation of the `Optional` type indicated that it might be useful to have references that may not be initialized. The idea is that a reference could be marked `unsafe`. Then you could set it to `uninitialized` to indicate you didn't want to initialize it or that the current value should be thrown away. Accessing an unsafe reference is unsafe because the compiler can't guarantee it has been initialized.
+An old implementation of optional types indicated that it might be useful to have references that may not be initialized. The idea is that a reference could be marked `unsafe`. Then you could set it to `uninitialized` to indicate you didn't want to initialize it or that the current value should be thrown away. Accessing an unsafe reference is unsafe because the compiler can't guarantee it has been initialized.

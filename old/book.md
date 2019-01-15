@@ -65,7 +65,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Reserved Words
 * Advanced Features
   * Preprocessor
-  * [Unsafe](unsafe.md)
+  * Unsafe
   * Class Value Types
   * [Pointers](pointers.md)
   * [Memory Allocation](memory-allocation.md)
