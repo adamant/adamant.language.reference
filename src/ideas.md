@@ -50,6 +50,10 @@ These character sequences are now available in the language and seem like they a
 
 While overflow causes abandonment, underflow does not. That seems like it could be an issue in some situations. Perhaps there should be a way to cause checked underflow.
 
+### Checked Arithmetic Operators
+
+Add `+?`, `-?`, `*?` and `/?` operators for checked arithmetic. If the operation overflowed, `none` would be returned. This is equivalent to the `checked_`*x* set of functions available in Rust. Note that since operators are lifted to optional types, chaining these operators would be fine i.e. `x +? y +? z` would type check.
+
 ## Preprocessor
 
 C# offers a preprocessor which doesn't suffer from the issues of the C/C++ preprocessor. A preprocessor could be very useful in Adamant for conditional compilation of packages for different target platforms and controlling compilation. However, Adamant packages are meant to be cross-platform, and having different versions for different platforms could be bad. There is an idea to support different platforms through native packages. That may obviate some of the need for a preprocessor. Preprocessor directives would be introduced with "`##`" but otherwise function similar to the C# preprocessor. While the list below includes begin and end region directives, it should be carefully evaluated whether these should be added to Adamant.
