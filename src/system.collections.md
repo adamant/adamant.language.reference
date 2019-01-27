@@ -1,5 +1,15 @@
-# Arrays
+## `system.collections` Namespace
 
+### `system.collections.specialized.Array[n: size, T]`
+
+A fixed size safe array type.
+
+---
+
+There should be no array type without the size as part of the type. However, something like existential or wildcard types should allow the array size to be omitted. For example, a function that sums the elements of an int array might have a signature `fn sum(values: Array[_, int]) -> int`. Ideally, there might be a syntax shorthand for that. Perhaps a type alias `type alias Array[T] = Array[_, T]`.
+
+
+---
 Array types are `baseType[N]` where N is a constant size or `baseType[]` which is really kind of a short hand for an existential type since we know it has a length, we just don't know what it is. Given everything is a reference, there shouldn't be array literals, however there should be array constructors using new. Possible syntax for constructing an array.
 
     new int[45](); // bugbug what about initializing this?
@@ -61,31 +71,6 @@ Then there could be overloads allowing arrays with fixed size.
 
     public Array<T, Size:size>
     {
-    }
-
-## Array Size as always a type parameter
-
-Another option is to make the array size always a type parameter and support some special syntax in the language that means, I don't really know the size which will have to be passed as a parameter. For example, maybe:
-
-    public Array<T, Size:size=*>
-    {
-    }
-
-    public Function(x: size) -> void
-    {
-        let x: mut = new Array<byte, 5>(); // TODO would actually need to initialize
-        let y: mut = new Array<byte, =x>(); // using a variable as a type parameter here?
-    }
-
-    public Sort<T>(array: mut Array<T>) -> void // the default for size is * which means it will be passed as a parameter
-    {
-        // ...
-    }
-
-Or
-    public Sort<T, Size:size>(array: mut Array<T, Size>) -> void // this is really interesting, but could be annoying
-    {
-        // ...
     }
 
 ## Array Lifetimes

@@ -77,7 +77,7 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Standard Library
   * Strings
   * Paths
-  * [Arrays](arrays.md)
+  * Arrays
   * Ranges
   * Collections
   * Reflection

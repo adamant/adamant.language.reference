@@ -64,6 +64,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
+    * [`system.collections` Namespace](system.collections.md)
     * [`system.collections.specialized` Namespace](system.collections.specialized.md)
     * [`system.io` Namespace](system.io.md)
     * [`system.math` Namespace](system.math.md)
