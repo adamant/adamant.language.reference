@@ -251,6 +251,14 @@ Ability to explicitly create functions with specific types filled in. This would
 
 One could use the subtype operator to allow inline generic constraints. So instead of `class Foo[T] where T <: Bar` one could write `class F[T <: Bar]`. The drawback of this is what Rust noticed that generic parameters can get really cluttered and confusing.
 
+### Existential Types
+
+Existential types should be cleaner that the `forSome` keyword used in Scala. Simple existential types could be handled with something like Java wildcards using the `_`. However, in other places that means infer this type. The two meanings need to be compatible. For more complicated situations, named wildcards `_T` could allow for existential types that are further constrained. For example, an list concatenation could be `fn concat(x: List[_T], y: List[_T]) -> List[_T]`. That expresses the relationship between the types. However, a change of implementation might require that a variable of that type be declared. As such, if there were a short simple way of declaring existential types it would be better to consistently use it. If it weren't hard to type, "∃" could be used as `fn concat(x: List[∃T], y: List[∃T]) -> List[∃T]`. However, it seems wierd to repeat the there exists, one expects something more like `∃T fn concat(x: List[T], y: List[T]) -> List[T]`. As a straw man syntax, if tilde were used it would be `fn concat(x: List[~T], y: List[~T]) -> List[~T]`. A fully anonymous existential parameter could then be `Array[~, T]`. Notice here that we have used it for a parameter that is not even a type. A type alias for arrays could be `type alias Array[T] = Array[~, T]`.
+
+As an alternative syntax, existential types could be treated as existential or implicit parameters. The concat example could be `fn concat[~T](x: List[T], y: List[T]) -> List[T]`.
+
+Another important consideration is whether an existential type can be used for a field `var list: List[∃T]` and it can actually be assigned lists of different types.
+
 ## Misc
 
 ### Compile Time Only Functions
