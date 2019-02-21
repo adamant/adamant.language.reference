@@ -58,7 +58,7 @@ overloadable_binary_operator
 
 literal_operator
     : "'_'"
-    | <String literal for single underscore (i.e. "_" including the double quotes)>
+    | ?String literal for single underscore (i.e. "_" including the double quotes)?
     ;
 ```
 

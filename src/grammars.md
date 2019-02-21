@@ -20,6 +20,6 @@ The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/w
 | `[`*character class*`]`                        | A regular expression style character class                                       |
 | `(`*expression*`)`                             | Expression order of operations                                                   |
 | `"`*literal*`"`                                | Matches a literal string                                                         |
-| `<`*description*`>`                            | Matches a string according to the description                                    |
+| `?`*description*`?`                            | Matches a string according to the description                                    |
 | `//` *comment* *eol*                           | A line comment                                                                   |
 | `/*` *comment* `*/`                            | A multi-line comment                                                             |

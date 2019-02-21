@@ -36,7 +36,7 @@ integer_literal
 
 digit_separator
     : " "
-    | <Unicode Narrow No-break Space (U+202F)>
+    | ?Unicode Narrow No-break Space (U+202F)?
     ;
 
 decimal_integer_literal
@@ -103,15 +103,15 @@ character
     ;
 
 single_character
-    : <Any character except single quote (U+0027), backslash (U+005C), and new_line_characters>
+    : ?Any character except single quote (U+0027), backslash (U+005C), and new_line_characters?
     ;
 
 simple_escape_sequence
-    : <Backslash (U+005C)> (["'nr0t] | <Backslash (U+005C)>)
+    : ?Backslash (U+005C)? (["'nr0t] | ?Backslash (U+005C)?)
     ;
 
 unicode_escape_sequence
-    : <Backslash (U+005C)> "(" [0-9a-f-A-F]{1,6} ")"
+    : ?Backslash (U+005C)? "(" [0-9a-f-A-F]{1,6} ")"
     ;
 ```
 
@@ -186,7 +186,7 @@ regular_string_character
     ;
 
 single_regular_string_character
-    : <Any character except double quote (U+0022), backslash (U+005C), and new_line_characters>
+    : ?Any character except double quote (U+0022), backslash (U+005C), and new_line_characters?
     ;
 
 verbatim_string_literal
@@ -238,7 +238,7 @@ interpolated_string_literal
     ;
 
 interpolated_string_item
-    : <Backslash (U+005C)> "(" expression ")"
+    : ?Backslash (U+005C)? "(" expression ")"
     | regular_string_character+
     ;
 ```

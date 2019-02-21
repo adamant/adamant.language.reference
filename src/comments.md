@@ -9,11 +9,11 @@ comment
     ;
 
 single_line_comment
-    : "//" <any unicode character exception newline>*
+    : "//" ?any unicode character exception newline?*
     ;
 
 delimited_comment
-    : "/*" <any unicode character sequence not containing asterisk slash> "*/
+    : "/*" ?any unicode character sequence not containing asterisk slash? "*/
     ;
 ```
 
