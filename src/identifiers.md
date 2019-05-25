@@ -1,5 +1,7 @@
 ## Identifiers
 
+**TODO:** add a grammar for identifers.
+
 ### Escaped Identifiers
 
 The backslash is used to escape keywords and reserved words for use as identifiers. For example "`\class`", allows one to use the "`class`" keyword as a variable name. Only keywords, contextual keywords and reserved words are allowed to be used as escaped identifers. For example, "`\hello`" is a syntax error because "hello" is not a keyword.
