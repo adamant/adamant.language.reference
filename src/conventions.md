@@ -40,7 +40,7 @@ for x in 1..10
 
 ## Parameter placements
 
-Function parameters should all be one one line or each on a separate line. If on separate lines, the left parenthesis is on the line with the function and the first parameter goes on the line after. The close parenthesis goes on the line with the last parameter. The exception is the self parameter which stays on the line with the function unless it doesn't fit. When parameters are on separate lines the return type is on its own line starting with `->`.
+Function parameters should all be on one line or each on a separate line. If on separate lines, the left parenthesis is on the line with the function and the first parameter goes on the line after. The close parenthesis goes on the line with the last parameter. The exception is the self parameter which stays on the line with the function unless it doesn't fit. When parameters are on separate lines the return type is on its own line starting with `->`.
 
 ```adamant
 
