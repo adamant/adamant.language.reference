@@ -4,11 +4,11 @@ A brief statement of the syntax for easy reference.
 
 ## Identifiers
 
-| Syntax            | Identifier Kind    |
-| ----------------- | ------------------ |
-| `Name`            | Identifer          |
-| `\class`          | Escaped Identifier |
-| `\"Hello World!"` | String Identifier  |
+| Syntax            | Identifier Kind                                                       |
+| ----------------- | --------------------------------------------------------------------- |
+| `Name`            | Identifer                                                             |
+| `\class`          | Escaped Identifier (keywords, contextual keywords and reserved words) |
+| `\"Hello World!"` | String Identifier                                                     |
 
 ## Literals
 
@@ -17,7 +17,7 @@ A brief statement of the syntax for easy reference.
 | `true`, `false`          | Boolean Literals            |
 | `"Hello!"`               | String Literal              |
 | `""" Multiple lines """` | Multiline String Literal    |
-| `" Hello \(name)`        | Interpolated String Literal |
+| `" Hello \(name)"`       | Interpolated String Literal |
 
 ## Operators
 
