@@ -167,6 +167,8 @@ public struct Date
 
 ### String Literals
 
+**TODO:** Change to delimited string literals the same as Swift. However, that may be a planned feature rather than a current feature.
+
 String literals are Unicode strings encoded in UTF-8. They are enclosed in double quotes. There are two kinds of string literals. Regular string literals allow the same escape sequences as user defined literals. Verbatim string literals do not allow escape sequences. Similar to user defined literals, the data type of string literals is not fixed. Instead it is inferred to be a type with the appropriate operator overload.
 
 ```grammar
