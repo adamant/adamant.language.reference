@@ -1,6 +1,6 @@
-# Member Access
+## Member Access
 
-## Declared Visibility
+### Declared Visibility
 
 In Adamant there are a number of levels of visibility an item can have. These are specified using the access modifiers "`protected`", "`public`", and "`published`". If there is no access modifier on an item, it is private. The access limitations imposed by these visibility levels are:
 

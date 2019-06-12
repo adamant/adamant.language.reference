@@ -9,7 +9,7 @@ comment
     ;
 
 single_line_comment
-    : "//" ?any unicode character exception newline?*
+    : "//" ?any unicode character except newline?*
     ;
 
 delimited_comment
