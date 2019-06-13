@@ -44,8 +44,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Const and Static
 * Params and List Initializers
 * [Casting with `as`](casting.md)
-* Advanced Features
-  * [Pointers](pointers.md)
 * Testing
 * Standard Library
   * Reflection
