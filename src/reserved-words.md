@@ -25,6 +25,7 @@ The following words are reserved for future use as Adamant keywords. To use thes
 | `internal`         | Common Keyword                                                             |
 | `null`             | Null value for pointers                                                    |
 | `otherwise`        | Loop Else                                                                  |
+| `package`          | Qualify names with the current package (i.e. `package::.name`)             |
 | `partial`          | Partial Classes                                                            |
 | `private`          | Common Keyword                                                             |
 | `reinterpret_cast` | Casting                                                                    |

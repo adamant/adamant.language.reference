@@ -1,12 +1,12 @@
 # Namespaces and Using Directives
 
-*Namespaces* provide a way of organizing types and functions to avoid conflicts caused by declaring items with the same name. When references to names are ambiguous, they can be disambiguated but qualifying them, or with *using directives*.
+*Namespaces* provide a way of organizing types and functions to avoid conflicts caused by declaring items with the same name. When references to names are ambiguous, they can be disambiguated by qualifying them, or with *using directives*.
 
 ## Namespaces
 
-All declarations in an Adamant program are in a namespace. This may be the global namespace which is an unnamed namespace that forms the root of the namespace hierarchy.
+All declarations in an Adamant program are in a namespace. This may be the global namespace which is an unnamed namespace that forms the root of the namespace hierarchy or a named namespace.
 
-The namespace of the declarations in a code file are automatically determined by the file's location in the directory structure. The package determines a root directory for the source. Each directory or subdirectory establishes a new namespace nested inside the namespace of the containing directory. All declarations in code files inside that directory are in that namespace unless they are inside a namespace declaration.
+The namespaces containing the declarations in a code file are automatically determined by the file's location in the directory structure. The package determines a root directory for the source. Each directory or subdirectory establishes a new namespace nested inside the namespace of the containing directory. All declarations in code files inside that directory are in that namespace unless they are inside a namespace declaration.
 
 The package can specify a root namespace. If a root namespace is specified, then the package root directory does not represent the global namespace, but the specified root namespace.
 
@@ -49,7 +49,7 @@ Namespaces are searched from inside out for a name. If a matching declaration is
 
 ## Using Directives
 
-Using directives can appear at the top of a source code file before any other declarations, or inside a namespace declaration before any other declarations. As namespaces are searched inside out, using directives are searched before the containing namespace. Using directives pull in names for the given namespace from all packages. If a using directive references a namespace, it brings into scope only declarations directly in the namespace, not in namespaces nested inside it.
+Using directives can appear at the top of a source code file before any other declarations, or inside a namespace declaration before any other declarations. As namespaces are searched inside out, using directives are searched before the containing namespace. Using directives pull in names for the given namespace from all packages. Note that using directives must always use fully qualified names starting from the global namespace. If a using directive references a namespace, it brings into scope only declarations directly in the namespace, not in namespaces nested inside it. The order of using directives doesn't matter. All the names brought into scope by using directives are searched simultaneously. Thus if two using directives bring in the same name uses of that name will be ambiguous.
 
 ```adamant
 namespace example1
@@ -68,9 +68,9 @@ namespace example2
 
 Name resolution searches until it finds a matching declaration. If a given scope has multiple matching declarations, then name resolution fails and an ambiguous reference error is reported. Scopes are searched recursively in the following order:
 
-1. The current declaration
-2. Declarations the current declaration is nested inside
-3. For each containing namespace from inside out
+1. The current declaration (i.e. the current function etc.)
+2. Declarations the current declaration is nested inside (i.e. a class containing a nested class)
+3. For each containing namespace from inside out, search:
     1. Using directives
     2. Declarations in the namespace
     3. Declarations in nested namespaces that are visible from the current declaration

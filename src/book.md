@@ -72,6 +72,11 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.text` Namespace](system.text.md)
 23. [Conventions](conventions.md)
 24. [Planned Features](planned-features.md)
+    * [Global and Package Qualifiers](planned-qualifier.md)
+    * [Types](planned-types.md)
+    * [Aliases](planned-aliases.md)
+    * [Expressions](planned-expressions.md)
+    * [Operators](planned-operators.md)
 
 Appendices:
 

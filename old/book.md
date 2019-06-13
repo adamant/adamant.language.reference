@@ -61,7 +61,6 @@ Note: This is the old version of the reference. Sections are being moved from th
 * Bitwise Operations
 * [Casting with `as`](casting.md)
 * Escaped Identifiers
-* [Package Qualifier](package-qualifier.md)
 * Reserved Words
 * Advanced Features
   * Preprocessor
