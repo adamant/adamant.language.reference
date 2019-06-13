@@ -1,4 +1,4 @@
-# Appendix: Implementors Notes
+# Appendix: Implementers Notes
 
 The Adamant specification does not dictate a specific implementation for many language features. For example, how virtual method dispatch should be handled. However, there is an implementation in mind when writing the spec. This appendix discusses parts of that implementation and ideas for optimizations to assist compiler developers.
 

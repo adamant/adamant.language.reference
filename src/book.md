@@ -59,9 +59,9 @@ Note: This is the new version of the reference. Sections are being moved from th
 18. Patterns
 19. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-1.  [External Declarations](external.md)
-2.  [Documentation Comments](documentation-comments.md)
-3.  Standard Library
+20. [External Declarations](external.md)
+21. [Documentation Comments](documentation-comments.md)
+22. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
@@ -71,18 +71,19 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.math` Namespace](system.math.md)
     * [`system.memory` Namespace](system.memory.md)
     * [`system.text` Namespace](system.text.md)
-4.  [Conventions](conventions.md)
-5.  [Planned Features](planned-features.md)
+23. [Conventions](conventions.md)
+24. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Types](planned-types.md)
     * [Aliases](planned-aliases.md)
     * [Expressions](planned-expressions.md)
     * [Operators](planned-operators.md)
+    * [Compile-time Function Execution](planned-ctfe.md)
 
 Appendices:
 
 * [Ideas](ideas.md)
 * [Glossary](glossary.md)
-* [Implementor's Notes](implementors-notes.md)
+* [Implementer's Notes](implementers-notes.md)
 * [Influences](influences.md)
 * [Syntax Reference](syntax-reference.md)
