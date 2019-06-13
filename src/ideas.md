@@ -245,12 +245,6 @@ During development, the rules of borrow checking could be relaxed by actually us
 
 ## Generics
 
-### Meta Functions
-
-Functions with no runtime parameters that would always be evaluated at compile time. These would be declared by omitting the parens (i.e. `fn foo[n: size] -> Type`). They would be called without parens (i.e. `foo[45]`). Initially these seem like a cool idea. However there are some serious issues. They can't be generic in the types the operate on. For example, it wouldn't be possible to create a function that evaluated something as a const expression by passing it as a parameter (i.e. `constant[some_function()]`). That would not be possible because the function can't be generic in the type of its parameter. It might seem that meta functions would be useful for evaluating types, but pure functions can already be used for this. For example a pure function `fn tuple_of(params types: Array[Type]) -> Type` which constructs the tuple type for a list of types can already be written and (assuming it is pure) called in a type context. It would seem the only thing meta functions would allow one to do is create functions that appeared to be type constructors in the same way generic classes are. One question there is whether they would need to return a metatype for consistency with the way classes work. It isn't clear this would add much value when one can already use regular functions to construct types.
-
-If one curried meta functions or allowed direct declaration, then maybe they could be generic. For example, `fn constant[T] -> [v: T] -> T` would accept a generic type parameter, then return a meta function that would take a value of that type and return it. It isn't clear whether the inference system could handle that. Alternatively, one could allow them to be directly declared as `fn constant[T][v: T] -> T`.
-
 ### Default To Inferred
 
 Generic parameters can be given a default value. However, there are cases where one expects that users of a class will often want to pass one argument but have later arguments inferred. As an example, fixed size arrays `Unsafe_Array[n: size, T]` will need the size specified, but will often be able to infer the type parameter. Of course, this can already be fairly easily done with `Unsafe_Array[5, _]` at the use site. However, it could be useful to allow the class to declare that a parameter can be inferred if it is not used. One possible syntax for this would be `Unsafe_Array[n: size, T = _]`. Another possible syntax would be to allow curried or nested generics: `Unsafe_Array[n: size][T]`. Thus the first argument would be specified, but the second inferred. That syntax might imply that using the type would require double brackets as `Unsafe_Array[5][int]` which is odd.
@@ -272,10 +266,6 @@ As an alternative syntax, existential types could be treated as existential or i
 Another important consideration is whether an existential type can be used for a field `var list: List[∃T]` and it can actually be assigned lists of different types.
 
 ## Misc
-
-### Compile Time Only Functions
-
-Regular functions that are intended to be used only at compile time. This would be a modifier or attribute that told the compiler the function couldn't be used at runtime and would ensure that the function was never emitted as compiled code.
 
 ### Package Wide Namespace Alias
 
