@@ -147,16 +147,6 @@ public fn function()    {
 
 Instead of allowing assignment expressions anywhere. Use a set expression "`set x = 5`". This makes a set as long as a redeclaration with "`let`". It allows the single equals sign "`=`" to be used as both assignment and comparison operations. Finally, it prevents any ambiguity for destructuring assignments "`set #(x, y) = function()`".
 
-### Backtick Raw Strings
-
-Currently pound sign is used to create verbatim strings (i.e. `#"string"`). This is somewhat consistent with the use of the pound sign for collection initializers. However, this doesn't combine well with multiline strings if they use triple double quotes. For example, `#"""hello"""` could be a multiline verbatim string with the value `hello` or a simple verbatim string with the value `"hello"` (double quotes part of value). Note that Swift has both multiline string literals and raw strings. However, the pound sign acts as a delimiter and there must be an equal number of pound signs both before and after the string. A design like that would be inconsistent with Adamant because collection initializers don't have a pound sign following them and lines starting with `##` are preprocessor lines.
-
-The proposal is to use backtick very similar to how markdown does for code blocks. That is, a raw string would be surrounded with backticks (i.e. `` `He said, "hello!"` ``). This would allow the use of double quote characters in a raw string without escaping them by doubling. If a backtick is needed inside the string, the number of backticks used to enclose the raw string can be increased arbitrarily. Similar to Commonmark, leading and trailing spaces would be stripped out in certian cases to allow the raw string to begin or end with backticks. In Commonmark, a single space is stripped from the beginning and end if the code begins and ends with a space and is not all whitespace. This behavior would be surprising in a raw string. Instead, we propose that a single space be stripped from the beginning or end if there is only whitespace (not newline) separating the begin/end from a backtick character. Thus ``` `` `x`` ``` would evaluate to ``` `x ``` and ``` ``y` `` ``` would evaluate to ``` y` ```. Multiline raw strings could either be supported by the basic syntax or be any raw string surrounded by three or more backticks (i.e. ` ```multiline``` `).
-
-Swift style escape sequences could be supported in raw strings using the backtick instead of the pound so. For example, `` `He said, "\`(quote)"` `` would allow interpolation inside a raw string. It isn't clear how useful this is, and it reads strangely.
-
-Generally, the use of backtick in Adamant code has been avoiding because Adamant is meant to be markdown friendly. Markdown is used in doc comments and it would be very annoying to escape code spans if Adamant code contained backticks. However, raw strings are relatively rare. Additionally, the use of backticks for surrounding strings containing symbols that should be escaped makes a lot of sense to someone familiar with markdown. One downside is that backticks couldn't be used as fenced code blocks for embedding other languages in Adamant. Currently, this is planned to be done with `##lang` however backticks could enable more complicated cases, for example inline code expressions.
-
 ## Types
 
 ### Logarithmic Numbers

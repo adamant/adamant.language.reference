@@ -79,6 +79,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Expressions](planned-expressions.md)
     * [Operators](planned-operators.md)
     * [Compile-time Function Execution](planned-ctfe.md)
+    * [Language-Oriented Programming](planned-lop.md)
 
 Appendices:
 
