@@ -4,7 +4,7 @@ The text types are those types in addition to `String` which support text/string
 
 ### Encoding
 
-Following the principle of [UTF-8 Everywhere](http://utf8everywhere.org/), string are encoded in UTF-8 by default in memory and all other places. The encodings classes must be used to read and write in other encodings.
+Following the principle of [UTF-8 Everywhere](http://utf8everywhere.org/), strings are encoded in UTF-8 by default in memory and all other places. The encodings classes must be used to read and write in other encodings.
 
 ### Line Endings
 

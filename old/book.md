@@ -7,18 +7,8 @@ Note: This is the old version of the reference. Sections are being moved from th
 * [Variable Bindings](variable-bindings.md)
 * [Functions](functions.md)
   * [Anonymous Functions](anonymous-functions.md)
-* Primitive Types
-  * Basic Types
-  * Tuples
-  * Optional Types
 * Standard Types
-  * User Defined Literals
-  * Text Types
   * [Composite Initializers](composite-initializers.md)
-  * Raw Array
-* Comments
-* Choice
-* Loops
 * [Ownership](ownership.md)
   * [Reference Types and Borrowing](reference-types.md)
   * [Value Types and Copy](value-types.md)
@@ -28,8 +18,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Summary of Ownership](ownership-summary.md)
   * [Formal Description](borrow-checker.md)
 * [Patterns](patterns.md)
-* Namespaces and Using Directives
-* Access Modifiers
 * Classes
   * [Fields](fields.md)
   * Methods (including `open`)
@@ -42,8 +30,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Partial Classes](partial-classes.md)
 * Structs
   * [Constructors](struct-constructors.md)
-* Type Aliases
-* Traits
 * [Enums](enums.md)
 * [Generators](generators.md)
 * [Async and Await](async.md)
@@ -56,34 +42,14 @@ Note: This is the old version of the reference. Sections are being moved from th
   * Error Model Summary
 * [Generics](generics.md)
 * Const and Static
-* Attributes
 * Params and List Initializers
-* Bitwise Operations
 * [Casting with `as`](casting.md)
-* Escaped Identifiers
-* Reserved Words
 * Advanced Features
-  * Preprocessor
-  * Unsafe
-  * Class Value Types
   * [Pointers](pointers.md)
-  * Memory Allocation
-  * External
-  * Memory Layout
-  * Unchecked
-* Conventions
 * Testing
 * Standard Library
-  * Strings
-  * Paths
-  * Arrays
-  * Ranges
-  * Collections
   * Reflection
-  * Localization
-* Syntax Reference
 * [Version Number Scheme](version-numbers.md)
 * Feature Ideas
   * [Considering](ideas-considering.md)
   * [Rejected](ideas-rejected.md)
-* Glossary

@@ -71,6 +71,8 @@ C# offers a preprocessor which doesn't suffer from the issues of the C/C++ prepr
 * `##region`
 * `##endregion`
 
+The preprocessor may also be involved in language oriented programming. Originally, the thought was that there would be a `##lang` directive that worked similar to Racket lang directives. That is, it would cause the rest of the file to be parsed as that language. However, it is now thought that code blocks and spans set in backticks like Markdown make more sense. The `##lang` or something similar may instead be used to control the default language for fenced code blocks.
+
 ## Documentation Comments
 
 ### Extended Markdown
