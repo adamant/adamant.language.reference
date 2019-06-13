@@ -2,11 +2,11 @@
 
 ```grammar
 new_line
-    : ?Carriage return character (U+000D)?
-    | ?Line feed character (U+000A)?
-    | ?Carriage return character (U+000D) followed by line feed character (U+000A)?
-    | ?Next line character (U+0085)?
-    | ?Line separator character (U+2028)?
-    | ?Paragraph separator character (U+2029)?
+    : \u(000D)         // Carriage return
+    | \u(000A)         // Line feed
+    | \u(000D)\u(000A) // Carriage return, line feed
+    | \u(0085)         // Next line
+    | \u(2028)         // Line separator
+    | \u(2029)         // Paragraph separator
     ;
 ```

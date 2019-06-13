@@ -13,7 +13,7 @@ single_line_comment
     ;
 
 delimited_comment
-    : "/*" ?any unicode character sequence not containing asterisk slash? "*/
+    : "/*" ?any unicode character sequence not containing asterisk slash? "*/"
     ;
 ```
 

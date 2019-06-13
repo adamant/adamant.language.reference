@@ -3,8 +3,8 @@
 ```grammar
 whitespace
     : ?Any character with Unicode class Zs?
-    | ?Horizontal tab character (U+0009)?
-    | ?Vertical tab character (U+000B)?
-    | ?Form feed character (U+000C)?
+    | \u(0009) // Horizontal tab
+    | \u(000B) // Vertical tab
+    | \u(000C) // Form feed character
     ;
 ```
