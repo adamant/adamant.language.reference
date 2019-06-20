@@ -13,8 +13,8 @@ reference_type
 
 ```grammar
 type_type
-    : `Type`
-    | `Metatype`
+    : "Type"
+    | "Metatype"
     ;
 ```
 

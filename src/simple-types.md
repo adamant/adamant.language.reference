@@ -6,8 +6,6 @@ The simple types are value types predefined by the Adamant language. They are id
 simple_type
     : numeric_type
     | "bool"
-    | "never"
-    | "void"
     ;
 
 numeric_type
@@ -60,13 +58,3 @@ Floating point operations never cause abandonment. In exceptional situations, th
 The "`bool`" type represents boolean values. The possible values of a boolean are "`true`" and "`false`". The boolean logical operators "`and`" and "`or`" operate on boolean types. The condition of an "`if`" expression and "`while`" loop must evaluate to booleans.
 
 No standard conversions exist between "`bool`" and other types. The bool type is distinct and separate from the integer types. A bool value cannot be used in place of an integer value, and vice versa.
-
-### `never` Type
-
-The type "`never`" is a type with no values. It is used to indicate that a function never returns by normal means (it may still throw an exception). It can also be useful in cases where a type is expected but can't occur. For example, a function expecting a "`Result[T, Error]`" type which is either a value of type "`T`" or an error of type "`Error`", could be passed a value of type "`Result[T, never]`" if an error is not possible in this circumstance. The type "`never`" is a subtype of all types. Thus an expression with type "`never`" is assignment compatible with all types. The "`none`" value used with [optional types](optional-types.md) has the type "`never?`".
-
-### `void` Type
-
-The type "`void`" is a type used to indicate that something logically has no value. It is similar to the unit type in functional programming. However, the Adamant language enforces that an expression of type "`void`" can't be assigned into anything. However, when a type parameter is passed the "`void`" type this can create assignments from "`void`" to "`void`" which are not an error. Functions may not have parameters of type "`void`". However, if "`void`" is passed as a type parameter used as the type of a function parameter, that parameter is dropped from the parameter list.
-
-For purposes of covariance and contravariance, "`void`" acts like a top type. For example, if a base class function returns "`void`" then it can be overridden with a function returning any type.
