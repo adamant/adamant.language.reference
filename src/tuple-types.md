@@ -33,9 +33,7 @@ console.WriteLine("x = \(x)");
 
 ### Indexing Tuples
 
-There are two ways to index into the fields of a tuple. In both ways they are accessed by a zero based index. This is consistent with arrays which are zero based and makes more sense for the "`at`" method.
-
-Tuple values can be directly accessed as fields by escaping the index name.
+Tuple fields are accessed by a zero based index. This is consistent with arrays which are zero based and makes more sense for the "`at`" method. Tuple values can be directly accessed as fields by escaping the index name.
 
 ```adamant
 let t = #(1, 2, 3);
@@ -44,15 +42,3 @@ let x = t.\0;
 let y = t.\1;
 let z = t.\2;
 ```
-
-Alternatively, they can be accessed using the "`at[n:size]()`" method similar to how arrays and lists are index. However, for tuples, the index must be known at compile time so the access can be type checked. So the index must be passed as a generic argument.
-
-```adamant
-let t = #(1, 2, 3);
-
-let x = t.at[0]();
-let y = t.at[1]();
-let z = t.at[2]();
-```
-
-Note that the "`at`" method can't be a meta-function because it must return a reference to a runtime value.

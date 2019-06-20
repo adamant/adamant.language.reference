@@ -257,3 +257,17 @@ Just like you can give a package an alias in the project file when referencing t
 ### Allow `!` at the End of Function Names
 
 Scheme uses `!` at the end of functions to indicate they are mutating. That may not make sense for Adamant where mutation is probably more common and less frowned on. Rust uses `!` at the end of names to indicate macros. It is nice to have a clear distinction for macros, but the syntax doesn't seem to fit with a macro. Since `!` is not used to mean "not", it could be allowed at the end of function names and used to indicate divergent functions. This would make it clear that execution will terminate there. However, divergent functions are likely rare and it may not be worth using up the `!` character on their names.
+
+### Indexing Tuples with `at[]()`
+
+Alternatively, tuples can be accessed using the "`at[n:size]()`" method similar to how arrays and lists are index. However, for tuples, the index must be known at compile time so the access can be type checked. So the index must be passed as a generic argument.
+
+```adamant
+let t = #(1, 2, 3);
+
+let x = t.at[0]();
+let y = t.at[1]();
+let z = t.at[2]();
+```
+
+Note that the "`at`" method can't be a meta-function because it must return a reference to a runtime value.
