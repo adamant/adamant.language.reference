@@ -1,4 +1,4 @@
-## Types
+## Additional Types
 
 ### 128-bit Integer Types
 

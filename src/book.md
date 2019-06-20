@@ -75,10 +75,10 @@ Note: This is the new version of the reference. Sections are being moved from th
 23. [Conventions](conventions.md)
 24. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
-    * [Types](planned-types.md)
+    * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)
-    * [Expressions](planned-expressions.md)
-    * [Operators](planned-operators.md)
+    * [Additional Expressions](planned-expressions.md)
+    * [Operator Features](planned-operators.md)
     * [Compile-time Function Execution](planned-ctfe.md)
     * [Language-Oriented Programming](planned-lop.md)
 
