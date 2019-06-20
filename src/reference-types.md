@@ -1,15 +1,27 @@
 ## Reference Types
 
+Reference types are either object reference types or function reference types. Additionally, the special any reference type may refer to an object or function of any type.
+
 ```grammar
 reference_type
     : object_type
     | function_type
-    | "Type"
-    | "Any"
+    | any_type
     ;
 ```
 
-### `Type`
+### Object Reference types
+
+An object reference type (object type for short) is a reference to an object. This object could be of a concrete class type or a trait type or one a several built in object types.
+
+```grammar
+object_type
+    : type_name
+    | type_type
+    ;
+```
+
+#### `Type`
 
 ```grammar
 type_type
@@ -30,6 +42,25 @@ let metaType: Example.Type = Example;
 let type: Type = metaType; // Example.Type <: Type
 ```
 
+### Function Types
+
+Function types are the parameter and return types of a function. Note that function types are contravariant in their parameter types and covariant in their return types.
+
+```grammar
+function_type
+    : "(" type_list ")" "->" type
+    ;
+
+type_list
+    : type{",", 0, }
+```
+
 ### `Any` Type
 
-All reference types (object, and function, and "`Type`") are a subtype of the "`Any`" type. Note that variable references are not included in this.
+```grammar
+any_type
+    : "Any"
+    ;
+```
+
+All reference types (object, and function) are a subtype of the "`Any`" type. Note that variable references are not included in this.
