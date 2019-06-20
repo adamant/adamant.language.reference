@@ -1,6 +1,6 @@
 ## Optional Types
 
-Optional types can have all values of an underlying type plus an additional value "`none`". The underlying type can be any type including value or a reference types.
+Optional types can have all values of an underlying type plus an additional value "`none`". The underlying type can be any type including value or reference types.
 
 ```grammar
 optional_type

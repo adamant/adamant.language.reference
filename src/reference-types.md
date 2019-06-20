@@ -16,10 +16,14 @@ An object reference type (object type for short) is a reference to an object. Th
 
 ```grammar
 object_type
-    : type_name
+    : user_object_type
     | type_type
     ;
 ```
+
+#### User Object Type
+
+User object types are the type names declared by classes and traits.
 
 #### `Type`
 
