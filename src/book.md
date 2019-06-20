@@ -20,6 +20,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Member Access](member-access.md)
     * [Execution Order](execution-order.md)
 4. [Types](types.md)
+    * [Empty Types](empty-types.md)
     * [Struct Types](struct-types.md)
     * [Simple Types](simple-types.md)
     * [Tuple Types](tuple-types.md)
@@ -42,7 +43,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Bitwise Operations](bitwise-operations.md)
     * [Boolean Expression](boolean-expression.md)
 8. [Statements](statements.md)
-9. [Namespaces and Using Directives](namespaces-and-usings.md)
+9.  [Namespaces and Using Directives](namespaces-and-usings.md)
 10. [Functions](functions.md)
 11. Classes
     * [Operator Overloading](operator-overloading.md)
