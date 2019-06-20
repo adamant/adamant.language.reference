@@ -10,7 +10,6 @@ Sections:
 * [Expressions](#expressions)
 * [Types](#types)
 * [Parameters](#parameters)
-* [Development Aids](#development-aids)
 * [Generics](#generics)
 * [Misc](#misc)
 
@@ -226,12 +225,6 @@ function(5 for arg_2, 6 for arg_1);
 ### "`out`" Parameters
 
 The `ref` types function as reference parameters. Does it make sense to add an `out` keyword like C#? Or does the ability to return tuples make `out` not useful enough? They might be really useful with external functions.
-
-## Development Aids
-
-### Relaxed Borrow Checking
-
-During development, the rules of borrow checking could be relaxed by actually using a garbage collector. It would be important to not let this get out of hand, but it might allow the running of functions that are being developed that still need to have the borrowing worked out.
 
 ## Generics
 
