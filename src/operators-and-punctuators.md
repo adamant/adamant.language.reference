@@ -54,7 +54,7 @@ operator
 
 ### Punctuators
 
-The following symbols are used symbolic connectors.
+The following symbols are used as symbolic connectors.
 
 ```grammar
 punctuator
@@ -79,7 +79,7 @@ punctuator
 
 ### Other Symbols
 
-Any symbol sequences not defined as operators or punctuators are errors. Thus these sequences are not technically reserved. However, the following symbols are "reserved" for the below uses:
+Any symbol sequences not defined as operators or punctuators are errors. Thus these sequences are not technically reserved, but are available for future language features. However, the following symbols are "reserved" for the below uses:
 
 | Symbol  | Use                                      |
 | ------- | ---------------------------------------- |
