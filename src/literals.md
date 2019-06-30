@@ -1,5 +1,7 @@
 ## Literals
 
+Literals is a representation of a value in source code. A portion of literals are simply keywords.
+
 ```grammar
 literal
     : boolean_literal
@@ -7,7 +9,7 @@ literal
     | real_literal
     | user_literal
     | string_literal
-    | interpolated_string_literal
+    | none_literal
     ;
 ```
 
@@ -24,8 +26,9 @@ boolean_literal
 
 ### Integer Literals
 
-A decimal integer may not start or end with a digit separator. Hexadecimal and binary integer literals may not end with a digit separator.
-**TODO:** should digit separators allow normal non-breaking space?
+Integer literals represent integer values for types like `int` and `unit`. There are no negative integer literals. Instead, negative values are represented by constant expressions using the negation operator on an integer literal. Integer literals can be written in decimal, hexadecimal, or binary.
+
+Digits within an integer literal can be grouped using digits separators. This is similar to how comma can be used to group digits into groups of three. In Adamant, the separator may be an underscore or narrow non-breaking space. Integer literals allow the digits separators to be used to group digits in any way the developer wants. However, an integer literal may not start or end with a digit separator. Nor may they contain consecutive digit separators. For hexadecimal and binary integer literals, a digit separator may separate the prefix from the value.
 
 ```grammar
 integer_literal
@@ -35,7 +38,7 @@ integer_literal
     ;
 
 digit_separator
-    : " "
+    : "_"
     | \u(202F) // Narrow No-break Space
     ;
 

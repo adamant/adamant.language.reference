@@ -1,6 +1,6 @@
 ## Keywords
 
-A keyword is an identifier like sequence of characters that is reserved for use by the language and can't be used as an identifier except by escaping it. Note that the lexical set of keywords includes things that are not standard keywords from a syntactic perspective. For example, it includes the boolean operators `and` and `or` as well as the types like `int`.
+A keyword is an identifier like sequence of characters that is reserved for use by the language and can't be used as an identifier except by escaping it. Note that the lexical set of keywords includes things that are not standard keywords from a syntactic perspective. For example, it includes the boolean operators `and` and `or`, types like `int`, and literal values such as `true` and `false`.
 
 ```grammar
 keyword
