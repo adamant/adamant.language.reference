@@ -14,9 +14,10 @@ The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/w
 | *expression*`*`                                | Expression repeated zero or more times                                                                 |
 | *expression*`+`                                | Expression repeated one or more times                                                                  |
 | *expression*`?`                                | Expression is optional                                                                                 |
-| *expression*`{`(*separator* `,`)? *n*`}`       | Repeat expression *n* times, separated by *separator* if provided                                      |
-| *expression*`{`(*separator* `,`)? *n*`,`*m*`}` | Repeat expression between *n* and *m* times, separated by *separator* if provided                      |
-| *expression*`{`(*separator* `,`)? *n*`,*}`      | Repeat expression *n* or more times, separated by *separator* if provided                              |
+| *expression*`{`(*separator*&nbsp;`,`)?&nbsp;*n*`}`       | Repeat expression *n* times, separated by *separator* if provided                                      |
+| *expression*`{`(*separator*&nbsp;`,`)?&nbsp;*n*`,`*m*`}` | Repeat expression between *n* and *m* times, separated by *separator* if provided                      |
+| *expression*`{`(*separator*&nbsp;`,`)?&nbsp;*n*`,*}`     | Repeat expression *n* or more times, separated by *separator* if provided                              |
+| *expression* `-` *expression*                  | Match the first expression except if it matches the second expression                                  |
 | `[`*character class*`]`                        | A regular expression style character class (`^` negates a class, `\` escapes, and `-` matches a range) |
 | `\u(`*hex digits*`)`                           | A single unicode code point                                                                            |
 | `(`*expression*`)`                             | Expression order of operations                                                                         |

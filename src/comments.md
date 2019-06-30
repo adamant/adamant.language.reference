@@ -12,8 +12,8 @@ single_line_comment
     : "//" non_newline_character*
     ;
 
-input_character // every character not included in the newline rule
-    : [^\u(000D)\u(000A)\u(0085)\u(2028)\u(2029)]
+input_character // every character that is not a newline character
+    : [^] - newline
     ;
 
 delimited_comment
