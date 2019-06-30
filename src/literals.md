@@ -96,6 +96,33 @@ sign
 
 Note: A real literal requires a digit before the decimal sign even if this is only the value zero. Also, if present, a decimal point must be followed by at least one digit.
 
+### Escape Sequences
+
+Both user literals and string literals may contain escape sequences. This allows them to contain characters would otherwise be difficult to represent. Each escape sequence represents a single Unicode code point. Simple escape sequences provide escape sequences for some common characters one may wish to escape. Escape sequences begin with a backslash. In literals supporting escape sequences, characters following a backslash besides those documented below are an error. There are two exceptions to this. First, interpolated string segments are another kind of escape sequence. Second, in delimited strings, the delimiter separates the backslash and the rest of the escape sequence.
+
+Unicode escape sequences allow the escaping of any Unicode code point. They do this by giving the hexadecimal value of the code point as one to six hexadecimal digits. It is an error for a Unicode escape sequence to refer to a surrogate pair or a code point outside of those allowed by Unicode.
+
+```grammar
+escape_sequence
+    : simple_escape_sequence
+    | unicode_escape_sequence
+    ;
+
+simple_escape_sequence
+    : "\" ["]  // Double Quote U+0022
+    | "\'"     // Single Quote U+0027
+    | "\\"     // Backslash U+005C
+    | "\n"     // Newline U+000A
+    | "\r"     // Carriage Return U+000D
+    | "\0"     // Null U+0000
+    | "\t"     // Horizontal Tab U+0009
+    ;
+
+unicode_escape_sequence
+    : "\u(" [0-9a-f-A-F]{1,6} ")"
+    ;
+```
+
 ### User Literals
 
 User literals allow for literal values for user defined types. They are enclosed in single quotes and allow character escape sequences for special characters. Examples include "`'c'`", "`'♠'`", "`'2018-09-28'`" or "`'c29a3471-ea8d-40e3-bb2b-ef563687f'`".
@@ -115,27 +142,8 @@ single_character
     : ?Any character except single quote (U+0027), backslash (U+005C), and new_line_characters?
     ;
 
-simple_escape_sequence
-    : "\"? ["'nr0t\\]
-    ;
 
-unicode_escape_sequence
-    : "\u(" [0-9a-f-A-F]{1,6} ")"
-    ;
 ```
-
-| Code         | Character                                |
-| ------------ | ---------------------------------------- |
-| `\"`         | Double Quote U+0022                      |
-| `\'`         | Single Quote U+0027                      |
-| `\\`         | Backslash U+005C                         |
-| `\n`         | Newline U+000A                           |
-| `\r`         | Carriage Return U+000D                   |
-| `\0`         | Null U+0000                              |
-| `\t`         | Horizontal Tab U+0009                    |
-| `\u(`*X*+`)` | Unicode Scalar Value (1 to 6 hex digits) |
-
-Other characters following a backslash (except the left parenthesis of an interpolated string expression) in a string or user literal are an error.
 
 #### User Literal Construction
 
