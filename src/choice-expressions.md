@@ -127,7 +127,7 @@ let z = match v
 
 ```grammar
 match_expression
-    : "match" embedded_expression "{" match_arm{",", 1, } ","? "}"
+    : "match" embedded_expression "{" match_arm{",", 1, *} ","? "}"
     ;
 
 match_arm

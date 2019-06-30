@@ -6,7 +6,7 @@ Tuples are value types. If all the type parameters are implicitly copyable, then
 
 ```grammar
 tuple_type
-    : "Tuple" "[" type{",", 0, } "]"
+    : "Tuple" "[" type{",", 0, *} "]"
     ;
 ```
 

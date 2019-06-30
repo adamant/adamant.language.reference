@@ -56,7 +56,7 @@ function_type
     ;
 
 type_list
-    : type{",", 0, }
+    : type{",", 0, *}
 ```
 
 ### `Any` Type
