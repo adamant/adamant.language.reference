@@ -9,17 +9,28 @@ comment
     ;
 
 single_line_comment
-    : "//" ?any unicode character except newline?*
+    : "//" non_newline_character*
+    ;
+
+input_character // every character not included in the newline rule
+    : [^\u(000D)\u(000A)\u(0085)\u(2028)\u(2029)]
     ;
 
 delimited_comment
-    : "/*" ?any unicode character sequence not containing asterisk slash? "*/"
+    : "/*" delimited_comment_section* "*"+ "/"
+    ;
+
+delimited_comment_section
+    : "/"
+    | "*"* [^/*]+ // i.e. any number of asterisks followed by one or more characters that aren't slash or asterisk
     ;
 ```
 
 Comments do not nest. The character sequences "`/*`" and "`*/`" have no special meaning within a single-line comment, and the character sequences "`//`" and "`/*`" have no special meaning within a delimited comment.
 
 Comments are not processed within string literals or user defined literals.
+
+An example including both single line and delimited comments is:
 
 ```adamant
 // A single line comment
