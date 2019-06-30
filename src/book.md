@@ -7,7 +7,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Packages](packages.md)
     * [Grammars](grammars.md)
     * [Lexical Analysis](lexical-analysis.md)
-    * [Line Terminators](line-terminators.md)
+    * [Newlines](newlines.md)
     * [Whitespace](whitespace.md)
     * [Comments](comments.md)
     * [Tokens](tokens.md)

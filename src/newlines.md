@@ -1,7 +1,7 @@
-## Line Terminators
+## Newlines
 
 ```grammar
-new_line
+newline
     : \u(000D)         // Carriage return
     | \u(000A)         // Line feed
     | \u(000D)\u(000A) // Carriage return, line feed
