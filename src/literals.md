@@ -98,7 +98,7 @@ Note: A real literal requires a digit before the decimal sign even if this is on
 
 ### Escape Sequences
 
-Both user literals and string literals may contain escape sequences. This allows them to contain characters would otherwise be difficult to represent. Each escape sequence represents a single Unicode code point. Simple escape sequences provide escape sequences for some common characters one may wish to escape. Escape sequences begin with a backslash. In literals supporting escape sequences, characters following a backslash besides those documented below are an error. There are two exceptions to this. First, interpolated string segments are another kind of escape sequence. Second, in delimited strings, the delimiter separates the backslash and the rest of the escape sequence.
+Both user literals and string literals may contain escape sequences. This allows them to contain characters that would otherwise be difficult to represent. Each escape sequence represents a single Unicode code point. Simple escape sequences provide for some common characters one may wish to escape. Escape sequences begin with a backslash which may be followed by a delimiter. The escaped value is determined by the character(s) following the backslash or delimiter. See the relevant literal section for a discussion of delimiters. Characters following a backslash or delimiter besides those documented below or the left parenthesis are an error. Interpolated string segments are another kind of escape sequence which are introduced by a left parenthesis following the backslash or delimiter.
 
 Unicode escape sequences allow the escaping of any Unicode code point. They do this by giving the hexadecimal value of the code point as one to six hexadecimal digits. It is an error for a Unicode escape sequence to refer to a surrogate pair or a code point outside of those allowed by Unicode.
 
@@ -109,45 +109,45 @@ escape_sequence
     ;
 
 simple_escape_sequence
-    : "\" ["]  // Double Quote U+0022
-    | "\'"     // Single Quote U+0027
-    | "\\"     // Backslash U+005C
-    | "\n"     // Newline U+000A
-    | "\r"     // Carriage Return U+000D
-    | "\0"     // Null U+0000
-    | "\t"     // Horizontal Tab U+0009
+    : "\" delimiter ["]  // Double Quote U+0022
+    | "\" delimiter "'"     // Single Quote U+0027
+    | "\" delimiter "\"     // Backslash U+005C
+    | "\" delimiter "n"     // Newline U+000A
+    | "\" delimiter "r"     // Carriage Return U+000D
+    | "\" delimiter "0"     // Null U+0000
+    | "\" delimiter "t"     // Horizontal Tab U+0009
     ;
 
 unicode_escape_sequence
-    : "\u(" [0-9a-f-A-F]{1,6} ")"
+    : "\" delimiter "u(" [0-9a-f-A-F]{1,6} ")"
+    ;
+
+delimiter
+    : "#"*
     ;
 ```
 
 ### User Literals
 
-User literals allow for literal values for user defined types. They are enclosed in single quotes and allow character escape sequences for special characters. Examples include "`'c'`", "`'♠'`", "`'2018-09-28'`" or "`'c29a3471-ea8d-40e3-bb2b-ef563687f'`".
+User literals provide literal values for user defined types. They are enclosed in single quotes and may contain escape sequences. They may not contain interpolated segments. Examples of user literals include "`'c'`", "`'♠'`", "`'2018-09-28'`", and "`'c29a3471-ea8d-40e3-bb2b-ef563687f'`". The type of a user literal is determined from context and content using type inference and pattern matching. The user defined type is then constructed from the string value of the user defined literal.
+
+To enable user literals containing backslash, single quote, or other characters requiring escape sequences to be more easily written, they may be delimited. For example, this allows user literals to be used for regular expressions which use backslash for escaping characters. A delimiter consists of one or more pound signs immediately before and after the user literal. A delimited user literal is terminated by a single quote followed by the same number of pound signs as it was prefixed by. A single quote followed by fewer pound signs is taken to be part of the user literal value. A single quote followed by more pound signs terminates the user literal and is an error. Within a delimited user literal, escape sequences are only matched when they contain the same delimiter. That is when the backslash is followed by the same number of pound signs. A backslash followed by fewer or more pound signs is taken to be part of the user literal value.
 
 ```grammar
 user_literal
-    : "'" character* "'"
+    : delimiter "'" user_literal_character* "'" delimiter
     ;
 
-character
-    : single_character
-    | simple_escape_sequence
-    | unicode_escape_sequence
+user_literal_character
+    : escape_sequence
+      // any character except newline characters
+    | [^] - newline
     ;
-
-single_character
-    : ?Any character except single quote (U+0027), backslash (U+005C), and new_line_characters?
-    ;
-
-
 ```
 
 #### User Literal Construction
 
-User literals are constructed with an operator overload. The resulting object must be read only and have the static lifetime. This operator must be an implicit pure function.
+User literal values are constructed by calling the user literal operator. The resulting object must be read only and have the lifetime `forever`. This operator must be an implicit pure function.
 
 ```adamant
 public struct Example
@@ -165,17 +165,17 @@ public struct Example
 
 #### Type Determination
 
-Which type a user literal is for is determined by type inference. This means one can declare the type of a variable to force what literal will be constructed. However, this process can be further limited by filtering.
+Which type a user literal is for is determined by type inference. This means one can declare the type of a variable to force what literal will be constructed. However, this process can be further restricted by filtering.
 
-#### Requiring match
+#### Restricting User Literal Values
 
-To filter which literal type a user literal might match, add preconditions to the operator overload. These should not filter to only the allowed values, but to a set of values that a developer might reasonably think could match.
+The values a user literal can have may be restricted to match a pattern. Types whose pattern does not match the string value of the user literal will not be considered during type inference. To restrict values, add preconditions to the operator overload. It is recommended that these preconditions not restrict the value to only the legal values. Instead, a more liberal pattern should be used and an exception thrown for illegal values. This will allow type inference to select the type a developer probably intended when writing an invalid value and correctly report an error.
 
 ```adamant
-public struct Date
+public copy struct Date
 {
-    public implicit operator '_'(value: string) -> Date$forever
-        requires value.matches(#"\d+-\d+-\d+")
+    public implicit operator '_'(value: string) -> Date
+        requires value.matches(#"\d+-\d+-\d+"#)
     {
         // construct date
     }
