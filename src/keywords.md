@@ -1,11 +1,10 @@
 ## Keywords
 
-**TODO:** exclude from this list tokens that fall in other categories? (like literals)
+A keyword is an identifier like sequence of characters that is reserved for use by the language and can't be used as an identifier except by escaping it. Note that the lexical set of keywords includes things that are not standard keywords from a syntactic perspective. For example, it includes the boolean operators `and` and `or` as well as the simple types like `int`.
 
 ```grammar
 keyword
-    :
-    | "abstract"
+    : "abstract"
     | "and"
     | "as"
     | "base"
@@ -41,7 +40,7 @@ keyword
     | "loop"
     | "match"
     | "may"
-    | "metatype"
+    | "Metatype"
     | "move"
     | "mut"
     | "namespace"
@@ -72,7 +71,7 @@ keyword
     | "throw"
     | "true"
     | "Tuple"
-    | "type"
+    | "Type"
     | "uint"
     | "uint16"
     | "uint64"
