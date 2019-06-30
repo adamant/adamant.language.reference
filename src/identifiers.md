@@ -1,6 +1,6 @@
 ## Identifiers
 
-Identifiers are used at the names of types, variables, names etc. in Adamant programs. There are three kinds of identifiers. *Simple identifiers* are identifiers whose names are unambiguous in the Adamant syntax. In many languages, these are the only kinds of identifiers. *Escaped identifiers* are allow the use of keywords and numbers as identifiers. Finally, *identifier strings* allow arbitrary text to be used as an identifier. When determining what a name refers to, the kind of identifier is not used, only the value. So a simple identifier and an identifier string with the same value are the same identifier. Additionally, identifier values are converted to Normalization Form C (NFC) before comparison.
+Identifiers are used as the names of types, variables, functions etc. in Adamant programs. There are three kind of identifiers. *Simple identifiers* are identifiers whose names are unambiguous in the Adamant syntax. In many languages, these are the only kinds of identifiers. *Escaped identifiers* allow the use of keywords and numbers as identifiers. Finally, *identifier strings* allow arbitrary text to be used as an identifier. When determining what a name refers to, the kind of identifier is not used, only the value. For example, a simple identifier and an identifier string with the same value are the same identifier. Additionally, identifier values are converted to Normalization Form C (NFC) before comparison.
 
 ```grammar
 identifier
@@ -65,7 +65,17 @@ formatting_character
 
 ### Escaped Identifiers
 
-The backslash is used to escape keywords and reserved words for use as identifiers. For example "`\class`", allows one to use the "`class`" keyword as a variable name. Only keywords, contextual keywords and reserved words are allowed to be used as escaped identifers. For example, "`\hello`" is a syntax error because "hello" is not a keyword.
+A backslash can be used to escape keywords, reserved words, and names starting with digits for use as identifiers. For example "`\class`", allows one to use the "`class`" keyword as a variable name. Only keywords, reserved words and names starting with digits are allowed to be used as escaped identifers. For example, "`\hello`" is a nonfatal syntax error because "hello" is not a keyword. Escaped identifiers are used to access the fields of a tuple. For example, `t.\1` is the first field of the tuple `t`.
+
+```grammar
+escaped_identifier
+    : "\" keyword
+    | "\" reserved_word
+    | "\" decimal_digit_character identifier_part_character*
+    ;
+```
+
+For example, this code declares a variable using an escaped identifer and uses it.
 
 ```adamant
 let \class = "Mammalia";
