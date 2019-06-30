@@ -30,6 +30,8 @@ Integer literals represent integer values for types like `int` and `unit`. There
 
 Digits within an integer literal can be grouped using digits separators. This is similar to how comma can be used to group digits into groups of three. In Adamant, the separator may be an underscore or narrow non-breaking space. Integer literals allow the digits separators to be used to group digits in any way the developer wants. However, an integer literal may not start or end with a digit separator. Nor may they contain consecutive digit separators. For hexadecimal and binary integer literals, a digit separator may separate the prefix from the value.
 
+Decimal integer literals may not start with the digit zero except for the value "0".
+
 ```grammar
 integer_literal
     : decimal_integer_literal
@@ -70,13 +72,15 @@ binary_digit_or_separator
     ;
 ```
 
+Integer literals do not in of themselves determine the type for the value. Instead, they represent arbitrary precision integer constants which provide a value for integer types inferred by the context.
+
 ### Real Literals
 
-A real literal cannot start or end with a separator. A separator cannot appear to either side of the decimal point, nor immediately before the exponent part nor start the exponent part.
+Real literals represent floating point values for types like `float` and `float32`. Like integer literals, digit separators can be used in real literals to group digits. The integer portion, decimal portion and exponent may not start or end with a digit separator. This implies separator cannot appear to either side of the decimal point, nor to either side of the letter "e" which introduces the exponent. A real literal also may not contain consecutive digit separators. A the integer and exponent portions of a real literal may not begin with a zero digit except for when the integer portion is the value "0".
 
 ```grammar
 real_literal
-    : decimal_digit_or_separator* "." decimal_digit_or_separator+ exponent_part?
+    : decimal_digit_or_separator+ "." decimal_digit_or_separator+ exponent_part?
     | decimal_digit_or_separator+ exponent_part?
     ;
 
@@ -89,6 +93,8 @@ sign
     | "-"
     ;
 ```
+
+Note: A real literal requires a digit before the decimal sign even if this is only the value zero. Also, if present, a decimal point must be followed by at least one digit.
 
 ### User Literals
 
