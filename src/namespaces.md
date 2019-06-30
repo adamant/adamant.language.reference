@@ -2,6 +2,10 @@
 
 *Namespaces* provide a way of organizing types and functions to avoid conflicts caused by declaring items with the same name. When references to names are ambiguous, they can be disambiguated by qualifying them, or with *using directives*.
 
+## Compilation Units
+
+**TODO:** write up compilation units
+
 ## Namespaces
 
 All declarations in an Adamant program are in a namespace. This may be the global namespace which is an unnamed namespace that forms the root of the namespace hierarchy or a named namespace.

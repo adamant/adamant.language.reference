@@ -16,6 +16,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Reserved Words](reserved-words.md)
     * [Literals](literals.md)
     * [Operators and Punctuators](operators-and-punctuators.md)
+    * [Syntactic Analysis](syntactic-analysis.md)
 3. Basic Concepts
     * [Member Access](member-access.md)
     * [Execution Order](execution-order.md)
@@ -43,7 +44,7 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [Bitwise Operations](bitwise-operations.md)
     * [Boolean Expression](boolean-expression.md)
 8. [Statements](statements.md)
-9.  [Namespaces and Using Directives](namespaces-and-usings.md)
+9.  [Namespaces](namespaces.md)
 10. [Functions](functions.md)
 11. Classes
     * [Operator Overloading](operator-overloading.md)

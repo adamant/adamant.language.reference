@@ -1,6 +1,6 @@
 ## Lexical Analysis
 
-Every Adamant source file is composed of code points from the Unicode standard encoded in UTF-8. The terminal symbols of the lexical grammar are the Unicode Code points. The lexical grammar specifies how these code points are combined to form [newlines](line-terminators.md), [whitespace](whitespace.md), [comments](comments.md), and [tokens](tokens.md).
+Every Adamant source file is composed of code points from the Unicode standard encoded in UTF-8. The terminal symbols of the lexical grammar are the Unicode code points. The lexical grammar specifies how these code points are combined to form [newlines](line-terminators.md), [whitespace](whitespace.md), [comments](comments.md), and [tokens](tokens.md).
 
 Every source file in an Adamant program must match the `input` production of the lexical grammar.
 
