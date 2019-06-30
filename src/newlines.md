@@ -1,5 +1,7 @@
 ## Newlines
 
+Newlines divide an Adamant program into lines. For the purposes of viewing a source file as a sequences of lines, the end of file terminates the last line.
+
 ```grammar
 newline
     : \u(000D)         // Carriage return
