@@ -14,6 +14,7 @@ The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/w
 | *expression*`*`                                          | Expression repeated zero or more times                                                                 |
 | *expression*`+`                                          | Expression repeated one or more times                                                                  |
 | *expression*`?`                                          | Expression is optional                                                                                 |
+| `(`*expression*`)`                                       | Expression grouping, provides order of operations                                                      |
 | *expression*`{`(*separator*&nbsp;`,`)?&nbsp;*n*`}`       | Repeat expression *n* times, separated by *separator* if provided                                      |
 | *expression*`{`(*separator*&nbsp;`,`)?&nbsp;*n*`,`*m*`}` | Repeat expression between *n* and *m* times, separated by *separator* if provided                      |
 | *expression*`{`(*separator*&nbsp;`,`)?&nbsp;*n*`,*}`     | Repeat expression *n* or more times, separated by *separator* if provided                              |
@@ -21,8 +22,7 @@ The grammars in this reference use a variant of [BNF](https://en.wikipedia.org/w
 | `\u(`*hex digits*`)`                                     | A single unicode code point                                                                            |
 | `[`*character class*`]`                                  | A regular expression style character class (`^` negates a class, `\` escapes, and `-` matches a range) |
 | `\p{`*unicode class*`}`                                  | Match any single character in the given Unicode class                                                  |
-| `(`*expression*`)`                                       | Expression order of operations                                                                         |
 | `"`*literal*`"`                                          | Matches a literal string (no escape sequences are supported)                                           |
 | `?`*description*`?`                                      | Matches a string according to the description                                                          |
-| `//` *comment* *eol*                                     | A line comment                                                                                         |
+| `//` *comment* *newline*                                 | A line comment                                                                                         |
 | `/*` *comment* `*/`                                      | A multi-line comment                                                                                   |
