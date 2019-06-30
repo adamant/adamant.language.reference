@@ -89,11 +89,11 @@ console.WriteLine("The Gray Wolf is \(\class) \(order) \(family) \(genius) \(spe
 
 ### Identifier Strings
 
-For more flexibility in variable names, strings can be used as identifiers by escaping them with a backslash. Even delimited strings may be used as identifier strings. However, identifier strings may not contain [interpolated segments](literals.md#interpolated-strings). It is *not* an error to use an identifier string for an identifier that could be expressions as a simple or escaped identifier. However, it is highly discouraged except in specific cases. This is allowed to enable a convention of consistently naming tests with identifier strings.
+For more flexibility in variable names, strings can be used as identifiers by escaping them with a backslash. Even delimited strings may be used as identifier strings. However, identifier strings may not contain [interpolated segments](literals.md#interpolated-strings). It is *not* an error to use an identifier string for an identifier that could be expressed as a simple or escaped identifier. However, it is highly discouraged except in specific cases. This enables a convention of consistently naming tests with identifier strings.
 
 ```grammar
 identifier_string
-    | "\" string_literal
+    : "\" string_literal
     ;
 ```
 
