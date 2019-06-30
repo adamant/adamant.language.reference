@@ -1,6 +1,6 @@
 ## Identifiers
 
-Identifiers are used as the names of types, variables, functions etc. in Adamant programs. There are three kind of identifiers. *Simple identifiers* are identifiers whose names are unambiguous in the Adamant syntax. In many languages, these are the only kinds of identifiers. *Escaped identifiers* allow the use of keywords and numbers as identifiers. Finally, *identifier strings* allow arbitrary text to be used as an identifier. When determining what a name refers to, the kind of identifier is not used, only the value. For example, a simple identifier and an identifier string with the same value are the same identifier. Additionally, identifier values are converted to Normalization Form C (NFC) before comparison.
+Identifiers are used as the names of types, variables, functions etc. in Adamant programs. There are three kind of identifiers. *Simple identifiers* are identifiers whose names are unambiguous in the Adamant syntax. In many languages, these are the only kinds of identifiers. *Escaped identifiers* allow the use of keywords and numbers as identifiers. Finally, *identifier strings* allow arbitrary text to be used as an identifier. When determining what a name refers to, the kind of identifier is not used, only the value. For example, an escaped identifier and an identifier string with the same value are the same identifier. Additionally, identifier values are converted to Normalization Form C (NFC) before comparison.
 
 ```grammar
 identifier
@@ -89,7 +89,15 @@ console.WriteLine("The Gray Wolf is \(\class) \(order) \(family) \(genius) \(spe
 
 ### Identifier Strings
 
-For more flexibility in variable names, strings can be used as identifiers names by escaping them with a backslash. This is particularly useful for tests.
+For more flexibility in variable names, strings can be used as identifiers by escaping them with a backslash. Even delimited strings may be used as identifier strings. However, identifier strings may not contain [interpolated segments](literals.md#interpolated-strings). It is *not* an error to use an identifier string for an identifier that could be expressions as a simple or escaped identifier. However, it is highly discouraged except in specific cases. This is allowed to enable a convention of consistently naming tests with identifier strings.
+
+```grammar
+identifier_string
+    | "\" string_literal
+    ;
+```
+
+Identifier strings are particularly useful for naming tests.
 
 ```adamant
 #Test
@@ -99,16 +107,8 @@ public \"`foo()` returns `true`"() -> void
 }
 ```
 
-Identifier strings are like verbatim strings. Escape sequences are not evaluated and values are not interpolated. To include double quotes in an identifer string use two double quotes. Newlines are not permitted in identifier strings.
+Identifier strings containing double quotes can be easily written using delimited strings.
 
 ```adamant
-let \"He said ""Hello"" to me." = true;
-```
-
-It is an error to use a identifier string when it isn't necessary.
-
-```adamant
-let x = 1;
-let y = \"x"; // error: `\"x"` is a legal identifer, use `x` instead
-let \"class" = 5; // error: `\"class"` is a keyword identifier, use `\class` instead
+let \#"He said "Hello" to me."# = true;
 ```

@@ -230,7 +230,7 @@ public struct Example
 }
 ```
 
-### Interpolated String Literals
+### Interpolated Strings
 
 Interpolated string literals are distinguished from regular string literals only by have interpolated expressions in them. An interpolated expression is enclosed by "`\()`". The interpolated expression can contain a string literal, but can’t contain an unescaped backslash, a carriage return, or a line feed.
 
