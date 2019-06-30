@@ -69,3 +69,13 @@ punctuator
     | "\"
     ;
 ```
+
+## Other Symbols
+
+Symbols not already defined are not technically reserved. They are simply invalid character sequences in Adamant. However, the following symbols are "reserved" for the below uses:
+
+| Symbol  | Use                           |
+| ------- | ----------------------------- |
+| `**`    | Raise to power.               |
+| `` ` `` | Reserved for use in Markdown. |
+| `##`    | Preprocessor                  |
