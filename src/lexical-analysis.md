@@ -17,4 +17,8 @@ input_element
     ;
 ```
 
+Lexical processing consists of breaking down the file into a sequence of tokens that are the input to the syntactic analysis. Newlines, whitespace, and comments can separate tokens, but have no impact on the syntactic structure of programs, except for [documentation comments](documentation-comments.md).
+
+When multiple lexical rules match, the processing always forms the longest match.
+
 Note: the current version of Adamant does not have a preprocessor. When one is added, it will be handled similarly to the C# preprocessor by including it in the lexical grammar.
