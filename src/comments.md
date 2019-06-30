@@ -22,7 +22,7 @@ delimited_comment
 
 delimited_comment_section
     : "/"
-    | "*"* [^/*]+ // i.e. any number of asterisks followed by one or more characters that aren't slash or asterisk
+    | "*"* [^/*]+ // i.e. asterisks followed by characters that aren't slash or asterisk
     ;
 ```
 
