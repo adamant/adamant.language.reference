@@ -1,4 +1,6 @@
-# Operators and Punctuators
+## Operators and Punctuators
+
+Operators and punctuators are symbols used in Adamant as operators and other symbolic connectors. Some symbols are used in both capacities. As a consequence, the division into operator and punctuator categories is somewhat arbitrary and is done for convenience only. Note that the lexical category of operator does not include everything that is semantically an operator. For example, the `and` and `or` keywords are operators.
 
 ```grammar
 operator_or_punctuator
@@ -7,12 +9,13 @@ operator_or_punctuator
     ;
 ```
 
-## Operators
+### Operators
+
+The following symbols are used as operators.
 
 ```grammar
 operator
     : "."
-    | "::"
     | ".."
     | "<.."
     | "..<"
@@ -49,11 +52,14 @@ operator
     ;
 ```
 
-## Punctuators
+### Punctuators
+
+The following symbols are used symbolic connectors.
 
 ```grammar
 punctuator
     : "$"
+    | "::"
     | "?"
     | "{"
     | "}"
@@ -63,19 +69,20 @@ punctuator
     | "]"
     | ";"
     | ","
-    | "#"
+    | "#("
+    | "#["
+    | "#{"
     | ":"
     | "->"
-    | "\"
     ;
 ```
 
-## Other Symbols
+### Other Symbols
 
-Symbols not already defined are not technically reserved. They are simply invalid character sequences in Adamant. However, the following symbols are "reserved" for the below uses:
+Any symbol sequences not defined as operators or punctuators are errors. Thus these sequences are not technically reserved. However, the following symbols are "reserved" for the below uses:
 
-| Symbol  | Use                           |
-| ------- | ----------------------------- |
-| `**`    | Raise to power.               |
-| `` ` `` | Reserved for use in Markdown. |
-| `##`    | Preprocessor                  |
+| Symbol  | Use                                      |
+| ------- | ---------------------------------------- |
+| `**`    | Raise to power                           |
+| `` ` `` | Reserved for code expressions and blocks |
+| `##`    | Preprocessor                             |
