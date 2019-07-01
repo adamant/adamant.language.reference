@@ -175,7 +175,7 @@ The values a user literal can have may be restricted to match a pattern. Types w
 public copy struct Date
 {
     public implicit operator '_'(value: string) -> Date
-        requires value.matches(#"\d+-\d+-\d+"#)
+        requires value.matches(#'\d+-\d+-\d+'#)
     {
         // construct date
     }
@@ -184,53 +184,25 @@ public copy struct Date
 
 ### String Literals
 
-**TODO:** Change to delimited string literals the same as Swift. However, that may be a planned feature rather than a current feature.
+String literals are Unicode strings encoded in UTF-8. Just like user literals, string literals support both escape sequences and delimiters. Also like user literals, the data type of string literals is inferred by context and restricted by pattern matching. However, typically the `string` type is the only type that makes use of string literals.
 
-String literals are Unicode strings encoded in UTF-8. They are enclosed in double quotes. There are two kinds of string literals. Regular string literals allow the same escape sequences as user defined literals. Verbatim string literals do not allow escape sequences. Similar to user defined literals, the data type of string literals is not fixed. Instead it is inferred to be a type with the appropriate operator overload.
+String literals are enclosed in double quotes and may be delimited. To delimit a string literal, it is prefixed and suffixed by one or more pound signs. A delimited string literal is terminated by a double quote followed by a number of pound signs equal to the prefix delimiter. A double quote followed by fewer pound signs is taken as part of the string value. A double quote followed by more pound signs terminates the string, but is an error. In delimited strings, escape sequences are only matched when they contain the same delimiter. an escape sequence with more or fewer pound signs is interpreted as part of the value.
 
 ```grammar
 string_literal
-    : regular_string_literal
-    | verbatim_string_literal
+    : delimiter ["] string_character* ["] delimiter
     ;
 
-regular_string_literal
-    : ["] regular_string_character* ["]
-    ;
-
-regular_string_character
-    : single_regular_string_character
-    | simple_escape_sequence
-    | unicode_escape_sequence
-    ;
-
-single_regular_string_character
-    : ?Any character except double quote (U+0022), backslash (U+005C), and new_line_characters?
-    ;
-
-verbatim_string_literal
-    : "#" ["] verbatim_string_character* ["]
-    ;
-
-verbatim_string_character
-    : single_verbatim_string_character
-    | quote_escape_sequence
-    ;
-
-single_verbatim_string_character
-    : [^"]
-    ;
-
-quote_escape_sequence
-    : ["]{2}
+string_character
+    : escape_sequence
+      // any character except newline characters
+    | [^] - newline
     ;
 ```
 
-**TODO:** verbatim strings could conflict with future multiline verbatim strings `#""" string """`.
-
 #### String Literal Construction
 
-String literals are constructed with an operator overload. The resulting object must be read only and have the static lifetime. This operator must be an implicit pure function.
+String literals are constructed with an operator overload. The resulting object must be read only and have the lifetime `forever`. This operator must be an implicit pure function.
 
 ```adamant
 public struct Example
