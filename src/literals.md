@@ -202,7 +202,7 @@ string_character
 
 #### String Literal Construction
 
-String literals are constructed with an operator overload. The resulting object must be read only and have the lifetime `forever`. This operator must be an implicit pure function.
+String literals are constructed with an operator overload. The resulting object must be read only and have the lifetime `forever`. This operator must be an implicit pure function. As with user literals, the type of a string literal is inferred by context and may be restricted by a match pattern.
 
 ```adamant
 public struct Example
@@ -221,18 +221,40 @@ public struct Example
 
 ### Interpolated Strings
 
-Interpolated string literals are distinguished from regular string literals only by have interpolated expressions in them. An interpolated expression is enclosed by "`\()`". The interpolated expression can contain a string literal, but can’t contain an unescaped backslash, a carriage return, or a line feed.
+In addition to the standard escape sequences, strings may contain escaped expressions. These expressions will be evaluated at runtime, converted to strings, and have their string values inserted into the string. String literals containing escaped expressions are called interpolated strings. The full semantics of this is described in [Interpolated String Expressions](interpolated-strings.md). The current section describes their lexical analysis.
+
+An escaped expression is introduced by "`\(`" and terminated with "`)`". As with other escape sequences, in a delimited string, the delimiter must be placed between the backslash and open parenthesis.
+
+An interpolated string is first analyzed as a single token by the rules described here. Before syntactic analysis, it is broken down into tokens for the parts of the string between the expressions and the expressions. Then the escaped expressions are lexically analyzed again into streams of tokens that are inserted between tokens for the string segments. This analysis may produce further interpolated strings which must be reanalyzed.
+
+In order to lexically determine the end of the escape expression, the expression must contain balanced bracketing characters.
 
 ```grammar
-interpolated_string_literal
-    : ["] interpolated_string_item* ["]
+// A rule for string_character in addition to previous ones
+string_character
+    : escaped_expression
     ;
 
-interpolated_string_item
-    : "\(" expression ")"
-    | regular_string_character+
+escaped_expression
+    : "\" delimiter "(" balanced_text ")"
+    ;
+
+balanced_text
+    : balanced_text_part+
+    ;
+
+balanced_text_part            // longest match rule applies
+    : balanced_text_character
+    | comment                 // ignore contents of comments
+    | identifier_string       // ignore contents of identifier strings
+    | user_literal            // ignore contents of user literals
+    | string_literal          // nested string literals
+    | "(" balanced_text ")"
+    | "[" balanced_text "]"
+    | "{" balanced_text "}"
+    ;
+
+balanced_text_character
+    : [^'"(){}\[\]]
     ;
 ```
-
-**TODO:** determine how conversion to string works for interpolated string.
-**TODO:** determine how formatting of the expression works.

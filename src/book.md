@@ -43,8 +43,9 @@ Note: This is the new version of the reference. Sections are being moved from th
      * Logical Operators
    * [Bitwise Operations](bitwise-operations.md)
    * [Boolean Expression](boolean-expression.md)
+   * [Interpolated Strings](interpolated-strings.md)
 8. [Statements](statements.md)
-9.  [Namespaces](namespaces.md)
+9. [Namespaces](namespaces.md)
 10. [Functions](functions.md)
 11. Classes
     * [Operator Overloading](operator-overloading.md)
