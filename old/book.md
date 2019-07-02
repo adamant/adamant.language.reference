@@ -22,9 +22,7 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Fields](fields.md)
   * Methods (including `open`)
   * [Associated Functions](associated-functions.md)
-  * [Constructors](constructors.md)
   * [Destructors](destructors.md)
-  * Operator Overloading
   * [Object Literals](object-literals.md)
   * [Extensions](extensions.md)
   * [Partial Classes](partial-classes.md)

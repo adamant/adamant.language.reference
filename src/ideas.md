@@ -271,3 +271,7 @@ let z = t.at[2]();
 ```
 
 Note that the "`at`" method can't be a meta-function because it must return a reference to a runtime value.
+
+### Default Value Constructors
+
+Fields whose type is optional can be implicitly initialized with the value `none`. Perhaps there should be a special constructor that, if present, the compiler calls to implicitly initialize a field. This would allow developers to create their own types like optional types which can be implicitly initialized.

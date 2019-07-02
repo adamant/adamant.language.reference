@@ -16,9 +16,12 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Reserved Words](reserved-words.md)
    * [Literals](literals.md)
    * [Operators and Punctuators](operators-and-punctuators.md)
-   * [Syntactic Analysis](syntactic-analysis.md)
 3. Basic Concepts
+   * [Syntactic Analysis](syntactic-analysis.md)
+   * Declarations
    * [Member Access](member-access.md)
+   * Signatures and Overloading
+   * Scopes
    * [Execution Order](execution-order.md)
 4. [Types](types.md)
    * [Empty Types](empty-types.md)
@@ -34,8 +37,7 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Type Expressions](type-expressions.md)
    * Generic Types
 5. [Conversions](conversions.md)
-6. Variables
-7. [Expressions](expressions.md)
+6. [Expressions](expressions.md)
    * [Expression Blocks](expression-blocks.md)
    * [Choice Expressions](choice-expressions.md)
    * [Loop Expressions](loop-expressions.md)
@@ -44,27 +46,34 @@ Note: This is the new version of the reference. Sections are being moved from th
    * [Bitwise Operations](bitwise-operations.md)
    * [Boolean Expression](boolean-expression.md)
    * [Interpolated Strings](interpolated-strings.md)
-8. [Statements](statements.md)
-9. [Namespaces](namespaces.md)
-10. [Functions](functions.md)
-11. Classes
+7. [Statements](statements.md)
+8. [Namespaces](namespaces.md)
+9. [Functions](functions.md)
+10. Classes
+    * Declarations
+    * Members
+    * Fields
+    * [Constructors](class-constructors.md)
+    * Destructors
+    * Methods
+    * Properties
     * [Operator Overloading](operator-overloading.md)
-12. [Structs](structs.md)
+11. [Structs](structs.md)
     * [Struct Initializers](struct-initializers.md)
     * [Struct Constructors](struct-constructors.md)
-13. [Traits](traits.md)
-14. [Enumerations](enumerations.md)
+12. [Traits](traits.md)
+13. [Enumerations](enumerations.md)
     * Enumeration Structs
     * Enumeration Classes
-15. Generics
-16. Exceptions
-17. Attributes
-18. Patterns
-19. [Unsafe Code](unsafe.md)
+14. Generics
+15. Exceptions
+16. Attributes
+17. Patterns
+18. [Unsafe Code](unsafe.md)
     * [Pointers](pointers.md)
-20. [External Declarations](external.md)
-21. [Documentation Comments](documentation-comments.md)
-22. Standard Library
+19. [External Declarations](external.md)
+20. [Documentation Comments](documentation-comments.md)
+21. Standard Library
     * [Localization](localization.md)
     * [Global Namespace](std-lib-global-namespace.md)
     * [`system` Namespace](system.md)
@@ -74,8 +83,8 @@ Note: This is the new version of the reference. Sections are being moved from th
     * [`system.math` Namespace](system.math.md)
     * [`system.memory` Namespace](system.memory.md)
     * [`system.text` Namespace](system.text.md)
-23. [Conventions](conventions.md)
-24. [Planned Features](planned-features.md)
+22. [Conventions](conventions.md)
+23. [Planned Features](planned-features.md)
     * [Global and Package Qualifiers](planned-qualifier.md)
     * [Additional Types](planned-types.md)
     * [Aliases](planned-aliases.md)
