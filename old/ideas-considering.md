@@ -51,19 +51,11 @@ I should seriously consider what other symbols are unused and how they could be 
 
 And of course combinations of symbols and unary prefix and suffix versions of existing operators.
 
-## Don't Use `new` for Structs
-
-Despite the justification given for using new with structs and tuples, there is still enough reason to consider not doing that. Instead, struct construction could look like a static call to the constructor or to the type name. So `My_Struct` would be constructed by calling `My_Struct(value)`. However, unlike C# all structs would be required to be initialized. There would be no default struct construction. This function call like syntax reflects that fact that no heap memory is being allocated, but some construction work may be being done. It also removes confusions around trying to use the other new construction syntaxes on structs. For example, `new?` wouldn't make any sense for structs. However, it becomes unclear how to call named constructors, and seems inconsistent with the way the constructor is declared. One possibility is to use syntax similar to how constructors call each other. So a regular constructor call would be `My_Struct.new(value)` and a named constructor call would be `My_Struct.new.from(value)`. But, syntax is long and feels like memory allocation. It just makes it seem weird compared to class construction. Alternatively, named struct constructors could just be treated as associated functions i.e. `My_Struct.from(value)`.
-
 ## Adjust Naming Conventions
 
 * Consider using `snake_case` for namespaces.
 * Consider using underscores around acronyms in constants: `Screen_DPI_ToPrint` or `ScreenDPI_ToPrint`.
 * Consider using `camelCase` or `PascalCase` for functions outside of a class.
-
-## Implicit Field Initialization
-
-What if any constructor argument would automatically initialize a field named the same, if that field wasn't otherwise assigned into? Or maybe there would be some other shortcut to eliminate the constructor boilerplate. A possible syntax would be an argument like `self.fieldName`.
 
 ## Omit `-> void` for Procedures
 
@@ -160,7 +152,7 @@ type Foo = Bar | Baz;
 
 Effectively making `Foo` a base class of `Bar` and `Baz` except they must be matched to split them.
 
-## Better Name for `~static` Lifetime
+## Better Name for `static` Lifetime
 
 The "static" lifetime uses the word static which is overused and ambiguous. One might naively assume it means the value or reference can't change. However, that is not the case.
 
