@@ -26,8 +26,6 @@ Note: This is the old version of the reference. Sections are being moved from th
   * [Object Literals](object-literals.md)
   * [Extensions](extensions.md)
   * [Partial Classes](partial-classes.md)
-* Structs
-  * [Constructors](struct-constructors.md)
 * [Enums](enums.md)
 * [Generators](generators.md)
 * [Async and Await](async.md)

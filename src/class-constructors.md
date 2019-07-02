@@ -70,9 +70,9 @@ In a class with a base class, a constructor must either call a base class constr
 Fields can be directly initialized from constructor arguments. This is done by prefixing the parameter name with `.` and omitting the type. The type is determined by the type of the field.
 
 ```adamant
-    public new(.field)
-    {
-    }
+public new(.field)
+{
+}
 ```
 
 ### Definite Assignment
