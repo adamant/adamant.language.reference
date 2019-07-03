@@ -146,6 +146,16 @@ public fn function()    {
 
 Instead of allowing assignment expressions anywhere. Use a set expression "`set x = 5`". This makes a set as long as a redeclaration with "`let`". It allows the single equals sign "`=`" to be used as both assignment and comparison operations. Finally, it prevents any ambiguity for destructuring assignments "`set #(x, y) = function()`".
 
+### No Implicit Boxing
+
+Note that boxing is a separate operation from taking a reference to a struct on the stack as a trait. Boxing takes ownership of the value and creates an owned reference. Referencing values on the stack is done using the `ref` keyword.
+
+Perhaps the boxing conversion should be explicit. Boxing may allocate heap memory, something that is normally only done with `new`. While smaller simple types can be stored directly in the object pointer of the reference, larger ones can't. Given that the size of `size` could be 32 bits, even `int64` may require heap allocation. Generics should be used instead of boxing. One possibility is to implement boxes using the standard library type `Box[S]`. There are two issues with that. First, it isn't clear how to support unboxing directly to the boxed type using `as`. Second, this would allow mutation of the boxed value even for simple types. What is generally desired for simple types is an immutable box so that they still behave like the simple types. That could be a different standard library type, but it isn't clear what to name it.
+
+There may be another issue with using a standard library type. Given some simple type (say `int`) that implements a trait (say `Ordered`) it isn't clear how the standard library type would support conversion to an owned reference to a trait (i.e. `Ordered$owned`). That would imply the container type would have to implement traits based on the type it contained.
+
+Perhaps the correct way to handle this is similar to Java with a separate wrapper type for each of the simple types.
+
 ## Types
 
 ### Logarithmic Numbers
