@@ -17,7 +17,7 @@ var matches = str.match(`(a|b)+\|[^ ]*`);
 
 ### Code Blocks
 
-Code blocks allow DSL code to be placed at the statement or declaration level. A code block is begun by a line that begins with whitespace followed by three or more consecutive backticks. The backticks are followed by the language parameters which determine which language is used in the code block and any options needed for compiling the language. The info string may not contain any backtick characters (this ensures a code block is distinct from a code expression). The code block is ended by a line beginning with the same whitespace as the block start followed by teh same number of backticks as the start and a newline. The block end may optionally contain whitespace before the line end. A code block may also be terminated by the end of the file if it was not nested inside any other declarations. This allows a whole code file to easily be in another language by having the first line be "` ``` language `". One use case for code blocks would be a parser generator based on a BNF like notation.
+Code blocks allow DSL code to be placed at the statement or declaration level. A code block is begun by a line that begins with whitespace followed by three or more consecutive backticks. The backticks are followed by the language parameters which determine which language is used in the code block and any options needed for compiling the language. The info string may not contain any backtick characters (this ensures a code block is distinct from a code expression). The code block is ended by a line beginning with the same whitespace as the block start followed by the same number of backticks as the start and a newline. The block end may optionally contain whitespace before the line end. A code block may also be terminated by the end of the file if it was not nested inside any other declarations. This allows a whole code file to easily be in another language by having the first line be "` ``` language `". One use case for code blocks would be a parser generator based on a BNF like notation.
 
 ````adamant
 ``` parser.BNF
@@ -26,6 +26,7 @@ exp = a "+" b
     | a "*" b
     | a "/" b
     ;
+```
 ````
 
 Code blocks may also allow for setting a default language so the language can be omitted with repeated blocks in a file. One way to do this would be with a `##lang` preprocessor directive. Alternatively, `##lang` could be an alternate way to specify a whole file as being in another language. That way code blocks could be required to be closed.
