@@ -45,7 +45,7 @@ A brief statement of the syntax for easy reference.
 | `^x`               | Dereference                    |
 | `x^.y`             | Deference and Access Member    |
 | `@x`               | Address Of (i.e. pointer to)   |
-| `x??y`             | Coalesce Operator}             |
+| `x??y`             | Coalesce Operator             |
 | `x?.y`             | Conditional Access Operator    |
 | `x and y`          | Logical And (Short Circuiting) |
 | `x or y`           | Logical Or (Short Circuiting)  |
@@ -69,7 +69,7 @@ A brief statement of the syntax for easy reference.
 | `x and y`          | Logical And (short circuiting) |
 | `x or y`           | Logical Or (short circuiting)  |
 | `not x`            | Logical Not                    |
-| `T1 | T2`          | Sum Type                       |
+| `T1 \| T2`          | Sum Type                       |
 | `T1 & T2`          | Intersection Type              |
 | `T1 <: T2`         | Subtype                        |
 

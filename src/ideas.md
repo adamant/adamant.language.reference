@@ -4,6 +4,8 @@ This appendix describes various ideas for features that could be added to the Ad
 
 Sections:
 
+* [Reference Capabilities](#reference-capabilities)
+* [Reachability](#reachability)
 * [Operators](#operators)
 * [Preprocessor](#preprocessor)
 * [Documentation Comments](#documentation-comments)
@@ -12,6 +14,48 @@ Sections:
 * [Parameters](#parameters)
 * [Generics](#generics)
 * [Misc](#misc)
+
+## Reference Capabilities
+
+As part of the memory management system, there will be reference capabilities. However, it isn't clear what the correct set of reference capabilities is. For now, implement extra ones and see which ones work well. Then reduce and possibly rename them. In the table below, the `B` right stands for "Bounded". It means there is a reference leaving the ownership boundary and so the lifetime of this reference is bounded. Given how many of these there are, initially the `leaked` and `held iso` capabilities won't be implemented because they are unlikely to be useful.
+
+| Rights  | Name                         | Syntax                           |
+| ------- | ---------------------------- | -------------------------------- |
+| IRWI̅R̅W̅B | Owning Writable              | `owned mut T`                    |
+| IRWI̅R̅W̅  | Isolated Writable            | `iso mut T`                      |
+| IRWĨR̅W̅B | Potentially Owning Writable  | `held mut T`  (alt. `uni mut T`) |
+| IRWĨR̅W̅  | Leaked or Isolated Writeable | `held iso mut T`                 |
+| IRWR̅W̅B  | Borrowed                     | `mut T`                          |
+| IRWR̅W̅   | Leaked                       | `leaked mut T`                   |
+| IRI̅R̅W̅B  | Owning Read-only             | `owned T`                        |
+| IRI̅R̅W̅   | Isolated Read-only           | `iso T`                          |
+| IRI͠RW̅B  | Potentially Owning Read-only | `held T`     (alt. `uni T`)      |
+| IRI͠RW̅   | Leaked or Isolated Read-only | `held iso T`                     |
+| IRW̅B    | Shared                       | `T`                              |
+| IRW̅     | Leaked Read-only (const)     | `leaked T`                       |
+| IB      | Id                           | `id T`                           |
+| I       | Id of Leaked                 | `leaked id T`                    |
+
+These capabilities can be assigned/passed from one to another by a set of operations which influence how the source type is treated while the new reference exists. The table below summarizes the kinds of assignment.
+
+| Action | Syntax   | Description                                                                                                  |
+| ------ | -------- | ------------------------------------------------------------------------------------------------------------ |
+| Move   | `move x` | Move the value out of the source variable. The source variable is no longer usable. Ownership is transferred |
+| Borrow | `mut x`  | Borrow the value (writable). Source variable becomes `id T` as long as reference exists.                     |
+| Share  | `x`      | Share the value (read-only). Source variable becomes shared `T` as long as reference exists.                 |
+| Tag    | `tag x`  | Create an id for this object. Source variable unaffected except lifetime                                     |
+
+## Reachability
+
+In addition to reference capabilities, the reachability system enforces memory safety. In Rust, borrow checking is treated as part of type checking. I think it is less confusing to think of reachability checking as a separate set of checks. Reachability ensures that nothing can be deleted while it is referenced and that nothing can be mutated while there are other references to it. Reachability is automatically inferred within the body of a function. At function boundaries, reachability is handled by reachability annotations. These annotations come in two forms. First as annotations on the return type and second as something like effect types.
+
+Every object forms the root of an ownership tree formed by all the references with ownership. Every object in this tree is said to be inside the object's ownership boundary. Every object not in the tree is outside the ownership boundary. Any reference crossing created by a function that crosses into or out of the ownership boundary of the parameters or return type must be annotated. Since they cross the boundary, they are by definition non-owning. Thus these annotations represent something more complex than mere reachability. If a method returns a reference to an object owned by self. That object is reachable from self or from the reference, but the annotation must be `T ~> self` because the borrowed reference goes into the ownership boundary of self.
+
+Ownership annotations on return types come in two forms. First, `T <~ w, x` indicates that `w` and `x` may reference object's inside the ownership boundary of the returned `T`. Second, `T ~> y, z` indicates that the returned value may reference object's inside the ownership boundary of `y` and `z`. When a type has both, either may be listed first `T <~ w, x ~> y, z`. The reason for this is that when read left-to-right, the transitivity of reachability means that reachability does extend between everything on the left and right of the operator. Ownership annotations may also occur within generics (i.e. `List[T ~> x]`).
+
+Ownership annotations not involving the return type are listed as effects of the function. For example, a function taking two parameters `x` and `y` that creates a reference from `x` to `y` would be annotated `may x ~> y`. They may be chained and should be read left to right. For example `may x ~> y ~> z <~ p ~> q ~> r` is equivalent to `may (((((x ~> y) ~> z) <~ p) ~> q) ~> r)` which is equivalent to `may p ~> x ~> y ~> z ~> q ~> r`. Expressions where all the arrows go in the same directions are preferred.
+
+If a reference exists, but hasn't escaped the current function, then it does not yet fully restrict the original reference. This supports what in Rust is called two-phase borrows. For example, in the expression `list.at(list.count - 1) = x;`, the left expression is evaluated first and creates a temporary borrow of list. Then `list.count` is evaluated. This needs to temporarily share `list`. Without the escape rule, this would be illegal because list has already been borrowed. However, that borrow has never escaped the current function yet. So it is safe to share the list as long as that share ceases to exist before the borrow is used. Note that in Adamant all "field access" from outside an object is treated as property access and counts as the reference escaping the function. This is because fields can be overridden and may act like functions.
 
 ## Operators
 
