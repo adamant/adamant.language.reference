@@ -6,6 +6,7 @@ Sections:
 
 * [Reference Capabilities](#reference-capabilities)
 * [Reachability](#reachability)
+* [Mutability and Move](#mutability-and-move)
 * [Operators](#operators)
 * [Preprocessor](#preprocessor)
 * [Documentation Comments](#documentation-comments)
@@ -56,6 +57,16 @@ Ownership annotations on return types come in two forms. First, `T <~ w, x` indi
 Ownership annotations not involving the return type are listed as effects of the function. For example, a function taking two parameters `x` and `y` that creates a reference from `x` to `y` would be annotated `may x ~> y`. They may be chained and should be read left to right. For example `may x ~> y ~> z <~ p ~> q ~> r` is equivalent to `may (((((x ~> y) ~> z) <~ p) ~> q) ~> r)` which is equivalent to `may p ~> x ~> y ~> z ~> q ~> r`. Expressions where all the arrows go in the same directions are preferred.
 
 If a reference exists, but hasn't escaped the current function, then it does not yet fully restrict the original reference. This supports what in Rust is called two-phase borrows. For example, in the expression `list.at(list.count - 1) = x;`, the left expression is evaluated first and creates a temporary borrow of list. Then `list.count` is evaluated. This needs to temporarily share `list`. Without the escape rule, this would be illegal because list has already been borrowed. However, that borrow has never escaped the current function yet. So it is safe to share the list as long as that share ceases to exist before the borrow is used. Note that in Adamant all "field access" from outside an object is treated as property access and counts as the reference escaping the function. This is because fields can be overridden and may act like functions.
+
+Would a bidirectional reachability operator make any sense `<~>`?
+
+## Mutability and Move
+
+Mutability expressions and move expressions have been an ongoing source of confusion as I think about implementing the compiler. Specifically, the question is how to handle them around constructors and functions returning some form of ownership. Should `f(g())` require a mutability expression like `f(mut g())` if `f` is to mutate the value returned by `g`? Similarly, should `f(move new G())` require a move expression? The move seems unnecessary there. However, it could have effects on lifetimes. For example, in `f(new G(a))` will the reference to `a` be available after this call or could it still be held because ownership was taken and put somewhere? Another example is `f(g(mut a))`. Should it be possible for `f` to indirectly mutate `a` by taking mutability of the return value from `g`? It seems sufficient that `a` could be mutated in this expression without worrying too much exactly when. Also, requiring `mut` everywhere seems like it could get very old. An expression like `f(mut g(mut h(mut j(mut a)), mut k(mut b)))` is difficult to read. Shouldn't `f(g(h(j(mut a)), k(mut b)))` be sufficient? Another interesting example is `f(a.foo())` where `a` could be mutated in `f` because `foo()` returns a mutable type. But there, the real issue is not knowing `foo` is mutably borrowing it. It seems the only solution to that would be a separate access operator which takes the target mutability. What comes to mind first is `f(a!foo())`, but that does somewhat conflict with the `!` used for panic in `as!` and probably elsewhere. Other options `a|foo()`, `a~foo()`.
+
+One of the sources of confusion is the variable declaration shorthand which allows `let x = mut g()`. Here the `mut` seems to be applied to the result of the function making it seem that could and perhaps should be done elsewhere.
+
+Given all this, for now, a simple scheme will be adopted. Mutability and move expressions can be applied only to variable usages and field accesses. It remains an open question if that should include property accesses since they are really function calls. However, they look like field access. Method calls and constructor calls will have mutable and ownership types that do not require `mut` or `move`. Variables with inferred types will continue to infer read-only even if assigned from mutable expressions. To enable easy mutable declaration and also remove the confusion around variable declaration, and simplify it, the special form `let x: mut = g()` will mean infer a mutable type. Some thought has been given to dropping the colon or otherwise changing this. However, all the other syntax for this are less clear and confusing in some regard.
 
 ## Operators
 
