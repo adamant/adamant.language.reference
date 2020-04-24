@@ -46,6 +46,8 @@ These capabilities can be assigned/passed from one to another by a set of operat
 | Share  | `x`      | Share the value (read-only). Source variable becomes shared `T` as long as reference exists.                 |
 | Tag    | `tag x`  | Create an id for this object. Source variable unaffected except lifetime                                     |
 
+If isolated is a needed but rare reference capability. It could be represented in a different way. As an owned reference that explicitly doesn't have a bounds. The syntax could be `owned T ~> none` and `owned mut T ~> none`. The same idea could be extended to leaked identity `id T ~> none`. This seems a little strange, so alternatively, leaked could be `id T <~ forever`, `mut T <~ forever`, and `T <~ forever`. The idea is that this indicates a reference can hold onto them for an unlimited amount of time.
+
 ## Reachability
 
 In addition to reference capabilities, the reachability system enforces memory safety. In Rust, borrow checking is treated as part of type checking. I think it is less confusing to think of reachability checking as a separate set of checks. Reachability ensures that nothing can be deleted while it is referenced and that nothing can be mutated while there are other references to it. Reachability is automatically inferred within the body of a function. At function boundaries, reachability is handled by reachability annotations. These annotations come in two forms. First as annotations on the return type and second as something like effect types.
