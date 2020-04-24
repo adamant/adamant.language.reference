@@ -38,3 +38,34 @@ It should be possible to register file extensions with the Adamant compilation p
 ### Code Compilation
 
 The details of code expression and block compilation have not been worked out. It is expected that something similar to what Racket uses can be made to work. However, this may require a standard model of the Adamant AST. Code compilations should be built on top of macro and compile time function execution functionality. As with Racket, there should probably be ways to easily create languages with macro like facilities and ways to take full control of lexing, parsing, and translation. A default lexer should be provided that is capable of lexing a superset of Adamant. For example, in additional to supporting all Adamant tokens it may contain rules for tokenizing other symbols into operator tokens.
+
+### Languages as Macros
+
+Code expressions and blocks can be the ultimate form of macro. Any place a pair of curly braces is expected, a code block can be used instead. Code expressions could be allowed in place of declarations after modifiers. The one challenge is how to allow the specification of which language or macro. One option would be to allow a name before the expression indicating the language. Another would be to allow attributes to control the language selection. Of course, in some cases, it would make sense to just allow the developer to rewrite code tagged with a certain attribute.
+
+````adamant
+public class Example
+{
+    public fn example()
+    ```asm
+        # Whole function body is inline assembly
+        ld r3 4;
+        ret
+    ```
+
+    // The word macro here is not a keyword, it is the name of the language used to create this declaration
+    public macro macro_name `#(x◊exp, y◊exp)`
+    ```
+        // syntax rules here
+    ```
+
+    #metadata // specifies that the code expression is metadata
+    protected `key := this is a metadata value`;
+
+    // Alternatively, the regular expression limitations could match the first part of the code expression
+    protected `metadata key2 := another metadata value`;
+
+    #reactive // Attribute triggers code rewriting to turn this into a property that raises change events
+    public var x: int;
+}
+````
