@@ -58,8 +58,8 @@ The following symbols are used as symbolic connectors.
 
 ```grammar
 punctuator
-    : "$"
-    | "::"
+    : "$" // was used for lifetimes, will likely be removed
+    | "::."
     | "?"
     | "{"
     | "}"
