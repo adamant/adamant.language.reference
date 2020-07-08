@@ -12,27 +12,17 @@ reference_type
 
 ### Object Reference types
 
-An object reference type (object type for short) is a reference to an object. This object could be of a concrete class type or a trait type or one a several built in object types.
+An object reference type (object type for short) is a reference to an object. This object could be of a concrete class type or a trait type or one a several built in object types. The two special object types are `Type` and `Metatype`
 
 ```grammar
 object_type
-    : user_object_type
-    | type_type
-    ;
-```
-
-#### User Object Type
-
-User object types are the type names declared by classes and traits.
-
-#### `Type`
-
-```grammar
-type_type
-    : "Type"
+    : identifier
+    | "Type"
     | "Metatype"
     ;
 ```
+
+#### `Type` and `MetaType`
 
 The type "`Type`" is the type of all objects that represent types during reflection and in generics. The default type of a generic parameter is "`Type`" (thus "`foo[T]`" and "`foo[T: Type]` are equivalent). Any generic parameter with this type is referred to as a "type parameter". Note that "`Type`" is a reference type. This was necessary to allow metatypes to be subtypes of it.
 
