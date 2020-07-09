@@ -44,7 +44,6 @@ More recently, the syntax `^Foo` has been considered. The intent being that you 
 
 I should seriously consider what other symbols are unused and how they could be used to good effect. Of course, it might be good to leave some symbols for future use, but it is so hard to know if those uses will make sense for the available symbols. Possible symbols are:
 
-* `^`
 * `&`
 * `|`
 * `$`
@@ -67,7 +66,7 @@ Note that anonymous functions might indicate that `-> void` should be allowed. T
 
 ## Operator for Await
 
-Given that async will be more pervasive in my language. Perhaps it makes sense to give it an operator. One idea is to use `!`. It conveys the "do it" sense.  Indeed, Haskell uses it as the force evaluation operator. Other options include `>>` and `|>`. Those are reversible which might be useful. Both give the sense of directing output or ordering. If await has an operator, should `async` have one too?
+Given that async will be more pervasive in my language. Perhaps it makes sense to give it an operator. One idea is to use `!`. It conveys the "do it" sense. Indeed, Haskell uses it as the force evaluation operator. Other options include `>>` and `|>`. Those are reversible which might be useful. Both give the sense of directing output or ordering. If await has an operator, should `async` have one too?
 
 ## Use `|` as Remainder Operator
 

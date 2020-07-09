@@ -81,8 +81,8 @@ punctuator
 
 Any symbol sequences not defined as operators or punctuators are errors. Thus these sequences are not technically reserved, but are available for future language features. However, the following symbols are "reserved" for the below uses:
 
-| Symbol  | Use                                      |
-| ------- | ---------------------------------------- |
-| `**`    | Raise to power                           |
-| `` ` `` | Reserved for code expressions and blocks |
-| `##`    | Preprocessor                             |
+| Symbol  | Use                                             |
+| ------- | ----------------------------------------------- |
+| `^`     | Raise to power (when used as a binary operator) |
+| `` ` `` | Reserved for code expressions and blocks        |
+| `##`    | Preprocessor                                    |

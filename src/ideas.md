@@ -94,6 +94,10 @@ Instead of having a total order of precedence on the operators, have only a part
 
 Use "`xor`" as the logical exclusive or operator. It could have no precedence relative to the "`and`" and "`or`" operators. It is unlikely anyone would know the precedence of it. In fact, there may be disagreement about the correct precedence. This has been omitted from the language for now to avoid imposing a precedence relative to the "`and`" and "`or`" operators before operator partial ordering is supported.
 
+### "`^`" Exponent Operator
+
+When used as a binary operator "`^`" should be a right associative exponentiation operator. I had thought this could be confusing with caret as the dereference operator. However, C makes use of `*` as both the multiply and dereference operator. Exponents are much rarer than multiply and pointers in Adamant are much rarer than in C. So it shouldn't be an issue.
+
 ### Dot Product and Cross Product Operators
 
 These seem like fairly standard useful operators. They may not be defined on the primitive types, but they could probably exist and be given precedence that mathematicians would expect.
