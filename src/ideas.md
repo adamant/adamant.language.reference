@@ -283,6 +283,15 @@ class Vehicle of plane | train | automobile {
 }
 ```
 
+### Constant Types
+
+Expose types in the language for constants of known values. For example, `bool[true]` would be the type of a boolean known to be true. Likewise, `int[0]` the type of an int know to be zero at compile time. One possible use for this is in a units of measure library where `m^3` could be handled by overloading the `^` operator on `int[1]`, `int[2]`, `int[3]` etc.
+
+### Units of Measure
+
+It would be really good to be able to have good units of measure either directly in the language or as a really clean library. This might be a useful place for an effect that says all code uses units of measure. Units of measure may call for a space/juxtaposition operator between the value and the unit. There may need to be a lot of flexibility in how units of measure can be done. Some situations call for types that hold a value and a unit. Other situations call for a type for the quantity but the units are always converted to some standard unit. Finally, sometimes the C# style ability to attach units to any numeric type will make the most sense. Note with the last one, the units aren't just part of the expression, but are part of each type declaration.
+
+
 ## Parameters
 
 ### Named Parameters

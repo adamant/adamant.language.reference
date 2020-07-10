@@ -30,10 +30,6 @@ The syntax of `ignore foo()` is confusing because it seems you are ignoring the 
 | `ignored = foo()`  | Reads more like a proper keyword.                                                       |
 | `discard foo()`    | Syntax used by Nim, again seems like you are discarding the call, not the value         |
 
-## Units of Measure
-
-It would be really good to be able to have good units of measure either directly in the language or as a really clean library. This might be a useful place for an effect that says all code uses units of measure.
-
 ## Exact Types
 
 An exact type would be a type that references to a superclass but can't hold a subclass type. Since most types will have vtables, their pointers would be fat pointers. Exact would provide a way to ensure that reference and pointer types were thin pointers. This could be done with a special syntax like `!Foo` for an exact references and`@!Foo` for exact pointers. A user on Reddit said the P6 language allows constrained type declarations. This could provide another way of supporting exact types. So `type Exact_Foo = T where typeof(T)=Foo` and the `typeof` operator would be taken to mean the concrete type.
