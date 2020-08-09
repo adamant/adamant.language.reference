@@ -70,11 +70,21 @@ namespace example2
 
 ## Summary of Name Resolution
 
-Name resolution searches until it finds a matching declaration. If a given scope has multiple matching declarations, then name resolution fails and an ambiguous reference error is reported. Scopes are searched recursively in the following order:
+Name resolution is package aware. Using directives bring into scope names from that namespace across all packages. However, namespaces searched because they contain the current declaration only bring into scope names in that namespace from the current package. This allows a package to intentionally, declare types and functions with the same name and namespace as referenced package and have them take precedence over those in the referenced package. It also ensures that updates to referenced packages won't break builds by introducing names matching those already in the current package. Only as a final step are names from referenced packages considered.
 
-1. The current declaration (i.e. the current function etc.)
-2. Declarations the current declaration is nested inside (i.e. a class containing a nested class)
-3. For each containing namespace from inside out, search:
-    1. Using directives
-    2. Declarations in the namespace
-    3. Declarations in nested namespaces that are visible from the current declaration
+Name resolution proceeds based on lexical scope from the scope a usage is in outward. When searching outward through namespaces, a compound namespace declaration (e.g. `namespace foo.bar`) is treated as if each namespace name were declared separately nested inside those before it.
+
+Name resolution searches until it finds a matching declaration. If a given scope has multiple matching declarations, then name resolution fails and an ambiguous reference error is reported. Which declarations are considered matching is based on what kind of entity it is and how the named is used. For example, a function call will not match type names. Namespaces are treated somewhat specially with regards to matching. A qualified name is resolved by resolving the first segment of the name and then looking up each subsequent segment in the previous namespace. If any of these later lookups fails to find a match, then the first segment is considered to not match and resolution continues for it. If during this process one of the segments matches to a type or namespace name, this is considered a match.
+
+When the global namespace is reached, first names in the global namespaces of the current package are considered. Then all names nested inside the global namespace are considered. Then names in the global namespace across all packages are considered. Then names nested in the global namespace across all packages are considered.
+
+In summary, the name resolution searches lexical scopes according to the following sequence:
+
+1. The current declaration (i.e. the current function, class etc.)
+2. Declarations the current declaration is nested inside (i.e. a class containing a nested class), going from innermost to outermost.
+3. For each containing namespace from inside out including the global namespace, search:
+    1. Using directives: bring in all names in a namespace regardless of package, do not bring in names in nested namespaces
+    2. Declarations in the namespace in the current package
+    3. Declarations in nested namespaces in the current package that are visible from the current declaration
+4. Declarations in the global namespace across all packages
+5. Declarations nested in the global namespace across all packages
