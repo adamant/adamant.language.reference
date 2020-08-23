@@ -291,7 +291,6 @@ Expose types in the language for constants of known values. For example, `bool[t
 
 It would be really good to be able to have good units of measure either directly in the language or as a really clean library. This might be a useful place for an effect that says all code uses units of measure. Units of measure may call for a space/juxtaposition operator between the value and the unit. There may need to be a lot of flexibility in how units of measure can be done. Some situations call for types that hold a value and a unit. Other situations call for a type for the quantity but the units are always converted to some standard unit. Finally, sometimes the C# style ability to attach units to any numeric type will make the most sense. Note with the last one, the units aren't just part of the expression, but are part of each type declaration.
 
-
 ## Parameters
 
 ### Named Parameters
@@ -299,8 +298,47 @@ It would be really good to be able to have good units of measure either directly
 Named parameters can be useful. I don't like how in C# every parameter could be potentially called as a named parameter. In Swift, there is syntax to control the name of a parameter independent of the name within the function. I think that makes sense since changing a parameter name is a breaking change. One could even allow multiple names for a parameter as a way of transitioning from an old name to a new name. The problem is that there is no good syntax for calling named parameters. The "`=`" would be ambiguous with assignment. The "`:`" would look like variable declarations and might conflict with current or future syntax. One person suggested using the keyword "`for`".
 
 ```adamant
-function(5 for arg_2, 6 for arg_1);
+func(5 for arg_2, 6 for arg_1);
 ```
+
+The same syntax could also be used to create dictionary initializers. Looking at possible syntaxes for named parameters and dictionary initializers, here are some options:
+
+```adamant
+// Separator
+#{x=:5, y=:6}
+#{x:=5, y:=6}
+#{x<-5, y<-6} // Direction feels wrong, a set maps from keys to values
+#{x~5, y~6}
+#{x~>5, y~>6} // Gives another meaning to ~>
+#{x=>5, y=>6} // Is this 100% consistent with the result syntax? Is it ambiguous?
+#{x: 5, y: 6} // Really should reserve : as a typing operator allowing explicit typing in expressions
+#{5@x, 6@y}
+#{5#=x, 6#=y}
+
+// Prefix
+#{#x 5, #y 6} // Could be ambiguous if # is used to declare parameter attributes
+#{x: 5, y: 6}
+#{%x 5, %y 6}
+#{&x 5, &y 6}
+#{~x 5, ~y 6}
+#{'x 5, 'y 6} // Conflicts with user literals
+#{''x 5, ''y 6} // Conflicts with user literals
+
+// Other
+#{:x: 5, :y: 6}
+#{%x: 5, %y: 6}
+```
+
+Looking through these, it really seems that `=>` and prefix `%` are the only reasonable options.
+
+```adamant
+fn func(arg_1=> x: int, =>arg_2: int) { ... }
+fn func(%arg_1 x: int, %arg_2: int) { ... }
+func(arg_2=>5, arg_1=>6);
+func(%arg_2 5, %arg_1 6);
+```
+
+Between those two, `=>` seems the better choice. It is unfortunate that it can't then be used as a symbol literal. However, user literals could be used as a flexible symbol literal.
 
 ### "`out`" Parameters
 
